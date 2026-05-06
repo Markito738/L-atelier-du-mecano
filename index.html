@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<html lang="fr">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>L'Atelier du Mécano — Valgelon la Rochette 73110</title>
-<link href="L'Atelier%20du%20M%C3%A9cano%20%E2%80%94%20Valgelon%20la%20Rochette%2073110_files/css2.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --navy:#0a1628; --navy-mid:#112240; --navy-light:#1a3358;
@@ -414,7 +414,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.7);padding:4rem 2rem 2rem;
     <span class="logo-sub">Valgelon la Rochette • 73110</span>
   </div>
   <nav>
-    <button class="nav-btn active" onclick="showPage('accueil')">Accueil</button>
+    <button class="nav-btn" onclick="showPage('accueil')">Accueil</button>
     <button class="nav-btn" onclick="showPage('services')">Services</button>
     <button class="nav-btn" onclick="showPage('location')">Location</button>
     <button class="nav-btn" onclick="showPage('paiement')">Paiement</button>
@@ -432,7 +432,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.7);padding:4rem 2rem 2rem;
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <button class="nav-btn active" onclick="showPage('accueil')">Accueil</button>
+  <button class="nav-btn" onclick="showPage('accueil')">Accueil</button>
   <button class="nav-btn" onclick="showPage('services')">Services</button>
   <button class="nav-btn" onclick="showPage('location')">Location</button>
   <button class="nav-btn" onclick="showPage('paiement')">Paiement</button>
@@ -444,7 +444,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.7);padding:4rem 2rem 2rem;
 </div>
 
 <!-- PAGE: ACCUEIL -->
-<div class="page" id="page-accueil" style="display: block;">
+<div class="page" id="page-accueil">
 
 <!-- HERO -->
 <section id="hero">
@@ -452,17 +452,15 @@ footer{background:var(--navy);color:rgba(255,255,255,.7);padding:4rem 2rem 2rem;
   <div class="hero-grid"></div>
   <div class="hero-content">
     <div class="hero-badge">🚨 Disponible maintenant — 24h/24 — 7j/7</div>
-    <h1 class="hero-title">Dépannage<span class="accent">&amp; Location</span>Auto</h1>
-    <p class="hero-slogan">Panne sur route ? On arrive. Besoin d'un 
-véhicule ? On vous livre. Spécialiste dépannage avec dépanneuse — 8 
-véhicules à louer à Valgelon la Rochette.</p>
+    <h1 class="hero-title">Dépannage<span class="accent">& Location</span>Auto</h1>
+    <p class="hero-slogan">Panne sur route ? On arrive. Besoin d'un véhicule ? On vous livre. Spécialiste dépannage avec dépanneuse — 8 véhicules à louer à Valgelon la Rochette.</p>
     <div class="hero-ctas">
       <button onclick="showUrgenceModal()" class="btn-primary" style="font-size:20px;padding:16px 32px;animation:pulse-btn 2s infinite;">🚨 Dépannage — Appel immédiat</button>
       <button onclick="showPage('location')" class="btn-secondary">🚗 Louer un véhicule →</button>
     </div>
     <div class="hero-stats">
       <div><div class="hero-stat-num">24/7</div><div class="hero-stat-label">Dépannage</div></div>
-      <div><div class="hero-stat-num">8</div><div class="hero-stat-label">Véhicules à louer</div></div>
+      <div><div class="hero-stat-num">9</div><div class="hero-stat-label">Véhicules à louer</div></div>
       <div><div class="hero-stat-num">⚡</div><div class="hero-stat-label">Diagnostic expert</div></div>
       <div><div class="hero-stat-num">73110</div><div class="hero-stat-label">Valgelon la Rochette</div></div>
     </div>
@@ -506,7 +504,7 @@ véhicules à louer à Valgelon la Rochette.</p>
     <div style="position:absolute;top:-20px;right:-20px;font-size:160px;opacity:.06;line-height:1;pointer-events:none;">🚗</div>
     <div style="position:relative;max-width:460px;">
       <div style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:100px;margin-bottom:1rem;">🚗 Priorité n°2</div>
-      <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(34px,4.5vw,54px);font-weight:900;color:var(--white);text-transform:uppercase;line-height:1;margin-bottom:1rem;">Location<br><span style="color:var(--orange);">8 véhicules</span></h2>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(34px,4.5vw,54px);font-weight:900;color:var(--white);text-transform:uppercase;line-height:1;margin-bottom:1rem;">Location<br><span style="color:var(--orange);">9 véhicules</span></h2>
       <p style="font-size:15px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:1.5rem;">Voiture, break, SUV, fourgon électrique — livraison à domicile, en gare ou à l'aéroport. Réservez en ligne, payez par carte.</p>
       <div style="display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.75rem;">
         <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(255,255,255,.8);"><span style="color:var(--orange);">✓</span> Sièges bébé &amp; enfant offerts</div>
@@ -532,10 +530,7 @@ véhicules à louer à Valgelon la Rochette.</p>
       <div style="background:var(--white);border-radius:12px;border:1px solid var(--gray);padding:1.75rem;transition:transform .25s,box-shadow .25s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(10,22,40,.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
         <div style="width:50px;height:50px;background:var(--orange-pale);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:1rem;">🔧</div>
         <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;text-transform:uppercase;color:var(--navy);margin-bottom:.6rem;">Mécanique Générale</div>
-        <p style="font-size:14px;color:var(--gray-text);line-height:1.65;margin-bottom:1rem;">Embrayage,
- freinage, distribution, suspension, échappement — tous travaux 
-mécaniques toutes marques, réalisés avec soin et rigueur dans notre 
-atelier.</p>
+        <p style="font-size:14px;color:var(--gray-text);line-height:1.65;margin-bottom:1rem;">Embrayage, freinage, distribution, suspension, échappement — tous travaux mécaniques toutes marques, réalisés avec soin et rigueur dans notre atelier.</p>
         <div style="display:flex;flex-direction:column;gap:.4rem;">
           <div style="font-size:13px;color:var(--text);display:flex;align-items:center;gap:8px;"><span style="color:var(--orange);">✓</span> Révision complète constructeur</div>
           <div style="font-size:13px;color:var(--text);display:flex;align-items:center;gap:8px;"><span style="color:var(--orange);">✓</span> Embrayage, freins, suspension</div>
@@ -557,10 +552,7 @@ atelier.</p>
       <div style="background:var(--white);border-radius:12px;border:1px solid var(--gray);padding:1.75rem;transition:transform .25s,box-shadow .25s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(10,22,40,.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
         <div style="width:50px;height:50px;background:var(--orange-pale);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:1rem;">🏁</div>
         <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;text-transform:uppercase;color:var(--navy);margin-bottom:.6rem;">Contrôle Technique</div>
-        <p style="font-size:14px;color:var(--gray-text);line-height:1.65;margin-bottom:1rem;">Préparation
- avant passage au CT + contrôle avant achat d'un véhicule d'occasion 
-(LeBonCoin, La Centrale…). On remet en état tout ce qui ne passerait 
-pas.</p>
+        <p style="font-size:14px;color:var(--gray-text);line-height:1.65;margin-bottom:1rem;">Préparation avant passage au CT + contrôle avant achat d'un véhicule d'occasion (LeBonCoin, La Centrale…). On remet en état tout ce qui ne passerait pas.</p>
         <div style="display:flex;flex-direction:column;gap:.4rem;">
           <div style="font-size:13px;color:var(--text);display:flex;align-items:center;gap:8px;"><span style="color:var(--orange);">✓</span> Préparation CT — évitez la contre-visite</div>
           <div style="font-size:13px;color:var(--text);display:flex;align-items:center;gap:8px;"><span style="color:var(--orange);">✓</span> Contrôle avant achat occasion</div>
@@ -582,31 +574,7 @@ pas.</p>
       <span class="section-tag" style="background:rgba(244,112,10,.2);color:var(--orange-light);">Notre savoir-faire</span>
       <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(32px,5vw,48px);font-weight:900;color:var(--white);text-transform:uppercase;margin-top:.5rem;">En Images</h2>
     </div>
-    <div class="gallery-grid" id="galleryGrid">
-    <div class="gallery-item" style="background: var(--navy-light);">
-      <img src="L'Atelier%20du%20M%C3%A9cano%20%E2%80%94%20Valgelon%20la%20Rochette%2073110_files/800px-D%C3%A9panneuse_jaune_Mercedes-benz_Atego.jpg" alt="🚨 Dépannage — Intervention rapide" onerror="this.style.display='none';this.parentElement.style.background='var(--navy-light)'" style="display: none;">
-      <div class="gallery-caption">🚨 Dépannage — Intervention rapide</div>
-    </div>
-    <div class="gallery-item" style="background: var(--navy-light);">
-      <img src="L'Atelier%20du%20M%C3%A9cano%20%E2%80%94%20Valgelon%20la%20Rochette%2073110_files/800px-Carrepair.jpg" alt="🔧 Mécanique — Atelier professionnel" onerror="this.style.display='none';this.parentElement.style.background='var(--navy-light)'" style="display: none;">
-      <div class="gallery-caption">🔧 Mécanique — Atelier professionnel</div>
-    </div>
-    <div class="gallery-item" style="background: var(--navy-light);">
-      <img src="L'Atelier%20du%20M%C3%A9cano%20%E2%80%94%20Valgelon%20la%20Rochette%2073110_files/800px-OBDII_scanner.jpg" alt="⚡ Diagnostic électronique expert" onerror="this.style.display='none';this.parentElement.style.background='var(--navy-light)'" style="display: none;">
-      <div class="gallery-caption">⚡ Diagnostic électronique expert</div>
-    </div>
-    <div class="gallery-item" style="background: var(--navy-light);">
-      <img src="L'Atelier%20du%20M%C3%A9cano%20%E2%80%94%20Valgelon%20la%20Rochette%2073110_files/800px-Car_being_towed_away_from_a_carpark_in_Brisbane.jpg" alt="🚐 Remorquage &amp; dépannage 24h/24" onerror="this.style.display='none';this.parentElement.style.background='var(--navy-light)'" style="display: none;">
-      <div class="gallery-caption">🚐 Remorquage &amp; dépannage 24h/24</div>
-    </div>
-    <div class="gallery-item" style="background: var(--navy-light);">
-      <img src="L'Atelier%20du%20M%C3%A9cano%20%E2%80%94%20Valgelon%20la%20Rochette%2073110_files/800px-Daihatsu_at_Inspection.jpg" alt="🏁 Inspection avant CT — Contrôle complet" onerror="this.style.display='none';this.parentElement.style.background='var(--navy-light)'" style="display: none;">
-      <div class="gallery-caption">🏁 Inspection avant CT — Contrôle complet</div>
-    </div>
-    <div class="gallery-item" style="background: var(--navy-light);">
-      <img src="L'Atelier%20du%20M%C3%A9cano%20%E2%80%94%20Valgelon%20la%20Rochette%2073110_files/800px-Car_rental.jpg" alt="🚗 Location de véhicules — 8 disponibles" onerror="this.style.display='none';this.parentElement.style.background='var(--navy-light)'" style="display: none;">
-      <div class="gallery-caption">🚗 Location de véhicules — 8 disponibles</div>
-    </div></div>
+    <div class="gallery-grid" id="galleryGrid"><!-- Rendered by JS --></div>
   </div>
 </section>
 
@@ -616,73 +584,52 @@ pas.</p>
     <span class="section-tag">Ce que nous faisons</span>
     <h2 class="section-title">Nos Services</h2>
     <p class="section-subtitle">Mécanique, électronique, contrôle technique et dépannage — tout sous un même toit, disponible à tout moment.</p>
-    <div class="services-grid" id="servicesGrid"><div class="service-card urgent">
-      <div class="service-card-photo-wrap" style="display: none;"><img src="L'Atelier%20du%20M%C3%A9cano%20%E2%80%94%20Valgelon%20la%20Rochette%2073110_files/600px-D%C3%A9panneuse_jaune_Mercedes-benz_Atego.jpg" alt="Dépannage 24h/24 — 7j/7" onerror="this.parentElement.style.display='none'"></div>
-      <div class="service-icon">🚨</div>
-      <div class="service-title">Dépannage 24h/24 — 7j/7</div>
-      <p class="service-desc">Panne sur route, accident, crevaison — 
-intervention immédiate à tout moment. Dépanneuse disponible pour 
-remorquage dans un rayon de 100 km autour de Valgelon la Rochette.</p>
-      <span class="service-badge" style="">Urgence — appel direct</span>
-    </div><div class="service-card">
-      <div class="service-card-photo-wrap" style="display: none;"><img src="L'Atelier%20du%20M%C3%A9cano%20%E2%80%94%20Valgelon%20la%20Rochette%2073110_files/600px-OBDII_scanner.jpg" alt="Diagnostic Électronique Expert" onerror="this.parentElement.style.display='none'"></div>
-      <div class="service-icon">⚡</div>
-      <div class="service-title">Diagnostic Électronique Expert</div>
-      <p class="service-desc">Spécialiste des pannes introuvables. 
-Lecture et effacement de codes défauts, reprogrammation de calculateurs,
- valises multimarques, réseau CAN/LIN. Ce que les autres n'ont pas 
-trouvé, on le trouve.</p>
-      <span class="service-badge" style="background:var(--navy);">Notre spécialité</span>
-    </div><div class="service-card">
-      <div class="service-card-photo-wrap" style="display: none;"><img src="L'Atelier%20du%20M%C3%A9cano%20%E2%80%94%20Valgelon%20la%20Rochette%2073110_files/600px-Carrepair.jpg" alt="Mécanique Générale" onerror="this.parentElement.style.display='none'"></div>
-      <div class="service-icon">🔧</div>
-      <div class="service-title">Mécanique Générale</div>
-      <p class="service-desc">Révision, embrayage, freinage, 
-distribution, suspension, échappement, pneumatiques — tous travaux 
-mécaniques toutes marques réalisés avec soin et rigueur.</p>
-      
-    </div><div class="service-card">
-      <div class="service-card-photo-wrap" style="display: none;"><img src="L'Atelier%20du%20M%C3%A9cano%20%E2%80%94%20Valgelon%20la%20Rochette%2073110_files/600px-Inspecting_a_used_car.jpg" alt="Contrôle Avant Achat (occasion)" onerror="this.parentElement.style.display='none'"></div>
-      <div class="service-icon">🔍</div>
-      <div class="service-title">Contrôle Avant Achat (occasion)</div>
-      <p class="service-desc">Vous achetez un véhicule d'occasion sur 
-LeBonCoin, La Centrale ou autre ? On effectue un contrôle complet et une
- remise en état de tout point qui ne passerait pas au contrôle 
-technique.</p>
-      <span class="service-badge" style="background:#0f5a9a;">Nouveau service</span>
-    </div><div class="service-card">
-      <div class="service-card-photo-wrap" style="display: none;"><img src="L'Atelier%20du%20M%C3%A9cano%20%E2%80%94%20Valgelon%20la%20Rochette%2073110_files/600px-Daihatsu_at_Inspection.jpg" alt="Préparation Contrôle Technique" onerror="this.parentElement.style.display='none'"></div>
-      <div class="service-icon">🏁</div>
-      <div class="service-title">Préparation Contrôle Technique</div>
-      <p class="service-desc">Avant de passer au contrôle technique, on 
-inspecte votre véhicule de A à Z et on remet en état tous les points de 
-défaillance. Évitez la contre-visite et les mauvaises surprises.</p>
-      <span class="service-badge" style="background:#0f5a9a;">Nouveau service</span>
-    </div><div class="service-card">
-      <div class="service-card-photo-wrap" style="display: none;"><img src="L'Atelier%20du%20M%C3%A9cano%20%E2%80%94%20Valgelon%20la%20Rochette%2073110_files/600px-Changing_oil.jpg" alt="Entretien &amp; Révision" onerror="this.parentElement.style.display='none'"></div>
-      <div class="service-icon">🔩</div>
-      <div class="service-title">Entretien &amp; Révision</div>
-      <p class="service-desc">Vidange, filtres, bougies, niveaux, 
-courroie accessoires — entretien complet conforme aux préconisations 
-constructeur pour préserver votre véhicule.</p>
-      
-    </div><div class="service-card">
-      <div class="service-card-photo-wrap" style="display: none;"><img src="L'Atelier%20du%20M%C3%A9cano%20%E2%80%94%20Valgelon%20la%20Rochette%2073110_files/600px-Car_being_towed_away_from_a_carpark_in_Brisbane.jpg" alt="Dépanneuse &amp; Remorquage" onerror="this.parentElement.style.display='none'"></div>
-      <div class="service-icon">🚗</div>
-      <div class="service-title">Dépanneuse &amp; Remorquage</div>
-      <p class="service-desc">Remorquage et transport de véhicules en 
-panne ou accidentés. Intervention dans un rayon de 100 km autour de 
-Valgelon la Rochette.</p>
-      
-    </div><div class="service-card">
-      <div class="service-card-photo-wrap" style="display: none;"><img src="L'Atelier%20du%20M%C3%A9cano%20%E2%80%94%20Valgelon%20la%20Rochette%2073110_files/600px-Car_rental.jpg" alt="Location de Véhicules" onerror="this.parentElement.style.display='none'"></div>
-      <div class="service-icon">🛻</div>
-      <div class="service-title">Location de Véhicules</div>
-      <p class="service-desc">Voitures, breaks, SUV, coupé cabriolet, 
-utilitaire électrique et fourgon disponibles à la location. Sièges bébé 
-&amp; enfant gratuits, porte-skis offert en hiver, pneus neige inclus.</p>
-      
-    </div></div>
+    <div class="services-grid" id="servicesGrid">
+      <div class="service-card urgent">
+        <div class="service-icon">🚨</div>
+        <div class="service-title">Dépannage 24h/24 — 7j/7</div>
+        <p class="service-desc">Panne sur route, accident, crevaison — intervention immédiate à tout moment. Dépanneuse disponible pour remorquage dans un rayon de 100 km autour de Valgelon la Rochette.</p>
+        <span class="service-badge">Urgence — appel direct</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚡</div>
+        <div class="service-title">Diagnostic Électronique Expert</div>
+        <p class="service-desc">Spécialiste des pannes introuvables. Lecture et effacement de codes défauts, reprogrammation de calculateurs, valises multimarques, réseau CAN/LIN. Ce que les autres n'ont pas trouvé, on le trouve.</p>
+        <span class="service-badge" style="background:var(--navy);">Notre spécialité</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <div class="service-title">Mécanique Générale</div>
+        <p class="service-desc">Révision, embrayage, freinage, distribution, suspension, échappement, pneumatiques — tous travaux mécaniques toutes marques réalisés avec soin et rigueur.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔍</div>
+        <div class="service-title">Contrôle Avant Achat (occasion)</div>
+        <p class="service-desc">Vous achetez un véhicule d'occasion sur LeBonCoin, La Centrale ou autre ? On effectue un contrôle complet et une remise en état de tout point qui ne passerait pas au contrôle technique. Achetez en toute sérénité.</p>
+        <span class="service-badge" style="background:#0f5a9a;">Nouveau service</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏁</div>
+        <div class="service-title">Préparation Contrôle Technique</div>
+        <p class="service-desc">Avant de passer au contrôle technique, on inspecte votre véhicule de A à Z et on remet en état tous les points de défaillance. Évitez la contre-visite et les mauvaises surprises.</p>
+        <span class="service-badge" style="background:#0f5a9a;">Nouveau service</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔩</div>
+        <div class="service-title">Entretien & Révision</div>
+        <p class="service-desc">Vidange, filtres, bougies, niveaux, courroie accessoires — entretien complet conforme aux préconisations constructeur pour préserver votre véhicule.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚗</div>
+        <div class="service-title">Dépanneuse & Remorquage</div>
+        <p class="service-desc">Remorquage et transport de véhicules en panne ou accidentés. Intervention dans un rayon de 100 km autour de Valgelon la Rochette.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛻</div>
+        <div class="service-title">Location de Véhicules</div>
+        <p class="service-desc">Voitures, breaks, SUV, coupé cabriolet, utilitaire électrique et fourgon disponibles à la location. Sièges bébé &amp; enfant gratuits, porte-skis offert en hiver, pneus neige inclus. Livraison au lieu de votre choix.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -697,7 +644,7 @@ utilitaire électrique et fourgon disponibles à la location. Sièges bébé
   <div class="section-inner">
     <span class="section-tag">Flotte disponible</span>
     <h2 class="section-title">Location de Véhicules</h2>
-    <p class="section-subtitle">8 véhicules disponibles — réservez en ligne, on vous livre à domicile, en gare ou à l'aéroport.</p>
+    <p class="section-subtitle">9 véhicules disponibles — réservez en ligne, on vous livre à domicile, en gare ou à l'aéroport.</p>
 
     <!-- ÉQUIPEMENTS OFFERTS -->
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-bottom:2.5rem;">
@@ -723,118 +670,8 @@ utilitaire électrique et fourgon disponibles à la location. Sièges bébé
         </div>
       </div>
     </div>
-    <div id="discountBanners" style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem;"><div style="display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--navy),var(--navy-light));border-radius:10px;padding:.85rem 1.25rem;flex:1;min-width:220px;">
-    <span style="font-size:24px;">📅</span>
-    <div><div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:var(--orange);">-10% dès 7 jours</div>
-    <div style="font-size:12px;color:rgba(255,255,255,.6);">Réduction automatique pour toute semaine complète</div></div></div><div style="display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--orange),var(--orange-light));border-radius:10px;padding:.85rem 1.25rem;flex:1;min-width:220px;">
-    <span style="font-size:24px;">📆</span>
-    <div><div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:var(--white);">-20% dès 30 jours</div>
-    <div style="font-size:12px;color:rgba(255,255,255,.8);">Tarif mensuel avantageux</div></div></div></div>
-    <div class="vehicles-grid" id="vehicleGrid">
-    <div class="vehicle-card" style="cursor:pointer;" onclick="quickReserve('PASSAT B6')">
-      <div class="vehicle-header">
-        <div class="vehicle-icon">🚗</div>
-        <div><div class="vehicle-name">PASSAT B6</div><div class="vehicle-type">Berline</div></div>
-      </div>
-      <div class="vehicle-price">45 €<span> / jour</span></div>
-      <div class="vehicle-avail avail-yes">
-        <span class="avail-dot"></span>Disponible
-      </div>
-      <button class="reserve-btn" onclick="event.stopPropagation();quickReserve('PASSAT B6')">
-        📅 Voir le planning &amp; réserver
-      </button>
-    </div>
-    <div class="vehicle-card" style="cursor:pointer;" onclick="quickReserve('PASSAT B6 BREAK')">
-      <div class="vehicle-header">
-        <div class="vehicle-icon">🚙</div>
-        <div><div class="vehicle-name">PASSAT B6 BREAK</div><div class="vehicle-type">Break</div></div>
-      </div>
-      <div class="vehicle-price">50 €<span> / jour</span></div>
-      <div class="vehicle-avail avail-yes">
-        <span class="avail-dot"></span>Disponible
-      </div>
-      <button class="reserve-btn" onclick="event.stopPropagation();quickReserve('PASSAT B6 BREAK')">
-        📅 Voir le planning &amp; réserver
-      </button>
-    </div>
-    <div class="vehicle-card" style="cursor:default;" onclick="">
-      <div class="vehicle-header">
-        <div class="vehicle-icon">🚙</div>
-        <div><div class="vehicle-name">DACIA DUSTER</div><div class="vehicle-type">SUV 4x4</div></div>
-      </div>
-      <div class="vehicle-price">55 €<span> / jour</span></div>
-      <div class="vehicle-avail avail-no">
-        <span class="avail-dot"></span>Indisponible
-      </div>
-      <button class="reserve-btn" disabled="disabled" onclick="event.stopPropagation();">
-        Non disponible
-      </button>
-    </div>
-    <div class="vehicle-card" style="cursor:pointer;" onclick="quickReserve('OPEL ASTRA H')">
-      <div class="vehicle-header">
-        <div class="vehicle-icon">🚗</div>
-        <div><div class="vehicle-name">OPEL ASTRA H</div><div class="vehicle-type">Berline compacte</div></div>
-      </div>
-      <div class="vehicle-price">42 €<span> / jour</span></div>
-      <div class="vehicle-avail avail-yes">
-        <span class="avail-dot"></span>Disponible
-      </div>
-      <button class="reserve-btn" onclick="event.stopPropagation();quickReserve('OPEL ASTRA H')">
-        📅 Voir le planning &amp; réserver
-      </button>
-    </div>
-    <div class="vehicle-card" style="cursor:pointer;" onclick="quickReserve('OPEL ASTRA H CC')">
-      <div class="vehicle-header">
-        <div class="vehicle-icon">🏎️</div>
-        <div><div class="vehicle-name">OPEL ASTRA H CC</div><div class="vehicle-type">Coupé cabriolet</div></div>
-      </div>
-      <div class="vehicle-price">60 €<span> / jour</span></div>
-      <div class="vehicle-avail avail-yes">
-        <span class="avail-dot"></span>Disponible
-      </div>
-      <button class="reserve-btn" onclick="event.stopPropagation();quickReserve('OPEL ASTRA H CC')">
-        📅 Voir le planning &amp; réserver
-      </button>
-    </div>
-    <div class="vehicle-card" style="cursor:pointer;" onclick="quickReserve('SEAT LEON 2L TDI 140')">
-      <div class="vehicle-header">
-        <div class="vehicle-icon">🏎️</div>
-        <div><div class="vehicle-name">SEAT LEON 2L TDI 140</div><div class="vehicle-type">Berline sportive</div></div>
-      </div>
-      <div class="vehicle-price">48 €<span> / jour</span></div>
-      <div class="vehicle-avail avail-yes">
-        <span class="avail-dot"></span>Disponible
-      </div>
-      <button class="reserve-btn" onclick="event.stopPropagation();quickReserve('SEAT LEON 2L TDI 140')">
-        📅 Voir le planning &amp; réserver
-      </button>
-    </div>
-    <div class="vehicle-card" style="cursor:pointer;" onclick="quickReserve('IVECO DAILY Benne électrique')">
-      <div class="vehicle-header">
-        <div class="vehicle-icon">🔌</div>
-        <div><div class="vehicle-name">IVECO DAILY Benne électrique</div><div class="vehicle-type">Utilitaire électrique</div></div>
-      </div>
-      <div class="vehicle-price">80 €<span> / jour</span></div>
-      <div class="vehicle-avail avail-yes">
-        <span class="avail-dot"></span>Disponible
-      </div>
-      <button class="reserve-btn" onclick="event.stopPropagation();quickReserve('IVECO DAILY Benne électrique')">
-        📅 Voir le planning &amp; réserver
-      </button>
-    </div>
-    <div class="vehicle-card" style="cursor:pointer;" onclick="quickReserve('RENAULT TRAFIC L1H1')">
-      <div class="vehicle-header">
-        <div class="vehicle-icon">🛻</div>
-        <div><div class="vehicle-name">RENAULT TRAFIC L1H1</div><div class="vehicle-type">Fourgon utilitaire</div></div>
-      </div>
-      <div class="vehicle-price">65 €<span> / jour</span></div>
-      <div class="vehicle-avail avail-yes">
-        <span class="avail-dot"></span>Disponible
-      </div>
-      <button class="reserve-btn" onclick="event.stopPropagation();quickReserve('RENAULT TRAFIC L1H1')">
-        📅 Voir le planning &amp; réserver
-      </button>
-    </div></div>
+    <div id="discountBanners" style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem;"></div>
+    <div class="vehicles-grid" id="vehicleGrid"></div>
   </div>
 </section>
 
@@ -843,9 +680,7 @@ utilitaire électrique et fourgon disponibles à la location. Sièges bébé
   <div class="section-inner">
     <span class="section-tag">Disponibilités</span>
     <h2 class="section-title">Planning de Location</h2>
-    <p class="section-subtitle">Consultez les disponibilités et 
-sélectionnez vos dates directement sur le calendrier. Les jours déjà 
-réservés ne sont pas sélectionnables.</p>
+    <p class="section-subtitle">Consultez les disponibilités et sélectionnez vos dates directement sur le calendrier. Les jours déjà réservés ne sont pas sélectionnables.</p>
 
     <!-- LÉGENDE -->
     <div style="display:flex;gap:1.25rem;flex-wrap:wrap;margin-bottom:1.5rem;align-items:center;">
@@ -867,72 +702,10 @@ réservés ne sont pas sélectionnables.</p>
     <div class="planning-container" style="margin-bottom:1.5rem;">
       <div class="planning-header" style="justify-content:space-between;">
         <button class="planning-btn" onclick="clientChangeMonth(-1)">◀</button>
-        <div class="planning-title" id="clientCalTitle">Mai 2026</div>
+        <div class="planning-title" id="clientCalTitle"></div>
         <button class="planning-btn" onclick="clientChangeMonth(1)">▶</button>
       </div>
-      <div class="planning-grid" id="clientCalGrid"><div class="planning-day-header">Lun</div><div class="planning-day-header">Mar</div><div class="planning-day-header">Mer</div><div class="planning-day-header">Jeu</div><div class="planning-day-header">Ven</div><div class="planning-day-header">Sam</div><div class="planning-day-header">Dim</div><div class="planning-cell" style="opacity:.2;cursor:default;"></div><div class="planning-cell" style="opacity:.2;cursor:default;"></div><div class="planning-cell" style="opacity:.2;cursor:default;"></div><div class="planning-cell" style="opacity:.2;cursor:default;"></div><div class="planning-cell client-past" title="Date passée">
-      <div class="day-num">1</div>
-    </div><div class="planning-cell client-past" title="Date passée">
-      <div class="day-num">2</div>
-    </div><div class="planning-cell client-past client-booked" title="Indisponible">
-      <div class="day-num">3</div><span class="booked-label">Réservé</span>
-    </div><div class="planning-cell client-past" title="Date passée">
-      <div class="day-num">4</div>
-    </div><div class="planning-cell client-past client-booked" title="Indisponible">
-      <div class="day-num">5</div><span class="booked-label">Réservé</span>
-    </div><div class="planning-cell client-today" onclick="clientDayClick('2026-05-06')" title="Cliquez pour sélectionner">
-      <div class="day-num">6</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-07')" title="Cliquez pour sélectionner">
-      <div class="day-num">7</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-08')" title="Cliquez pour sélectionner">
-      <div class="day-num">8</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-09')" title="Cliquez pour sélectionner">
-      <div class="day-num">9</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-10')" title="Cliquez pour sélectionner">
-      <div class="day-num">10</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-11')" title="Cliquez pour sélectionner">
-      <div class="day-num">11</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-12')" title="Cliquez pour sélectionner">
-      <div class="day-num">12</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-13')" title="Cliquez pour sélectionner">
-      <div class="day-num">13</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-14')" title="Cliquez pour sélectionner">
-      <div class="day-num">14</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-15')" title="Cliquez pour sélectionner">
-      <div class="day-num">15</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-16')" title="Cliquez pour sélectionner">
-      <div class="day-num">16</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-17')" title="Cliquez pour sélectionner">
-      <div class="day-num">17</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-18')" title="Cliquez pour sélectionner">
-      <div class="day-num">18</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-19')" title="Cliquez pour sélectionner">
-      <div class="day-num">19</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-20')" title="Cliquez pour sélectionner">
-      <div class="day-num">20</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-21')" title="Cliquez pour sélectionner">
-      <div class="day-num">21</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-22')" title="Cliquez pour sélectionner">
-      <div class="day-num">22</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-23')" title="Cliquez pour sélectionner">
-      <div class="day-num">23</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-24')" title="Cliquez pour sélectionner">
-      <div class="day-num">24</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-25')" title="Cliquez pour sélectionner">
-      <div class="day-num">25</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-26')" title="Cliquez pour sélectionner">
-      <div class="day-num">26</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-27')" title="Cliquez pour sélectionner">
-      <div class="day-num">27</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-28')" title="Cliquez pour sélectionner">
-      <div class="day-num">28</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-29')" title="Cliquez pour sélectionner">
-      <div class="day-num">29</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-30')" title="Cliquez pour sélectionner">
-      <div class="day-num">30</div>
-    </div><div class="planning-cell" onclick="clientDayClick('2026-05-31')" title="Cliquez pour sélectionner">
-      <div class="day-num">31</div>
-    </div></div>
+      <div class="planning-grid" id="clientCalGrid"></div>
     </div>
 
     <!-- SÉLECTION AFFICHÉE -->
@@ -955,13 +728,8 @@ réservés ne sont pas sélectionnables.</p>
 
     <!-- INFO -->
     <div style="background:var(--gray-light);border-radius:10px;padding:1rem 1.25rem;font-size:13px;color:var(--gray-text);line-height:1.6;">
-      <strong style="color:var(--navy);">ℹ️ Comment ça marche :</strong>
- Cliquez sur un premier jour pour définir votre date de début, puis sur 
-un second jour pour la date de fin. Les jours en rouge ne sont pas 
-disponibles. Une fois vos dates choisies, cliquez sur <strong>"Réserver ces dates"</strong> pour remplir le formulaire automatiquement — le paiement confirme la réservation.<br>
-      <strong style="color:var(--navy);">⚠️ Annulation :</strong> Toute 
-annulation après paiement doit être demandée directement au propriétaire
- par téléphone ou e-mail. Aucune annulation en ligne n'est possible.
+      <strong style="color:var(--navy);">ℹ️ Comment ça marche :</strong> Cliquez sur un premier jour pour définir votre date de début, puis sur un second jour pour la date de fin. Les jours en rouge ne sont pas disponibles. Une fois vos dates choisies, cliquez sur <strong>"Réserver ces dates"</strong> pour remplir le formulaire automatiquement — le paiement confirme la réservation.<br>
+      <strong style="color:var(--navy);">⚠️ Annulation :</strong> Toute annulation après paiement doit être demandée directement au propriétaire par téléphone ou e-mail. Aucune annulation en ligne n'est possible.
     </div>
   </div>
 </section>
@@ -978,17 +746,17 @@ annulation après paiement doit être demandée directement au propriétaire
         <span style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;text-transform:uppercase;color:white;letter-spacing:.04em;">Vos informations &amp; dates</span>
       </div>
       <div class="form-grid" style="margin-bottom:1.5rem;">
-        <div class="form-group"><label>Nom &amp; Prénom</label><input type="text" placeholder="Jean Dupont" id="res-nom" oninput="updateResRecap()"></div>
-        <div class="form-group"><label>Téléphone</label><input type="tel" placeholder="06 00 00 00 00" id="res-tel"></div>
-        <div class="form-group"><label>E-mail (confirmation)</label><input type="email" placeholder="votre@email.fr" id="res-email"></div>
-        <div class="form-group"><label>Véhicule souhaité</label><select id="res-vehicule" onchange="updateResRecap()"><option selected="selected">PASSAT B6</option><option>PASSAT B6 BREAK</option><option>DACIA DUSTER</option><option>OPEL ASTRA H</option><option>OPEL ASTRA H CC</option><option>SEAT LEON 2L TDI 140</option><option>IVECO DAILY Benne électrique</option><option>RENAULT TRAFIC L1H1</option></select></div>
+        <div class="form-group"><label>Nom &amp; Prénom</label><input type="text" placeholder="Jean Dupont" id="res-nom" oninput="updateResRecap()" /></div>
+        <div class="form-group"><label>Téléphone</label><input type="tel" placeholder="06 00 00 00 00" id="res-tel" /></div>
+        <div class="form-group"><label>E-mail (confirmation)</label><input type="email" placeholder="votre@email.fr" id="res-email" /></div>
+        <div class="form-group"><label>Véhicule souhaité</label><select id="res-vehicule" onchange="updateResRecap()"></select></div>
         <div class="form-group">
           <label>Date &amp; heure de départ</label>
           <div style="display:grid;grid-template-columns:1fr 90px;gap:6px;">
-            <input type="date" id="res-debut" onchange="updateResRecap()">
-            <select id="res-heure-debut" onchange="updateResRecap()" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--white);font-family:'Barlow',sans-serif;font-size:14px;padding:10px 6px;border-radius:8px;outline:none;">
+            <input type="date" id="res-debut" onchange="updateResRecap()" />
+            <select id="res-heure-debut" onchange="updateResRecap()" style="background:#1a3358;border:1px solid rgba(255,255,255,.3);color:#ffffff;font-family:'Barlow',sans-serif;font-size:14px;padding:10px 6px;border-radius:8px;outline:none;">
               <option>08:00</option><option>09:00</option><option>10:00</option>
-              <option>11:00</option><option selected="selected">12:00</option><option>13:00</option><option>14:00</option>
+              <option>11:00</option><option selected>12:00</option><option>13:00</option><option>14:00</option>
               <option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option>
             </select>
           </div>
@@ -996,17 +764,17 @@ annulation après paiement doit être demandée directement au propriétaire
         <div class="form-group">
           <label>Date &amp; heure de retour</label>
           <div style="display:grid;grid-template-columns:1fr 90px;gap:6px;">
-            <input type="date" id="res-fin" onchange="updateResRecap()">
-            <select id="res-heure-fin" onchange="updateResRecap()" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--white);font-family:'Barlow',sans-serif;font-size:14px;padding:10px 6px;border-radius:8px;outline:none;">
+            <input type="date" id="res-fin" onchange="updateResRecap()" />
+            <select id="res-heure-fin" onchange="updateResRecap()" style="background:#1a3358;border:1px solid rgba(255,255,255,.3);color:#ffffff;font-family:'Barlow',sans-serif;font-size:14px;padding:10px 6px;border-radius:8px;outline:none;">
               <option>08:00</option><option>09:00</option><option>10:00</option>
               <option>11:00</option><option>12:00</option><option>13:00</option><option>14:00</option>
-              <option>15:00</option><option>16:00</option><option>17:00</option><option selected="selected">18:00</option><option>19:00</option><option>20:00</option><option>21:00</option>
+              <option>15:00</option><option>16:00</option><option>17:00</option><option selected>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option>
             </select>
           </div>
         </div>
         <div class="form-group"><label>Mode de livraison</label>
           <select id="res-livraison" onchange="updateDeliveryPriceInfo();updateResRecap();">
-            <option selected="selected">Retrait au garage</option>
+            <option>Retrait au garage</option>
             <option>Livraison à domicile</option>
             <option>Livraison en gare</option>
             <option>Livraison à l'aéroport</option>
@@ -1015,7 +783,7 @@ annulation après paiement doit être demandée directement au propriétaire
         </div>
         <div class="form-group">
           <label>Adresse de livraison</label>
-          <input type="text" placeholder="Adresse complète ou lieu" id="res-adresse">
+          <input type="text" placeholder="Adresse complète ou lieu" id="res-adresse" />
         </div>
         <div class="form-group full" id="delivery-price-info" style="display:none;">
           <div style="background:rgba(244,112,10,.12);border:1px solid rgba(244,112,10,.3);border-radius:8px;padding:.75rem 1rem;font-size:13px;color:var(--orange-light);">
@@ -1069,10 +837,7 @@ annulation après paiement doit être demandée directement au propriétaire
           <span style="font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;text-transform:uppercase;color:white;letter-spacing:.04em;">Payer par carte pour confirmer</span>
         </div>
         <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:1rem;margin-bottom:1rem;font-size:13px;color:rgba(255,255,255,.65);line-height:1.6;">
-          ⚠️ Votre réservation n'est <strong style="color:white;">confirmée qu'après paiement</strong>.
- Cliquez sur le bouton ci-dessous — vous serez redirigé vers notre page 
-de paiement sécurisée SumUp. Une fois le paiement effectué, revenez ici 
-et cliquez sur <em>"Confirmer ma réservation"</em>.
+          ⚠️ Votre réservation n'est <strong style="color:white;">confirmée qu'après paiement</strong>. Cliquez sur le bouton ci-dessous — vous serez redirigé vers notre page de paiement sécurisée SumUp. Une fois le paiement effectué, revenez ici et cliquez sur <em>"Confirmer ma réservation"</em>.
         </div>
         <div style="display:flex;gap:1rem;flex-wrap:wrap;">
           <button class="btn-form" onclick="payerEtConfirmer()" style="background:var(--orange);flex:1;min-width:220px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:18px;">
@@ -1087,8 +852,9 @@ et cliquez sur <em>"Confirmer ma réservation"</em>.
       <!-- MSG si infos incomplètes -->
       <div id="res-incomplete" style="text-align:center;padding:.75rem;font-size:13px;color:rgba(255,255,255,.45);">
         Renseignez votre nom, le véhicule et les dates pour voir le prix et accéder au paiement.
-      
-</div></div></div></section>
+      </d
+  </div>
+</section>
 
 </div><!-- /page-location -->
 
@@ -1119,7 +885,7 @@ et cliquez sur <em>"Confirmer ma réservation"</em>.
           <div class="sumup-caption">Interface de paiement sécurisée</div>
           <div class="sumup-amount-display" id="payAmount">— €</div>
           <div class="sumup-amount-label">Montant de la prestation</div>
-          <div style="margin-bottom:1.5rem;"><input type="number" placeholder="Montant en €" min="1" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:white;font-size:17px;padding:11px 16px;border-radius:8px;width:100%;text-align:center;outline:none;font-family:'Barlow Condensed',sans-serif;" id="payInput" oninput="updateAmount(this.value)"></div>
+          <div style="margin-bottom:1.5rem;"><input type="number" placeholder="Montant en €" min="1" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:white;font-size:17px;padding:11px 16px;border-radius:8px;width:100%;text-align:center;outline:none;font-family:'Barlow Condensed',sans-serif;" id="payInput" oninput="updateAmount(this.value)" /></div>
           <button class="btn-pay" onclick="goToSumUp()">💳 Payer maintenant via SumUp</button>
           <div class="sumup-secure">🔒 Paiement sécurisé SSL — SumUp</div>
         </div>
@@ -1155,9 +921,7 @@ et cliquez sur <em>"Confirmer ma réservation"</em>.
             </div>
           </div>
           <div style="margin-top:1rem;padding:.75rem 1rem;background:rgba(244,112,10,.12);border-radius:8px;font-size:12px;color:rgba(255,255,255,.6);">
-            ⚠️ La prestation sera confirmée dès réception du virement. 
-Pensez à envoyer une capture d'écran du virement par WhatsApp au 06 68 
-83 36 87.
+            ⚠️ La prestation sera confirmée dès réception du virement. Pensez à envoyer une capture d'écran du virement par WhatsApp au 06 68 83 36 87.
           </div>
         </div>
       </div>
@@ -1175,11 +939,9 @@ Pensez à envoyer une capture d'écran du virement par WhatsApp au 06 68
   <div class="section-inner">
     <span class="section-tag">Occasions certifiées</span>
     <h2 class="section-title">Véhicules à la Vente</h2>
-    <p class="section-subtitle">Tous nos véhicules sont vérifiés et 
-contrôlés par notre spécialiste avant mise en vente. Chaque voiture est 
-prête pour le contrôle technique.</p>
-    <div id="venteGrid" style="display: none; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;"></div>
-    <div id="venteEmpty" style="display: block; background: var(--white); border-radius: 12px; padding: 3rem 2rem; text-align: center;">
+    <p class="section-subtitle">Tous nos véhicules sont vérifiés et contrôlés par notre spécialiste avant mise en vente. Chaque voiture est prête pour le contrôle technique.</p>
+    <div id="venteGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;"></div>
+    <div id="venteEmpty" style="display:none;background:var(--white);border-radius:12px;padding:3rem 2rem;text-align:center;">
       <div style="font-size:40px;margin-bottom:1rem;">🚗</div>
       <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--navy);margin-bottom:.5rem;">Aucun véhicule en vente actuellement</div>
       <p style="font-size:14px;color:var(--gray-text);">Revenez prochainement ou contactez-nous pour être informé des prochaines arrivées.</p>
@@ -1223,9 +985,9 @@ prête pour le contrôle technique.</p>
         <p style="font-size:13px;color:var(--gray-text);margin-bottom:1.25rem;">Renseignez vos coordonnées et celles de vos filleuls. On vous contacte pour valider la réduction.</p>
         <div style="display:flex;flex-direction:column;gap:.75rem;">
           <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Votre nom &amp; prénom</label>
-            <input type="text" id="parr-nom" placeholder="Jean Dupont" style="width:100%;background:var(--gray-light);border:1.5px solid var(--gray);color:var(--text);font-family:'Barlow',sans-serif;font-size:14px;padding:9px 13px;border-radius:8px;outline:none;"></div>
+            <input type="text" id="parr-nom" placeholder="Jean Dupont" style="width:100%;background:var(--gray-light);border:1.5px solid var(--gray);color:var(--text);font-family:'Barlow',sans-serif;font-size:14px;padding:9px 13px;border-radius:8px;outline:none;" /></div>
           <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Votre téléphone</label>
-            <input type="tel" id="parr-tel" placeholder="06 00 00 00 00" style="width:100%;background:var(--gray-light);border:1.5px solid var(--gray);color:var(--text);font-family:'Barlow',sans-serif;font-size:14px;padding:9px 13px;border-radius:8px;outline:none;"></div>
+            <input type="tel" id="parr-tel" placeholder="06 00 00 00 00" style="width:100%;background:var(--gray-light);border:1.5px solid var(--gray);color:var(--text);font-family:'Barlow',sans-serif;font-size:14px;padding:9px 13px;border-radius:8px;outline:none;" /></div>
           <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Noms de vos filleuls (min. 3, séparés par virgule)</label>
             <textarea id="parr-filleuls" placeholder="Marie M., Thomas R., Sophie L., ..." style="width:100%;background:var(--gray-light);border:1.5px solid var(--gray);color:var(--text);font-family:'Barlow',sans-serif;font-size:14px;padding:9px 13px;border-radius:8px;outline:none;min-height:70px;resize:vertical;"></textarea></div>
           <button onclick="soumettreParrainage()" style="width:100%;background:var(--orange);color:var(--white);border:none;font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:13px;border-radius:8px;cursor:pointer;transition:background .2s;">Envoyer ma demande de parrainage →</button>
@@ -1246,52 +1008,14 @@ prête pour le contrôle technique.</p>
     <span class="section-tag">Ce qu'ils disent</span>
     <h2 class="section-title">Avis Clients</h2>
     <p class="section-subtitle">Des centaines de clients satisfaits dans toute la Savoie et au-delà.</p>
-    <div class="avis-grid" id="avisGrid">
-    <div class="avis-card">
-      <div class="avis-stars">⭐⭐⭐⭐⭐</div>
-      <div class="avis-text">"Intervention rapide un dimanche soir, 
-voiture réparée en moins d'une heure. Tarif honnête et accueil super. Je
- recommande vivement !"</div>
-      <div class="avis-author">
-        <div class="avis-avatar">S</div>
-        <div><div class="avis-name">Sophie M.</div><div class="avis-date">12/04/2026</div></div>
-      </div>
-    </div>
-    <div class="avis-card">
-      <div class="avis-stars">⭐⭐⭐⭐⭐</div>
-      <div class="avis-text">"Dépannage en pleine nuit sur l'A43, arrivée en 30 minutes. Professionnel, efficace, rassurant. Merci !"</div>
-      <div class="avis-author">
-        <div class="avis-avatar">J</div>
-        <div><div class="avis-name">Julien R.</div><div class="avis-date">08/04/2026</div></div>
-      </div>
-    </div>
-    <div class="avis-card">
-      <div class="avis-stars">⭐⭐⭐⭐</div>
-      <div class="avis-text">"Location du Trafic pour un déménagement, 
-véhicule nickel, livraison à domicile super pratique. Petite 
-amélioration possible sur la facturation."</div>
-      <div class="avis-author">
-        <div class="avis-avatar">C</div>
-        <div><div class="avis-name">Carole B.</div><div class="avis-date">01/04/2026</div></div>
-      </div>
-    </div>
-    <div class="avis-card">
-      <div class="avis-stars">⭐⭐⭐⭐⭐</div>
-      <div class="avis-text">"Diagnostic électronique parfait, problème 
-identifié en 20 min et réparé dans la foulée. Ça faisait 3 mois que je 
-cherchais la panne !"</div>
-      <div class="avis-author">
-        <div class="avis-avatar">T</div>
-        <div><div class="avis-name">Thomas L.</div><div class="avis-date">25/03/2026</div></div>
-      </div>
-    </div></div>
+    <div class="avis-grid" id="avisGrid"></div>
     <div class="avis-form-section">
       <div class="form-title" style="color:var(--white);">✍️ Laisser un avis</div>
       <div class="form-grid" style="grid-template-columns:1fr 1fr;">
-        <div class="form-group"><label>Votre nom</label><input type="text" id="avis-nom" placeholder="Marie D."></div>
+        <div class="form-group"><label>Votre nom</label><input type="text" id="avis-nom" placeholder="Marie D." /></div>
         <div class="form-group"><label>Note</label>
           <select id="avis-note">
-            <option value="5" selected="selected">⭐⭐⭐⭐⭐ Excellent</option>
+            <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
             <option value="4">⭐⭐⭐⭐ Très bien</option>
             <option value="3">⭐⭐⭐ Bien</option>
             <option value="2">⭐⭐ Moyen</option>
@@ -1322,7 +1046,7 @@ cherchais la panne !"</div>
         <p>Inscrivez-vous pour recevoir nos promotions, offres de location et conseils entretien directement dans votre boîte mail.</p>
         <label style="color:var(--gray-text);font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;display:block;margin-bottom:6px;">Votre adresse e-mail</label>
         <div class="newsletter-form">
-          <input type="email" placeholder="prenom.nom@email.fr" id="nl-email">
+          <input type="email" placeholder="prenom.nom@email.fr" id="nl-email" />
           <button class="btn-subscribe" onclick="subscribeNewsletter()">S'inscrire</button>
         </div>
         <div style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--gray);">
@@ -1340,13 +1064,13 @@ cherchais la panne !"</div>
         <p>Besoin d'un devis mécanique, d'une réservation de véhicule ou d'une info ?</p>
         <div class="contact-form-dark">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-            <div><label>Prénom &amp; Nom</label><input type="text" placeholder="Jean Dupont" id="ct-nom"></div>
-            <div><label>Téléphone</label><input type="tel" placeholder="06 00 00 00 00" id="ct-tel"></div>
+            <div><label>Prénom &amp; Nom</label><input type="text" placeholder="Jean Dupont" id="ct-nom" /></div>
+            <div><label>Téléphone</label><input type="tel" placeholder="06 00 00 00 00" id="ct-tel" /></div>
           </div>
-          <div><label>E-mail</label><input type="email" placeholder="votre@email.fr" id="ct-email"></div>
+          <div><label>E-mail</label><input type="email" placeholder="votre@email.fr" id="ct-email" /></div>
           <div><label>Sujet</label>
             <select id="ct-sujet">
-              <option selected="selected">Demande de devis mécanique</option>
+              <option>Demande de devis mécanique</option>
               <option>Réservation de véhicule</option>
               <option>Dépannage / urgence</option>
               <option>Renseignement location</option>
@@ -1369,9 +1093,7 @@ cherchais la panne !"</div>
     <div class="footer-grid">
       <div class="footer-col">
         <div class="footer-logo">L'Atelier du Mécano</div>
-        <p class="footer-desc">Votre spécialiste mécanique &amp; 
-électronique auto. Place Georges Lardenois, 73110 Valgelon la Rochette. 
-Dépannage, diagnostic, location et livraison de véhicules.</p>
+        <p class="footer-desc">Votre spécialiste mécanique &amp; électronique auto. Place Georges Lardenois, 73110 Valgelon la Rochette. Dépannage, diagnostic, location et livraison de véhicules.</p>
         <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.8;">
           SIRET : 100 384 445 000 19<br>
           📧 <a href="mailto:marchenriannis@gmail.com" style="color:rgba(255,255,255,.5);text-decoration:none;">marchenriannis@gmail.com</a>
@@ -1450,9 +1172,9 @@ Dépannage, diagnostic, location et livraison de véhicules.</p>
     <div class="login-logo">🔑 Espace Propriétaire</div>
     <div class="login-subtitle">L'Atelier du Mécano — Administration</div>
     <label class="login-label" for="loginUser">Identifiant</label>
-    <input class="login-input" type="text" id="loginUser" placeholder="admin" autocomplete="username">
+    <input class="login-input" type="text" id="loginUser" placeholder="admin" autocomplete="username" />
     <label class="login-label" for="loginPass">Mot de passe</label>
-    <input class="login-input" type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+    <input class="login-input" type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()" />
     <div class="login-error" id="loginError">❌ Identifiant ou mot de passe incorrect.</div>
     <button class="btn-login" onclick="doLogin()">Se connecter →</button>
     <button class="btn-login-cancel" onclick="closeLogin()">Annuler</button>
@@ -1505,10 +1227,7 @@ Dépannage, diagnostic, location et livraison de véhicules.</p>
           <div class="admin-badge">Modifications en temps réel</div>
         </div>
         <div class="admin-section-body">
-          <p style="font-size:13px;color:var(--gray-text);margin-bottom:1.5rem;">Collez
- l'URL de vos propres photos pour remplacer les photos par défaut. Les 
-images sont mises à jour immédiatement sur le site. Format recommandé : 
-JPG, PNG, WebP — URL directe vers l'image.</p>
+          <p style="font-size:13px;color:var(--gray-text);margin-bottom:1.5rem;">Collez l'URL de vos propres photos pour remplacer les photos par défaut. Les images sont mises à jour immédiatement sur le site. Format recommandé : JPG, PNG, WebP — URL directe vers l'image.</p>
           <div id="photosAdminGrid" style="display:flex;flex-direction:column;gap:1.25rem;"></div>
           <div style="display:flex;justify-content:flex-end;margin-top:1.5rem;">
             <button class="btn-admin-save" onclick="savePhotos()">✅ Enregistrer toutes les photos</button>
@@ -1552,12 +1271,12 @@ JPG, PNG, WebP — URL directe vers l'image.</p>
         </div>
         <div class="add-row-form">
           <div class="add-row-cols">
-            <div><label>Nom du véhicule</label><input class="admin-input" type="text" id="new-name" placeholder="Ex : PEUGEOT 308"></div>
-            <div><label>Type</label><input class="admin-input" type="text" id="new-type" placeholder="Ex : Berline"></div>
-            <div><label>Prix/jour €</label><input class="admin-input" type="number" id="new-price" placeholder="45" min="0"></div>
+            <div><label>Nom du véhicule</label><input class="admin-input" type="text" id="new-name" placeholder="Ex : PEUGEOT 308" /></div>
+            <div><label>Type</label><input class="admin-input" type="text" id="new-type" placeholder="Ex : Berline" /></div>
+            <div><label>Prix/jour €</label><input class="admin-input" type="number" id="new-price" placeholder="45" min="0" /></div>
             <div><label>Icône</label>
               <select class="admin-input" id="new-icon">
-                <option value="🚗" selected="selected">🚗 Voiture</option>
+                <option value="🚗">🚗 Voiture</option>
                 <option value="🚙">🚙 SUV/Break</option>
                 <option value="🏎️">🏎️ Sport</option>
                 <option value="🚐">🚐 Monospace</option>
@@ -1568,7 +1287,7 @@ JPG, PNG, WebP — URL directe vers l'image.</p>
             </div>
             <div style="display:flex;align-items:flex-end;gap:8px;">
               <div style="flex:1;"><label>Disponible</label>
-                <select class="admin-input" id="new-avail"><option value="1" selected="selected">Oui</option><option value="0">Non</option></select>
+                <select class="admin-input" id="new-avail"><option value="1">Oui</option><option value="0">Non</option></select>
               </div>
               <button class="btn-admin-add" onclick="addVehicle()" style="white-space:nowrap;flex-shrink:0;">+ Ajouter</button>
             </div>
@@ -1602,15 +1321,15 @@ JPG, PNG, WebP — URL directe vers l'image.</p>
         <div class="add-row-form" id="venteAddForm" style="display:none;">
           <p style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:.75rem;">➕ Nouveau véhicule à vendre</p>
           <div style="display:grid;grid-template-columns:1.5fr 1.5fr 0.6fr 0.8fr 0.8fr;gap:10px;align-items:end;">
-            <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Marque &amp; Modèle</label><input class="admin-input" type="text" id="v-nom" placeholder="Ex : VW GOLF VII 1.6 TDI" style="background:var(--white);"></div>
-            <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">URL photo (optionnel)</label><input class="admin-input" type="url" id="v-photo" placeholder="https://..." style="background:var(--white);"></div>
-            <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Année</label><input class="admin-input" type="number" id="v-annee" placeholder="2019" style="background:var(--white);"></div>
-            <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Km</label><input class="admin-input" type="number" id="v-km" placeholder="85000" style="background:var(--white);"></div>
-            <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Prix €</label><input class="admin-input" type="number" id="v-prix" placeholder="7500" style="background:var(--white);"></div>
+            <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Marque &amp; Modèle</label><input class="admin-input" type="text" id="v-nom" placeholder="Ex : VW GOLF VII 1.6 TDI" style="background:var(--white);" /></div>
+            <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">URL photo (optionnel)</label><input class="admin-input" type="url" id="v-photo" placeholder="https://..." style="background:var(--white);" /></div>
+            <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Année</label><input class="admin-input" type="number" id="v-annee" placeholder="2019" style="background:var(--white);" /></div>
+            <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Km</label><input class="admin-input" type="number" id="v-km" placeholder="85000" style="background:var(--white);" /></div>
+            <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Prix €</label><input class="admin-input" type="number" id="v-prix" placeholder="7500" style="background:var(--white);" /></div>
           </div>
           <div style="margin-top:.75rem;">
             <label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Description / Points forts</label>
-            <input class="admin-input" type="text" id="v-desc" placeholder="Ex : CT OK, double vitrage, clim, carnet suivi, prêt à rouler..." style="width:100%;background:var(--white);">
+            <input class="admin-input" type="text" id="v-desc" placeholder="Ex : CT OK, double vitrage, clim, carnet suivi, prêt à rouler..." style="width:100%;background:var(--white);" />
           </div>
           <div style="display:flex;gap:.75rem;margin-top:.75rem;">
             <button class="btn-admin-add" onclick="addVehicleVente()" style="padding:10px 24px;font-size:15px;">✅ Ajouter à la vente</button>
@@ -1658,23 +1377,23 @@ JPG, PNG, WebP — URL directe vers l'image.</p>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;">
               <div>
                 <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Date du dernier CT</label>
-                <input class="admin-input" type="date" id="ent-ct-date" style="background:var(--gray-light);" onchange="updateCTStatus()">
+                <input class="admin-input" type="date" id="ent-ct-date" style="background:var(--gray-light);" onchange="updateCTStatus()" />
               </div>
               <div>
                 <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Résultat</label>
                 <select class="admin-input" id="ent-ct-result" style="background:var(--gray-light);">
-                  <option value="favorable" selected="selected">✅ Favorable</option>
+                  <option value="favorable">✅ Favorable</option>
                   <option value="contre-visite">⚠️ Contre-visite requise</option>
                   <option value="favorable_advisory">✅ Favorable avec défaillances mineures</option>
                 </select>
               </div>
               <div>
                 <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Prochain CT prévu (2 ans)</label>
-                <input class="admin-input" type="date" id="ent-ct-next" style="background:var(--gray-light);font-weight:700;" readonly="readonly">
+                <input class="admin-input" type="date" id="ent-ct-next" style="background:var(--gray-light);font-weight:700;" readonly />
               </div>
               <div>
                 <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Centre CT</label>
-                <input class="admin-input" type="text" id="ent-ct-centre" placeholder="Ex : Autovision Chambéry" style="background:var(--gray-light);">
+                <input class="admin-input" type="text" id="ent-ct-centre" placeholder="Ex : Autovision Chambéry" style="background:var(--gray-light);" />
               </div>
               <div style="grid-column:1/-1;">
                 <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Remarques / points signalés</label>
@@ -1694,28 +1413,28 @@ JPG, PNG, WebP — URL directe vers l'image.</p>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;">
               <div>
                 <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Date dernière vidange</label>
-                <input class="admin-input" type="date" id="ent-vidange-date" style="background:var(--gray-light);" onchange="updateVidangeStatus()">
+                <input class="admin-input" type="date" id="ent-vidange-date" style="background:var(--gray-light);" onchange="updateVidangeStatus()" />
               </div>
               <div>
                 <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Kilométrage à la vidange</label>
-                <input class="admin-input" type="number" id="ent-vidange-km" placeholder="Ex : 85 000" style="background:var(--gray-light);">
+                <input class="admin-input" type="number" id="ent-vidange-km" placeholder="Ex : 85 000" style="background:var(--gray-light);" />
               </div>
               <div>
                 <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Prochaine vidange (km)</label>
-                <input class="admin-input" type="number" id="ent-vidange-km-next" placeholder="Ex : 95 000" style="background:var(--gray-light);">
+                <input class="admin-input" type="number" id="ent-vidange-km-next" placeholder="Ex : 95 000" style="background:var(--gray-light);" />
               </div>
               <div>
                 <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Prochaine vidange (date)</label>
-                <input class="admin-input" type="date" id="ent-vidange-date-next" style="background:var(--gray-light);">
+                <input class="admin-input" type="date" id="ent-vidange-date-next" style="background:var(--gray-light);" />
               </div>
               <div>
                 <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Type d'huile utilisée</label>
-                <input class="admin-input" type="text" id="ent-vidange-huile" placeholder="Ex : 5W30 Total Quartz" style="background:var(--gray-light);">
+                <input class="admin-input" type="text" id="ent-vidange-huile" placeholder="Ex : 5W30 Total Quartz" style="background:var(--gray-light);" />
               </div>
               <div>
                 <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Filtre à huile remplacé</label>
                 <select class="admin-input" id="ent-filtre-huile" style="background:var(--gray-light);">
-                  <option value="oui" selected="selected">✅ Oui</option>
+                  <option value="oui">✅ Oui</option>
                   <option value="non">❌ Non</option>
                 </select>
               </div>
@@ -1736,11 +1455,11 @@ JPG, PNG, WebP — URL directe vers l'image.</p>
                 <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;text-transform:uppercase;color:var(--navy);margin-bottom:.85rem;">💨 Filtre à air</div>
                 <div style="display:flex;flex-direction:column;gap:.6rem;">
                   <div><label style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Date de remplacement</label>
-                    <input class="admin-input" type="date" id="ent-fair-date" style="background:var(--white);"></div>
+                    <input class="admin-input" type="date" id="ent-fair-date" style="background:var(--white);" /></div>
                   <div><label style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Km au remplacement</label>
-                    <input class="admin-input" type="number" id="ent-fair-km" placeholder="85 000" style="background:var(--white);"></div>
+                    <input class="admin-input" type="number" id="ent-fair-km" placeholder="85 000" style="background:var(--white);" /></div>
                   <div><label style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Prochain remplacement</label>
-                    <input class="admin-input" type="date" id="ent-fair-next" style="background:var(--white);"></div>
+                    <input class="admin-input" type="date" id="ent-fair-next" style="background:var(--white);" /></div>
                 </div>
               </div>
 
@@ -1749,11 +1468,11 @@ JPG, PNG, WebP — URL directe vers l'image.</p>
                 <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;text-transform:uppercase;color:var(--navy);margin-bottom:.85rem;">⛽ Filtre à carburant</div>
                 <div style="display:flex;flex-direction:column;gap:.6rem;">
                   <div><label style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Date de remplacement</label>
-                    <input class="admin-input" type="date" id="ent-fcomb-date" style="background:var(--white);"></div>
+                    <input class="admin-input" type="date" id="ent-fcomb-date" style="background:var(--white);" /></div>
                   <div><label style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Km au remplacement</label>
-                    <input class="admin-input" type="number" id="ent-fcomb-km" placeholder="85 000" style="background:var(--white);"></div>
+                    <input class="admin-input" type="number" id="ent-fcomb-km" placeholder="85 000" style="background:var(--white);" /></div>
                   <div><label style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Prochain remplacement</label>
-                    <input class="admin-input" type="date" id="ent-fcomb-next" style="background:var(--white);"></div>
+                    <input class="admin-input" type="date" id="ent-fcomb-next" style="background:var(--white);" /></div>
                 </div>
               </div>
 
@@ -1762,11 +1481,11 @@ JPG, PNG, WebP — URL directe vers l'image.</p>
                 <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;text-transform:uppercase;color:var(--navy);margin-bottom:.85rem;">🏠 Filtre habitacle</div>
                 <div style="display:flex;flex-direction:column;gap:.6rem;">
                   <div><label style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Date de remplacement</label>
-                    <input class="admin-input" type="date" id="ent-fhab-date" style="background:var(--white);"></div>
+                    <input class="admin-input" type="date" id="ent-fhab-date" style="background:var(--white);" /></div>
                   <div><label style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Km au remplacement</label>
-                    <input class="admin-input" type="number" id="ent-fhab-km" placeholder="85 000" style="background:var(--white);"></div>
+                    <input class="admin-input" type="number" id="ent-fhab-km" placeholder="85 000" style="background:var(--white);" /></div>
                   <div><label style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Prochain remplacement</label>
-                    <input class="admin-input" type="date" id="ent-fhab-next" style="background:var(--white);"></div>
+                    <input class="admin-input" type="date" id="ent-fhab-next" style="background:var(--white);" /></div>
                 </div>
               </div>
 
@@ -1784,24 +1503,24 @@ JPG, PNG, WebP — URL directe vers l'image.</p>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;">
               <div>
                 <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Date de remplacement</label>
-                <input class="admin-input" type="date" id="ent-courroie-date" style="background:var(--gray-light);" onchange="updateCourroieStatus()">
+                <input class="admin-input" type="date" id="ent-courroie-date" style="background:var(--gray-light);" onchange="updateCourroieStatus()" />
               </div>
               <div>
                 <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Km au remplacement</label>
-                <input class="admin-input" type="number" id="ent-courroie-km" placeholder="Ex : 85 000" style="background:var(--gray-light);">
+                <input class="admin-input" type="number" id="ent-courroie-km" placeholder="Ex : 85 000" style="background:var(--gray-light);" />
               </div>
               <div>
                 <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Prochain remplacement (km)</label>
-                <input class="admin-input" type="number" id="ent-courroie-km-next" placeholder="Ex : 145 000" style="background:var(--gray-light);">
+                <input class="admin-input" type="number" id="ent-courroie-km-next" placeholder="Ex : 145 000" style="background:var(--gray-light);" />
               </div>
               <div>
                 <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Prochain remplacement (date)</label>
-                <input class="admin-input" type="date" id="ent-courroie-date-next" style="background:var(--gray-light);" onchange="updateCourroieStatus()">
+                <input class="admin-input" type="date" id="ent-courroie-date-next" style="background:var(--gray-light);" onchange="updateCourroieStatus()" />
               </div>
               <div>
                 <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Kit complet (pompe à eau, galets)</label>
                 <select class="admin-input" id="ent-courroie-kit" style="background:var(--gray-light);">
-                  <option value="oui" selected="selected">✅ Oui — kit complet</option>
+                  <option value="oui">✅ Oui — kit complet</option>
                   <option value="non">❌ Non — courroie seule</option>
                 </select>
               </div>
@@ -1822,11 +1541,11 @@ JPG, PNG, WebP — URL directe vers l'image.</p>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
               <div>
                 <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Kilométrage actuel</label>
-                <input class="admin-input" type="number" id="ent-km-actuel" placeholder="Ex : 92 500" style="background:var(--gray-light);font-size:16px;font-weight:700;">
+                <input class="admin-input" type="number" id="ent-km-actuel" placeholder="Ex : 92 500" style="background:var(--gray-light);font-size:16px;font-weight:700;" />
               </div>
               <div>
                 <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Dernière mise à jour</label>
-                <input class="admin-input" type="date" id="ent-maj-date" style="background:var(--gray-light);">
+                <input class="admin-input" type="date" id="ent-maj-date" style="background:var(--gray-light);" />
               </div>
             </div>
             <div>
@@ -1857,7 +1576,7 @@ JPG, PNG, WebP — URL directe vers l'image.</p>
     <div class="admin-page" id="page-planning">
       <div class="admin-section">
         <div class="admin-section-header">
-          <div class="admin-section-title">📅 Planning &amp; Tarifs journaliers</div>
+          <div class="admin-section-title">📅 Planning & Tarifs journaliers</div>
           <div class="admin-badge">Cliquez un jour pour modifier son prix</div>
         </div>
         <div class="admin-section-body">
@@ -1909,16 +1628,16 @@ JPG, PNG, WebP — URL directe vers l'image.</p>
             <div class="admin-section-header"><div class="admin-section-title">➕ Ajouter un événement</div></div>
             <div class="admin-section-body">
               <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;gap:10px;align-items:end;">
-                <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Date</label><input class="admin-input" type="date" id="ev-date" style="background:var(--gray-light);"></div>
+                <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Date</label><input class="admin-input" type="date" id="ev-date" style="background:var(--gray-light);" /></div>
                 <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Type</label>
                   <select class="admin-input" id="ev-type" style="background:var(--gray-light);">
-                    <option value="livraison" selected="selected">Livraison</option>
+                    <option value="livraison">Livraison</option>
                     <option value="retour">Retour</option>
                     <option value="booked">Indisponible</option>
                   </select></div>
                 <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Livreur</label>
-                  <select class="admin-input" id="ev-driver" style="background:var(--gray-light);"><option selected="selected">—</option></select></div>
-                <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Étiquette</label><input class="admin-input" type="text" id="ev-label" placeholder="Ex: Gare, Dupont..." style="background:var(--gray-light);"></div>
+                  <select class="admin-input" id="ev-driver" style="background:var(--gray-light);"><option>—</option></select></div>
+                <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Étiquette</label><input class="admin-input" type="text" id="ev-label" placeholder="Ex: Gare, Dupont..." style="background:var(--gray-light);" /></div>
                 <button class="btn-admin-add" onclick="addPlanningEvent()">+ Ajouter</button>
               </div>
             </div>
@@ -1949,17 +1668,17 @@ JPG, PNG, WebP — URL directe vers l'image.</p>
         </div>
         <div class="add-row-form">
           <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1.5fr auto;gap:10px;align-items:end;" class="add-driver-form">
-            <div><label>Nom &amp; Prénom</label><input class="admin-input" type="text" id="drv-nom" placeholder="Ex : Pierre Martin"></div>
-            <div><label>Téléphone</label><input class="admin-input" type="tel" id="drv-tel" placeholder="06 00 00 00 00"></div>
-            <div><label>Zone d'intervention</label><input class="admin-input" type="text" id="drv-zone" placeholder="Ex : 73, 74"></div>
+            <div><label>Nom &amp; Prénom</label><input class="admin-input" type="text" id="drv-nom" placeholder="Ex : Pierre Martin" /></div>
+            <div><label>Téléphone</label><input class="admin-input" type="tel" id="drv-tel" placeholder="06 00 00 00 00" /></div>
+            <div><label>Zone d'intervention</label><input class="admin-input" type="text" id="drv-zone" placeholder="Ex : 73, 74" /></div>
             <div><label>Statut</label>
               <select class="admin-input" id="drv-statut">
-                <option selected="selected">Disponible</option>
+                <option>Disponible</option>
                 <option>En mission</option>
                 <option>Inactif</option>
               </select>
             </div>
-            <div><label>Notes</label><input class="admin-input" type="text" id="drv-notes" placeholder="Ex : Permis poids lourd"></div>
+            <div><label>Notes</label><input class="admin-input" type="text" id="drv-notes" placeholder="Ex : Permis poids lourd" /></div>
             <div style="display:flex;align-items:flex-end;"><button class="btn-admin-add" onclick="addDriver()">+ Ajouter</button></div>
           </div>
         </div>
@@ -1976,10 +1695,7 @@ JPG, PNG, WebP — URL directe vers l'image.</p>
           <div class="admin-badge">Appliquées automatiquement</div>
         </div>
         <div class="admin-section-body">
-          <p style="font-size:13px;color:var(--gray-text);margin-bottom:1.5rem;">Les
- prix de base sont automatiquement majorés pendant les vacances 
-scolaires. Les dates sont pré-remplies pour 2026 mais entièrement 
-modifiables.</p>
+          <p style="font-size:13px;color:var(--gray-text);margin-bottom:1.5rem;">Les prix de base sont automatiquement majorés pendant les vacances scolaires. Les dates sont pré-remplies pour 2026 mais entièrement modifiables.</p>
 
           <!-- TAUX GLOBAUX -->
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:2rem;">
@@ -1987,16 +1703,16 @@ modifiables.</p>
               <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:var(--navy);text-transform:uppercase;margin-bottom:.5rem;">📚 Vacances classiques</div>
               <p style="font-size:12px;color:var(--gray-text);margin-bottom:.75rem;">Toussaint, Hiver, Printemps (toutes zones)</p>
               <div style="display:flex;align-items:center;gap:.5rem;">
-                <input class="admin-input" type="number" id="vac-rate-normal" min="0" max="100" step="1" style="width:70px;font-size:20px;font-weight:800;text-align:center;background:var(--white);">
+                <input class="admin-input" type="number" id="vac-rate-normal" min="0" max="100" step="1" style="width:70px;font-size:20px;font-weight:800;text-align:center;background:var(--white);" />
                 <span style="font-size:20px;font-weight:700;color:var(--navy);">%</span>
                 <span style="font-size:12px;color:var(--gray-text);">de majoration</span>
               </div>
             </div>
             <div style="background:linear-gradient(135deg,#fff4eb,#ffe8d6);border-radius:10px;padding:1.1rem;border:1px solid var(--orange);">
               <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:var(--navy);text-transform:uppercase;margin-bottom:.5rem;">☀️ Vacances d'été</div>
-              <p style="font-size:12px;color:var(--gray-text);margin-bottom:.75rem;">Juillet &amp; Août — haute saison</p>
+              <p style="font-size:12px;color:var(--gray-text);margin-bottom:.75rem;">Juillet & Août — haute saison</p>
               <div style="display:flex;align-items:center;gap:.5rem;">
-                <input class="admin-input" type="number" id="vac-rate-ete" min="0" max="100" step="1" style="width:70px;font-size:20px;font-weight:800;text-align:center;background:var(--white);">
+                <input class="admin-input" type="number" id="vac-rate-ete" min="0" max="100" step="1" style="width:70px;font-size:20px;font-weight:800;text-align:center;background:var(--white);" />
                 <span style="font-size:20px;font-weight:700;color:var(--navy);">%</span>
                 <span style="font-size:12px;color:var(--gray-text);">de majoration</span>
               </div>
@@ -2005,7 +1721,7 @@ modifiables.</p>
               <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:var(--navy);text-transform:uppercase;margin-bottom:.5rem;">❄️ Vacances de Noël</div>
               <p style="font-size:12px;color:var(--gray-text);margin-bottom:.75rem;">Décembre — haute saison hivernale</p>
               <div style="display:flex;align-items:center;gap:.5rem;">
-                <input class="admin-input" type="number" id="vac-rate-noel" min="0" max="100" step="1" style="width:70px;font-size:20px;font-weight:800;text-align:center;background:var(--white);">
+                <input class="admin-input" type="number" id="vac-rate-noel" min="0" max="100" step="1" style="width:70px;font-size:20px;font-weight:800;text-align:center;background:var(--white);" />
                 <span style="font-size:20px;font-weight:700;color:var(--navy);">%</span>
                 <span style="font-size:12px;color:var(--gray-text);">de majoration</span>
               </div>
@@ -2032,9 +1748,7 @@ modifiables.</p>
           <div class="admin-badge">Définis depuis le planning</div>
         </div>
         <div class="admin-section-body">
-          <p style="font-size:13px;color:var(--gray-text);margin-bottom:1rem;">Prix
- personnalisés par véhicule et par jour — définis en cliquant sur un 
-jour dans le planning. Prioritaires sur les majorations vacances.</p>
+          <p style="font-size:13px;color:var(--gray-text);margin-bottom:1rem;">Prix personnalisés par véhicule et par jour — définis en cliquant sur un jour dans le planning. Prioritaires sur les majorations vacances.</p>
           <div style="overflow-x:auto;">
             <table class="admin-table">
               <thead><tr><th>Date</th><th>Véhicule</th><th>Prix spécial (€/j)</th><th>Prix de base (€/j)</th><th>Suppr.</th></tr></thead>
@@ -2089,7 +1803,7 @@ jour dans le planning. Prioritaires sur les majorations vacances.</p>
               <div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:var(--navy);text-transform:uppercase;margin-bottom:.5rem;">📅 Réduction Semaine</div>
               <p style="font-size:13px;color:var(--gray-text);margin-bottom:1rem;">Appliquée pour toute location d'une semaine ou plus (7 jours+).</p>
               <div style="display:flex;align-items:center;gap:.75rem;">
-                <input class="admin-input" type="number" id="disc-week" min="0" max="50" step="1" style="width:80px;font-size:18px;font-weight:700;text-align:center;background:var(--white);">
+                <input class="admin-input" type="number" id="disc-week" min="0" max="50" step="1" style="width:80px;font-size:18px;font-weight:700;text-align:center;background:var(--white);" />
                 <span style="font-size:24px;font-weight:700;color:var(--navy);">%</span>
                 <span style="font-size:13px;color:var(--gray-text);">de réduction</span>
               </div>
@@ -2098,7 +1812,7 @@ jour dans le planning. Prioritaires sur les majorations vacances.</p>
               <div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:var(--navy);text-transform:uppercase;margin-bottom:.5rem;">📆 Réduction Mois</div>
               <p style="font-size:13px;color:var(--gray-text);margin-bottom:1rem;">Appliquée pour toute location d'un mois ou plus (30 jours+).</p>
               <div style="display:flex;align-items:center;gap:.75rem;">
-                <input class="admin-input" type="number" id="disc-month" min="0" max="60" step="1" style="width:80px;font-size:18px;font-weight:700;text-align:center;background:var(--white);">
+                <input class="admin-input" type="number" id="disc-month" min="0" max="60" step="1" style="width:80px;font-size:18px;font-weight:700;text-align:center;background:var(--white);" />
                 <span style="font-size:24px;font-weight:700;color:var(--navy);">%</span>
                 <span style="font-size:13px;color:var(--gray-text);">de réduction</span>
               </div>
@@ -2126,14 +1840,14 @@ jour dans le planning. Prioritaires sur les majorations vacances.</p>
         </div>
         <div class="add-row-form">
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1.5fr auto;gap:10px;align-items:end;">
-            <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Identifiant</label><input class="admin-input" type="text" id="usr-login" placeholder="Ex : pierre73"></div>
-            <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Mot de passe</label><input class="admin-input" type="text" id="usr-pass" placeholder="Mot de passe"></div>
+            <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Identifiant</label><input class="admin-input" type="text" id="usr-login" placeholder="Ex : pierre73" /></div>
+            <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Mot de passe</label><input class="admin-input" type="text" id="usr-pass" placeholder="Mot de passe" /></div>
             <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Rôle</label>
               <select class="admin-input" id="usr-role">
-                <option value="livreur" selected="selected">Livreur</option>
+                <option value="livreur">Livreur</option>
                 <option value="admin">Administrateur</option>
               </select></div>
-            <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Notes</label><input class="admin-input" type="text" id="usr-notes" placeholder="Ex : Accès planning uniquement"></div>
+            <div><label style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:4px;">Notes</label><input class="admin-input" type="text" id="usr-notes" placeholder="Ex : Accès planning uniquement" /></div>
             <div style="display:flex;align-items:flex-end;"><button class="btn-admin-add" onclick="addUser()">+ Créer</button></div>
           </div>
         </div>
@@ -2159,10 +1873,7 @@ jour dans le planning. Prioritaires sur les majorations vacances.</p>
         <div class="admin-section-body" style="border-top:1px solid var(--gray);">
           <div style="display:flex;align-items:center;gap:12px;background:var(--orange-pale);border-radius:8px;padding:1rem;">
             <span style="font-size:22px;">ℹ️</span>
-            <p style="font-size:13px;color:var(--gray-text);">Pour 
-chaque demande avec 3 filleuls validés ou plus, définissez manuellement 
-le pourcentage de réduction à offrir au parrain et marquez-la comme 
-traitée.</p>
+            <p style="font-size:13px;color:var(--gray-text);">Pour chaque demande avec 3 filleuls validés ou plus, définissez manuellement le pourcentage de réduction à offrir au parrain et marquez-la comme traitée.</p>
           </div>
         </div>
       </div>
@@ -2278,7 +1989,7 @@ traitée.</p>
         <div class="admin-section-header">
           <div class="admin-section-title">📋 Tous les contrats</div>
           <div style="display:flex;align-items:center;gap:.75rem;">
-            <input type="text" id="contrat-search" placeholder="Rechercher client, véhicule…" oninput="filterContratsTable()" style="background:var(--gray-light);border:1.5px solid var(--gray);color:var(--text);font-family:'Barlow',sans-serif;font-size:13px;padding:6px 12px;border-radius:7px;outline:none;width:200px;">
+            <input type="text" id="contrat-search" placeholder="Rechercher client, véhicule…" oninput="filterContratsTable()" style="background:var(--gray-light);border:1.5px solid var(--gray);color:var(--text);font-family:'Barlow',sans-serif;font-size:13px;padding:6px 12px;border-radius:7px;outline:none;width:200px;" />
             <div class="admin-badge" id="contrat-count-badge">0 contrat(s)</div>
           </div>
         </div>
@@ -2315,21 +2026,21 @@ traitée.</p>
               <p style="font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--orange);margin-bottom:.75rem;border-bottom:2px solid var(--orange);padding-bottom:.4rem;">👤 Informations locataire</p>
               <div style="display:flex;flex-direction:column;gap:.6rem;">
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
-                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Nom</label><input class="admin-input" type="text" id="ct-nom" placeholder="DUPONT" style="background:var(--gray-light);"></div>
-                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Prénom</label><input class="admin-input" type="text" id="ct-prenom" placeholder="Jean" style="background:var(--gray-light);"></div>
+                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Nom</label><input class="admin-input" type="text" id="ct-nom" placeholder="DUPONT" style="background:var(--gray-light);" /></div>
+                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Prénom</label><input class="admin-input" type="text" id="ct-prenom" placeholder="Jean" style="background:var(--gray-light);" /></div>
                 </div>
-                <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Adresse complète</label><input class="admin-input" type="text" id="ct-adresse" placeholder="12 rue des Lilas, 73000 Chambéry" style="background:var(--gray-light);"></div>
+                <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Adresse complète</label><input class="admin-input" type="text" id="ct-adresse" placeholder="12 rue des Lilas, 73000 Chambéry" style="background:var(--gray-light);" /></div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
-                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Téléphone</label><input class="admin-input" type="tel" id="ct-tel" placeholder="06 00 00 00 00" style="background:var(--gray-light);"></div>
-                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">E-mail</label><input class="admin-input" type="email" id="ct-email-loc" placeholder="jean@email.fr" style="background:var(--gray-light);"></div>
-                </div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
-                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">N° permis de conduire</label><input class="admin-input" type="text" id="ct-permis" placeholder="073291234567" style="background:var(--gray-light);"></div>
-                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Délivré le</label><input class="admin-input" type="date" id="ct-permis-date" style="background:var(--gray-light);"></div>
+                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Téléphone</label><input class="admin-input" type="tel" id="ct-tel" placeholder="06 00 00 00 00" style="background:var(--gray-light);" /></div>
+                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">E-mail</label><input class="admin-input" type="email" id="ct-email-loc" placeholder="jean@email.fr" style="background:var(--gray-light);" /></div>
                 </div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
-                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">N° CNI / Passeport</label><input class="admin-input" type="text" id="ct-cni" placeholder="AX123456" style="background:var(--gray-light);"></div>
-                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Date de naissance</label><input class="admin-input" type="date" id="ct-naissance" style="background:var(--gray-light);"></div>
+                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">N° permis de conduire</label><input class="admin-input" type="text" id="ct-permis" placeholder="073291234567" style="background:var(--gray-light);" /></div>
+                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Délivré le</label><input class="admin-input" type="date" id="ct-permis-date" style="background:var(--gray-light);" /></div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
+                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">N° CNI / Passeport</label><input class="admin-input" type="text" id="ct-cni" placeholder="AX123456" style="background:var(--gray-light);" /></div>
+                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Date de naissance</label><input class="admin-input" type="date" id="ct-naissance" style="background:var(--gray-light);" /></div>
                 </div>
               </div>
             </div>
@@ -2341,20 +2052,20 @@ traitée.</p>
                   <select class="admin-input" id="ct-vehicule" style="background:var(--gray-light);" onchange="prefillVehicleInfo()"></select>
                 </div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
-                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Immatriculation</label><input class="admin-input" type="text" id="ct-immat" placeholder="AB-123-CD" style="background:var(--gray-light);"></div>
-                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">N° de contrat</label><input class="admin-input" type="text" id="ct-num" style="background:var(--gray-light);"></div>
+                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Immatriculation</label><input class="admin-input" type="text" id="ct-immat" placeholder="AB-123-CD" style="background:var(--gray-light);" /></div>
+                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">N° de contrat</label><input class="admin-input" type="text" id="ct-num" style="background:var(--gray-light);" /></div>
                 </div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
-                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Date &amp; heure départ</label><input class="admin-input" type="datetime-local" id="ct-depart" style="background:var(--gray-light);"></div>
-                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Date &amp; heure retour prévue</label><input class="admin-input" type="datetime-local" id="ct-retour" style="background:var(--gray-light);"></div>
+                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Date &amp; heure départ</label><input class="admin-input" type="datetime-local" id="ct-depart" style="background:var(--gray-light);" /></div>
+                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Date &amp; heure retour prévue</label><input class="admin-input" type="datetime-local" id="ct-retour" style="background:var(--gray-light);" /></div>
                 </div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
-                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Prix / jour (€)</label><input class="admin-input" type="number" id="ct-prix-jour" placeholder="45" min="0" style="background:var(--gray-light);" oninput="calcLocationTotal()"></div>
-                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Caution (€)</label><input class="admin-input" type="number" id="ct-caution" placeholder="300" min="0" style="background:var(--gray-light);"></div>
+                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Prix / jour (€)</label><input class="admin-input" type="number" id="ct-prix-jour" placeholder="45" min="0" style="background:var(--gray-light);" oninput="calcLocationTotal()" /></div>
+                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Caution (€)</label><input class="admin-input" type="number" id="ct-caution" placeholder="300" min="0" style="background:var(--gray-light);" /></div>
                 </div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
-                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Km inclus / jour</label><input class="admin-input" type="number" id="ct-km-inclus" placeholder="200" min="0" style="background:var(--gray-light);"></div>
-                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Coût km suppl. (€/km)</label><input class="admin-input" type="number" id="ct-km-supp" placeholder="0.15" min="0" step="0.01" style="background:var(--gray-light);"></div>
+                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Km inclus / jour</label><input class="admin-input" type="number" id="ct-km-inclus" placeholder="200" min="0" style="background:var(--gray-light);" /></div>
+                  <div><label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Coût km suppl. (€/km)</label><input class="admin-input" type="number" id="ct-km-supp" placeholder="0.15" min="0" step="0.01" style="background:var(--gray-light);" /></div>
                 </div>
                 <div style="background:var(--orange-pale);border-radius:8px;padding:.85rem 1rem;display:flex;justify-content:space-between;align-items:center;">
                   <span style="font-size:14px;font-weight:600;color:var(--navy);">Total location estimé</span>
@@ -2369,12 +2080,12 @@ traitée.</p>
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.5rem;">
             <div>
               <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Kilométrage départ</label>
-              <input class="admin-input" type="number" id="ct-km-depart" placeholder="85 000 km" style="background:var(--gray-light);font-size:16px;font-weight:700;">
+              <input class="admin-input" type="number" id="ct-km-depart" placeholder="85 000 km" style="background:var(--gray-light);font-size:16px;font-weight:700;" />
             </div>
             <div>
               <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Niveau carburant départ</label>
               <select class="admin-input" id="ct-carbu-depart" style="background:var(--gray-light);">
-                <option value="plein" selected="selected">Plein (100%)</option>
+                <option value="plein">Plein (100%)</option>
                 <option value="3/4">3/4</option>
                 <option value="1/2">1/2</option>
                 <option value="1/4">1/4</option>
@@ -2384,7 +2095,7 @@ traitée.</p>
             <div>
               <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Type de carburant</label>
               <select class="admin-input" id="ct-carbu-type" style="background:var(--gray-light);">
-                <option selected="selected">Diesel</option>
+                <option>Diesel</option>
                 <option>Essence SP95</option>
                 <option>Essence SP98</option>
                 <option>Électrique</option>
@@ -2411,12 +2122,12 @@ traitée.</p>
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.5rem;">
             <div>
               <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Kilométrage retour</label>
-              <input class="admin-input" type="number" id="ct-km-retour" placeholder="— km" style="background:var(--gray-light);font-size:16px;font-weight:700;" oninput="calcKmSupp()">
+              <input class="admin-input" type="number" id="ct-km-retour" placeholder="— km" style="background:var(--gray-light);font-size:16px;font-weight:700;" oninput="calcKmSupp()" />
             </div>
             <div>
               <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:3px;">Niveau carburant retour</label>
               <select class="admin-input" id="ct-carbu-retour" style="background:var(--gray-light);">
-                <option value="plein" selected="selected">Plein (100%)</option>
+                <option value="plein">Plein (100%)</option>
                 <option value="3/4">3/4</option>
                 <option value="1/2">1/2</option>
                 <option value="1/4">1/4</option>
@@ -2442,7 +2153,7 @@ traitée.</p>
             <div>
               <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:.5rem;">Mode de paiement</label>
               <select class="admin-input" id="ct-paiement" style="background:var(--gray-light);">
-                <option selected="selected">Carte bancaire (SumUp)</option>
+                <option>Carte bancaire (SumUp)</option>
                 <option>Virement bancaire</option>
                 <option>Espèces</option>
                 <option>Chèque</option>
@@ -2450,7 +2161,7 @@ traitée.</p>
             </div>
             <div>
               <label style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);display:block;margin-bottom:.5rem;">Conditions particulières</label>
-              <input class="admin-input" type="text" id="ct-conditions" placeholder="Ex : Retour plein, pas de tabac..." style="background:var(--gray-light);">
+              <input class="admin-input" type="text" id="ct-conditions" placeholder="Ex : Retour plein, pas de tabac..." style="background:var(--gray-light);" />
             </div>
           </div>
 
@@ -2486,7 +2197,7 @@ traitée.</p>
         <div class="admin-section-header">
           <div class="admin-section-title">📄 Toutes les factures</div>
           <div style="display:flex;align-items:center;gap:.75rem;">
-            <input type="text" id="facture-search" placeholder="Rechercher client, véhicule…" oninput="filterFacturesTable()" style="background:var(--gray-light);border:1.5px solid var(--gray);color:var(--text);font-family:'Barlow',sans-serif;font-size:13px;padding:6px 12px;border-radius:7px;outline:none;width:200px;">
+            <input type="text" id="facture-search" placeholder="Rechercher client, véhicule…" oninput="filterFacturesTable()" style="background:var(--gray-light);border:1.5px solid var(--gray);color:var(--text);font-family:'Barlow',sans-serif;font-size:13px;padding:6px 12px;border-radius:7px;outline:none;width:200px;" />
             <div class="admin-badge" id="facture-count-badge">0 facture(s)</div>
           </div>
         </div>
@@ -2528,20 +2239,20 @@ traitée.</p>
             <div>
               <p style="font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);margin-bottom:.5rem;">Client</p>
               <div style="display:flex;flex-direction:column;gap:.6rem;">
-                <input class="admin-input" type="text" id="inv-client" placeholder="Nom &amp; Prénom du client" style="background:var(--gray-light);">
-                <input class="admin-input" type="text" id="inv-adresse" placeholder="Adresse du client" style="background:var(--gray-light);">
-                <input class="admin-input" type="tel" id="inv-tel" placeholder="Téléphone client" style="background:var(--gray-light);">
-                <input class="admin-input" type="email" id="inv-email" placeholder="E-mail client" style="background:var(--gray-light);">
+                <input class="admin-input" type="text" id="inv-client" placeholder="Nom &amp; Prénom du client" style="background:var(--gray-light);" />
+                <input class="admin-input" type="text" id="inv-adresse" placeholder="Adresse du client" style="background:var(--gray-light);" />
+                <input class="admin-input" type="tel" id="inv-tel" placeholder="Téléphone client" style="background:var(--gray-light);" />
+                <input class="admin-input" type="email" id="inv-email" placeholder="E-mail client" style="background:var(--gray-light);" />
               </div>
             </div>
             <div>
               <p style="font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gray-text);margin-bottom:.5rem;">Facture</p>
               <div style="display:flex;flex-direction:column;gap:.6rem;">
-                <input class="admin-input" type="text" id="inv-num" placeholder="N° de facture (ex: FAC-2026-001)" style="background:var(--gray-light);">
-                <input class="admin-input" type="date" id="inv-date" style="background:var(--gray-light);">
-                <input class="admin-input" type="date" id="inv-echeance" style="background:var(--gray-light);" placeholder="Date d'échéance">
+                <input class="admin-input" type="text" id="inv-num" placeholder="N° de facture (ex: FAC-2026-001)" style="background:var(--gray-light);" />
+                <input class="admin-input" type="date" id="inv-date" style="background:var(--gray-light);" />
+                <input class="admin-input" type="date" id="inv-echeance" style="background:var(--gray-light);" placeholder="Date d'échéance" />
                 <select class="admin-input" id="inv-tva" style="background:var(--gray-light);">
-                  <option value="0" selected="selected">Sans TVA (auto-entrepreneur)</option>
+                  <option value="0">Sans TVA (auto-entrepreneur)</option>
                   <option value="20">TVA 20%</option>
                   <option value="10">TVA 10%</option>
                 </select>
@@ -2582,8 +2293,8 @@ traitée.</p>
       </div>
     </div>
 
-  <!-- /admin-body -->
-<!-- /admin-panel -->
+  </div><!-- /admin-body -->
+</div><!-- /admin-panel -->
 
 <!-- ZONE D'IMPRESSION FACTURE -->
 <div id="printArea"></div>
@@ -2610,18 +2321,19 @@ let currentUserRole = 'admin'; // 'admin' or 'livreur'
 function loadData(key, def){ try{ const d=localStorage.getItem(key); return d?JSON.parse(d):def; }catch(e){return def;} }
 function saveData(key,val){ try{localStorage.setItem(key,JSON.stringify(val));}catch(e){} }
 
-const FLEET_VERSION = '2026-v3';
+const FLEET_VERSION = '2026-v6';
 const PHOTO_VERSION = '2026-v2'; // bump to reset cached photos
-if(localStorage.getItem('photo_version')!==PHOTO_VERSION){localStorage.removeItem('adm_gallery');localStorage.removeItem('adm_service_photos');localStorage.setItem('photo_version',PHOTO_VERSION);} // Bump this whenever you change the default fleet
+if(localStorage.getItem('photo_version')!==PHOTO_VERSION){localStorage.removeItem('adm_gallery');localStorage.removeItem('adm_service_photos');localStorage.setItem('photo_version',PHOTO_VERSION);}
 const DEFAULT_VEHICLES = [
-  {name:'PASSAT B6',type:'Berline',icon:'🚗',available:true,price:45},
-  {name:'PASSAT B6 BREAK',type:'Break',icon:'🚙',available:true,price:50},
-  {name:'DACIA DUSTER',type:'SUV 4x4',icon:'🚙',available:false,price:55},
-  {name:'OPEL ASTRA H',type:'Berline compacte',icon:'🚗',available:true,price:42},
+  {name:'PASSAT B6',type:'Berline',icon:'🚗',available:true,price:55},
+  {name:'PASSAT B6 (2)',type:'Berline',icon:'🚗',available:true,price:55},
+  {name:'PASSAT B6 BREAK',type:'Break',icon:'🚙',available:true,price:60},
+  {name:'DACIA DUSTER',type:'SUV 4x4',icon:'🚙',available:false,price:60},
+  {name:'OPEL ASTRA H',type:'Berline compacte',icon:'🚗',available:true,price:50},
   {name:'OPEL ASTRA H CC',type:'Coupé cabriolet',icon:'🏎️',available:true,price:60},
-  {name:'SEAT LEON 2L TDI 140',type:'Berline sportive',icon:'🏎️',available:true,price:48},
-  {name:'IVECO DAILY Benne électrique',type:'Utilitaire électrique',icon:'🔌',available:true,price:80},
-  {name:'RENAULT TRAFIC L1H1',type:'Fourgon utilitaire',icon:'🛻',available:true,price:65},
+  {name:'SEAT LEON 2L TDI 140',type:'Berline sportive',icon:'🏎️',available:true,price:50},
+  {name:'IVECO DAILY Benne',type:'Utilitaire diesel',icon:'🚚',available:true,price:80},
+  {name:'RENAULT TRAFIC L1H1',type:'Fourgon utilitaire',icon:'🛻',available:true,price:70},
 ];
 // If stored version doesn't match, reset to hardcoded defaults
 let vehicles;
@@ -5218,6 +4930,5 @@ document.addEventListener('change',function(e){
   if(e.target.id==='inv-tva') calcInvoice();
 });
 </script>
-
-
-</body></html>
+</body>
+</html>
