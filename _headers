@@ -1,0 +1,23 @@
+/manifest.json
+  Content-Type: application/manifest+json
+  Cache-Control: public, max-age=3600
+
+/sw.js
+  Content-Type: application/javascript
+  Cache-Control: public, max-age=0, must-revalidate
+  Service-Worker-Allowed: /
+
+/*.png
+  Content-Type: image/png
+  Cache-Control: public, max-age=86400
+
+/widgets/*.json
+  Content-Type: application/json
+
+/og-image.jpg
+  Content-Type: image/jpeg
+  Cache-Control: public, max-age=2592000
+
+/og-image-square.jpg
+  Content-Type: image/jpeg
+  Cache-Control: public, max-age=2592000

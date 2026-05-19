@@ -1,0 +1,186 @@
+{
+  "name": "L'Atelier du Mécano — Mécano 73",
+  "short_name": "Mécano 73",
+  "description": "Dépannage 24h/24 7j/7 avec dépanneuse, remorquage, mécanique auto, diagnostic électronique et location de véhicules à La Rochette (73110). Intervention rapide sur La Rochette, Pontcharra, Goncelin, Le Cheylas, Le Touvet, La Terrasse, Crolles, Brignoud, Grenoble, Chambéry, Détrier, Albertville, Frontenex, Les Marches, Montmélian. Tél : 06 68 83 36 87",
+  "start_url": "/?source=pwa",
+  "id": "/?app=mecano73",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui", "browser"],
+  "orientation": "any",
+  "background_color": "#0a1628",
+  "theme_color": "#f4700a",
+  "lang": "fr",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+
+  "categories": [
+    "business",
+    "productivity",
+    "utilities",
+    "navigation",
+    "lifestyle",
+    "travel"
+  ],
+
+  "icons": [
+    { "src": "icon-72.png",  "sizes": "72x72",   "type": "image/png", "purpose": "any" },
+    { "src": "icon-96.png",  "sizes": "96x96",   "type": "image/png", "purpose": "any" },
+    { "src": "icon-128.png", "sizes": "128x128", "type": "image/png", "purpose": "any" },
+    { "src": "icon-144.png", "sizes": "144x144", "type": "image/png", "purpose": "any" },
+    { "src": "icon-152.png", "sizes": "152x152", "type": "image/png", "purpose": "any" },
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-384.png", "sizes": "384x384", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+
+  "scope_extensions": [
+    { "origin": "https://latelierdumecano.netlify.app" },
+    { "origin": "https://l-atelier-du-mecano.netlify.app" },
+    { "origin": "https://l-atelier-du-mecano-app-android.netlify.app" },
+    { "origin": "https://markito738.github.io" },
+    { "origin": "*.atelier-du-mecano.fr" }
+  ],
+
+  "shortcuts": [
+    {
+      "name": "🚨 Dépannage Urgent",
+      "short_name": "Urgence",
+      "description": "Appeler immédiatement pour un dépannage 24h/24",
+      "url": "/?action=urgent",
+      "icons": [
+        { "src": "shortcut-urgent-96.png",  "sizes": "96x96",   "type": "image/png" },
+        { "src": "shortcut-urgent-192.png", "sizes": "192x192", "type": "image/png" }
+      ]
+    },
+    {
+      "name": "🚗 Réserver un véhicule",
+      "short_name": "Réserver",
+      "description": "Réserver une voiture, un fourgon ou un utilitaire",
+      "url": "/?action=reserver#location",
+      "icons": [
+        { "src": "shortcut-reserver-96.png",  "sizes": "96x96",   "type": "image/png" },
+        { "src": "shortcut-reserver-192.png", "sizes": "192x192", "type": "image/png" }
+      ]
+    },
+    {
+      "name": "📅 Mon planning",
+      "short_name": "Planning",
+      "description": "Voir les disponibilités de la flotte",
+      "url": "/?action=planning#planning",
+      "icons": [
+        { "src": "shortcut-planning-96.png",  "sizes": "96x96",   "type": "image/png" },
+        { "src": "shortcut-planning-192.png", "sizes": "192x192", "type": "image/png" }
+      ]
+    },
+    {
+      "name": "💬 Laisser un avis",
+      "short_name": "Avis",
+      "description": "Donner mon avis sur le service",
+      "url": "/?action=avis#avis",
+      "icons": [
+        { "src": "shortcut-avis-96.png",  "sizes": "96x96",   "type": "image/png" },
+        { "src": "shortcut-avis-192.png", "sizes": "192x192", "type": "image/png" }
+      ]
+    }
+  ],
+
+  "protocol_handlers": [
+    { "protocol": "mailto",     "url": "/?compose=%s" },
+    { "protocol": "sms",        "url": "/?sms=%s" },
+    { "protocol": "web+mecano", "url": "/?handler=%s" },
+    { "protocol": "web+mypwa",  "url": "/?app=%s" }
+  ],
+
+  "widgets": [
+    {
+      "name": "Dépannage rapide",
+      "tag": "depannage-urgent",
+      "description": "Bouton d'appel direct pour le dépannage 24h/24",
+      "template": "ms-widget-template",
+      "ms_ac_template": "widgets/depannage-template.json",
+      "data": "widgets/depannage-data.json",
+      "type": "application/json",
+      "screenshots": [
+        {
+          "src": "widgets/preview-depannage.png",
+          "sizes": "600x400",
+          "label": "Widget de dépannage urgent"
+        }
+      ],
+      "icons": [
+        { "src": "shortcut-urgent-96.png",  "sizes": "96x96",   "type": "image/png" },
+        { "src": "shortcut-urgent-192.png", "sizes": "192x192", "type": "image/png" }
+      ],
+      "auth": false,
+      "update": 86400,
+      "multiple": true,
+      "backgrounds": [
+        { "src": "icon-192.png", "type": "image/png" }
+      ]
+    },
+    {
+      "name": "Réservations en cours",
+      "tag": "reservations",
+      "description": "Voir mes réservations en cours et à venir",
+      "template": "ms-widget-template",
+      "ms_ac_template": "widgets/reservations-template.json",
+      "data": "widgets/reservations-data.json",
+      "type": "application/json",
+      "screenshots": [
+        {
+          "src": "widgets/preview-reservations.png",
+          "sizes": "600x400",
+          "label": "Widget de réservations"
+        }
+      ],
+      "icons": [
+        { "src": "shortcut-reserver-96.png",  "sizes": "96x96",   "type": "image/png" },
+        { "src": "shortcut-reserver-192.png", "sizes": "192x192", "type": "image/png" }
+      ],
+      "auth": false,
+      "update": 3600,
+      "multiple": false
+    }
+  ],
+
+  "share_target": {
+    "action": "/?share=1",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url",
+      "files": [
+        { "name": "documents", "accept": ["image/*", "application/pdf"] }
+      ]
+    }
+  },
+
+  "file_handlers": [
+    {
+      "action": "/?fileHandler=1",
+      "accept": {
+        "image/jpeg": [".jpg", ".jpeg"],
+        "image/png":  [".png"],
+        "application/pdf": [".pdf"]
+      },
+      "icons": [
+        { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }
+      ],
+      "launch_type": "single-client"
+    }
+  ],
+
+  "launch_handler": {
+    "client_mode": ["navigate-existing", "auto"]
+  },
+
+  "edge_side_panel": {
+    "preferred_width": 420
+  },
+
+  "handle_links": "preferred",
+  "related_applications": []
+}
