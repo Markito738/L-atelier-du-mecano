@@ -667,6 +667,12 @@ footer, .footer-contact-item, .footer-section {
 <link rel="apple-touch-icon" href="icon-152.png" />
 <link rel="apple-touch-icon" sizes="152x152" href="icon-152.png" />
 <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
+<!-- jsPDF (génération PDF côté client : contrats, factures, états des lieux) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- Firebase (stockage cloud des contrats, factures, documents scannés) -->
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage-compat.js"></script>
 </head>
 <body>
 
@@ -1226,10 +1232,79 @@ footer, .footer-contact-item, .footer-section {
         </div>
       </div>
 
-      <!-- ÉTAPE 3 : PAIEMENT -->
-      <div id="res-pay-block" style="display:none;">
+      <!-- ÉTAPE 3 : DOCUMENTS OBLIGATOIRES -->
+      <div id="res-docs-block" style="display:none;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:1.25rem;margin-bottom:1.5rem;">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:1rem;">
           <div style="width:28px;height:28px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-size:15px;font-weight:800;color:white;flex-shrink:0;">3</div>
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:17px;font-weight:700;text-transform:uppercase;color:white;letter-spacing:.04em;">Documents obligatoires</span>
+        </div>
+        <div style="background:rgba(244,112,10,.1);border:1px solid rgba(244,112,10,.3);border-radius:8px;padding:.75rem 1rem;margin-bottom:1.25rem;font-size:13px;color:rgba(255,255,255,.8);line-height:1.5;">
+          ⚠️ Ces documents sont <strong style="color:white;">obligatoires</strong> pour valider votre réservation. Le paiement ne pourra pas être effectué sans les 4 éléments ci-dessous.
+        </div>
+
+        <!-- Numéro de permis -->
+        <div class="form-group full" style="margin-bottom:1rem;">
+          <label style="color:white !important;font-family:'Bricolage Grotesque',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;">
+            🆔 Numéro de permis de conduire <span style="color:#ff8888;">*</span>
+          </label>
+          <input type="text" id="res-permis-num" placeholder="Ex : 12AB34567" oninput="checkAllDocs()" style="width:100%;padding:12px 14px;background:rgba(255,255,255,.08) !important;border:1.5px solid rgba(255,255,255,.2) !important;border-radius:8px;color:white !important;font-size:15px;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='#f4700a'" onblur="this.style.borderColor='rgba(255,255,255,.2)'" />
+          <div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:4px;">Numéro visible en bas de votre permis (côté photo)</div>
+        </div>
+
+        <!-- Zone upload des 3 documents -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.75rem;margin-bottom:1rem;">
+          <!-- PERMIS -->
+          <div class="doc-upload-zone" id="doc-zone-permis" style="background:rgba(255,255,255,.04);border:2px dashed rgba(255,255,255,.2);border-radius:10px;padding:1rem;text-align:center;">
+            <label for="doc-permis" style="display:block;cursor:pointer;">
+              <div style="font-size:32px;margin-bottom:.5rem;">🚗</div>
+              <div style="color:white;font-family:'Bricolage Grotesque',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;">Scan du permis <span style="color:#ff8888;">*</span></div>
+              <div style="color:rgba(255,255,255,.6);font-size:11px;margin-bottom:.5rem;">Recto-verso ou juste recto</div>
+              <div class="doc-btn" style="background:rgba(244,112,10,.25);color:#ffb86c;font-size:12px;font-weight:700;padding:8px 12px;border-radius:6px;display:inline-block;">📤 Choisir un fichier</div>
+              <input type="file" id="doc-permis" accept="image/*,.pdf" onchange="onDocSelected('permis', this)" style="display:none;" />
+            </label>
+            <div id="doc-permis-status" style="margin-top:.5rem;font-size:11px;color:rgba(255,255,255,.5);"></div>
+          </div>
+
+          <!-- CNI -->
+          <div class="doc-upload-zone" id="doc-zone-cni" style="background:rgba(255,255,255,.04);border:2px dashed rgba(255,255,255,.2);border-radius:10px;padding:1rem;text-align:center;">
+            <label for="doc-cni" style="display:block;cursor:pointer;">
+              <div style="font-size:32px;margin-bottom:.5rem;">🪪</div>
+              <div style="color:white;font-family:'Bricolage Grotesque',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;">Pièce d'identité <span style="color:#ff8888;">*</span></div>
+              <div style="color:rgba(255,255,255,.6);font-size:11px;margin-bottom:.5rem;">CNI, passeport, titre de séjour</div>
+              <div class="doc-btn" style="background:rgba(244,112,10,.25);color:#ffb86c;font-size:12px;font-weight:700;padding:8px 12px;border-radius:6px;display:inline-block;">📤 Choisir un fichier</div>
+              <input type="file" id="doc-cni" accept="image/*,.pdf" onchange="onDocSelected('cni', this)" style="display:none;" />
+            </label>
+            <div id="doc-cni-status" style="margin-top:.5rem;font-size:11px;color:rgba(255,255,255,.5);"></div>
+          </div>
+
+          <!-- DOMICILE -->
+          <div class="doc-upload-zone" id="doc-zone-domicile" style="background:rgba(255,255,255,.04);border:2px dashed rgba(255,255,255,.2);border-radius:10px;padding:1rem;text-align:center;">
+            <label for="doc-domicile" style="display:block;cursor:pointer;">
+              <div style="font-size:32px;margin-bottom:.5rem;">🏠</div>
+              <div style="color:white;font-family:'Bricolage Grotesque',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;">Justificatif domicile <span style="color:#ff8888;">*</span></div>
+              <div style="color:rgba(255,255,255,.6);font-size:11px;margin-bottom:.5rem;">Facture énergie/téléphone &lt; 3 mois</div>
+              <div class="doc-btn" style="background:rgba(244,112,10,.25);color:#ffb86c;font-size:12px;font-weight:700;padding:8px 12px;border-radius:6px;display:inline-block;">📤 Choisir un fichier</div>
+              <input type="file" id="doc-domicile" accept="image/*,.pdf" onchange="onDocSelected('domicile', this)" style="display:none;" />
+            </label>
+            <div id="doc-domicile-status" style="margin-top:.5rem;font-size:11px;color:rgba(255,255,255,.5);"></div>
+          </div>
+        </div>
+
+        <!-- Résumé statut -->
+        <div id="docs-summary" style="background:rgba(255,255,255,.06);border-radius:8px;padding:.75rem 1rem;font-size:13px;color:rgba(255,255,255,.7);line-height:1.6;">
+          📋 <strong style="color:white;">Statut :</strong> <span id="docs-summary-text">Aucun document fourni pour l'instant</span>
+        </div>
+
+        <div style="margin-top:.75rem;font-size:11px;color:rgba(255,255,255,.4);line-height:1.5;">
+          🔒 Vos documents sont transmis directement au propriétaire par email sécurisé. Ils ne sont ni stockés, ni partagés à des tiers, et servent uniquement à établir votre contrat de location conformément au RGPD.<br>
+          📎 Formats acceptés : JPG, PNG, PDF — Max 5 Mo par fichier
+        </div>
+      </div>
+
+      <!-- ÉTAPE 4 : PAIEMENT -->
+      <div id="res-pay-block" style="display:none;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:1rem;">
+          <div style="width:28px;height:28px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-size:15px;font-weight:800;color:white;flex-shrink:0;">4</div>
           <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:17px;font-weight:700;text-transform:uppercase;color:white;letter-spacing:.04em;">Payer par carte pour confirmer</span>
         </div>
         <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:1rem;margin-bottom:1rem;font-size:13px;color:rgba(255,255,255,.65);line-height:1.6;">
@@ -2606,12 +2681,20 @@ footer, .footer-contact-item, .footer-section {
             </div>
           </div>
 
-          <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;">
+            <button class="btn-print" onclick="printBlankContract()" style="background:#5568d3;color:white;">📄 Imprimer contrat VIERGE</button>
+            <button class="btn-print" onclick="printManualContractPDF()" style="background:#0a1628;color:white;">📥 Télécharger le contrat rempli (PDF)</button>
             <button class="btn-print" onclick="printContrat('depart')" style="background:var(--orange);">🖨️ Imprimer contrat départ</button>
             <button class="btn-print" onclick="printContrat('retour')" style="background:var(--navy);">🖨️ Imprimer contrat retour (état des lieux)</button>
-            <button class="btn-admin-save" onclick="saveContrat()">💾 Sauvegarder</button>
+            <button class="btn-admin-save" onclick="saveContrat()" style="background:#1aab6d;color:white;font-weight:800;padding:10px 18px;font-size:14px;">💾 ENREGISTRER LE CONTRAT</button>
           </div>
-          <div style="margin-top:.75rem;font-size:12px;color:var(--gray-text);">Astuce : "Imprimer" → "Enregistrer en PDF" dans votre navigateur pour obtenir un fichier PDF signable.</div>
+          <div style="margin-top:.75rem;font-size:12px;color:var(--gray-text);line-height:1.6;">
+            💡 <strong>Astuces :</strong><br>
+            • <strong>Contrat VIERGE</strong> : télécharge un PDF vide avec tous les champs à remplir à la main (pour les clients au comptoir)<br>
+            • <strong>Contrat rempli (PDF)</strong> : télécharge un PDF avec toutes les infos que tu as saisies ci-dessus<br>
+            • <strong>Imprimer départ/retour</strong> : ouvre une fenêtre d'impression navigateur avec état des lieux<br>
+            • <strong>ENREGISTRER</strong> : sauvegarde le contrat en cloud (Firebase) + local pour le retrouver dans l'historique
+          </div>
         </div>
       </div>
 
@@ -2971,11 +3054,13 @@ function updateResRecap(){
   const fin   = document.getElementById('res-fin').value;
   const vName = document.getElementById('res-vehicule').value;
   const recap = document.getElementById('res-recap');
+  const docsBlock = document.getElementById('res-docs-block');
   const payBlock = document.getElementById('res-pay-block');
   const incomplete = document.getElementById('res-incomplete');
 
   if(!nom||!debut||!fin||!vName){
     if(recap) recap.style.display='none';
+    if(docsBlock) docsBlock.style.display='none';
     if(payBlock) payBlock.style.display='none';
     if(incomplete) incomplete.style.display='block';
     return;
@@ -2984,15 +3069,19 @@ function updateResRecap(){
   const p = getResPrice();
   if(p.jours<=0){
     if(recap) recap.style.display='none';
+    if(docsBlock) docsBlock.style.display='none';
     if(payBlock) payBlock.style.display='none';
     if(incomplete){incomplete.style.display='block';incomplete.textContent='⚠️ La date de retour doit être identique ou postérieure à la date de départ.';}
     return;
   }
 
-  // Show recap
+  // Show recap + docs + payment
   if(incomplete) incomplete.style.display='none';
   if(recap) recap.style.display='block';
+  if(docsBlock) docsBlock.style.display='block';
   if(payBlock) payBlock.style.display='block';
+  // Vérifier l'état des documents (active/désactive bouton paiement)
+  setTimeout(()=>{ if(typeof checkAllDocs === 'function') checkAllDocs(); }, 50);
 
   // Fill recap fields
   const el=id=>document.getElementById(id);
@@ -3027,6 +3116,923 @@ function updateResRecap(){
   if(el('btn-montant-display')) el('btn-montant-display').textContent=totalStr;
 }
 
+// ═══════════════════════════════════════════════════════════════
+// FIREBASE — Stockage cloud (Firestore + Storage)
+// ═══════════════════════════════════════════════════════════════
+// 🔧 CONFIGURATION FIREBASE — À REMPLACER AVEC TES CLÉS
+// Va sur https://console.firebase.google.com → ton projet → Paramètres → Config
+const FIREBASE_CONFIG = {
+  apiKey: "REMPLACE_MOI_apiKey",
+  authDomain: "REMPLACE_MOI.firebaseapp.com",
+  projectId: "REMPLACE_MOI_projectId",
+  storageBucket: "REMPLACE_MOI.appspot.com",
+  messagingSenderId: "REMPLACE_MOI",
+  appId: "REMPLACE_MOI_appId"
+};
+
+let firebaseApp = null;
+let firestoreDb = null;
+let firebaseStorage = null;
+let firebaseReady = false;
+
+function initFirebase(){
+  try {
+    if(typeof firebase === 'undefined'){
+      console.warn('[Firebase] SDK non chargé — fonctionnera en mode localStorage uniquement');
+      return false;
+    }
+    if(FIREBASE_CONFIG.apiKey.includes('REMPLACE_MOI')){
+      console.warn('[Firebase] Non configuré — remplacez FIREBASE_CONFIG dans le code. Fonctionne en localStorage uniquement.');
+      return false;
+    }
+    firebaseApp = firebase.initializeApp(FIREBASE_CONFIG);
+    firestoreDb = firebase.firestore();
+    firebaseStorage = firebase.storage();
+    firebaseReady = true;
+    console.log('[Firebase] ✅ Initialisé — stockage cloud actif');
+    // Signal visuel
+    setTimeout(()=>{
+      const badge = document.createElement('div');
+      badge.id = 'cloud-status-badge';
+      badge.innerHTML = '☁️ Cloud actif';
+      badge.style.cssText = 'position:fixed;bottom:10px;left:10px;background:rgba(26,171,109,.9);color:white;padding:6px 10px;border-radius:6px;font-size:11px;font-weight:700;z-index:99999;box-shadow:0 2px 8px rgba(0,0,0,.2);opacity:0;transition:opacity .3s;';
+      document.body.appendChild(badge);
+      setTimeout(()=>{badge.style.opacity='1';}, 100);
+      setTimeout(()=>{badge.style.opacity='0';setTimeout(()=>badge.remove(),300);}, 3000);
+    }, 500);
+    return true;
+  } catch(err){
+    console.error('[Firebase] Erreur init:', err);
+    return false;
+  }
+}
+
+// ─── UPLOAD D'UN FICHIER SUR FIREBASE STORAGE ──────────────
+async function uploadDocToFirebase(contratNum, docType, file){
+  if(!firebaseReady) return null;
+  try {
+    const ext = (file.name.split('.').pop() || 'bin').toLowerCase();
+    const cleanName = file.name.replace(/[^a-zA-Z0-9._-]/g,'_').substring(0,80);
+    const path = 'documents/' + contratNum + '/' + docType + '_' + Date.now() + '_' + cleanName;
+    const ref = firebaseStorage.ref(path);
+    const snapshot = await ref.put(file);
+    const url = await snapshot.ref.getDownloadURL();
+    return { url: url, path: path, name: file.name, type: file.type, size: file.size };
+  } catch(err){
+    console.error('[Firebase] Upload échoué pour '+docType+':', err);
+    return null;
+  }
+}
+
+// ─── UPLOAD D'UN BLOB PDF (contrat, facture, état lieux) ─────
+async function uploadPdfToFirebase(contratNum, pdfType, blob, filename){
+  if(!firebaseReady) return null;
+  try {
+    const path = 'pdfs/' + contratNum + '/' + pdfType + '_' + filename;
+    const ref = firebaseStorage.ref(path);
+    const snapshot = await ref.put(blob, { contentType: 'application/pdf' });
+    const url = await snapshot.ref.getDownloadURL();
+    return { url: url, path: path, name: filename };
+  } catch(err){
+    console.error('[Firebase] Upload PDF échoué pour '+pdfType+':', err);
+    return null;
+  }
+}
+
+// ─── ENREGISTRER UN CONTRAT SUR FIRESTORE ──────────────────
+async function saveContratToFirestore(contrat){
+  if(!firebaseReady) return false;
+  try {
+    // Nettoyer les data binaires (base64) pour ne garder que les URLs
+    const clean = JSON.parse(JSON.stringify(contrat));
+    if(clean.docs){
+      ['permis','cni','domicile'].forEach(t => {
+        if(clean.docs[t] && clean.docs[t].data){
+          // Retirer le base64, on garde uniquement les métadonnées (l'URL est stockée séparément)
+          delete clean.docs[t].data;
+        }
+      });
+    }
+    clean._updatedAt = new Date().toISOString();
+    await firestoreDb.collection('contrats').doc(contrat.num).set(clean, { merge: true });
+    return true;
+  } catch(err){
+    console.error('[Firebase] Save contrat échoué:', err);
+    return false;
+  }
+}
+
+// ─── ENREGISTRER UNE FACTURE SUR FIRESTORE ─────────────────
+async function saveFactureToFirestore(facture){
+  if(!firebaseReady) return false;
+  try {
+    const clean = JSON.parse(JSON.stringify(facture));
+    clean._updatedAt = new Date().toISOString();
+    await firestoreDb.collection('factures').doc(facture.num).set(clean, { merge: true });
+    return true;
+  } catch(err){
+    console.error('[Firebase] Save facture échoué:', err);
+    return false;
+  }
+}
+
+// ─── RÉCUPÉRER TOUS LES CONTRATS DE FIRESTORE ──────────────
+async function loadContratsFromFirestore(){
+  if(!firebaseReady) return null;
+  try {
+    const snap = await firestoreDb.collection('contrats').orderBy('_updatedAt', 'desc').limit(500).get();
+    return snap.docs.map(d => d.data());
+  } catch(err){
+    console.error('[Firebase] Load contrats échoué:', err);
+    return null;
+  }
+}
+
+async function loadFacturesFromFirestore(){
+  if(!firebaseReady) return null;
+  try {
+    const snap = await firestoreDb.collection('factures').orderBy('_updatedAt', 'desc').limit(500).get();
+    return snap.docs.map(d => d.data());
+  } catch(err){
+    console.error('[Firebase] Load factures échoué:', err);
+    return null;
+  }
+}
+
+// ─── RÉCUPÉRER UN CONTRAT SPÉCIFIQUE ────────────────────────
+async function fetchContratFromFirestore(contratNum){
+  if(!firebaseReady) return null;
+  try {
+    const doc = await firestoreDb.collection('contrats').doc(contratNum).get();
+    if(doc.exists) return doc.data();
+    return null;
+  } catch(err){
+    console.error('[Firebase] Fetch contrat échoué:', err);
+    return null;
+  }
+}
+
+// ─── SYNC INITIALE : recharge depuis Firebase au démarrage ─
+async function syncFromFirebase(){
+  if(!firebaseReady) return;
+  try {
+    const [cloudContrats, cloudFactures] = await Promise.all([
+      loadContratsFromFirestore(),
+      loadFacturesFromFirestore()
+    ]);
+    if(cloudContrats && cloudContrats.length){
+      // Fusionner : cloud écrase local pour les mêmes numéros
+      const merged = [...cloudContrats];
+      contratHistory.forEach(local => {
+        if(!merged.find(c => c.num === local.num)) merged.push(local);
+      });
+      contratHistory.length = 0;
+      merged.forEach(c => contratHistory.push(c));
+      saveData('adm_contrats', contratHistory);
+      console.log('[Firebase] ↓ '+cloudContrats.length+' contrat(s) synchronisé(s) depuis le cloud');
+    }
+    if(cloudFactures && cloudFactures.length){
+      const merged = [...cloudFactures];
+      invoiceHistory.forEach(local => {
+        if(!merged.find(f => f.num === local.num)) merged.push(local);
+      });
+      invoiceHistory.length = 0;
+      merged.forEach(f => invoiceHistory.push(f));
+      saveData('adm_invoices', invoiceHistory);
+      console.log('[Firebase] ↓ '+cloudFactures.length+' facture(s) synchronisée(s)');
+    }
+  } catch(err){
+    console.error('[Firebase] Sync initiale échouée:', err);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// GESTION DES DOCUMENTS OBLIGATOIRES (permis, CNI, justificatif)
+// ═══════════════════════════════════════════════════════════════
+let clientDocs = { permis: null, cni: null, domicile: null };
+const MAX_DOC_SIZE = 5 * 1024 * 1024; // 5 Mo
+
+function onDocSelected(type, input){
+  const file = input.files[0];
+  if(!file){ return; }
+  if(file.size > MAX_DOC_SIZE){
+    showNotif('📎 Fichier trop volumineux','Le fichier '+file.name+' dépasse 5 Mo. Réduisez sa taille et réessayez.');
+    input.value = '';
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = e => {
+    clientDocs[type] = { name: file.name, type: file.type, size: file.size, data: e.target.result, file: file };
+    updateDocsSummary();
+    checkAllDocs();
+  };
+  reader.readAsDataURL(file);
+}
+
+function clearDoc(type){
+  clientDocs[type] = null;
+  const input = document.getElementById('doc-'+type);
+  if(input) input.value = '';
+  updateDocsSummary();
+  checkAllDocs();
+}
+
+function updateDocsSummary(){
+  const types = { permis:'Permis', cni:'Pièce d\'identité', domicile:'Justificatif domicile' };
+  Object.keys(types).forEach(t => {
+    const zone = document.getElementById('doc-zone-'+t);
+    const status = document.getElementById('doc-'+t+'-status');
+    if(!zone || !status) return;
+    if(clientDocs[t]){
+      zone.style.borderColor = '#5eebb0';
+      zone.style.background = 'rgba(94,235,176,.08)';
+      zone.style.borderStyle = 'solid';
+      status.innerHTML = '✅ '+clientDocs[t].name+' <button type="button" onclick="clearDoc(\''+t+'\')" style="background:none;border:none;color:#ff8888;font-size:11px;cursor:pointer;text-decoration:underline;margin-left:.5rem;">Retirer</button>';
+      status.style.color = '#5eebb0';
+    } else {
+      zone.style.borderColor = 'rgba(255,255,255,.2)';
+      zone.style.background = 'rgba(255,255,255,.04)';
+      zone.style.borderStyle = 'dashed';
+      status.innerHTML = '';
+      status.style.color = 'rgba(255,255,255,.5)';
+    }
+  });
+
+  const nbDocs = Object.values(clientDocs).filter(Boolean).length;
+  const permisNum = document.getElementById('res-permis-num')?.value.trim() || '';
+  const parts = [];
+  if(permisNum) parts.push('✅ N° permis renseigné');
+  else parts.push('❌ N° permis manquant');
+  if(clientDocs.permis) parts.push('✅ Scan permis');
+  else parts.push('❌ Scan permis manquant');
+  if(clientDocs.cni) parts.push('✅ CNI');
+  else parts.push('❌ CNI manquant');
+  if(clientDocs.domicile) parts.push('✅ Justif. domicile');
+  else parts.push('❌ Justif. domicile manquant');
+  const summaryEl = document.getElementById('docs-summary-text');
+  if(summaryEl) summaryEl.innerHTML = parts.join(' • ');
+}
+
+function checkAllDocs(){
+  updateDocsSummary();
+  const permisNum = document.getElementById('res-permis-num')?.value.trim() || '';
+  const allOK = permisNum.length >= 5 && clientDocs.permis && clientDocs.cni && clientDocs.domicile;
+  const payBtn = document.querySelector('#res-pay-block button.btn-form');
+  if(payBtn){
+    payBtn.disabled = !allOK;
+    payBtn.style.opacity = allOK ? '1' : '0.4';
+    payBtn.style.cursor = allOK ? 'pointer' : 'not-allowed';
+    payBtn.title = allOK ? '' : 'Merci de fournir votre numéro de permis + les 3 documents obligatoires ci-dessus';
+  }
+  return allOK;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// GÉNÉRATION DES PDFs (contrat, facture, états des lieux)
+// ═══════════════════════════════════════════════════════════════
+function pdfHeader(doc, title){
+  // Bandeau navy avec logo + titre
+  doc.setFillColor(10, 22, 40);
+  doc.rect(0, 0, 210, 30, 'F');
+  doc.setFillColor(244, 112, 10);
+  doc.rect(0, 30, 210, 2, 'F');
+  doc.setTextColor(244, 112, 10);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(18);
+  doc.text("L'ATELIER DU MECANO", 12, 15);
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'normal');
+  doc.text('Garage - Depannage 24h/24 - Location', 12, 22);
+  doc.setFontSize(16);
+  doc.setFont('helvetica', 'bold');
+  doc.text(title, 208, 15, {align: 'right'});
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'normal');
+  doc.text('Place Georges Lardenois - 73110 Valgelon la Rochette', 208, 22, {align: 'right'});
+  doc.setTextColor(0, 0, 0);
+}
+
+function pdfFooter(doc){
+  const h = doc.internal.pageSize.height;
+  doc.setFillColor(10, 22, 40);
+  doc.rect(0, h - 18, 210, 18, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(8);
+  doc.setFont('helvetica', 'normal');
+  doc.text("L'Atelier du Mecano - SIRET 100 384 445 000 19 - Tel : 06 68 83 36 87 - marchenriannis@gmail.com", 105, h - 11, {align: 'center'});
+  doc.text('latelierdumecano.netlify.app - Paiement : pay.sumup.com/b2c/QK1J3LUK', 105, h - 6, {align: 'center'});
+}
+
+// Utility: draw section title
+function pdfSection(doc, y, title){
+  doc.setFillColor(244, 112, 10);
+  doc.rect(12, y, 186, 6, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(10);
+  doc.text(title, 15, y + 4.2);
+  doc.setTextColor(0, 0, 0);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(10);
+}
+
+function pdfKeyValue(doc, y, key, value, x=15, keyW=55){
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(9);
+  doc.text(key, x, y);
+  doc.setFont('helvetica', 'normal');
+  doc.text(String(value || '-'), x + keyW, y);
+}
+
+// ─── CONTRAT DE LOCATION ─────────────────────────────────────────
+function generateContractPDF(contract){
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+  pdfHeader(doc, 'CONTRAT DE LOCATION');
+
+  // Numéro et date
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'bold');
+  doc.text('N° ' + contract.num, 15, 42);
+  doc.setFont('helvetica', 'normal');
+  doc.text('Etabli le ' + contract.date, 208, 42, {align: 'right'});
+
+  let y = 52;
+  pdfSection(doc, y, 'LOCATAIRE');
+  y += 12;
+  pdfKeyValue(doc, y, 'Nom / Prenom :',  contract.client); y += 6;
+  pdfKeyValue(doc, y, 'Telephone :',     contract.tel); y += 6;
+  pdfKeyValue(doc, y, 'E-mail :',        contract.email); y += 6;
+  pdfKeyValue(doc, y, 'N° permis :',     contract.numeroPermis || '-'); y += 10;
+
+  pdfSection(doc, y, 'VEHICULE LOUE');
+  y += 12;
+  pdfKeyValue(doc, y, 'Vehicule :',      contract.vehicule); y += 6;
+  pdfKeyValue(doc, y, 'Depart :',        new Date(contract.depart).toLocaleString('fr-FR')); y += 6;
+  pdfKeyValue(doc, y, 'Retour prevu :',  new Date(contract.retour).toLocaleString('fr-FR')); y += 6;
+  pdfKeyValue(doc, y, 'Livraison :',     contract.livraison || 'Retrait sur place'); y += 6;
+  if(contract.adresse) { pdfKeyValue(doc, y, 'Adresse :', contract.adresse); y += 6; }
+  y += 4;
+
+  pdfSection(doc, y, 'TARIFICATION');
+  y += 12;
+  pdfKeyValue(doc, y, 'Prix / jour :',   contract.prixJour + ' EUR'); y += 6;
+  pdfKeyValue(doc, y, 'Total TTC :',     contract.total); y += 10;
+
+  pdfSection(doc, y, 'CONDITIONS DE LOCATION');
+  y += 10;
+  doc.setFontSize(8);
+  const conditions = [
+    "1. Le locataire declare avoir pris connaissance de l'etat du vehicule au moment du depart et s'engage a le restituer dans le meme etat.",
+    "2. Le vehicule doit etre restitue avec le meme niveau de carburant qu'au depart, faute de quoi le carburant manquant sera facture.",
+    "3. Un etat des lieux contradictoire sera realise au depart ET au retour du vehicule.",
+    "4. Toute degradation constatee au retour sera facturee au tarif en vigueur.",
+    "5. Le kilometrage sera releve au depart et au retour ; les kilometres supplementaires eventuels seront factures.",
+    "6. Le locataire s'engage a respecter le code de la route ; toute infraction reste a sa charge.",
+    "7. En cas de sinistre, le locataire s'engage a prevenir immediatement L'Atelier du Mecano au 06 68 83 36 87.",
+    "8. Toute prolongation de location doit faire l'objet d'un accord ecrit prealable.",
+    "9. Le vehicule est loue avec les documents obligatoires (carte grise, assurance) qui doivent etre restitues avec le vehicule.",
+    "10. Le paiement de la location est effectue integralement au moment de la reservation via notre partenaire SumUp.",
+  ];
+  conditions.forEach(c => {
+    const lines = doc.splitTextToSize(c, 180);
+    doc.text(lines, 15, y);
+    y += lines.length * 4 + 1;
+  });
+
+  y = Math.max(y + 5, 235);
+  pdfSection(doc, y, 'SIGNATURES');
+  y += 15;
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Le loueur', 40, y);
+  doc.text('Le locataire', 150, y);
+  doc.setFont('helvetica', 'italic');
+  doc.setFontSize(7);
+  doc.text('(cachet et signature)', 40, y + 4);
+  doc.text('(precede de "Lu et approuve")', 150, y + 4);
+  doc.rect(15, y + 7, 75, 30);
+  doc.rect(120, y + 7, 75, 30);
+
+  pdfFooter(doc);
+  return doc.output('blob');
+}
+
+// ─── FACTURE ─────────────────────────────────────────────────────
+function generateInvoicePDF(invoice){
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+  pdfHeader(doc, 'FACTURE');
+
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'bold');
+  doc.text('N° ' + invoice.num, 15, 42);
+  doc.setFont('helvetica', 'normal');
+  doc.text('Etablie le ' + invoice.date, 208, 42, {align: 'right'});
+
+  let y = 52;
+  pdfSection(doc, y, 'CLIENT');
+  y += 12;
+  pdfKeyValue(doc, y, 'Nom / Prenom :',  invoice.client); y += 6;
+  pdfKeyValue(doc, y, 'Telephone :',     invoice.tel); y += 6;
+  pdfKeyValue(doc, y, 'E-mail :',        invoice.email); y += 10;
+
+  pdfSection(doc, y, 'DETAIL DE LA PRESTATION');
+  y += 10;
+
+  // Table header
+  doc.setFillColor(240, 240, 240);
+  doc.rect(15, y, 180, 8, 'F');
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(9);
+  doc.text('Designation', 18, y + 5.5);
+  doc.text('Qte', 118, y + 5.5, {align: 'right'});
+  doc.text('P.U. HT', 148, y + 5.5, {align: 'right'});
+  doc.text('Total TTC', 192, y + 5.5, {align: 'right'});
+  y += 8;
+  doc.setFont('helvetica', 'normal');
+
+  // Location line
+  doc.rect(15, y, 180, 10, 'S');
+  const lines = doc.splitTextToSize('Location ' + invoice.vehicule + '\ndu ' + invoice.debut + ' au ' + invoice.fin, 95);
+  doc.text(lines, 18, y + 4);
+  doc.text(String(invoice.jours), 118, y + 6, {align: 'right'});
+  doc.text(invoice.prixJour + ' EUR', 148, y + 6, {align: 'right'});
+  doc.text((invoice.jours * invoice.prixJour).toFixed(2) + ' EUR', 192, y + 6, {align: 'right'});
+  y += 10;
+
+  // Livraison
+  if(invoice.livraison > 0){
+    doc.rect(15, y, 180, 8, 'S');
+    doc.text('Livraison / retrait', 18, y + 5);
+    doc.text('1', 118, y + 5, {align: 'right'});
+    doc.text(invoice.livraison + ' EUR', 148, y + 5, {align: 'right'});
+    doc.text(invoice.livraison + ' EUR', 192, y + 5, {align: 'right'});
+    y += 8;
+  }
+  // Discount
+  if(invoice.discount > 0){
+    doc.rect(15, y, 180, 8, 'S');
+    doc.setTextColor(26, 171, 109);
+    doc.text('Reduction (' + invoice.discountLabel + ')', 18, y + 5);
+    doc.text('-' + invoice.discount + ' EUR', 192, y + 5, {align: 'right'});
+    doc.setTextColor(0, 0, 0);
+    y += 8;
+  }
+
+  y += 5;
+  // Total TTC
+  doc.setFillColor(244, 112, 10);
+  doc.rect(115, y, 80, 12, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(12);
+  doc.text('TOTAL TTC :', 118, y + 8);
+  doc.text(invoice.ttc + ' EUR', 192, y + 8, {align: 'right'});
+  doc.setTextColor(0, 0, 0);
+  y += 20;
+
+  pdfSection(doc, y, 'INFORMATIONS DE PAIEMENT');
+  y += 10;
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9);
+  doc.text('Mode de paiement : Carte bancaire via SumUp', 15, y); y += 5;
+  doc.text('Lien de paiement : pay.sumup.com/b2c/QK1J3LUK', 15, y); y += 5;
+  doc.text('Statut : ' + (invoice.statut || 'En attente de paiement'), 15, y); y += 8;
+  doc.setFontSize(8);
+  doc.setFont('helvetica', 'italic');
+  doc.text('TVA non applicable, art. 293 B du CGI. Auto-entrepreneur.', 15, y);
+
+  pdfFooter(doc);
+  return doc.output('blob');
+}
+
+// ─── FICHE ETAT DES LIEUX (depart OU retour) ─────────────────────
+function generateEtatLieuxPDF(contract, type){
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+  const titre = type === 'depart' ? 'ETAT DES LIEUX - DEPART' : 'ETAT DES LIEUX - RETOUR';
+  pdfHeader(doc, titre);
+
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Contrat n° ' + contract.num, 15, 42);
+  doc.setFont('helvetica', 'normal');
+  doc.text('Vehicule : ' + contract.vehicule, 208, 42, {align: 'right'});
+
+  let y = 52;
+  pdfSection(doc, y, 'IDENTIFICATION');
+  y += 10;
+  pdfKeyValue(doc, y, 'Locataire :',      contract.client); y += 6;
+  pdfKeyValue(doc, y, 'Date / Heure :',   '____/____/________  __ h __'); y += 6;
+  pdfKeyValue(doc, y, 'Lieu :',           '________________________________________'); y += 10;
+
+  pdfSection(doc, y, 'ETAT GENERAL DU VEHICULE');
+  y += 10;
+
+  // Grille kilometrage / carburant
+  doc.rect(15, y, 90, 12);
+  doc.rect(105, y, 90, 12);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(9);
+  doc.text('KILOMETRAGE', 60, y + 4, {align: 'center'});
+  doc.text('CARBURANT', 150, y + 4, {align: 'center'});
+  doc.setFont('helvetica', 'normal');
+  doc.text('___________________ km', 60, y + 9.5, {align: 'center'});
+  doc.text('[ ] Plein   [ ] 3/4   [ ] 1/2   [ ] 1/4', 150, y + 9.5, {align: 'center'});
+  y += 15;
+
+  // Schema simplifie carrosserie
+  pdfSection(doc, y, 'CARROSSERIE (indiquer les impacts / rayures)');
+  y += 10;
+  // Rectangle voiture simple
+  doc.rect(60, y, 90, 45);
+  doc.setFontSize(8);
+  doc.setFont('helvetica', 'italic');
+  doc.text('AVANT', 105, y + 4, {align: 'center'});
+  doc.text('ARRIERE', 105, y + 43, {align: 'center'});
+  doc.text('COTE GAUCHE', 55, y + 25, {align: 'right'});
+  doc.text('COTE DROIT', 155, y + 25);
+  // Petites cases roues
+  doc.rect(60, y + 5, 8, 8);   // roue AV G
+  doc.rect(142, y + 5, 8, 8);  // roue AV D
+  doc.rect(60, y + 32, 8, 8);  // roue AR G
+  doc.rect(142, y + 32, 8, 8); // roue AR D
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9);
+  y += 50;
+
+  pdfSection(doc, y, 'EQUIPEMENTS');
+  y += 10;
+  doc.setFontSize(9);
+  const equipements = [
+    'Roue de secours + cric      [ ] Present  [ ] Absent',
+    'Triangle + gilet            [ ] Present  [ ] Absent',
+    'Carte grise + assurance     [ ] Presents [ ] Absents',
+    'Siege bebe / enfant         [ ] Fourni   [ ] Non demande',
+    'Chaines / pneus neige       [ ] Fournis  [ ] Non fournis',
+    'Cle unique / double         [ ] 1 cle    [ ] 2 cles',
+  ];
+  equipements.forEach(e => { doc.text(e, 15, y); y += 5.5; });
+  y += 3;
+
+  pdfSection(doc, y, 'PROPRETE');
+  y += 10;
+  doc.text('Interieur : [ ] Propre  [ ] Correct  [ ] Sale', 15, y); y += 5.5;
+  doc.text('Exterieur : [ ] Propre  [ ] Correct  [ ] Sale', 15, y); y += 8;
+
+  pdfSection(doc, y, 'OBSERVATIONS');
+  y += 10;
+  // 4 lignes vides
+  for(let i=0;i<4;i++){ doc.line(15, y + i*7, 195, y + i*7); }
+  y += 32;
+
+  // Signatures
+  pdfSection(doc, y, 'SIGNATURES');
+  y += 10;
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(9);
+  doc.text('Le loueur', 40, y);
+  doc.text('Le locataire', 150, y);
+  doc.rect(15, y + 3, 75, 20);
+  doc.rect(120, y + 3, 75, 20);
+
+  pdfFooter(doc);
+  return doc.output('blob');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// TOKEN UNIQUE POUR LIENS MAGIQUES (accès admin depuis email)
+// ═══════════════════════════════════════════════════════════════
+function generateAccessToken(){
+  // Token de 16 caractères aleatoire
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let t = '';
+  for(let i=0;i<16;i++) t += chars[Math.floor(Math.random()*chars.length)];
+  return t;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ENVOI EMAIL AVEC PIECES JOINTES + UPLOAD FIREBASE
+// ═══════════════════════════════════════════════════════════════
+async function sendReservationWithDocs(contract, invoice, magicUrl){
+  const formData = new FormData();
+  formData.append('_subject', '🚗 NOUVELLE RESERVATION - ' + contract.vehicule + ' - ' + contract.client);
+  formData.append('_captcha', 'false');
+  formData.append('_template', 'table');
+
+  formData.append('📄 Numero contrat',   contract.num);
+  formData.append('🧾 Numero facture',   invoice.num);
+  formData.append('👤 Client',           contract.client);
+  formData.append('📞 Telephone',        contract.tel || '-');
+  formData.append('✉️ Email',            contract.email || '-');
+  formData.append('🆔 N° permis',        contract.numeroPermis || '-');
+  formData.append('🚗 Vehicule',         contract.vehicule);
+  formData.append('📅 Depart',           new Date(contract.depart).toLocaleString('fr-FR'));
+  formData.append('📅 Retour prevu',     new Date(contract.retour).toLocaleString('fr-FR'));
+  formData.append('📍 Livraison',        contract.livraison + (contract.adresse ? ' → ' + contract.adresse : ''));
+  formData.append('💰 Total TTC',        contract.total);
+  formData.append('🔗 ACCES ADMIN DIRECT', magicUrl);
+
+  // Générer les PDFs (pour email ET Firebase)
+  let contractPDF, invoicePDF, etatDepartPDF, etatRetourPDF;
+  try {
+    contractPDF   = generateContractPDF(contract);
+    invoicePDF    = generateInvoicePDF(invoice);
+    etatDepartPDF = generateEtatLieuxPDF(contract, 'depart');
+    etatRetourPDF = generateEtatLieuxPDF(contract, 'retour');
+    formData.append('contrat_'+contract.num+'.pdf',       contractPDF, 'contrat_'+contract.num+'.pdf');
+    formData.append('facture_'+invoice.num+'.pdf',        invoicePDF,  'facture_'+invoice.num+'.pdf');
+    formData.append('etat_lieux_DEPART_'+contract.num+'.pdf', etatDepartPDF, 'etat_lieux_DEPART_'+contract.num+'.pdf');
+    formData.append('etat_lieux_RETOUR_'+contract.num+'.pdf', etatRetourPDF, 'etat_lieux_RETOUR_'+contract.num+'.pdf');
+  } catch(err){
+    console.error('Erreur generation PDFs:', err);
+  }
+
+  // Attacher les 3 documents du client à l'email
+  ['permis','cni','domicile'].forEach(t => {
+    if(clientDocs[t] && clientDocs[t].file){
+      formData.append('CLIENT_'+t+'_'+clientDocs[t].name, clientDocs[t].file, 'CLIENT_'+t+'_'+clientDocs[t].name);
+    }
+  });
+
+  // ═══ UPLOAD FIREBASE (en parallèle de l'email) ═══
+  let firebaseUrls = { docs: {}, pdfs: {} };
+  if(firebaseReady){
+    try {
+      // Upload des 3 documents client + 4 PDFs en parallèle
+      const uploads = [];
+      ['permis','cni','domicile'].forEach(t => {
+        if(clientDocs[t] && clientDocs[t].file){
+          uploads.push(
+            uploadDocToFirebase(contract.num, t, clientDocs[t].file)
+              .then(r => { if(r) firebaseUrls.docs[t] = r; })
+          );
+        }
+      });
+      if(contractPDF)   uploads.push(uploadPdfToFirebase(contract.num, 'contrat',    contractPDF, 'contrat_'+contract.num+'.pdf').then(r => { if(r) firebaseUrls.pdfs.contrat = r; }));
+      if(invoicePDF)    uploads.push(uploadPdfToFirebase(contract.num, 'facture',    invoicePDF, 'facture_'+invoice.num+'.pdf').then(r => { if(r) firebaseUrls.pdfs.facture = r; }));
+      if(etatDepartPDF) uploads.push(uploadPdfToFirebase(contract.num, 'etat_depart',etatDepartPDF, 'etat_lieux_DEPART_'+contract.num+'.pdf').then(r => { if(r) firebaseUrls.pdfs.etatDepart = r; }));
+      if(etatRetourPDF) uploads.push(uploadPdfToFirebase(contract.num, 'etat_retour',etatRetourPDF, 'etat_lieux_RETOUR_'+contract.num+'.pdf').then(r => { if(r) firebaseUrls.pdfs.etatRetour = r; }));
+      await Promise.all(uploads);
+
+      // Mettre à jour le contrat avec les URLs Firebase
+      contract.firebaseUrls = firebaseUrls;
+      // Aussi mettre à jour dans contratHistory (déjà présent)
+      const idx = contratHistory.findIndex(c => c.num === contract.num);
+      if(idx >= 0){
+        contratHistory[idx].firebaseUrls = firebaseUrls;
+        saveData('adm_contrats', contratHistory);
+      }
+      // Sauvegarder aussi sur Firestore
+      await saveContratToFirestore(contract);
+      await saveFactureToFirestore(invoice);
+
+      // Ajouter les URLs au mail (pour accès direct depuis Gmail)
+      if(Object.keys(firebaseUrls.pdfs).length){
+        formData.append('📥 Contrat PDF (cloud)',       firebaseUrls.pdfs.contrat?.url    || '-');
+        formData.append('📥 Facture PDF (cloud)',       firebaseUrls.pdfs.facture?.url    || '-');
+        formData.append('📥 État lieux DÉPART (cloud)', firebaseUrls.pdfs.etatDepart?.url || '-');
+        formData.append('📥 État lieux RETOUR (cloud)', firebaseUrls.pdfs.etatRetour?.url || '-');
+      }
+      if(Object.keys(firebaseUrls.docs).length){
+        formData.append('👤 Documents client (cloud)',
+          '📄 Permis: ' + (firebaseUrls.docs.permis?.url || '-') + '\n' +
+          '🪪 CNI: ' + (firebaseUrls.docs.cni?.url || '-') + '\n' +
+          '🏠 Domicile: ' + (firebaseUrls.docs.domicile?.url || '-')
+        );
+      }
+      console.log('[Firebase] ✅ Tous les documents uploadés dans le cloud');
+    } catch(err){
+      console.error('[Firebase] Upload partiel échoué:', err);
+    }
+  }
+
+  // Envoi email FormSubmit
+  try {
+    const response = await fetch('https://formsubmit.co/ajax/marchenriannis@gmail.com', {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+    if(!response.ok) throw new Error('HTTP '+response.status);
+    return true;
+  } catch(err){
+    console.error('Erreur envoi FormSubmit:', err);
+    return false;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// VUE DÉTAIL D'UN DOSSIER DE RÉSERVATION (contrat + factures + docs + états)
+// Accessible via lien magique dans email OU via bouton dans admin
+// ═══════════════════════════════════════════════════════════════
+function openDossierModal(contratNum){
+  const c = contratHistory.find(x => x.num === contratNum);
+  if(!c){ showNotif('❌ Introuvable','Ce dossier n\'existe pas ou a été supprimé.'); return; }
+  const inv = invoiceHistory.find(x => x.contratNum === contratNum || x.num === contratNum.replace('LOC-','FAC-'));
+
+  const overlay = document.createElement('div');
+  overlay.id = 'dossier-modal-overlay';
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(10,22,40,.9);z-index:1000000;overflow-y:auto;padding:1rem;';
+
+  // Build docs preview block
+  const docsBlock = ['permis','cni','domicile'].map(t => {
+    const label = t==='permis'?'🚗 Permis':t==='cni'?'🪪 Pièce d\'identité':'🏠 Justificatif domicile';
+    // Priorité 1: URL Firebase Storage (accessible depuis n'importe où)
+    const cloudUrl = c.firebaseUrls?.docs?.[t]?.url;
+    // Priorité 2: data base64 locale (fallback)
+    const localData = c.docs?.[t]?.data;
+    const docName = c.firebaseUrls?.docs?.[t]?.name || c.docs?.[t]?.name;
+
+    if(!cloudUrl && !localData){
+      return '<div style="background:#fee;border:1px solid #fbb;padding:.75rem;border-radius:6px;color:#c33;font-size:12px;">'+label+' : ❌ non fourni</div>';
+    }
+
+    const source = cloudUrl || localData;
+    const isPdf  = (docName||'').toLowerCase().endsWith('.pdf');
+    const cloudBadge = cloudUrl ? '<span style="background:#1aab6d;color:white;font-size:9px;padding:2px 5px;border-radius:3px;font-weight:700;">☁ CLOUD</span>' : '<span style="background:#f4a;color:white;font-size:9px;padding:2px 5px;border-radius:3px;font-weight:700;">💾 LOCAL</span>';
+
+    const preview = isPdf
+      ? '<div style="background:#f4f4f8;padding:2rem;border-radius:6px;text-align:center;font-size:32px;">📄</div>'
+      : '<img src="'+source+'" style="width:100%;height:120px;object-fit:cover;border-radius:6px;" />';
+
+    return '<div style="background:white;border:1px solid #ddd;border-radius:8px;padding:.5rem;">'+
+      preview +
+      '<div style="font-size:11px;color:#666;margin-top:.5rem;display:flex;align-items:center;gap:6px;">'+label+' '+cloudBadge+'</div>'+
+      '<div style="font-size:10px;color:#999;word-break:break-all;">'+(docName||'-')+'</div>'+
+      '<a href="'+source+'" target="_blank" download style="display:inline-block;margin-top:6px;background:#f4700a;color:white;font-size:11px;font-weight:700;padding:6px 10px;border-radius:4px;text-decoration:none;">💾 Télécharger</a>'+
+    '</div>';
+  }).join('');
+
+  // Bloc PDFs cloud (si présents)
+  const pdfsUrls = c.firebaseUrls?.pdfs || {};
+  const pdfCloudBlock = Object.keys(pdfsUrls).length ? `
+    <div style="background:#e8f5f0;border:1px solid #7dd3a5;border-radius:8px;padding:1rem;margin-bottom:1rem;">
+      <div style="font-size:12px;font-weight:800;color:#0a4d2a;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem;">☁ PDFs STOCKÉS DANS LE CLOUD (accessibles partout)</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.5rem;">
+        ${pdfsUrls.contrat    ? '<a href="'+pdfsUrls.contrat.url+'" target="_blank" style="background:#0a1628;color:white;padding:.6rem;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;text-align:center;">📄 Contrat cloud</a>' : ''}
+        ${pdfsUrls.facture    ? '<a href="'+pdfsUrls.facture.url+'" target="_blank" style="background:#0a1628;color:white;padding:.6rem;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;text-align:center;">🧾 Facture cloud</a>' : ''}
+        ${pdfsUrls.etatDepart ? '<a href="'+pdfsUrls.etatDepart.url+'" target="_blank" style="background:#f4700a;color:white;padding:.6rem;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;text-align:center;">📋 État DÉPART cloud</a>' : ''}
+        ${pdfsUrls.etatRetour ? '<a href="'+pdfsUrls.etatRetour.url+'" target="_blank" style="background:#f4700a;color:white;padding:.6rem;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;text-align:center;">📋 État RETOUR cloud</a>' : ''}
+      </div>
+    </div>` : '';
+
+  overlay.innerHTML = `
+    <div style="max-width:1000px;margin:0 auto;background:white;border-radius:12px;overflow:hidden;">
+      <div style="background:linear-gradient(135deg,#0a1628 0%,#1a3358 100%);padding:1.5rem;color:white;position:relative;">
+        <button onclick="closeDossierModal()" style="position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.15);border:none;color:white;width:32px;height:32px;border-radius:50%;font-size:18px;cursor:pointer;">✕</button>
+        <div style="font-size:12px;color:#ffb86c;text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:6px;">📁 Dossier de réservation</div>
+        <h2 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-size:24px;">${c.num}</h2>
+        <div style="margin-top:.5rem;font-size:14px;opacity:.85;">${c.client} — ${c.vehicule} — Total : ${c.total}</div>
+        <div style="margin-top:.5rem;font-size:12px;opacity:.6;">Créé le ${c.date} — Statut : ${c.statut}${firebaseReady?' — <span style="color:#5eebb0;">☁ Cloud synchronisé</span>':''}</div>
+      </div>
+
+      <div style="padding:1.5rem;">
+        <!-- ACTIONS PRINCIPALES (regénération PDF locale) -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem;margin-bottom:1.5rem;">
+          <button onclick="downloadPDF('contrat','${contratNum}')" style="background:#0a1628;color:white;border:none;padding:.75rem;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px;">📄 Contrat PDF</button>
+          <button onclick="downloadPDF('facture','${contratNum}')" style="background:#0a1628;color:white;border:none;padding:.75rem;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px;">🧾 Facture PDF</button>
+          <button onclick="downloadPDF('etat-depart','${contratNum}')" style="background:#f4700a;color:white;border:none;padding:.75rem;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px;">📋 État des lieux DÉPART</button>
+          <button onclick="downloadPDF('etat-retour','${contratNum}')" style="background:#f4700a;color:white;border:none;padding:.75rem;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px;">📋 État des lieux RETOUR</button>
+        </div>
+
+        ${pdfCloudBlock}
+
+        <!-- INFOS CLIENT -->
+        <div style="background:#f8fafc;border-radius:8px;padding:1rem;margin-bottom:1rem;">
+          <div style="font-size:12px;font-weight:800;color:#0a1628;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem;">👤 Locataire</div>
+          <div style="font-size:14px;line-height:1.7;color:#333;">
+            <strong>${c.client}</strong><br>
+            📞 ${c.tel||'-'}<br>
+            ✉️ ${c.email||'-'}<br>
+            🆔 N° permis : <strong>${c.numeroPermis||'non renseigné'}</strong>
+          </div>
+        </div>
+
+        <!-- INFOS LOCATION -->
+        <div style="background:#f8fafc;border-radius:8px;padding:1rem;margin-bottom:1rem;">
+          <div style="font-size:12px;font-weight:800;color:#0a1628;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem;">🚗 Location</div>
+          <div style="font-size:14px;line-height:1.7;color:#333;">
+            <strong>${c.vehicule}</strong><br>
+            📅 Du ${new Date(c.depart).toLocaleString('fr-FR')}<br>
+            📅 Au ${new Date(c.retour).toLocaleString('fr-FR')}<br>
+            📍 ${c.livraison}${c.adresse?' → '+c.adresse:''}<br>
+            💰 <strong>${c.total}</strong>
+          </div>
+        </div>
+
+        <!-- DOCUMENTS CLIENT -->
+        <div style="background:#fff8f0;border:1px solid #f4d0a0;border-radius:8px;padding:1rem;margin-bottom:1rem;">
+          <div style="font-size:12px;font-weight:800;color:#0a1628;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem;">📎 Documents fournis par le client</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem;">${docsBlock}</div>
+        </div>
+
+        <!-- LIEN MAGIQUE -->
+        <div style="background:#eef2f7;border-radius:8px;padding:.75rem 1rem;font-size:12px;color:#555;word-break:break-all;">
+          🔗 <strong>Lien d'accès direct :</strong><br>
+          <code style="font-size:11px;color:#0a1628;">${window.location.origin}${window.location.pathname}?doc=${c.num}&token=${c.token||'-'}</code>
+        </div>
+      </div>
+    </div>
+  `;
+  overlay.onclick = e => { if(e.target === overlay) closeDossierModal(); };
+  document.body.appendChild(overlay);
+}
+
+function closeDossierModal(){
+  const o = document.getElementById('dossier-modal-overlay');
+  if(o) o.remove();
+}
+
+function downloadPDF(type, contratNum){
+  const c = contratHistory.find(x => x.num === contratNum);
+  if(!c){ showNotif('❌ Introuvable','Contrat non trouvé.'); return; }
+  let blob, filename;
+  if(type === 'contrat'){
+    blob = generateContractPDF(c);
+    filename = 'contrat_'+contratNum+'.pdf';
+  } else if(type === 'facture'){
+    const inv = invoiceHistory.find(x => x.contratNum === contratNum || x.num === contratNum.replace('LOC-','FAC-'));
+    if(!inv){ showNotif('❌ Introuvable','Facture non trouvée.'); return; }
+    blob = generateInvoicePDF(inv);
+    filename = 'facture_'+inv.num+'.pdf';
+  } else if(type === 'etat-depart'){
+    blob = generateEtatLieuxPDF(c, 'depart');
+    filename = 'etat_lieux_DEPART_'+contratNum+'.pdf';
+  } else if(type === 'etat-retour'){
+    blob = generateEtatLieuxPDF(c, 'retour');
+    filename = 'etat_lieux_RETOUR_'+contratNum+'.pdf';
+  }
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// HANDLER LIEN MAGIQUE : ?doc=LOC-XXX&token=YYY
+// Force la connexion admin puis ouvre directement le dossier
+// ═══════════════════════════════════════════════════════════════
+function handleMagicLink(){
+  const params = new URLSearchParams(window.location.search);
+  const docNum = params.get('doc');
+  const token  = params.get('token');
+  if(!docNum || !token) return;
+
+  // Vérifier que le contrat existe localement, sinon essayer Firebase
+  let c = contratHistory.find(x => x.num === docNum);
+  const proceedWithContract = (contract) => {
+    if(!contract){
+      showNotif('❌ Dossier introuvable','Ce dossier n\'existe pas ou a été supprimé.');
+      return;
+    }
+    if(contract.token !== token){
+      showNotif('🔒 Token invalide','Ce lien d\'accès n\'est pas valide.');
+      return;
+    }
+    // Forcer la connexion admin si pas connecté
+    if(!isLoggedIn){
+      showNotif('🔐 Connexion requise','Connectez-vous à votre espace admin pour accéder au dossier '+docNum+'.');
+      openLogin();
+      window._pendingDossier = docNum;
+      return;
+    }
+    // Ouvrir directement le dossier
+    setTimeout(()=>{ openDossierModal(docNum); }, 300);
+  };
+
+  if(c){
+    setTimeout(()=>proceedWithContract(c), 500);
+  } else if(firebaseReady){
+    // Chercher sur Firestore
+    setTimeout(async ()=>{
+      const remote = await fetchContratFromFirestore(docNum);
+      if(remote){
+        // L'ajouter au localStorage pour futur usage
+        contratHistory.unshift(remote);
+        saveData('adm_contrats', contratHistory);
+      }
+      proceedWithContract(remote);
+    }, 500);
+  } else {
+    setTimeout(()=>proceedWithContract(null), 500);
+  }
+}
+
+// Après login, ouvrir le dossier en attente si il y en a un
+const _originalOpenAdmin = window.openAdmin;
+function handlePendingDossier(){
+  if(window._pendingDossier){
+    const doc = window._pendingDossier;
+    window._pendingDossier = null;
+    setTimeout(()=>openDossierModal(doc), 500);
+  }
+}
+
 function payerEtConfirmer(){
   const nom = document.getElementById('res-nom').value.trim();
   const tel  = document.getElementById('res-tel').value.trim();
@@ -3038,9 +4044,30 @@ function payerEtConfirmer(){
   const heureFin   = document.getElementById('res-heure-fin')?.value   || '18:00';
   const livraison=document.getElementById('res-livraison').value;
   const adresse  =document.getElementById('res-adresse').value.trim();
+  const permisNum= document.getElementById('res-permis-num')?.value.trim() || '';
 
   if(!nom){ showNotif('Nom manquant','Merci de renseigner votre nom.'); return; }
   if(!debut||!fin){ showNotif('Dates manquantes','Merci de sélectionner vos dates.'); return; }
+  if(!email){ showNotif('Email manquant','Merci de renseigner votre email pour recevoir la confirmation.'); return; }
+
+  // ── VALIDATION STRICTE DES DOCUMENTS OBLIGATOIRES ──
+  if(!permisNum || permisNum.length < 5){
+    showNotif('🆔 Numéro de permis manquant','Merci de renseigner votre numéro de permis de conduire (visible en bas du permis).');
+    document.getElementById('res-permis-num')?.focus();
+    return;
+  }
+  if(!clientDocs.permis){
+    showNotif('📄 Scan permis manquant','Merci d\'ajouter la photo/scan de votre permis de conduire.');
+    return;
+  }
+  if(!clientDocs.cni){
+    showNotif('🪪 Pièce d\'identité manquante','Merci d\'ajouter votre CNI, passeport ou titre de séjour.');
+    return;
+  }
+  if(!clientDocs.domicile){
+    showNotif('🏠 Justificatif de domicile manquant','Merci d\'ajouter un justificatif de domicile de moins de 3 mois (facture énergie, téléphone…).');
+    return;
+  }
 
   const p = getResPrice();
   const debutFr = new Date(debut+'T12:00').toLocaleDateString('fr-FR') + ' à ' + heureDebut;
@@ -3050,11 +4077,14 @@ function payerEtConfirmer(){
 
   // ── AUTO-CREATE CONTRACT ─────────────────
   const contratNum = 'LOC-'+numBase;
+  const accessToken = generateAccessToken();
   const newContrat = {
     num:       contratNum,
+    token:     accessToken,
     client:    nom,
     tel:       tel,
     email:     email,
+    numeroPermis: permisNum,
     vehicule:  v,
     depart:    debut+'T'+heureDebut,
     retour:    fin+'T'+heureFin,
@@ -3070,6 +4100,15 @@ function payerEtConfirmer(){
     statut:    'En attente de paiement',
     date:      now.toLocaleDateString('fr-FR'),
     source:    'Réservation en ligne',
+    // Documents client stockés en base64 pour affichage admin
+    docs: {
+      permis:   clientDocs.permis   ? {name:clientDocs.permis.name,   type:clientDocs.permis.type,   data:clientDocs.permis.data}   : null,
+      cni:      clientDocs.cni      ? {name:clientDocs.cni.name,      type:clientDocs.cni.type,      data:clientDocs.cni.data}      : null,
+      domicile: clientDocs.domicile ? {name:clientDocs.domicile.name, type:clientDocs.domicile.type, data:clientDocs.domicile.data} : null,
+    },
+    // États des lieux (à remplir plus tard depuis l'admin)
+    etatDepart: null,
+    etatRetour: null,
   };
   contratHistory.unshift(newContrat);
   saveData('adm_contrats', contratHistory);
@@ -3078,6 +4117,8 @@ function payerEtConfirmer(){
   const facNum = 'FAC-'+numBase;
   const newFac = {
     num:      facNum,
+    token:    accessToken,
+    contratNum: contratNum,
     client:   nom,
     tel:      tel,
     email:    email,
@@ -3104,7 +4145,6 @@ function payerEtConfirmer(){
     while(cur <= endD){
       const dk = cur.getFullYear()+'-'+padDate(cur.getMonth()+1)+'-'+padDate(cur.getDate());
       if(!planningEvents[dk]) planningEvents[dk]=[];
-      // Only add if not already booked
       if(!planningEvents[dk].some(e=>e.label===nom)){
         planningEvents[dk].push({type:'livraison',label:nom,driver:''});
       }
@@ -3114,37 +4154,56 @@ function payerEtConfirmer(){
     renderClientCalendar();
   }
 
-  // ── EMAIL NOTIFICATION ───────────────────
-  const subject = encodeURIComponent('🚗 Réservation + paiement — '+v+' — '+nom);
-  const body = encodeURIComponent(
-    '✅ NOUVELLE RÉSERVATION (PAIEMENT EN COURS)\n\n'+
-    'Contrat : '+contratNum+' | Facture : '+facNum+'\n\n'+
-    'Client : '+nom+'\n'+
-    'Téléphone : '+(tel||'non renseigné')+'\n'+
-    'E-mail : '+(email||'non renseigné')+'\n\n'+
-    'Véhicule : '+v+'\n'+
-    'Du : '+debutFr+'\n'+
-    'Au : '+finFr+'\n'+
-    'Durée : '+p.jours+' jour(s)\n\n'+
-    'Mode de livraison : '+livraison+'\n'+
-    (adresse?'Adresse : '+adresse+'\n':'')+
-    '\n💰 DÉTAIL DU PRIX\n'+
-    'Prix/jour : '+p.pricePerDay+' €\n'+
-    'Base location : '+p.baseLocation+' €\n'+
-    (p.discount?'Réduction : -'+p.discount+' € ('+p.discountLabel+')\n':'')+
-    (p.livraisonPrice?'Livraison : +'+p.livraisonPrice+' €\n':'')+
-    'TOTAL : '+p.total.toFixed(2)+' €\n\n'+
-    '→ Le client a été redirigé vers SumUp pour payer '+p.total.toFixed(2)+' €.\n'+
-    'Vérifiez la réception du paiement dans votre espace SumUp.\n'+
-    'Retrouvez ce dossier dans votre espace Admin → Clients.\n\n'+
-    '---\nL\'Atelier du Mécano — Place Georges Lardenois, 73110 Valgelon la Rochette\nTél : 06 68 83 36 87'
-  );
-  window.open('mailto:marchenriannis@gmail.com?subject='+subject+'&body='+body, '_blank');
+  // ── LIEN MAGIQUE D'ACCÈS DIRECT ADMIN ──
+  const magicUrl = window.location.origin + window.location.pathname + '?doc=' + contratNum + '&token=' + accessToken;
 
-  // ── SUMUP REDIRECT ───────────────────────
-  setTimeout(()=>{ window.open('https://pay.sumup.com/b2c/QK1J3LUK','_blank'); }, 400);
+  // ── ENVOI EMAIL AVEC PIÈCES JOINTES PDF ──
+  const btn = document.querySelector('#res-pay-block button.btn-form');
+  const originalHtml = btn ? btn.innerHTML : '';
+  if(btn){
+    btn.disabled = true;
+    btn.style.opacity = '0.6';
+    btn.innerHTML = '⏳ Envoi du dossier en cours...';
+  }
 
-  showNotif('💳 Paiement en cours…','Dossier créé automatiquement ('+contratNum+'). Redirection vers SumUp pour payer '+p.total.toFixed(2)+' €.');
+  sendReservationWithDocs(newContrat, newFac, magicUrl).then(sent => {
+    if(!sent){
+      // Fallback mailto sans PJ
+      const subject = encodeURIComponent('🚗 Réservation — '+v+' — '+nom);
+      const body = encodeURIComponent(
+        '✅ NOUVELLE RÉSERVATION (envoi automatique échoué)\n\n'+
+        'Contrat : '+contratNum+' | Facture : '+facNum+'\n'+
+        '🔗 Accès admin direct : '+magicUrl+'\n\n'+
+        'Client : '+nom+' — Tél : '+tel+' — Email : '+email+'\n'+
+        'N° permis : '+permisNum+'\n\n'+
+        'Véhicule : '+v+'\n'+
+        'Du : '+debutFr+' au '+finFr+' ('+p.jours+' jour(s))\n'+
+        'Livraison : '+livraison+(adresse?' → '+adresse:'')+'\n'+
+        'TOTAL : '+p.total.toFixed(2)+' €\n\n'+
+        '⚠️ Les documents (permis, CNI, justificatif) sont accessibles depuis le lien admin ci-dessus.'
+      );
+      window.open('mailto:marchenriannis@gmail.com?subject='+subject+'&body='+body, '_blank');
+      showNotif('📨 Envoi par email','L\'envoi automatique a échoué — votre messagerie s\'est ouverte avec le récap. Les documents restent accessibles dans votre admin.');
+    } else {
+      showNotif('✅ Dossier envoyé !','Contrat '+contratNum+' créé — email envoyé avec contrat, facture et fiches état des lieux en pièces jointes.');
+    }
+
+    // Reset form
+    ['res-nom','res-tel','res-email','res-adresse','res-permis-num'].forEach(id=>{
+      const el=document.getElementById(id); if(el) el.value='';
+    });
+    clientDocs = {permis:null, cni:null, domicile:null};
+    updateDocsSummary();
+
+    // Redirect vers SumUp
+    setTimeout(()=>{ window.open('https://pay.sumup.com/b2c/QK1J3LUK','_blank'); }, 800);
+
+    if(btn){
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      btn.innerHTML = originalHtml;
+    }
+  });
 }
 
 function soumettrereservation(){ payerEtConfirmer(); }
@@ -3394,6 +4453,7 @@ function doLogin(){
     closeLogin(); openAdmin();
     document.getElementById('ownerBtn').innerHTML='⚙️ Admin';
     document.getElementById('ownerBtn').style.color='var(--orange-light)';
+    if(typeof handlePendingDossier === 'function') handlePendingDossier();
     return;
   }
   // Check extra users
@@ -4500,32 +5560,267 @@ function fmtDate(val){
 }
 
 function saveContrat(){
-  const nom=document.getElementById('ct-nom').value.trim();
-  const prenom=document.getElementById('ct-prenom').value.trim();
-  const veh=document.getElementById('ct-vehicule').value;
-  const num=document.getElementById('ct-num').value.trim();
-  const depart=document.getElementById('ct-depart').value;
-  const retour=document.getElementById('ct-retour').value;
-  if(!nom||!veh){showNotif('Champs manquants','Renseignez au moins le nom et le véhicule.');return;}
-  const entry={
-    num:num||('LOC-'+Date.now()),
-    client:nom+' '+prenom,
-    vehicule:veh,
-    depart,retour,
-    kmDep:document.getElementById('ct-km-depart').value,
-    kmRet:document.getElementById('ct-km-retour').value,
-    carbuDep:document.getElementById('ct-carbu-depart').value,
-    carbuRet:document.getElementById('ct-carbu-retour').value,
-    total:document.getElementById('ct-total-display').textContent,
-    date:new Date().toLocaleDateString('fr-FR')
+  // Récupérer TOUS les champs du formulaire manuel
+  const val = id => (document.getElementById(id)?.value || '').trim();
+  const nom      = val('ct-nom');
+  const prenom   = val('ct-prenom');
+  const adresse  = val('ct-adresse');
+  const tel      = val('ct-tel');
+  const email    = val('ct-email-loc');
+  const permis   = val('ct-permis');
+  const permisDate= val('ct-permis-date');
+  const cni      = val('ct-cni');
+  const naissance= val('ct-naissance');
+  const veh      = val('ct-vehicule');
+  const immat    = val('ct-immat');
+  const num      = val('ct-num');
+  const depart   = val('ct-depart');
+  const retour   = val('ct-retour');
+  const prixJour = val('ct-prix-jour');
+  const caution  = val('ct-caution');
+  const kmInclus = val('ct-km-inclus');
+  const kmSupp   = val('ct-km-supp');
+  const kmDep    = val('ct-km-depart');
+  const kmRet    = val('ct-km-retour');
+  const carbuDep = val('ct-carbu-depart');
+  const carbuRet = val('ct-carbu-retour');
+  const carbuType= val('ct-carbu-type');
+  const paiement = val('ct-paiement');
+  const conditions=val('ct-conditions');
+  const notesDep = val('ct-edl-depart-notes');
+  const notesRet = val('ct-edl-retour-notes');
+  const totalTxt = document.getElementById('ct-total-display')?.textContent || '';
+
+  // Validation minimale
+  if(!nom && !prenom){ showNotif('👤 Client manquant','Renseignez au minimum le nom ou le prénom du client.'); return; }
+  if(!veh){ showNotif('🚗 Véhicule manquant','Sélectionnez un véhicule.'); return; }
+
+  // Numéro automatique si non renseigné
+  const now = new Date();
+  const numBase = now.getFullYear()+''+String(now.getMonth()+1).padStart(2,'0')+''+String(now.getDate()).padStart(2,'0')+'-'+String(now.getHours()).padStart(2,'0')+''+String(now.getMinutes()).padStart(2,'0');
+  const finalNum = num || ('LOC-'+numBase);
+
+  const entry = {
+    num:          finalNum,
+    token:        (contratHistory.find(c=>c.num===finalNum)?.token) || generateAccessToken(),
+    client:       (nom+' '+prenom).trim(),
+    nom, prenom,
+    adresse, tel, email,
+    numeroPermis: permis,
+    permisDate, cni, naissance,
+    vehicule:     veh,
+    immat,
+    depart, retour,
+    prixJour, caution, kmInclus, kmSupp,
+    kmDep, kmRet,
+    carbuDep, carbuRet, carbuType,
+    paiement,
+    conditions,
+    notesDep, notesRet,
+    total:        totalTxt || (prixJour ? prixJour+' €/jour' : '—'),
+    statut:       (contratHistory.find(c=>c.num===finalNum)?.statut) || 'Contrat manuel',
+    date:         (contratHistory.find(c=>c.num===finalNum)?.date) || now.toLocaleDateString('fr-FR'),
+    source:       'Saisie manuelle',
+    _updatedAt:   now.toISOString(),
   };
+
   // Update or add
-  const idx=contratHistory.findIndex(c=>c.num===entry.num);
-  if(idx>=0) contratHistory[idx]=entry;
+  const idx = contratHistory.findIndex(c => c.num === entry.num);
+  if(idx >= 0) contratHistory[idx] = { ...contratHistory[idx], ...entry };
   else contratHistory.unshift(entry);
-  saveData('adm_contrats',contratHistory);
+  saveData('adm_contrats', contratHistory);
   renderContratHistory();
-  showNotif('💾 Contrat sauvegardé','Contrat '+(entry.num)+' pour '+entry.client+' enregistré.');
+
+  // Injecter le numéro dans le champ si généré automatiquement
+  if(!num){ const el = document.getElementById('ct-num'); if(el) el.value = finalNum; }
+
+  // Sync Firebase si dispo
+  if(typeof saveContratToFirestore === 'function' && firebaseReady){
+    saveContratToFirestore(entry).then(ok => {
+      if(ok) showNotif('☁️ Sauvegardé (cloud + local)','Contrat '+finalNum+' pour '+entry.client+' enregistré. Synchronisé sur Firebase.');
+      else   showNotif('💾 Sauvegardé (local uniquement)','Contrat '+finalNum+' pour '+entry.client+' enregistré. Sync cloud échoué (vérifier config Firebase).');
+    });
+  } else {
+    showNotif('💾 Sauvegardé (local)','Contrat '+finalNum+' pour '+entry.client+' enregistré dans l\'historique.');
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// PDF CONTRAT VIERGE (à remplir à la main)
+// ═══════════════════════════════════════════════════════════════
+function printBlankContract(){
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+
+  // En-tête
+  doc.setFillColor(10, 22, 40);
+  doc.rect(0, 0, 210, 30, 'F');
+  doc.setFillColor(244, 112, 10);
+  doc.rect(0, 30, 210, 2, 'F');
+  doc.setTextColor(244, 112, 10);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(18);
+  doc.text("L'ATELIER DU MECANO", 12, 15);
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'normal');
+  doc.text('Garage - Depannage 24h/24 - Location', 12, 22);
+  doc.setFontSize(16);
+  doc.setFont('helvetica', 'bold');
+  doc.text('CONTRAT DE LOCATION', 208, 15, { align: 'right' });
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'normal');
+  doc.text('Place Georges Lardenois - 73110 Valgelon la Rochette', 208, 22, { align: 'right' });
+  doc.setTextColor(0, 0, 0);
+
+  // Numéro contrat
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(10);
+  doc.text('N° contrat : LOC- __ __ __ __ - __ __ __ __', 15, 42);
+  doc.text('Date : __ __ / __ __ / __ __ __ __', 208, 42, { align: 'right' });
+
+  let y = 52;
+
+  const section = (title) => {
+    doc.setFillColor(244, 112, 10);
+    doc.rect(12, y, 186, 6, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10);
+    doc.text(title, 15, y + 4.2);
+    doc.setTextColor(0, 0, 0);
+    doc.setFont('helvetica', 'normal');
+    y += 10;
+  };
+
+  const line = (label, w = 180) => {
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    doc.text(label, 15, y);
+    doc.setFont('helvetica', 'normal');
+    doc.line(15 + doc.getTextWidth(label) + 2, y + 1, 15 + w, y + 1);
+    y += 7;
+  };
+
+  const twoLine = (l1, l2) => {
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    doc.text(l1, 15, y);
+    doc.line(15 + doc.getTextWidth(l1) + 2, y + 1, 100, y + 1);
+    doc.text(l2, 110, y);
+    doc.line(110 + doc.getTextWidth(l2) + 2, y + 1, 195, y + 1);
+    y += 7;
+  };
+
+  section('LOCATAIRE');
+  line('Nom / Prenom :');
+  line('Adresse complete :');
+  twoLine('Telephone :', 'E-mail :');
+  twoLine('Date de naissance :', 'N° CNI :');
+  twoLine('N° permis :', 'Delivre le :');
+  y += 3;
+
+  section('VEHICULE LOUE');
+  twoLine('Vehicule :', 'Immatriculation :');
+  twoLine('Depart le :', 'Retour prevu le :');
+  twoLine('Prix / jour :', 'Caution :');
+  twoLine('Km inclus :', 'Km supp. :');
+  y += 3;
+
+  section('ETAT AU DEPART');
+  twoLine('Kilometrage :', 'Carburant :');
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(8);
+  doc.text('Carburant : [ ] Plein  [ ] 3/4  [ ] 1/2  [ ] 1/4  [ ] Reserve', 15, y);
+  y += 7;
+  doc.setFontSize(9);
+  doc.text('Observations depart :', 15, y); y += 5;
+  for(let i=0;i<3;i++){ doc.line(15, y + i*6, 195, y + i*6); }
+  y += 22;
+
+  section('ETAT AU RETOUR');
+  twoLine('Kilometrage :', 'Carburant :');
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(8);
+  doc.text('Carburant : [ ] Plein  [ ] 3/4  [ ] 1/2  [ ] 1/4  [ ] Reserve', 15, y);
+  y += 7;
+  doc.setFontSize(9);
+  doc.text('Observations retour :', 15, y); y += 5;
+  for(let i=0;i<3;i++){ doc.line(15, y + i*6, 195, y + i*6); }
+  y += 22;
+
+  // Total + Paiement
+  section('MONTANT & PAIEMENT');
+  twoLine('Total TTC :', 'Mode de paiement :');
+  y += 3;
+
+  // Signatures
+  section('SIGNATURES');
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(9);
+  doc.text('Le loueur', 40, y);
+  doc.text('Le locataire', 150, y);
+  doc.setFont('helvetica', 'italic'); doc.setFontSize(7);
+  doc.text('(cachet et signature)', 40, y + 4);
+  doc.text('(precede de "Lu et approuve")', 150, y + 4);
+  doc.rect(15, y + 7, 75, 25);
+  doc.rect(120, y + 7, 75, 25);
+
+  // Footer
+  const h = doc.internal.pageSize.height;
+  doc.setFillColor(10, 22, 40);
+  doc.rect(0, h - 18, 210, 18, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(8);
+  doc.text("L'Atelier du Mecano - SIRET 100 384 445 000 19 - Tel : 06 68 83 36 87 - marchenriannis@gmail.com", 105, h - 11, { align: 'center' });
+  doc.text('latelierdumecano.netlify.app - Paiement : pay.sumup.com/b2c/QK1J3LUK', 105, h - 6, { align: 'center' });
+
+  // Download
+  const blob = doc.output('blob');
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'contrat_VIERGE_atelier_du_mecano.pdf';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showNotif('📄 Contrat vierge téléchargé','Fichier « contrat_VIERGE_atelier_du_mecano.pdf » — imprimez-le pour vos clients au comptoir.');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// PDF CONTRAT REMPLI À PARTIR DU FORMULAIRE
+// ═══════════════════════════════════════════════════════════════
+function printManualContractPDF(){
+  const val = id => (document.getElementById(id)?.value || '').trim();
+  const nom = val('ct-nom'), prenom = val('ct-prenom');
+  if(!nom && !prenom){ showNotif('👤 Client manquant','Renseignez au moins le nom ou le prénom.'); return; }
+
+  const num = val('ct-num') || ('LOC-'+Date.now());
+  const clientFull = (nom+' '+prenom).trim();
+
+  // Construire un pseudo-contrat à partir des champs
+  const contract = {
+    num:            num,
+    client:         clientFull,
+    tel:            val('ct-tel'),
+    email:          val('ct-email-loc'),
+    numeroPermis:   val('ct-permis'),
+    vehicule:       val('ct-vehicule'),
+    depart:         val('ct-depart') || '',
+    retour:         val('ct-retour') || '',
+    livraison:      'Voir contrat',
+    adresse:        val('ct-adresse'),
+    prixJour:       val('ct-prix-jour'),
+    jours:          '-',
+    total:          (document.getElementById('ct-total-display')?.textContent || '—').trim(),
+    date:           new Date().toLocaleDateString('fr-FR'),
+    statut:         'Contrat manuel',
+  };
+
+  const blob = generateContractPDF(contract);
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'contrat_'+num+'.pdf';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showNotif('📥 Contrat téléchargé','« contrat_'+num+'.pdf » téléchargé avec les données saisies.');
 }
 
 function renderContratHistory(){
@@ -4541,7 +5836,8 @@ function renderContratHistory(){
       <td>${fmtDatetime(c.retour)}</td>
       <td style="font-weight:600;">${c.total}</td>
       <td style="display:flex;gap:6px;flex-wrap:wrap;">
-        <button style="background:var(--orange);color:white;border:none;font-size:12px;font-weight:600;padding:5px 10px;border-radius:5px;cursor:pointer;" onclick="loadContrat(${i})">📂 Ouvrir</button>
+        <button style="background:#0a1628;color:white;border:none;font-size:12px;font-weight:700;padding:5px 10px;border-radius:5px;cursor:pointer;" onclick="openDossierModal('${c.num}')" title="Voir contrat, facture, documents et fiches état des lieux">📁 Dossier</button>
+        <button style="background:var(--orange);color:white;border:none;font-size:12px;font-weight:600;padding:5px 10px;border-radius:5px;cursor:pointer;" onclick="loadContrat(${i})">📂 Éditer</button>
         <button class="btn-admin-del" onclick="if(confirm('Supprimer ce contrat ?')){contratHistory.splice(${i},1);saveData('adm_contrats',contratHistory);renderContratHistory();}">🗑</button>
       </td>
     </tr>`).join('');
@@ -4793,8 +6089,9 @@ function renderSuiviContrats(){
       <td style="text-align:center;">${duree}</td>
       <td style="font-weight:700;color:var(--navy);">${c.total||'—'}</td>
       <td>${statutBadge(statut)}</td>
-      <td style="display:flex;gap:6px;flex-wrap:wrap;min-width:200px;">
+      <td style="display:flex;gap:6px;flex-wrap:wrap;min-width:220px;">
         ${statutSelect(STATUTS_CONTRAT, statut, `contratHistory[${i}].statut=this.value;saveData('adm_contrats',contratHistory);renderSuiviContrats();`)}
+        <button onclick="openDossierModal('${c.num}')" style="background:#f4700a;color:white;border:none;font-size:11px;font-weight:700;padding:5px 9px;border-radius:5px;cursor:pointer;white-space:nowrap;" title="Voir contrat, facture, documents et fiches état des lieux">📁 Dossier</button>
         <button onclick="switchTab('contrat');loadContrat(${i});" style="background:var(--navy);color:white;border:none;font-size:11px;padding:5px 9px;border-radius:5px;cursor:pointer;white-space:nowrap;">✏️ Éditer</button>
         <button class="btn-admin-del" onclick="if(confirm('Supprimer ce contrat ?')){contratHistory.splice(${i},1);saveData('adm_contrats',contratHistory);renderSuiviContrats();}">🗑</button>
       </td>
@@ -5936,6 +7233,16 @@ document.addEventListener('change',function(e){
 // Populate delivery dropdown on load
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(populateDeliveryDropdown, 100);
+  // Init Firebase (stockage cloud)
+  setTimeout(()=>{
+    const ok = initFirebase();
+    if(ok){
+      // Sync depuis le cloud (récupère les contrats/factures existants)
+      setTimeout(syncFromFirebase, 800);
+    }
+  }, 300);
+  // Traiter le lien magique ?doc=LOC-XXX&token=YYY (accès direct dossier admin)
+  setTimeout(()=>{ if(typeof handleMagicLink === 'function') handleMagicLink(); }, 1500);
 });
 
 // PWA INITIALIZATION — L'Atelier du Mécano
