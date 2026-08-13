@@ -2310,32 +2310,38 @@ footer, .footer-contact-item, .footer-section {
       <div class="admin-section">
         <div class="admin-section-header">
           <div class="admin-section-title">🏷️ Réductions location longue durée</div>
-          <div class="admin-badge">Appliquées automatiquement</div>
+          <div class="admin-badge">Automatiques &amp; progressives</div>
         </div>
         <div class="admin-section-body">
-          <p style="font-size:13px;color:var(--gray-text);margin-bottom:1.5rem;">Ces pourcentages sont affichés sur la page location et appliqués automatiquement selon la durée.</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
-            <div style="background:var(--gray-light);border-radius:10px;padding:1.25rem;border:1px solid var(--gray);">
-              <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:700;color:var(--navy);text-transform:uppercase;margin-bottom:.5rem;">📅 Réduction Semaine</div>
-              <p style="font-size:13px;color:var(--gray-text);margin-bottom:1rem;">Appliquée pour toute location d'une semaine ou plus (7 jours+).</p>
-              <div style="display:flex;align-items:center;gap:.75rem;">
-                <input class="admin-input" type="number" id="disc-week" min="0" max="50" step="1" style="width:80px;font-size:18px;font-weight:700;text-align:center;background:#e8f0ff;color:#0a1628;border:2px solid #3b82f6;" />
-                <span style="font-size:24px;font-weight:700;color:var(--navy);">%</span>
-                <span style="font-size:13px;color:var(--gray-text);">de réduction</span>
-              </div>
+          <p style="font-size:14px;color:var(--text);margin-bottom:1.25rem;line-height:1.6;">
+            Le système applique une <strong>réduction progressive automatique</strong> selon la durée de location :
+            <strong style="color:var(--orange);">5 % de réduction par semaine complète</strong>, jusqu'à un maximum de
+            <strong style="color:var(--orange);">20 % (au bout d'un mois)</strong>. Au-delà d'un mois, la réduction reste plafonnée à 20 %.
+          </p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;">
+            <div style="background:linear-gradient(135deg,#e8f5f0,#d0ede0);border-radius:10px;padding:1rem;text-align:center;border:1px solid #7dd3a5;">
+              <div style="font-size:13px;color:#0a4d2a;font-weight:700;margin-bottom:4px;">1 semaine</div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:28px;font-weight:900;color:#1aab6d;">-5%</div>
+              <div style="font-size:11px;color:#0a4d2a;">7 à 13 jours</div>
             </div>
-            <div style="background:var(--gray-light);border-radius:10px;padding:1.25rem;border:1px solid var(--gray);">
-              <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:700;color:var(--navy);text-transform:uppercase;margin-bottom:.5rem;">📆 Réduction Mois</div>
-              <p style="font-size:13px;color:var(--gray-text);margin-bottom:1rem;">Appliquée pour toute location d'un mois ou plus (30 jours+).</p>
-              <div style="display:flex;align-items:center;gap:.75rem;">
-                <input class="admin-input" type="number" id="disc-month" min="0" max="60" step="1" style="width:80px;font-size:18px;font-weight:700;text-align:center;background:#e8f0ff;color:#0a1628;border:2px solid #3b82f6;" />
-                <span style="font-size:24px;font-weight:700;color:var(--navy);">%</span>
-                <span style="font-size:13px;color:var(--gray-text);">de réduction</span>
-              </div>
+            <div style="background:linear-gradient(135deg,#e8f5f0,#d0ede0);border-radius:10px;padding:1rem;text-align:center;border:1px solid #7dd3a5;">
+              <div style="font-size:13px;color:#0a4d2a;font-weight:700;margin-bottom:4px;">2 semaines</div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:28px;font-weight:900;color:#1aab6d;">-10%</div>
+              <div style="font-size:11px;color:#0a4d2a;">14 à 20 jours</div>
+            </div>
+            <div style="background:linear-gradient(135deg,#e8f5f0,#d0ede0);border-radius:10px;padding:1rem;text-align:center;border:1px solid #7dd3a5;">
+              <div style="font-size:13px;color:#0a4d2a;font-weight:700;margin-bottom:4px;">3 semaines</div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:28px;font-weight:900;color:#1aab6d;">-15%</div>
+              <div style="font-size:11px;color:#0a4d2a;">21 à 27 jours</div>
+            </div>
+            <div style="background:linear-gradient(135deg,#f4700a,#d4580a);border-radius:10px;padding:1rem;text-align:center;border:1px solid #f4700a;">
+              <div style="font-size:13px;color:white;font-weight:700;margin-bottom:4px;">1 mois et +</div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:28px;font-weight:900;color:white;">-20%</div>
+              <div style="font-size:11px;color:rgba(255,255,255,.9);">28 jours et plus (max)</div>
             </div>
           </div>
-          <div style="margin-top:1.25rem;display:flex;justify-content:flex-end;">
-            <button class="btn-admin-save" onclick="saveDiscounts()">✅ Enregistrer les réductions</button>
+          <div style="margin-top:1.25rem;background:rgba(244,112,10,.08);border:1px solid rgba(244,112,10,.25);border-radius:8px;padding:.85rem 1rem;font-size:13px;color:var(--text);line-height:1.6;">
+            ℹ️ Ce barème est <strong>automatique</strong> et ne nécessite aucun réglage. La réduction est calculée et affichée instantanément sur la page de location dès que le client choisit ses dates, et reportée sur le contrat et la facture.
           </div>
         </div>
       </div>
@@ -3040,14 +3046,16 @@ function getResPrice(){
   const livraisonPrice = livInfo.price;
   const livraisonIsDevis = livInfo.isDevis;
 
-  // Long-stay discount (applies always, even during holidays)
+  // ═══ RÉDUCTION LONGUE DURÉE PROGRESSIVE ═══
+  // 5% par semaine complète de location, plafonné à 20% (soit 4 semaines = 1 mois)
+  // Au-delà d'un mois, la réduction reste bloquée à 20% maximum.
   let discount=0, discountLabel='';
-  if(jours>=30 && discounts.month>0){
-    discount=Math.round(baseLocation*discounts.month/100);
-    discountLabel='-'+discounts.month+'% réduction mensuelle (-'+discount+' €)';
-  } else if(jours>=7 && discounts.week>0){
-    discount=Math.round(baseLocation*discounts.week/100);
-    discountLabel='-'+discounts.week+'% réduction semaine (-'+discount+' €)';
+  const semaines = Math.floor(jours / 7);          // nombre de semaines complètes
+  let tauxReduction = Math.min(semaines * 5, 20);   // 5% par semaine, max 20%
+  if(tauxReduction > 0){
+    discount = Math.round(baseLocation * tauxReduction / 100);
+    const nbSem = Math.min(semaines, 4);
+    discountLabel = '-'+tauxReduction+'% réduction longue durée ('+nbSem+' semaine'+(nbSem>1?'s':'')+', -'+discount+' €)';
   }
 
   const total = Math.max(0, baseLocation - discount + livraisonPrice);
@@ -4515,8 +4523,8 @@ function openAdmin(){
   document.getElementById('stat-date').textContent=new Date().toLocaleDateString('fr-FR');
   document.getElementById('inv-date').value=new Date().toISOString().split('T')[0];
   document.getElementById('inv-num').value='FAC-'+new Date().getFullYear()+'-'+(String(invoiceHistory.length+1).padStart(3,'0'));
-  document.getElementById('disc-week').value=discounts.week||0;
-  document.getElementById('disc-month').value=discounts.month||0;
+  const dw=document.getElementById('disc-week'); if(dw) dw.value=discounts.week||0;
+  const dm=document.getElementById('disc-month'); if(dm) dm.value=discounts.month||0;
   if(document.getElementById('invLines').children.length===0)addInvoiceLine();
 
   // Auto-switch to planning if livreur
@@ -4584,8 +4592,8 @@ function showSubtab(hub, subtab){
       if(subtab==='fleet')    renderAdminFleet();
       if(subtab==='entretien')initEntretienPage();
       if(subtab==='pricing')  { renderVehiclePriceTable(); renderVacancesAdmin(); renderSpecialPricesTable(); renderDeliveryPriceGrid(); }
-      if(subtab==='drivers')  renderDriversAdmin && renderDriversAdmin();
-      if(subtab==='users')    renderUsersAdmin && renderUsersAdmin();
+      if(subtab==='drivers')  { if(typeof renderAdminDrivers==='function') renderAdminDrivers(); }
+      if(subtab==='users')    { if(typeof renderUsersTable==='function') renderUsersTable(); }
     }, 50);
   }
 }
@@ -5244,7 +5252,7 @@ function saveVehiclePrices(){
 const DELIVERY_TYPES = [
   {key:'retrait',  label:'🏢 Retrait au garage', default:0,    custom:false},
   {key:'domicile', label:'🏠 Livraison à domicile', default:'devis', custom:false},
-  {key:'autre',    label:'📍 Autre lieu (préciser)', default:25, custom:false},
+  {key:'autre',    label:'📍 Autre lieu (préciser)', default:'devis', custom:false, alwaysDevis:true},
 ];
 
 // Multi-locations system: list of named pickup points with their own prices
@@ -5264,7 +5272,7 @@ const DEFAULT_LOCATIONS = [
 let deliveryPrices = loadData('adm_delivery_prices', {
   retrait: 0,
   domicile: 'devis',   // 'devis' = prix sur devis selon distance
-  autre: 25
+  autre: 'devis'       // 'autre lieu' toujours sur devis
 });
 let pickupLocations = loadData('adm_pickup_locations', DEFAULT_LOCATIONS);
 let discounts = loadData('adm_discounts', {week:10, month:20});
@@ -5296,6 +5304,13 @@ function renderDeliveryPriceGrid(){
           oninput="deliveryPrices.domicile=parseInt(this.value)||0" />
       </div>
       <div style="font-size:11px;color:var(--gray-text);margin-top:.4rem;">${isDevis ? '💡 Le prix sera convenu directement avec le client selon le lieu' : 'Prix appliqué automatiquement'}</div>`;
+    } else if(d.key === 'autre' || d.alwaysDevis){
+      // Autre lieu : toujours sur devis, non modifiable
+      html += `<div style="display:flex;align-items:center;gap:.5rem;background:rgba(33,150,243,.1);border:1px solid rgba(33,150,243,.3);border-radius:8px;padding:.6rem .85rem;">
+        <span style="font-size:20px;">📞</span>
+        <span style="font-size:14px;font-weight:700;color:#1565c0;">Sur devis</span>
+      </div>
+      <div style="font-size:11px;color:var(--gray-text);margin-top:.4rem;">💡 Le prix est toujours défini avec le client selon le lieu demandé</div>`;
     } else {
       html += `<div style="display:flex;align-items:center;gap:.5rem;">
         <input class="admin-input" type="number" min="0" step="1" value="${val||0}"
@@ -5371,8 +5386,11 @@ function saveDeliveryPrices(){
 }
 
 function saveDiscounts(){
-  const w=parseInt(document.getElementById('disc-week').value)||0;
-  const m=parseInt(document.getElementById('disc-month').value)||0;
+  const dw=document.getElementById('disc-week');
+  const dm=document.getElementById('disc-month');
+  if(!dw||!dm){ return; } // champs supprimés : barème automatique désormais
+  const w=parseInt(dw.value)||0;
+  const m=parseInt(dm.value)||0;
   discounts={week:w,month:m};
   saveData('adm_discounts',discounts);
   renderDiscountBanners();
@@ -5383,16 +5401,16 @@ function renderDiscountBanners(){
   const b=document.getElementById('discountBanners');
   if(!b)return;
   let html='';
-  if(discounts.week>0) html+=`<div style="display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--navy),var(--navy-light));border-radius:10px;padding:.85rem 1.25rem;flex:1;min-width:220px;">
+  html+=`<div style="display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--navy),var(--navy-light));border-radius:10px;padding:.85rem 1.25rem;flex:1;min-width:220px;">
     <span style="font-size:24px;">📅</span>
-    <div><div style="font-family:'Bricolage Grotesque',sans-serif;font-size:20px;font-weight:800;color:var(--orange);">-${discounts.week}% dès 7 jours</div>
-    <div style="font-size:12px;color:rgba(255,255,255,.6);">Réduction automatique pour toute semaine complète</div></div></div>`;
-  if(discounts.month>0) html+=`<div style="display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--orange),var(--orange-light));border-radius:10px;padding:.85rem 1.25rem;flex:1;min-width:220px;">
+    <div><div style="font-family:'Bricolage Grotesque',sans-serif;font-size:20px;font-weight:800;color:var(--orange);">-5% par semaine</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.6);">Réduction progressive automatique dès 7 jours</div></div></div>`;
+  html+=`<div style="display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--orange),var(--orange-light));border-radius:10px;padding:.85rem 1.25rem;flex:1;min-width:220px;">
     <span style="font-size:24px;">📆</span>
-    <div><div style="font-family:'Bricolage Grotesque',sans-serif;font-size:20px;font-weight:800;color:var(--white);">-${discounts.month}% dès 30 jours</div>
-    <div style="font-size:12px;color:rgba(255,255,255,.8);">Tarif mensuel avantageux</div></div></div>`;
+    <div><div style="font-family:'Bricolage Grotesque',sans-serif;font-size:20px;font-weight:800;color:var(--white);">-20% au mois</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.8);">Réduction maximale pour un mois de location</div></div></div>`;
   b.innerHTML=html;
-  b.style.display=html?'flex':'none';
+  b.style.display='flex';
 }
 
 function populateDeliveryDropdown(){
@@ -5447,7 +5465,7 @@ function getDeliveryPriceForSelection(value){
     }
     return {price: deliveryPrices.domicile || 0, label: deliveryPrices.domicile+' €', isDevis: false};
   }
-  if(value === 'autre') return {price: deliveryPrices.autre || 25, label: '📞 Prix à définir selon le lieu (estimation: '+(deliveryPrices.autre||25)+'€)', isDevis: true};
+  if(value === 'autre') return {price: 0, label: '📞 Sur devis — prix défini ensemble selon le lieu', isDevis: true};
   if(value && value.startsWith('loc:')){
     const id = value.substring(4);
     const loc = pickupLocations.find(l=>l.id===id);
