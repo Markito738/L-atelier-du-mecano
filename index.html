@@ -2862,7 +2862,17 @@ let currentUserRole = 'admin'; // 'admin' or 'livreur'
 
 // ─── DATA ───────────────────────────
 function loadData(key, def){ try{ const d=localStorage.getItem(key); return d?JSON.parse(d):def; }catch(e){return def;} }
-function saveData(key,val){ try{localStorage.setItem(key,JSON.stringify(val));}catch(e){} }
+// Clés de réglages/prix à synchroniser automatiquement en ligne
+const SYNCED_SETTING_KEYS = ['adm_vehicles','adm_delivery_prices','adm_pickup_locations','adm_vac_rates','adm_vac_periods','adm_day_prices','adm_discounts'];
+function saveData(key,val){
+  try{localStorage.setItem(key,JSON.stringify(val));}catch(e){}
+  // Auto-sync vers Firebase si c'est une clé de réglage (prix, tarifs, etc.)
+  // Sauf pendant un chargement depuis Firebase (évite d'écrire ce qu'on vient de lire)
+  // window.firebaseReady évite l'erreur "temporal dead zone" au chargement initial
+  if(!window._loadingFromFirebase && window.firebaseReady && typeof syncSettingToFirebase === 'function' && SYNCED_SETTING_KEYS.includes(key)){
+    syncSettingToFirebase(key, val);
+  }
+}
 
 const FLEET_VERSION = '2026-v8-photos';
 const PHOTO_VERSION = '2026-v4-real'; // bump to reset cached photos
@@ -3170,6 +3180,8 @@ function initFirebase(){
     firestoreDb = firebase.firestore();
     firebaseStorage = firebase.storage();
     firebaseReady = true;
+    window.firebaseReady = true;   // exposé pour saveData (évite temporal dead zone)
+    window.firestoreDb = firestoreDb;
     console.log('[Firebase] ✅ Initialisé — stockage cloud actif');
     // Signal visuel
     setTimeout(()=>{
@@ -3293,9 +3305,114 @@ async function fetchContratFromFirestore(contratNum){
   }
 }
 
+// ═══════════════════════════════════════════════════════════════
+// SYNC DES RÉGLAGES / PRIX VERS FIREBASE (Firestore)
+// Tout est stocké dans une collection "reglages" (1 document par clé)
+// ═══════════════════════════════════════════════════════════════
+let _settingsSyncTimers = {}; // debounce par clé
+
+// Enregistre une clé de réglage dans Firestore (avec debounce 800ms)
+function syncSettingToFirebase(key, value){
+  if(!firebaseReady) return;
+  // Debounce : évite d'écrire 20 fois pendant que l'utilisateur tape
+  if(_settingsSyncTimers[key]) clearTimeout(_settingsSyncTimers[key]);
+  _settingsSyncTimers[key] = setTimeout(async () => {
+    try {
+      const db = window.firestoreDb || firestoreDb;
+      await db.collection('reglages').doc(key).set({
+        key: key,
+        value: JSON.parse(JSON.stringify(value)),
+        _updatedAt: new Date().toISOString()
+      }, { merge: true });
+      console.log('[Firebase] ☁ Réglage "'+key+'" synchronisé en ligne');
+      // Petit badge visuel de confirmation
+      showCloudSaveBadge();
+    } catch(err){
+      console.error('[Firebase] Sync réglage "'+key+'" échoué:', err);
+    }
+  }, 800);
+}
+
+// Badge discret "enregistré en ligne"
+let _cloudBadgeTimer = null;
+function showCloudSaveBadge(){
+  let badge = document.getElementById('cloud-save-badge');
+  if(!badge){
+    badge = document.createElement('div');
+    badge.id = 'cloud-save-badge';
+    badge.style.cssText = 'position:fixed;bottom:12px;right:12px;background:rgba(26,171,109,.95);color:white;padding:8px 14px;border-radius:8px;font-size:12px;font-weight:700;z-index:999999;box-shadow:0 3px 12px rgba(0,0,0,.25);opacity:0;transition:opacity .3s;display:flex;align-items:center;gap:6px;';
+    document.body.appendChild(badge);
+  }
+  badge.innerHTML = '☁️ Enregistré en ligne';
+  badge.style.opacity = '1';
+  if(_cloudBadgeTimer) clearTimeout(_cloudBadgeTimer);
+  _cloudBadgeTimer = setTimeout(() => { badge.style.opacity = '0'; }, 2000);
+}
+
+// Charge tous les réglages depuis Firestore au démarrage
+async function loadSettingsFromFirebase(){
+  if(!firebaseReady) return;
+  window._loadingFromFirebase = true;  // évite la re-sync pendant le chargement
+  // Sécurité : réinitialise le flag après 10s max même si erreur (évite blocage permanent)
+  clearTimeout(window._loadingFlagTimer);
+  window._loadingFlagTimer = setTimeout(() => { window._loadingFromFirebase = false; }, 10000);
+  try {
+    const db = window.firestoreDb || firestoreDb;
+    const snap = await db.collection('reglages').get();
+    if(snap.empty) { window._loadingFromFirebase = false; clearTimeout(window._loadingFlagTimer); return; }
+    let loaded = [];
+    snap.docs.forEach(doc => {
+      const data = doc.data();
+      if(!data || !data.key) return;
+      const key = data.key;
+      const value = data.value;
+      // Appliquer à la variable globale + localStorage correspondants
+      switch(key){
+        case 'adm_vehicles':
+          if(Array.isArray(value)){ vehicles.length=0; value.forEach(v=>vehicles.push(v)); saveData('adm_vehicles',vehicles); loaded.push('véhicules/prix'); }
+          break;
+        case 'adm_delivery_prices':
+          deliveryPrices = value; saveData('adm_delivery_prices',deliveryPrices); loaded.push('tarifs livraison');
+          break;
+        case 'adm_pickup_locations':
+          if(Array.isArray(value)){ pickupLocations.length=0; value.forEach(l=>pickupLocations.push(l)); saveData('adm_pickup_locations',pickupLocations); loaded.push('gares/aéroports'); }
+          break;
+        case 'adm_vac_rates':
+          vacancesRates = value; saveData('adm_vac_rates',vacancesRates); loaded.push('taux vacances');
+          break;
+        case 'adm_vac_periods':
+          if(Array.isArray(value)){ vacancesPeriods.length=0; value.forEach(p=>vacancesPeriods.push(p)); saveData('adm_vac_periods',vacancesPeriods); loaded.push('périodes vacances'); }
+          break;
+        case 'adm_day_prices':
+          dayPrices = value; saveData('adm_day_prices',dayPrices); loaded.push('prix journaliers');
+          break;
+        case 'adm_discounts':
+          discounts = value; saveData('adm_discounts',discounts); loaded.push('réductions');
+          break;
+      }
+    });
+    if(loaded.length){
+      console.log('[Firebase] ↓ Réglages synchronisés depuis le cloud : '+loaded.join(', '));
+      // Rafraîchir les affichages concernés
+      if(typeof renderVehicles==='function') renderVehicles();
+      if(typeof renderDiscountBanners==='function') renderDiscountBanners();
+      if(typeof renderAdminFleet==='function') renderAdminFleet();
+      if(typeof renderVehiclePricesGrid==='function') renderVehiclePricesGrid();
+      if(typeof renderDeliveryPriceGrid==='function') renderDeliveryPriceGrid();
+    }
+  } catch(err){
+    console.error('[Firebase] Load réglages échoué:', err);
+  } finally {
+    window._loadingFromFirebase = false;  // réactive la sync
+    clearTimeout(window._loadingFlagTimer);
+  }
+}
+
 // ─── SYNC INITIALE : recharge depuis Firebase au démarrage ─
 async function syncFromFirebase(){
   if(!firebaseReady) return;
+  // Charger les réglages/prix en premier
+  await loadSettingsFromFirebase();
   try {
     const [cloudContrats, cloudFactures] = await Promise.all([
       loadContratsFromFirestore(),
@@ -5243,9 +5360,10 @@ function saveVehiclePrices(){
   });
   if(!changed){ showNotif('Aucun changement','Les prix sont identiques.'); return; }
   saveData('adm_vehicles', vehicles);
+  syncSettingToFirebase('adm_vehicles', vehicles);   // ☁ sync en ligne
   renderVehicles();       // update public grid
   renderVehiclePriceTable(); // refresh table
-  showNotif('✅ Prix mis à jour', changed+' véhicule(s) mis à jour — appliqués sur le site immédiatement.');
+  showNotif('✅ Prix mis à jour', changed+' véhicule(s) mis à jour — appliqués sur le site immédiatement'+(firebaseReady?' et enregistrés en ligne.':'.'));
 }
 
 // ─── PRICING & DISCOUNTS ──────────
@@ -5380,9 +5498,11 @@ function addPickupLocation(){
 function saveDeliveryPrices(){
   saveData('adm_delivery_prices',deliveryPrices);
   saveData('adm_pickup_locations',pickupLocations);
+  syncSettingToFirebase('adm_delivery_prices', deliveryPrices);   // ☁ sync en ligne
+  syncSettingToFirebase('adm_pickup_locations', pickupLocations); // ☁ sync en ligne
   renderDiscountBanners();
   populateDeliveryDropdown();
-  showNotif('✅ Tarifs livraison sauvegardés','Les prix de livraison ont été mis à jour.');
+  showNotif('✅ Tarifs livraison sauvegardés','Les prix de livraison ont été mis à jour'+(firebaseReady?' et enregistrés en ligne.':'.'));
 }
 
 function saveDiscounts(){
@@ -7372,6 +7492,7 @@ function saveDayPrices(){
   });
   if(!Object.keys(dayPrices[selectedPlanningDay]).length) delete dayPrices[selectedPlanningDay];
   saveData('adm_day_prices', dayPrices);
+  syncSettingToFirebase('adm_day_prices', dayPrices);   // ☁ sync en ligne
   renderCalendar();
   renderClientCalendar();
   renderSpecialPricesTable();
@@ -7464,6 +7585,8 @@ function saveVacances(){
   };
   saveData('adm_vac_rates',   vacancesRates);
   saveData('adm_vac_periods', vacancesPeriods);
+  syncSettingToFirebase('adm_vac_rates', vacancesRates);     // ☁ sync en ligne
+  syncSettingToFirebase('adm_vac_periods', vacancesPeriods); // ☁ sync en ligne
   renderCalendar();
   renderClientCalendar();
   renderVehicles();
