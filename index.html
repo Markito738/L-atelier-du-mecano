@@ -2423,6 +2423,11 @@ footer, .footer-contact-item, .footer-section {
           <div class="admin-section-title">📝 Contrats — historique complet</div>
           <div class="admin-badge">Créés automatiquement</div>
         </div>
+        <div style="padding:0 0 1rem;display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;">
+          <button onclick="downloadAllOnlineContracts()" style="background:#0a1628;color:white;border:none;font-size:13px;font-weight:700;padding:9px 16px;border-radius:7px;cursor:pointer;">📥 Télécharger tous les contrats en ligne (PDF)</button>
+          <button onclick="downloadAllOnlineInvoices()" style="background:#1a3358;color:white;border:none;font-size:13px;font-weight:700;padding:9px 16px;border-radius:7px;cursor:pointer;">🧾 Télécharger toutes les factures en ligne (PDF)</button>
+          <span style="font-size:12px;color:var(--gray-text);">Génère et télécharge un PDF pour chaque réservation faite sur le site.</span>
+        </div>
         <div style="overflow-x:auto;">
           <table class="admin-table" id="suiviContratsTable">
             <thead>
@@ -2796,10 +2801,18 @@ footer, .footer-contact-item, .footer-section {
               <div style="display:flex;justify-content:space-between;font-size:17px;font-weight:700;color:var(--navy);border-top:1px solid var(--gray);padding-top:.5rem;"><span>Total TTC</span><span id="inv-ttc">0,00 €</span></div>
             </div>
           </div>
-          <div style="display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap;">
-            <button class="btn-print" onclick="printInvoice()">🖨️ Imprimer / Sauvegarder PDF</button>
+          <div style="display:flex;gap:.6rem;margin-top:1.5rem;flex-wrap:wrap;align-items:center;">
+            <button class="btn-print" onclick="printBlankInvoice()" style="background:#5568d3;color:white;">📄 Imprimer facture VIERGE</button>
+            <button class="btn-print" onclick="printManualInvoicePDF()" style="background:#0a1628;color:white;">📥 Télécharger la facture remplie (PDF)</button>
+            <button class="btn-print" onclick="printInvoice()">🖨️ Imprimer (aperçu navigateur)</button>
+            <button class="btn-admin-save" onclick="saveInvoice()" style="background:#1aab6d;color:white;font-weight:800;padding:10px 18px;font-size:14px;">💾 ENREGISTRER LA FACTURE</button>
           </div>
-          <div style="margin-top:1rem;font-size:12px;color:var(--gray-text);">Astuce : utilisez "Imprimer" puis "Enregistrer en PDF" dans les options de votre navigateur pour obtenir un fichier PDF.</div>
+          <div style="margin-top:1rem;font-size:12px;color:var(--gray-text);line-height:1.6;">
+            💡 <strong>Astuces :</strong><br>
+            • <strong>Facture VIERGE</strong> : PDF vide avec lignes à remplir à la main<br>
+            • <strong>Facture remplie (PDF)</strong> : PDF téléchargeable avec toutes les infos saisies<br>
+            • <strong>ENREGISTRER</strong> : sauvegarde la facture dans l'historique (local + Firebase)
+          </div>
         </div>
       </div>
 
@@ -3119,15 +3132,15 @@ function updateResRecap(){
 // ═══════════════════════════════════════════════════════════════
 // FIREBASE — Stockage cloud (Firestore + Storage)
 // ═══════════════════════════════════════════════════════════════
-// 🔧 CONFIGURATION FIREBASE — À REMPLACER AVEC TES CLÉS
-// Va sur https://console.firebase.google.com → ton projet → Paramètres → Config
+// 🔧 CONFIGURATION FIREBASE — L'Atelier du Mécano
 const FIREBASE_CONFIG = {
-  apiKey: "REMPLACE_MOI_apiKey",
-  authDomain: "REMPLACE_MOI.firebaseapp.com",
-  projectId: "REMPLACE_MOI_projectId",
-  storageBucket: "REMPLACE_MOI.appspot.com",
-  messagingSenderId: "REMPLACE_MOI",
-  appId: "REMPLACE_MOI_appId"
+  apiKey: "AIzaSyAuLIwac2l9I6fPxGZKUryhLQiElbJ1QnU",
+  authDomain: "atelier-du-mecano-49a65.firebaseapp.com",
+  databaseURL: "https://atelier-du-mecano-49a65-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "atelier-du-mecano-49a65",
+  storageBucket: "atelier-du-mecano-49a65.firebasestorage.app",
+  messagingSenderId: "868856307780",
+  appId: "1:868856307780:web:71fb03f6b4b7c82e281c11"
 };
 
 let firebaseApp = null;
@@ -4852,6 +4865,246 @@ function calcInvoice(){
 }
 document.addEventListener('change',function(e){if(e.target.id==='inv-tva')calcInvoice();});
 
+// ═══════════════════════════════════════════════════════════════
+// ENREGISTRER UNE FACTURE (manuel) + PDFs vierge / rempli
+// ═══════════════════════════════════════════════════════════════
+function collectInvoiceData(){
+  const val = id => (document.getElementById(id)?.value || '').trim();
+  const lignes = [];
+  document.querySelectorAll('#invLines tr').forEach(tr => {
+    const ins = tr.querySelectorAll('input');
+    if(ins.length < 3) return;
+    const desc = ins[0].value.trim();
+    const qty  = parseFloat(ins[1].value) || 0;
+    const pu   = parseFloat(ins[2].value) || 0;
+    if(desc || pu > 0) lignes.push({ desc: desc || '—', qty, pu, total: qty*pu });
+  });
+  const tvaRate = parseFloat(val('inv-tva')) || 0;
+  const ht = lignes.reduce((s,l)=>s+l.total, 0);
+  const tvaVal = ht * tvaRate / 100;
+  const ttc = ht + tvaVal;
+  return {
+    num:      val('inv-num'),
+    client:   val('inv-client'),
+    adresse:  val('inv-adresse'),
+    tel:      val('inv-tel'),
+    email:    val('inv-email'),
+    date:     val('inv-date'),
+    echeance: val('inv-echeance'),
+    tvaRate, lignes, ht, tvaVal, ttc,
+  };
+}
+
+function saveInvoice(){
+  const d = collectInvoiceData();
+  if(!d.client){ showNotif('👤 Client manquant','Renseignez le nom du client.'); return; }
+  if(!d.lignes.length){ showNotif('📝 Facture vide','Ajoutez au moins une ligne de prestation.'); return; }
+
+  const now = new Date();
+  const numBase = now.getFullYear()+''+String(now.getMonth()+1).padStart(2,'0')+''+String(now.getDate()).padStart(2,'0')+'-'+String(now.getHours()).padStart(2,'0')+''+String(now.getMinutes()).padStart(2,'0');
+  const finalNum = d.num || ('FAC-'+numBase);
+
+  const existing = invoiceHistory.find(f=>f.num===finalNum);
+  const entry = {
+    num:      finalNum,
+    token:    existing?.token || (typeof generateAccessToken==='function'?generateAccessToken():''),
+    client:   d.client,
+    tel:      d.tel,
+    email:    d.email,
+    adresse:  d.adresse,
+    vehicule: d.lignes[0]?.desc || 'Prestation',
+    debut:    d.date ? new Date(d.date).toLocaleDateString('fr-FR') : now.toLocaleDateString('fr-FR'),
+    fin:      d.echeance ? new Date(d.echeance).toLocaleDateString('fr-FR') : '',
+    jours:    d.lignes.reduce((s,l)=>s+l.qty,0),
+    prixJour: d.lignes[0]?.pu || 0,
+    lignes:   d.lignes,
+    discount: 0,
+    livraison:0,
+    tvaRate:  d.tvaRate,
+    ht:       d.ht.toFixed(2),
+    ttc:      d.ttc.toFixed(2),
+    date:     existing?.date || now.toLocaleDateString('fr-FR'),
+    statut:   existing?.statut || 'Facture manuelle',
+    source:   'Saisie manuelle',
+    _updatedAt: now.toISOString(),
+  };
+
+  const idx = invoiceHistory.findIndex(f => f.num === finalNum);
+  if(idx >= 0) invoiceHistory[idx] = { ...invoiceHistory[idx], ...entry };
+  else invoiceHistory.unshift(entry);
+  saveData('adm_invoices', invoiceHistory);
+  if(typeof renderInvHistory === 'function') renderInvHistory();
+  if(typeof renderSuiviFactures === 'function') renderSuiviFactures();
+
+  if(!d.num){ const el = document.getElementById('inv-num'); if(el) el.value = finalNum; }
+
+  if(typeof saveFactureToFirestore === 'function' && firebaseReady){
+    saveFactureToFirestore(entry).then(ok => {
+      showNotif(ok?'☁️ Facture enregistrée (cloud + local)':'💾 Facture enregistrée (local)','Facture '+finalNum+' pour '+entry.client+' — '+entry.ttc+' € TTC.');
+    });
+  } else {
+    showNotif('💾 Facture enregistrée','Facture '+finalNum+' pour '+entry.client+' — '+entry.ttc+' € TTC enregistrée dans l\'historique.');
+  }
+}
+
+// Génère un PDF facture à partir de lignes personnalisées
+function buildCustomInvoicePDF(d, num){
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+  // Header
+  doc.setFillColor(10,22,40); doc.rect(0,0,210,30,'F');
+  doc.setFillColor(244,112,10); doc.rect(0,30,210,2,'F');
+  doc.setTextColor(244,112,10); doc.setFont('helvetica','bold'); doc.setFontSize(18);
+  doc.text("L'ATELIER DU MECANO", 12, 15);
+  doc.setTextColor(255,255,255); doc.setFontSize(9); doc.setFont('helvetica','normal');
+  doc.text('Garage - Depannage 24h/24 - Location', 12, 22);
+  doc.setFontSize(16); doc.setFont('helvetica','bold');
+  doc.text('FACTURE', 208, 15, {align:'right'});
+  doc.setFontSize(9); doc.setFont('helvetica','normal');
+  doc.text('Place Georges Lardenois - 73110 Valgelon la Rochette', 208, 22, {align:'right'});
+  doc.setTextColor(0,0,0);
+
+  doc.setFont('helvetica','bold'); doc.setFontSize(10);
+  doc.text('N° '+num, 15, 42);
+  doc.setFont('helvetica','normal');
+  const dateStr = d.date ? new Date(d.date).toLocaleDateString('fr-FR') : new Date().toLocaleDateString('fr-FR');
+  doc.text('Etablie le '+dateStr, 208, 42, {align:'right'});
+
+  let y = 52;
+  const section=(t)=>{ doc.setFillColor(244,112,10); doc.rect(12,y,186,6,'F'); doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.text(t,15,y+4.2); doc.setTextColor(0,0,0); doc.setFont('helvetica','normal'); y+=10; };
+
+  section('CLIENT');
+  doc.setFontSize(9);
+  doc.setFont('helvetica','bold'); doc.text('Nom :', 15, y); doc.setFont('helvetica','normal'); doc.text(d.client||'-', 40, y); y+=5;
+  if(d.adresse){ doc.setFont('helvetica','bold'); doc.text('Adresse :', 15, y); doc.setFont('helvetica','normal'); doc.text(d.adresse, 40, y); y+=5; }
+  if(d.tel){ doc.setFont('helvetica','bold'); doc.text('Tel :', 15, y); doc.setFont('helvetica','normal'); doc.text(d.tel, 40, y); y+=5; }
+  if(d.email){ doc.setFont('helvetica','bold'); doc.text('E-mail :', 15, y); doc.setFont('helvetica','normal'); doc.text(d.email, 40, y); y+=5; }
+  y += 5;
+
+  section('DETAIL DE LA PRESTATION');
+  // Table header
+  doc.setFillColor(240,240,240); doc.rect(15,y,180,8,'F');
+  doc.setFont('helvetica','bold'); doc.setFontSize(9);
+  doc.text('Designation', 18, y+5.5);
+  doc.text('Qte', 120, y+5.5, {align:'right'});
+  doc.text('P.U.', 150, y+5.5, {align:'right'});
+  doc.text('Total HT', 192, y+5.5, {align:'right'});
+  y += 8;
+  doc.setFont('helvetica','normal');
+  d.lignes.forEach(l => {
+    doc.rect(15, y, 180, 8, 'S');
+    const desc = doc.splitTextToSize(l.desc, 95);
+    doc.text(desc[0]||'-', 18, y+5.5);
+    doc.text(String(l.qty), 120, y+5.5, {align:'right'});
+    doc.text(l.pu.toFixed(2)+' EUR', 150, y+5.5, {align:'right'});
+    doc.text(l.total.toFixed(2)+' EUR', 192, y+5.5, {align:'right'});
+    y += 8;
+  });
+  y += 5;
+
+  // Totaux
+  doc.setFontSize(9);
+  doc.setFont('helvetica','normal');
+  doc.text('Total HT :', 150, y, {align:'right'}); doc.text(d.ht.toFixed(2)+' EUR', 192, y, {align:'right'}); y+=5;
+  if(d.tvaRate>0){ doc.text('TVA ('+d.tvaRate+'%) :', 150, y, {align:'right'}); doc.text(d.tvaVal.toFixed(2)+' EUR', 192, y, {align:'right'}); y+=5; }
+  // Total TTC
+  doc.setFillColor(244,112,10); doc.rect(115, y, 80, 12, 'F');
+  doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(12);
+  doc.text('TOTAL TTC :', 118, y+8);
+  doc.text(d.ttc.toFixed(2)+' EUR', 192, y+8, {align:'right'});
+  doc.setTextColor(0,0,0); y += 20;
+
+  section('PAIEMENT');
+  doc.setFont('helvetica','normal'); doc.setFontSize(9);
+  doc.text('Mode : Carte bancaire via SumUp - pay.sumup.com/b2c/QK1J3LUK', 15, y); y+=6;
+  if(d.tvaRate===0){ doc.setFont('helvetica','italic'); doc.setFontSize(8); doc.text('TVA non applicable, art. 293 B du CGI. Auto-entrepreneur.', 15, y); }
+
+  // Footer
+  const h = doc.internal.pageSize.height;
+  doc.setFillColor(10,22,40); doc.rect(0,h-18,210,18,'F');
+  doc.setTextColor(255,255,255); doc.setFontSize(8);
+  doc.text("L'Atelier du Mecano - SIRET 100 384 445 000 19 - Tel : 06 68 83 36 87 - marchenriannis@gmail.com", 105, h-11, {align:'center'});
+  doc.text('latelierdumecano.netlify.app', 105, h-6, {align:'center'});
+
+  return doc.output('blob');
+}
+
+function printManualInvoicePDF(){
+  const d = collectInvoiceData();
+  if(!d.client){ showNotif('👤 Client manquant','Renseignez le nom du client.'); return; }
+  if(!d.lignes.length){ showNotif('📝 Facture vide','Ajoutez au moins une ligne.'); return; }
+  const num = d.num || ('FAC-'+Date.now());
+  const blob = buildCustomInvoicePDF(d, num);
+  const clientClean = (d.client||'client').replace(/[^a-zA-Z0-9]/g,'_').substring(0,30);
+  downloadBlob(blob, 'Facture_'+num+'_'+clientClean+'.pdf');
+  showNotif('📥 Facture téléchargée','« Facture_'+num+'.pdf » téléchargée avec les données saisies.');
+}
+
+function printBlankInvoice(){
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+  doc.setFillColor(10,22,40); doc.rect(0,0,210,30,'F');
+  doc.setFillColor(244,112,10); doc.rect(0,30,210,2,'F');
+  doc.setTextColor(244,112,10); doc.setFont('helvetica','bold'); doc.setFontSize(18);
+  doc.text("L'ATELIER DU MECANO", 12, 15);
+  doc.setTextColor(255,255,255); doc.setFontSize(9); doc.setFont('helvetica','normal');
+  doc.text('Garage - Depannage 24h/24 - Location', 12, 22);
+  doc.setFontSize(16); doc.setFont('helvetica','bold');
+  doc.text('FACTURE', 208, 15, {align:'right'});
+  doc.setFontSize(9); doc.setFont('helvetica','normal');
+  doc.text('Place Georges Lardenois - 73110 Valgelon la Rochette', 208, 22, {align:'right'});
+  doc.setTextColor(0,0,0);
+
+  doc.setFont('helvetica','bold'); doc.setFontSize(10);
+  doc.text('N° facture : FAC- __ __ __ __ - __ __ __', 15, 42);
+  doc.text('Date : __ __ / __ __ / __ __ __ __', 208, 42, {align:'right'});
+
+  let y = 52;
+  const section=(t)=>{ doc.setFillColor(244,112,10); doc.rect(12,y,186,6,'F'); doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.text(t,15,y+4.2); doc.setTextColor(0,0,0); doc.setFont('helvetica','normal'); y+=10; };
+  const line=(l,w=180)=>{ doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.text(l,15,y); doc.setFont('helvetica','normal'); doc.line(15+doc.getTextWidth(l)+2, y+1, 15+w, y+1); y+=7; };
+
+  section('CLIENT');
+  line('Nom / Prenom :');
+  line('Adresse :');
+  line('Telephone :'); line('E-mail :');
+  y += 3;
+
+  section('DETAIL DE LA PRESTATION');
+  // Table vide
+  doc.setFillColor(240,240,240); doc.rect(15,y,180,8,'F');
+  doc.setFont('helvetica','bold'); doc.setFontSize(9);
+  doc.text('Designation', 18, y+5.5);
+  doc.text('Qte', 120, y+5.5, {align:'right'});
+  doc.text('P.U.', 150, y+5.5, {align:'right'});
+  doc.text('Total', 192, y+5.5, {align:'right'});
+  y += 8;
+  for(let i=0;i<8;i++){ doc.rect(15, y, 180, 9, 'S'); doc.line(112, y, 112, y+9); doc.line(133, y, 133, y+9); doc.line(168, y, 168, y+9); y += 9; }
+  y += 5;
+
+  // Zone totaux
+  doc.setFont('helvetica','bold'); doc.setFontSize(9);
+  doc.text('Total HT : _______________ EUR', 192, y, {align:'right'}); y+=6;
+  doc.text('TVA : _______________ EUR', 192, y, {align:'right'}); y+=6;
+  doc.setFillColor(244,112,10); doc.rect(115, y, 80, 12, 'F');
+  doc.setTextColor(255,255,255); doc.setFontSize(11);
+  doc.text('TOTAL TTC : ___________ EUR', 192, y+8, {align:'right'});
+  doc.setTextColor(0,0,0); y += 20;
+
+  section('PAIEMENT');
+  doc.setFont('helvetica','normal'); doc.setFontSize(8);
+  doc.setFont('helvetica','italic');
+  doc.text('TVA non applicable, art. 293 B du CGI. Auto-entrepreneur.', 15, y);
+
+  const h = doc.internal.pageSize.height;
+  doc.setFillColor(10,22,40); doc.rect(0,h-18,210,18,'F');
+  doc.setTextColor(255,255,255); doc.setFontSize(8);
+  doc.text("L'Atelier du Mecano - SIRET 100 384 445 000 19 - Tel : 06 68 83 36 87 - marchenriannis@gmail.com", 105, h-11, {align:'center'});
+  doc.text('latelierdumecano.netlify.app - Paiement : pay.sumup.com/b2c/QK1J3LUK', 105, h-6, {align:'center'});
+
+  downloadBlob(doc.output('blob'), 'facture_VIERGE_atelier_du_mecano.pdf');
+  showNotif('📄 Facture vierge téléchargée','« facture_VIERGE_atelier_du_mecano.pdf » — imprimez-la pour vos factures manuelles.');
+}
+
 function printInvoice(){
   const num=document.getElementById('inv-num').value||'FAC-???';
   const client=document.getElementById('inv-client').value||'Client non renseigné';
@@ -5559,6 +5812,81 @@ function fmtDate(val){
   try{return new Date(val).toLocaleDateString('fr-FR');}catch(e){return val;}
 }
 
+// ═══════════════════════════════════════════════════════════════
+// SAUVEGARDE SUR DISQUE LOCAL (File System Access API)
+// Dossier "Contrat location site atelier du mécano"
+// ═══════════════════════════════════════════════════════════════
+let localFolderHandle = null; // handle du dossier choisi (persiste durant la session)
+const FOLDER_NAME = 'Contrat location site atelier du mécano';
+const FS_ACCESS_SUPPORTED = ('showDirectoryPicker' in window);
+
+// Compteur de contrats croissant (stocké en localStorage)
+function getNextContractNumber(){
+  let counter = parseInt(localStorage.getItem('adm_contract_counter') || '0');
+  counter++;
+  localStorage.setItem('adm_contract_counter', String(counter));
+  return counter;
+}
+function peekContractCounter(){
+  return parseInt(localStorage.getItem('adm_contract_counter') || '0');
+}
+
+// Demander (une fois) le dossier de destination
+async function ensureLocalFolder(){
+  if(!FS_ACCESS_SUPPORTED) return null;
+  if(localFolderHandle){
+    // Vérifier qu'on a toujours la permission
+    try {
+      const perm = await localFolderHandle.queryPermission({ mode: 'readwrite' });
+      if(perm === 'granted') return localFolderHandle;
+      const req = await localFolderHandle.requestPermission({ mode: 'readwrite' });
+      if(req === 'granted') return localFolderHandle;
+    } catch(e){ /* handle invalide, on redemande */ }
+    localFolderHandle = null;
+  }
+  try {
+    // Ouvre le sélecteur de dossier. L'utilisateur choisit "Documents"
+    // puis on crée/ouvre le sous-dossier "Contrat location..."
+    showNotif('📁 Choisir l\'emplacement','Sélectionnez votre dossier Documents — un sous-dossier « '+FOLDER_NAME+' » y sera créé automatiquement.');
+    const parentHandle = await window.showDirectoryPicker({ mode: 'readwrite', startIn: 'documents' });
+    // Créer (ou récupérer) le sous-dossier dédié
+    localFolderHandle = await parentHandle.getDirectoryHandle(FOLDER_NAME, { create: true });
+    return localFolderHandle;
+  } catch(err){
+    if(err.name === 'AbortError'){
+      // L'utilisateur a annulé
+      return null;
+    }
+    console.error('[LocalFS] Erreur sélection dossier:', err);
+    return null;
+  }
+}
+
+// Écrire un blob PDF dans le dossier local
+async function saveBlobToLocalFolder(blob, filename){
+  const folder = await ensureLocalFolder();
+  if(!folder) return false;
+  try {
+    const fileHandle = await folder.getFileHandle(filename, { create: true });
+    const writable = await fileHandle.createWritable();
+    await writable.write(blob);
+    await writable.close();
+    return true;
+  } catch(err){
+    console.error('[LocalFS] Erreur écriture fichier:', err);
+    return false;
+  }
+}
+
+// Fallback : téléchargement classique
+function downloadBlob(blob, filename){
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
 function saveContrat(){
   // Récupérer TOUS les champs du formulaire manuel
   const val = id => (document.getElementById(id)?.value || '').trim();
@@ -5600,9 +5928,10 @@ function saveContrat(){
   const numBase = now.getFullYear()+''+String(now.getMonth()+1).padStart(2,'0')+''+String(now.getDate()).padStart(2,'0')+'-'+String(now.getHours()).padStart(2,'0')+''+String(now.getMinutes()).padStart(2,'0');
   const finalNum = num || ('LOC-'+numBase);
 
+  const existing = contratHistory.find(c=>c.num===finalNum);
   const entry = {
     num:          finalNum,
-    token:        (contratHistory.find(c=>c.num===finalNum)?.token) || generateAccessToken(),
+    token:        existing?.token || generateAccessToken(),
     client:       (nom+' '+prenom).trim(),
     nom, prenom,
     adresse, tel, email,
@@ -5618,9 +5947,10 @@ function saveContrat(){
     conditions,
     notesDep, notesRet,
     total:        totalTxt || (prixJour ? prixJour+' €/jour' : '—'),
-    statut:       (contratHistory.find(c=>c.num===finalNum)?.statut) || 'Contrat manuel',
-    date:         (contratHistory.find(c=>c.num===finalNum)?.date) || now.toLocaleDateString('fr-FR'),
+    statut:       existing?.statut || 'Contrat manuel',
+    date:         existing?.date || now.toLocaleDateString('fr-FR'),
     source:       'Saisie manuelle',
+    localSeq:     existing?.localSeq || null,
     _updatedAt:   now.toISOString(),
   };
 
@@ -5636,13 +5966,131 @@ function saveContrat(){
 
   // Sync Firebase si dispo
   if(typeof saveContratToFirestore === 'function' && firebaseReady){
-    saveContratToFirestore(entry).then(ok => {
-      if(ok) showNotif('☁️ Sauvegardé (cloud + local)','Contrat '+finalNum+' pour '+entry.client+' enregistré. Synchronisé sur Firebase.');
-      else   showNotif('💾 Sauvegardé (local uniquement)','Contrat '+finalNum+' pour '+entry.client+' enregistré. Sync cloud échoué (vérifier config Firebase).');
-    });
-  } else {
-    showNotif('💾 Sauvegardé (local)','Contrat '+finalNum+' pour '+entry.client+' enregistré dans l\'historique.');
+    saveContratToFirestore(entry);
   }
+
+  // ═══ SAUVEGARDE PDF SUR DISQUE LOCAL ═══
+  saveContractLocally(entry);
+}
+
+// Génère le PDF du contrat et le sauvegarde dans le dossier local
+async function saveContractLocally(entry){
+  // Construire le PDF avec toutes les données
+  let blob;
+  try {
+    blob = generateContractPDF({
+      num:          entry.num,
+      client:       entry.client,
+      tel:          entry.tel,
+      email:        entry.email,
+      numeroPermis: entry.numeroPermis,
+      vehicule:     entry.vehicule,
+      depart:       entry.depart || '',
+      retour:       entry.retour || '',
+      livraison:    'Contrat comptoir',
+      adresse:      entry.adresse,
+      prixJour:     entry.prixJour,
+      jours:        '-',
+      total:        entry.total,
+      date:         entry.date,
+      statut:       entry.statut,
+    });
+  } catch(err){
+    console.error('Erreur génération PDF contrat:', err);
+    showNotif('💾 Enregistré (données)','Contrat '+entry.num+' sauvegardé dans l\'historique. (PDF non généré)');
+    return;
+  }
+
+  // Numéro de séquence croissant pour le nom de fichier
+  let seq = entry.localSeq;
+  if(!seq){
+    seq = getNextContractNumber();
+    // Mémoriser la séquence sur le contrat
+    const idx = contratHistory.findIndex(c => c.num === entry.num);
+    if(idx >= 0){ contratHistory[idx].localSeq = seq; saveData('adm_contrats', contratHistory); }
+  }
+  const seqStr = String(seq).padStart(4, '0');
+  const clientClean = (entry.client || 'client').replace(/[^a-zA-Z0-9]/g,'_').substring(0,30);
+  const filename = 'Contrat_' + seqStr + '_' + clientClean + '.pdf';
+
+  if(FS_ACCESS_SUPPORTED){
+    const saved = await saveBlobToLocalFolder(blob, filename);
+    if(saved){
+      showNotif('✅ Contrat enregistré sur votre PC','« '+filename+' » sauvegardé dans le dossier « '+FOLDER_NAME+' » (dans Documents).');
+    } else {
+      // L'utilisateur a annulé ou erreur → fallback téléchargement
+      downloadBlob(blob, filename);
+      showNotif('📥 Contrat téléchargé','« '+filename+' » téléchargé (dossier Téléchargements). Vous pourrez le déplacer manuellement.');
+    }
+  } else {
+    // Navigateur non compatible (Firefox, Safari) → téléchargement classique
+    downloadBlob(blob, filename);
+    showNotif('📥 Contrat téléchargé','« '+filename+' » téléchargé. (Votre navigateur ne permet pas la sauvegarde directe dans un dossier — utilisez Chrome ou Edge pour cela.)');
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// TÉLÉCHARGEMENT GROUPÉ DES CONTRATS/FACTURES DES RÉSERVATIONS EN LIGNE
+// ═══════════════════════════════════════════════════════════════
+async function downloadAllOnlineContracts(){
+  // Filtrer les contrats issus de réservations en ligne
+  const online = contratHistory.filter(c => c.source === 'Réservation en ligne' || (c.docs && (c.docs.permis || c.docs.cni || c.docs.domicile)) || c.firebaseUrls);
+  const list = online.length ? online : contratHistory; // fallback: tous
+
+  if(!list.length){ showNotif('📭 Aucun contrat','Aucun contrat à télécharger pour le moment.'); return; }
+
+  // Proposer sauvegarde dans dossier local si supporté
+  let useFolder = false;
+  if(FS_ACCESS_SUPPORTED){
+    const folder = await ensureLocalFolder();
+    useFolder = !!folder;
+  }
+
+  showNotif('⏳ Génération en cours…', list.length+' contrat(s) en cours de traitement…');
+  let done = 0;
+  for(const c of list){
+    try {
+      const blob = generateContractPDF({
+        num: c.num, client: c.client, tel: c.tel, email: c.email,
+        numeroPermis: c.numeroPermis, vehicule: c.vehicule,
+        depart: c.depart || '', retour: c.retour || '',
+        livraison: c.livraison || 'Retrait sur place', adresse: c.adresse,
+        prixJour: c.prixJour, jours: c.jours || '-', total: c.total,
+        date: c.date, statut: c.statut,
+      });
+      const clientClean = (c.client||'client').replace(/[^a-zA-Z0-9]/g,'_').substring(0,30);
+      const filename = 'Contrat_'+c.num+'_'+clientClean+'.pdf';
+      if(useFolder){ await saveBlobToLocalFolder(blob, filename); }
+      else { downloadBlob(blob, filename); await new Promise(r=>setTimeout(r,300)); }
+      done++;
+    } catch(err){ console.error('Erreur contrat '+c.num, err); }
+  }
+  showNotif('✅ Contrats téléchargés', done+' contrat(s) '+(useFolder?'enregistré(s) dans le dossier « '+FOLDER_NAME+' »':'téléchargé(s)')+'.');
+}
+
+async function downloadAllOnlineInvoices(){
+  const list = invoiceHistory.slice();
+  if(!list.length){ showNotif('📭 Aucune facture','Aucune facture à télécharger pour le moment.'); return; }
+
+  let useFolder = false;
+  if(FS_ACCESS_SUPPORTED){
+    const folder = await ensureLocalFolder();
+    useFolder = !!folder;
+  }
+
+  showNotif('⏳ Génération en cours…', list.length+' facture(s) en cours de traitement…');
+  let done = 0;
+  for(const inv of list){
+    try {
+      const blob = generateInvoicePDF(inv);
+      const clientClean = (inv.client||'client').replace(/[^a-zA-Z0-9]/g,'_').substring(0,30);
+      const filename = 'Facture_'+inv.num+'_'+clientClean+'.pdf';
+      if(useFolder){ await saveBlobToLocalFolder(blob, filename); }
+      else { downloadBlob(blob, filename); await new Promise(r=>setTimeout(r,300)); }
+      done++;
+    } catch(err){ console.error('Erreur facture '+inv.num, err); }
+  }
+  showNotif('✅ Factures téléchargées', done+' facture(s) '+(useFolder?'enregistrée(s) dans le dossier':'téléchargée(s)')+'.');
 }
 
 // ═══════════════════════════════════════════════════════════════
