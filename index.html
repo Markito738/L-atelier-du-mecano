@@ -217,15 +217,17 @@ textarea{resize:vertical;min-height:90px;}
 .planning-day-header{padding:.5rem;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);background:var(--gray-light);border-bottom:1px solid var(--gray);}
 .planning-cell{min-height:60px;padding:.4rem;border:.5px solid var(--gray);cursor:pointer;transition:background .15s;position:relative;}
 .planning-cell:hover{background:var(--orange-pale);}
-.planning-cell.booked{background:#fff0f0;}
+.planning-cell.booked{background:#ffd5d5;}
+.planning-cell.booked .day-num{color:#c0392b;font-weight:900;}
 .planning-cell.available{background:#f0faf6;}
 .planning-cell.today{border:2px solid var(--orange);}
 .day-num{font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:700;color:var(--navy);margin-bottom:3px;}
 .day-num.other-month{color:var(--gray);}
 .delivery-tag{font-size:8px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:2px 3px;border-radius:3px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.planning-cell.client-booked{background:#fee8e8;cursor:not-allowed;}
-.planning-cell.client-booked:hover{background:#fdd;}
-.planning-cell.client-booked .day-num{color:#e24b4a;}
+.planning-cell.client-booked{background:#ff6b6b !important;cursor:not-allowed;}
+.planning-cell.client-booked:hover{background:#ff5252 !important;}
+.planning-cell.client-booked .day-num{color:white;font-weight:900;}
+.planning-cell.client-booked .booked-label{background:#c0392b;color:white;}
 .planning-cell.client-selected{background:#e0f7ee;border-color:#1aab6d;}
 .planning-cell.client-selected:hover{background:#c8f0e0;}
 .planning-cell.client-in-range{background:#f0faf6;}
@@ -1505,6 +1507,84 @@ footer, .footer-contact-item, .footer-section {
 <!-- PAGE: CONTACT -->
 <div class="page" id="page-contact" style="display:none;">
 
+<!-- BANDEAU DISPONIBILITÉ / JOIGNABILITÉ -->
+<section style="padding:2.5rem 1rem 0;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div style="background:linear-gradient(135deg,#0a1628 0%,#1a3358 100%);border-radius:16px;padding:2rem;position:relative;overflow:hidden;">
+      <div style="position:absolute;inset:0;background:radial-gradient(circle at 85% 20%,rgba(244,112,10,.15) 0%,transparent 50%);"></div>
+      <div style="position:relative;z-index:1;">
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(244,112,10,.15);border:1px solid rgba(244,112,10,.3);color:#ffb86c;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1.25rem;">
+          📱 La meilleure façon de me joindre
+        </div>
+        <h2 style="color:white;font-family:'Bricolage Grotesque',sans-serif;font-size:26px;font-weight:800;margin:0 0 1rem;line-height:1.25;">
+          Privilégiez le SMS ou l'e-mail
+        </h2>
+        <p style="color:rgba(255,255,255,.8);font-size:16px;line-height:1.7;max-width:750px;margin:0 0 1.5rem;">
+          Je suis souvent en intervention ou sous un véhicule 🔧 — <strong style="color:white;">le SMS et l'e-mail sont le moyen le plus sûr et le plus rapide de me joindre</strong>. Je réponds dès que je suis disponible.
+        </p>
+        <div style="background:rgba(255,255,255,.06);border-left:3px solid var(--orange);border-radius:8px;padding:1rem 1.25rem;margin-bottom:1.5rem;max-width:750px;">
+          <p style="color:rgba(255,255,255,.9);font-size:15px;line-height:1.7;margin:0;">
+            ☎️ <strong style="color:#ffb86c;">En cas d'appel sans réponse, laissez-moi un message vocal !</strong><br>
+            Je recontacte systématiquement tous mes clients <strong style="color:white;">en fin de journée ou le lendemain matin</strong>. Aucun message ne reste sans réponse.
+          </p>
+        </div>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+          <a href="sms:0668833687" style="display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:white;text-decoration:none;font-family:'Bricolage Grotesque',sans-serif;font-size:15px;font-weight:700;padding:12px 22px;border-radius:8px;transition:transform .15s;">
+            💬 Envoyer un SMS
+          </a>
+          <a href="mailto:marchenriannis@gmail.com" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);color:white;text-decoration:none;font-family:'Bricolage Grotesque',sans-serif;font-size:15px;font-weight:700;padding:12px 22px;border-radius:8px;border:1px solid rgba(255,255,255,.2);transition:transform .15s;">
+            ✉️ Envoyer un e-mail
+          </a>
+          <a href="https://wa.me/33668833687" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#25d366;color:white;text-decoration:none;font-family:'Bricolage Grotesque',sans-serif;font-size:15px;font-weight:700;padding:12px 22px;border-radius:8px;transition:transform .15s;">
+            📲 WhatsApp
+          </a>
+          <a href="tel:0668833687" style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:rgba(255,255,255,.7);text-decoration:none;font-family:'Bricolage Grotesque',sans-serif;font-size:15px;font-weight:700;padding:12px 22px;border-radius:8px;border:1px solid rgba(255,255,255,.2);">
+            📞 Appeler (laissez un message)
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTAGE RÉSEAUX SOCIAUX -->
+<section style="padding:2.5rem 1rem 0;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div style="background:var(--gray-light);border:1px solid var(--gray);border-radius:16px;padding:2rem;text-align:center;">
+      <div style="font-size:32px;margin-bottom:.5rem;">📣</div>
+      <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-size:24px;font-weight:800;color:var(--navy);margin:0 0 .5rem;">
+        Vous appréciez nos services ? Partagez !
+      </h2>
+      <p style="color:var(--gray-text);font-size:15px;line-height:1.6;max-width:600px;margin:0 auto 1.5rem;">
+        Aidez L'Atelier du Mécano à se faire connaître en partageant notre site à vos proches sur vos réseaux préférés. Merci pour votre soutien ! 🙏
+      </p>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;">
+        <button onclick="partagerSur('facebook')" style="display:inline-flex;align-items:center;gap:8px;background:#1877f2;color:white;border:none;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;font-weight:700;padding:11px 20px;border-radius:8px;transition:transform .15s;">
+          📘 Facebook
+        </button>
+        <button onclick="partagerSur('twitter')" style="display:inline-flex;align-items:center;gap:8px;background:#000000;color:white;border:none;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;font-weight:700;padding:11px 20px;border-radius:8px;transition:transform .15s;">
+          𝕏 X (Twitter)
+        </button>
+        <button onclick="partagerSur('whatsapp')" style="display:inline-flex;align-items:center;gap:8px;background:#25d366;color:white;border:none;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;font-weight:700;padding:11px 20px;border-radius:8px;transition:transform .15s;">
+          📲 WhatsApp
+        </button>
+        <button onclick="partagerSur('telegram')" style="display:inline-flex;align-items:center;gap:8px;background:#0088cc;color:white;border:none;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;font-weight:700;padding:11px 20px;border-radius:8px;transition:transform .15s;">
+          ✈️ Telegram
+        </button>
+        <button onclick="partagerSur('email')" style="display:inline-flex;align-items:center;gap:8px;background:#6b7a99;color:white;border:none;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;font-weight:700;padding:11px 20px;border-radius:8px;transition:transform .15s;">
+          ✉️ E-mail
+        </button>
+        <button onclick="partagerSur('instagram')" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:white;border:none;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;font-weight:700;padding:11px 20px;border-radius:8px;transition:transform .15s;">
+          📸 Instagram
+        </button>
+        <button onclick="copierLienSite()" style="display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:white;border:none;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;font-weight:700;padding:11px 20px;border-radius:8px;transition:transform .15s;">
+          🔗 Copier le lien
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PROSPECTION / CONTACT -->
 <section id="prospection">
   <div class="section-inner">
@@ -2399,6 +2479,73 @@ footer, .footer-contact-item, .footer-section {
           </div>
         </div>
       </div>
+
+      <!-- SECTION MALUS / COMPORTEMENT CLIENTS -->
+      <div class="admin-section" style="margin-top:1.5rem;">
+        <div class="admin-section-header">
+          <div class="admin-section-title">⚠️ Suivi comportement &amp; malus clients</div>
+          <div class="admin-badge" style="background:#fee8e8;color:#c0392b;">Dégradations</div>
+        </div>
+        <div class="admin-section-body">
+          <p style="font-size:14px;color:var(--text);line-height:1.6;margin-bottom:1.25rem;">
+            Enregistrez ici les clients ayant causé des <strong>dégradations sur un véhicule</strong>. Précisez s'ils ont été <strong style="color:#1aab6d;">honnêtes</strong> (ils vous ont prévenu) ou si vous l'avez <strong style="color:#c0392b;">constaté après coup</strong>. Un malus pourra être appliqué automatiquement sur leurs futures réservations.
+          </p>
+
+          <!-- FORMULAIRE D'AJOUT -->
+          <div style="background:var(--gray-light);border:1px solid var(--gray);border-radius:10px;padding:1.25rem;margin-bottom:1.5rem;">
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:1rem;">➕ Signaler une dégradation</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem;">
+              <div>
+                <label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:4px;">👤 Nom du client</label>
+                <input class="admin-input" type="text" id="malus-nom" placeholder="Jean Dupont" style="width:100%;" />
+              </div>
+              <div>
+                <label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:4px;">📞 Téléphone / e-mail</label>
+                <input class="admin-input" type="text" id="malus-contact" placeholder="06... ou email" style="width:100%;" />
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem;">
+              <div>
+                <label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:4px;">🚗 Véhicule concerné</label>
+                <input class="admin-input" type="text" id="malus-vehicule" placeholder="Ex: Passat B6" style="width:100%;" />
+              </div>
+              <div>
+                <label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:4px;">📅 Date</label>
+                <input class="admin-input" type="date" id="malus-date" style="width:100%;" />
+              </div>
+            </div>
+            <div style="margin-bottom:.75rem;">
+              <label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:4px;">🔧 Description de la dégradation</label>
+              <textarea class="admin-input" id="malus-desc" placeholder="Ex: rayure portière avant droite, jante frottée..." style="width:100%;min-height:60px;resize:vertical;"></textarea>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem;">
+              <div>
+                <label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:4px;">🤝 Honnêteté du client</label>
+                <select class="admin-input" id="malus-honnete" style="width:100%;">
+                  <option value="honnete">✅ Honnête — il m'a prévenu</option>
+                  <option value="constate">❌ Constaté après coup — pas prévenu</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:4px;">📉 Malus futures réservations (%)</label>
+                <input class="admin-input" type="number" id="malus-taux" min="0" max="100" step="5" value="0" placeholder="0" style="width:100%;" />
+              </div>
+            </div>
+            <button class="btn-admin-save" onclick="ajouterMalus()" style="background:#c0392b;color:white;font-weight:800;">⚠️ Enregistrer la dégradation</button>
+          </div>
+
+          <!-- TABLEAU DES MALUS -->
+          <div style="overflow-x:auto;">
+            <table class="admin-table">
+              <thead><tr><th>Client</th><th>Contact</th><th>Véhicule</th><th>Date</th><th>Dégradation</th><th>Honnêteté</th><th>Malus</th><th>Suppr.</th></tr></thead>
+              <tbody id="malusTableBody"></tbody>
+            </table>
+          </div>
+          <div style="margin-top:1rem;background:rgba(26,171,109,.08);border:1px solid rgba(26,171,109,.25);border-radius:8px;padding:.85rem 1rem;font-size:13px;color:var(--text);line-height:1.6;">
+            💡 <strong>Bon à savoir :</strong> lors d'une nouvelle réservation, si le nom du client correspond à une entrée avec malus, vous serez alerté et pourrez appliquer le malus. Les clients honnêtes peuvent bénéficier d'un malus réduit ou nul à votre discrétion.
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- PAGE: AVIS -->
@@ -2863,7 +3010,29 @@ let currentUserRole = 'admin'; // 'admin' or 'livreur'
 // ─── DATA ───────────────────────────
 function loadData(key, def){ try{ const d=localStorage.getItem(key); return d?JSON.parse(d):def; }catch(e){return def;} }
 // Clés de réglages/prix à synchroniser automatiquement en ligne
-const SYNCED_SETTING_KEYS = ['adm_vehicles','adm_delivery_prices','adm_pickup_locations','adm_vac_rates','adm_vac_periods','adm_day_prices','adm_discounts'];
+// Clés de réglages/données admin à synchroniser automatiquement en ligne
+// (tout ce qui est modifié en admin et doit être partagé entre appareils)
+// NOTE: adm_contrats et adm_invoices ont leur propre système (collections dédiées),
+//       adm_contract_counter et adm_vehicles_version restent locaux au PC.
+const SYNCED_SETTING_KEYS = [
+  'adm_vehicles',           // flotte + prix véhicules
+  'adm_delivery_prices',    // tarifs livraison
+  'adm_pickup_locations',   // gares & aéroports
+  'adm_vac_rates',          // taux majoration vacances
+  'adm_vac_periods',        // périodes vacances scolaires
+  'adm_day_prices',         // prix journaliers spéciaux
+  'adm_discounts',          // réductions
+  'adm_planning',           // planning / réservations bloquées
+  'adm_entretien',          // entretien des véhicules
+  'adm_drivers',            // livreurs
+  'adm_users',              // utilisateurs / comptes
+  'adm_gallery',            // photos galerie du site
+  'adm_service_photos',     // photos des services
+  'adm_vente',              // véhicules à vendre
+  'adm_parrainages',        // demandes de parrainage
+  'adm_reviews',            // avis clients
+  'adm_malus',              // malus / dégradations clients
+];
 function saveData(key,val){
   try{localStorage.setItem(key,JSON.stringify(val));}catch(e){}
   // Auto-sync vers Firebase si c'est une clé de réglage (prix, tarifs, etc.)
@@ -2912,6 +3081,7 @@ let reviews = loadData('adm_reviews', [
 let invoiceHistory = loadData('adm_invoices', []);
 let extraUsers = loadData('adm_users', []);
 let parrainages = loadData('adm_parrainages', []);
+let malusList = loadData('adm_malus', []);
 let planningEvents = loadData('adm_planning', {
   '2026-04-26':[{type:'livraison',label:'Domicile',driver:''}],
   '2026-04-27':[{type:'retour',label:'Retour DUSTER',driver:''}],
@@ -3355,7 +3525,7 @@ async function loadSettingsFromFirebase(){
   window._loadingFromFirebase = true;  // évite la re-sync pendant le chargement
   // Sécurité : réinitialise le flag après 10s max même si erreur (évite blocage permanent)
   clearTimeout(window._loadingFlagTimer);
-  window._loadingFlagTimer = setTimeout(() => { window._loadingFromFirebase = false; }, 10000);
+  window._loadingFlagTimer = setTimeout(() => { window._loadingFromFirebase = false; }, 5000);
   try {
     const db = window.firestoreDb || firestoreDb;
     const snap = await db.collection('reglages').get();
@@ -3389,6 +3559,36 @@ async function loadSettingsFromFirebase(){
         case 'adm_discounts':
           discounts = value; saveData('adm_discounts',discounts); loaded.push('réductions');
           break;
+        case 'adm_planning':
+          planningEvents = value || {}; saveData('adm_planning',planningEvents); loaded.push('planning');
+          break;
+        case 'adm_entretien':
+          entretienData = value || {}; saveData('adm_entretien',entretienData); loaded.push('entretien');
+          break;
+        case 'adm_drivers':
+          if(Array.isArray(value)){ drivers.length=0; value.forEach(x=>drivers.push(x)); saveData('adm_drivers',drivers); loaded.push('livreurs'); }
+          break;
+        case 'adm_users':
+          if(Array.isArray(value)){ extraUsers.length=0; value.forEach(x=>extraUsers.push(x)); saveData('adm_users',extraUsers); loaded.push('utilisateurs'); }
+          break;
+        case 'adm_gallery':
+          if(Array.isArray(value)){ galleryPhotos.length=0; value.forEach(x=>galleryPhotos.push(x)); saveData('adm_gallery',galleryPhotos); loaded.push('galerie'); }
+          break;
+        case 'adm_service_photos':
+          if(Array.isArray(value)){ servicePhotos.length=0; value.forEach(x=>servicePhotos.push(x)); saveData('adm_service_photos',servicePhotos); loaded.push('photos services'); }
+          break;
+        case 'adm_vente':
+          if(Array.isArray(value)){ venteList.length=0; value.forEach(x=>venteList.push(x)); saveData('adm_vente',venteList); loaded.push('véhicules à vendre'); }
+          break;
+        case 'adm_parrainages':
+          if(Array.isArray(value)){ parrainages.length=0; value.forEach(x=>parrainages.push(x)); saveData('adm_parrainages',parrainages); loaded.push('parrainages'); }
+          break;
+        case 'adm_reviews':
+          if(Array.isArray(value)){ reviews.length=0; value.forEach(x=>reviews.push(x)); saveData('adm_reviews',reviews); loaded.push('avis'); }
+          break;
+        case 'adm_malus':
+          if(Array.isArray(value)){ malusList.length=0; value.forEach(x=>malusList.push(x)); saveData('adm_malus',malusList); loaded.push('malus clients'); }
+          break;
       }
     });
     if(loaded.length){
@@ -3399,6 +3599,21 @@ async function loadSettingsFromFirebase(){
       if(typeof renderAdminFleet==='function') renderAdminFleet();
       if(typeof renderVehiclePricesGrid==='function') renderVehiclePricesGrid();
       if(typeof renderDeliveryPriceGrid==='function') renderDeliveryPriceGrid();
+      if(typeof renderCalendar==='function') renderCalendar();
+      if(typeof renderClientCalendar==='function') renderClientCalendar();
+      if(typeof renderEntretien==='function') renderEntretien();
+      if(typeof renderAdminDrivers==='function') renderAdminDrivers();
+      if(typeof renderUsersTable==='function') renderUsersTable();
+      if(typeof renderGallery==='function') renderGallery();
+      if(typeof renderPhotosAdmin==='function') renderPhotosAdmin();
+      if(typeof renderServicesWithPhotos==='function') renderServicesWithPhotos();
+      if(typeof renderVenteAdmin==='function') renderVenteAdmin();
+      if(typeof renderVentePublic==='function') renderVentePublic();
+      if(typeof renderParrTable==='function') renderParrTable();
+      if(typeof renderSuiviParr==='function') renderSuiviParr();
+      if(typeof renderMalusTable==='function') renderMalusTable();
+      if(typeof renderAvis==='function') renderAvis();
+      if(typeof renderAdminReviews==='function') renderAdminReviews();
     }
   } catch(err){
     console.error('[Firebase] Load réglages échoué:', err);
@@ -3947,7 +4162,8 @@ async function sendReservationWithDocs(contract, invoice, magicUrl){
     }
   }
 
-  // Envoi email FormSubmit
+  // Envoi email FormSubmit (au propriétaire)
+  let ownerSent = false;
   try {
     const response = await fetch('https://formsubmit.co/ajax/marchenriannis@gmail.com', {
       method: 'POST',
@@ -3955,11 +4171,122 @@ async function sendReservationWithDocs(contract, invoice, magicUrl){
       headers: { 'Accept': 'application/json' }
     });
     if(!response.ok) throw new Error('HTTP '+response.status);
-    return true;
+    ownerSent = true;
   } catch(err){
     console.error('Erreur envoi FormSubmit:', err);
-    return false;
+    ownerSent = false;
   }
+
+  // ═══ ENVOI DU CONTRAT AU CLIENT (si email fourni) ═══
+  if(contract.email && contract.email.includes('@') && contractPDF){
+    try {
+      const clientForm = new FormData();
+      clientForm.append('_subject', '📄 Votre contrat de location - L\'Atelier du Mécano');
+      clientForm.append('_captcha', 'false');
+      clientForm.append('_template', 'box');
+      clientForm.append('Bonjour', contract.client);
+      clientForm.append('Message', 'Merci pour votre réservation chez L\'Atelier du Mécano ! Vous trouverez ci-joint votre contrat de location. La facture vous sera envoyée à la fin de votre location, après restitution du véhicule.');
+      clientForm.append('🚗 Véhicule', contract.vehicule);
+      clientForm.append('📅 Départ', new Date(contract.depart).toLocaleString('fr-FR'));
+      clientForm.append('📅 Retour prévu', new Date(contract.retour).toLocaleString('fr-FR'));
+      clientForm.append('💰 Montant', contract.total);
+      clientForm.append('📞 Pour toute question', 'SMS ou e-mail de préférence — 06 68 83 36 87 — marchenriannis@gmail.com');
+      clientForm.append('contrat_'+contract.num+'.pdf', contractPDF, 'contrat_'+contract.num+'.pdf');
+      await fetch('https://formsubmit.co/ajax/'+encodeURIComponent(contract.email), {
+        method: 'POST', body: clientForm, headers: { 'Accept': 'application/json' }
+      });
+      console.log('[Email] ✅ Contrat envoyé au client : '+contract.email);
+    } catch(err){
+      console.error('[Email] Envoi contrat client échoué:', err);
+    }
+  }
+
+  return ownerSent;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// VALIDATION DU RETOUR VÉHICULE + ENVOI FACTURE AU CLIENT
+// ═══════════════════════════════════════════════════════════════
+async function confirmVehicleReturn(contratNum){
+  const c = contratHistory.find(x => x.num === contratNum);
+  if(!c){ showNotif('❌ Introuvable','Contrat non trouvé.'); return; }
+
+  if(c.retourConfirme){
+    if(!confirm('Le retour de ce véhicule a déjà été confirmé le '+(c.retourConfirmeDate||'?')+'. Renvoyer la facture au client ?')) return;
+  } else {
+    if(!confirm('Confirmer le bon retour du véhicule « '+c.vehicule+' » pour '+c.client+' ?\n\nCela va :\n• Marquer la location comme terminée\n• Libérer les dates dans le planning\n• Envoyer la facture au client par e-mail'+(c.email?' ('+c.email+')':' (aucun email fourni)'))) return;
+  }
+
+  // Marquer comme retourné
+  c.retourConfirme = true;
+  c.retourConfirmeDate = new Date().toLocaleString('fr-FR');
+  c.statut = 'Terminé - véhicule rendu';
+  const idx = contratHistory.findIndex(x => x.num === contratNum);
+  if(idx >= 0) contratHistory[idx] = c;
+  saveData('adm_contrats', contratHistory);
+
+  // Mettre à jour la facture associée
+  const inv = invoiceHistory.find(x => x.contratNum === contratNum || x.num === contratNum.replace('LOC-','FAC-'));
+  if(inv){
+    inv.statut = 'Payée - location terminée';
+    saveData('adm_invoices', invoiceHistory);
+    if(firebaseReady && typeof saveFactureToFirestore === 'function') saveFactureToFirestore(inv);
+  }
+
+  // Libérer les jours dans le planning
+  if(c.depart && c.retour){
+    try {
+      let cur = new Date(c.depart.substring(0,10)+'T12:00');
+      const endD = new Date(c.retour.substring(0,10)+'T12:00');
+      while(cur <= endD){
+        const dk = cur.getFullYear()+'-'+padDate(cur.getMonth()+1)+'-'+padDate(cur.getDate());
+        if(planningEvents[dk]){
+          planningEvents[dk] = planningEvents[dk].filter(e => e.label !== c.client);
+          if(!planningEvents[dk].length) delete planningEvents[dk];
+        }
+        cur.setDate(cur.getDate()+1);
+      }
+      saveData('adm_planning', planningEvents);
+      if(typeof renderCalendar==='function') renderCalendar();
+      if(typeof renderClientCalendar==='function') renderClientCalendar();
+    } catch(e){ console.error('Erreur libération planning:', e); }
+  }
+
+  // Sync Firebase contrat
+  if(firebaseReady && typeof saveContratToFirestore === 'function') saveContratToFirestore(c);
+
+  // Envoyer la facture au client par email
+  if(c.email && c.email.includes('@') && inv){
+    try {
+      const invoicePDF = generateInvoicePDF(inv);
+      const clientForm = new FormData();
+      clientForm.append('_subject', '🧾 Votre facture - Location terminée - L\'Atelier du Mécano');
+      clientForm.append('_captcha', 'false');
+      clientForm.append('_template', 'box');
+      clientForm.append('Bonjour', c.client);
+      clientForm.append('Message', 'Merci d\'avoir loué chez L\'Atelier du Mécano ! Votre location est maintenant terminée et le retour du véhicule a bien été enregistré. Vous trouverez ci-joint votre facture acquittée. Au plaisir de vous revoir !');
+      clientForm.append('🚗 Véhicule', c.vehicule);
+      clientForm.append('💰 Montant réglé', c.total);
+      clientForm.append('📅 Retour confirmé le', c.retourConfirmeDate);
+      clientForm.append('⭐ Votre avis compte', 'N\'hésitez pas à nous laisser un avis sur le site !');
+      clientForm.append('facture_'+inv.num+'.pdf', invoicePDF, 'facture_'+inv.num+'.pdf');
+      await fetch('https://formsubmit.co/ajax/'+encodeURIComponent(c.email), {
+        method: 'POST', body: clientForm, headers: { 'Accept': 'application/json' }
+      });
+      showNotif('✅ Retour confirmé !','Facture envoyée à '+c.client+' ('+c.email+'). Dates libérées dans le planning.');
+    } catch(err){
+      console.error('[Email] Envoi facture client échoué:', err);
+      showNotif('✅ Retour confirmé','Location terminée et dates libérées. ⚠️ L\'envoi de la facture au client a échoué.');
+    }
+  } else {
+    showNotif('✅ Retour confirmé','Location terminée, dates libérées.'+(c.email?'':' (Aucun email client pour envoyer la facture.)'));
+  }
+
+  // Rafraîchir la modale dossier si ouverte
+  const overlay = document.getElementById('dossier-modal-overlay');
+  if(overlay){ closeDossierModal(); setTimeout(()=>openDossierModal(contratNum), 200); }
+  if(typeof renderContratHistory==='function') renderContratHistory();
+  if(typeof renderSuiviContrats==='function') renderSuiviContrats();
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -4034,6 +4361,34 @@ function openDossierModal(contratNum){
           <button onclick="downloadPDF('facture','${contratNum}')" style="background:#0a1628;color:white;border:none;padding:.75rem;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px;">🧾 Facture PDF</button>
           <button onclick="downloadPDF('etat-depart','${contratNum}')" style="background:#f4700a;color:white;border:none;padding:.75rem;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px;">📋 État des lieux DÉPART</button>
           <button onclick="downloadPDF('etat-retour','${contratNum}')" style="background:#f4700a;color:white;border:none;padding:.75rem;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px;">📋 État des lieux RETOUR</button>
+        </div>
+
+        <!-- VALIDATION RETOUR VÉHICULE -->
+        <div style="background:${c.retourConfirme?'#e8f5f0':'#fff8f0'};border:2px solid ${c.retourConfirme?'#1aab6d':'#f4700a'};border-radius:10px;padding:1.25rem;margin-bottom:1.5rem;">
+          ${c.retourConfirme ? `
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="font-size:32px;">✅</span>
+              <div>
+                <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:800;color:#0a4d2a;">Véhicule rendu — Location terminée</div>
+                <div style="font-size:13px;color:#0a4d2a;margin-top:2px;">Retour confirmé le ${c.retourConfirmeDate||'?'}${c.email?' — Facture envoyée à '+c.email:''}</div>
+              </div>
+            </div>
+            <button onclick="confirmVehicleReturn('${contratNum}')" style="margin-top:1rem;background:#1a3358;color:white;border:none;padding:.6rem 1.25rem;border-radius:7px;font-weight:700;cursor:pointer;font-size:12px;">📧 Renvoyer la facture au client</button>
+          ` : `
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:1rem;">
+              <span style="font-size:32px;">🔑</span>
+              <div>
+                <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:800;color:#0a1628;">Location en cours</div>
+                <div style="font-size:13px;color:#6b5a48;margin-top:2px;">Quand le client rend le véhicule, validez le retour ci-dessous.</div>
+              </div>
+            </div>
+            <button onclick="confirmVehicleReturn('${contratNum}')" style="width:100%;background:#1aab6d;color:white;border:none;padding:.9rem;border-radius:8px;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:15px;cursor:pointer;">
+              ✅ VALIDER LE BON RETOUR DU VÉHICULE
+            </button>
+            <div style="font-size:11px;color:#6b5a48;margin-top:.6rem;text-align:center;line-height:1.5;">
+              Cela marquera la location comme terminée, libèrera les dates dans le planning${c.email?' et enverra la facture à '+c.email:' (aucun email client renseigné)'}.
+            </div>
+          `}
         </div>
 
         ${pdfCloudBlock}
@@ -4538,6 +4893,74 @@ async function submitBugReport(event){
   }
 }
 
+// ═══════════════════════════════════════════════════════════════
+// PARTAGE SUR LES RÉSEAUX SOCIAUX
+// ═══════════════════════════════════════════════════════════════
+const SITE_URL = 'https://latelierdumecano.netlify.app/';
+const SHARE_TEXT = "L'Atelier du Mécano — Garage, dépannage 24h/24 et location de véhicules à Valgelon la Rochette (73). Je recommande !";
+
+function partagerSur(reseau){
+  const url = encodeURIComponent(SITE_URL);
+  const texte = encodeURIComponent(SHARE_TEXT);
+  let lien = '';
+  switch(reseau){
+    case 'facebook':
+      lien = 'https://www.facebook.com/sharer/sharer.php?u='+url+'&quote='+texte;
+      break;
+    case 'twitter':
+      lien = 'https://twitter.com/intent/tweet?url='+url+'&text='+texte;
+      break;
+    case 'whatsapp':
+      lien = 'https://wa.me/?text='+texte+'%20'+url;
+      break;
+    case 'telegram':
+      lien = 'https://t.me/share/url?url='+url+'&text='+texte;
+      break;
+    case 'email':
+      lien = 'mailto:?subject='+encodeURIComponent("L'Atelier du Mécano")+'&body='+texte+'%0A%0A'+url;
+      break;
+    case 'instagram':
+      // Instagram ne permet pas le partage direct de lien par URL → on copie le lien + notif
+      copierLienSite();
+      showNotif('📸 Instagram','Le lien a été copié ! Collez-le dans votre story ou bio Instagram, ou envoyez-le en message.');
+      return;
+  }
+  if(lien){
+    // Essayer l'API de partage native mobile d'abord (si dispo et pertinent)
+    window.open(lien, '_blank', 'width=600,height=500');
+  }
+}
+
+function copierLienSite(){
+  const fallbackCopy = () => {
+    const ta = document.createElement('textarea');
+    ta.value = SITE_URL;
+    ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); showNotif('🔗 Lien copié !','L\'adresse du site a été copiée dans le presse-papier.'); }
+    catch(e){ showNotif('🔗 Lien du site', SITE_URL); }
+    document.body.removeChild(ta);
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(SITE_URL)
+      .then(() => showNotif('🔗 Lien copié !','L\'adresse du site a été copiée dans le presse-papier.'))
+      .catch(fallbackCopy);
+  } else {
+    fallbackCopy();
+  }
+}
+
+// Partage natif mobile (bouton flottant optionnel)
+async function partageNatif(){
+  if(navigator.share){
+    try {
+      await navigator.share({ title: "L'Atelier du Mécano", text: SHARE_TEXT, url: SITE_URL });
+    } catch(e){ /* annulé */ }
+  } else {
+    copierLienSite();
+  }
+}
+
 function showNotif(title,msg){const n=document.getElementById('notif');document.getElementById('notif-title').textContent=title;document.getElementById('notif-msg').textContent=msg;n.classList.add('show');clearTimeout(n._t);n._t=setTimeout(()=>n.classList.remove('show'),4200);}
 // ─── MULTI-PAGE NAVIGATION ────────
 const PAGES = ['accueil','location','paiement','vente','parrainage','avis','contact'];
@@ -4630,6 +5053,7 @@ function openAdmin(){
   renderDeliveryPriceGrid();
   renderUsersTable();
   renderParrTable();
+  renderMalusTable();
   renderPlanningAdmin();
   renderVenteAdmin();
   renderContratHistory();
@@ -5778,6 +6202,69 @@ function renderParrTable(){
       </td>
       <td><button class="btn-admin-del" onclick="parrainages.splice(${i},1);saveData('adm_parrainages',parrainages);renderParrTable();">🗑</button></td>
     </tr>`).join('');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// MALUS / DÉGRADATIONS CLIENTS
+// ═══════════════════════════════════════════════════════════════
+function ajouterMalus(){
+  const val = id => (document.getElementById(id)?.value || '').trim();
+  const nom = val('malus-nom');
+  if(!nom){ showNotif('👤 Nom manquant','Renseignez le nom du client.'); return; }
+  const entry = {
+    id: 'malus_'+Date.now(),
+    nom: nom,
+    contact: val('malus-contact'),
+    vehicule: val('malus-vehicule'),
+    date: val('malus-date') || new Date().toLocaleDateString('fr-FR'),
+    desc: val('malus-desc'),
+    honnete: val('malus-honnete'),
+    taux: parseInt(val('malus-taux')) || 0,
+    _updatedAt: new Date().toISOString(),
+  };
+  malusList.unshift(entry);
+  saveData('adm_malus', malusList);
+  renderMalusTable();
+  // Reset formulaire
+  ['malus-nom','malus-contact','malus-vehicule','malus-date','malus-desc'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  const t=document.getElementById('malus-taux'); if(t) t.value='0';
+  const h=document.getElementById('malus-honnete'); if(h) h.value='honnete';
+  showNotif('⚠️ Dégradation enregistrée', nom+' ajouté au suivi comportement'+(entry.taux>0?' avec malus '+entry.taux+'%':'')+'.');
+}
+
+function renderMalusTable(){
+  const tb = document.getElementById('malusTableBody');
+  if(!tb) return;
+  if(!malusList.length){ tb.innerHTML='<tr><td colspan="8" style="text-align:center;color:var(--gray-text);padding:1rem;">Aucune dégradation enregistrée. 👍</td></tr>'; return; }
+  tb.innerHTML = malusList.map((m,i)=>`
+    <tr>
+      <td><strong>${m.nom}</strong></td>
+      <td style="font-size:12px;">${m.contact||'—'}</td>
+      <td style="font-size:12px;">${m.vehicule||'—'}</td>
+      <td style="font-size:12px;white-space:nowrap;">${m.date}</td>
+      <td style="font-size:12px;max-width:200px;">${m.desc||'—'}</td>
+      <td>
+        <span style="display:inline-block;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap;${m.honnete==='honnete'?'background:#d0ede0;color:#0a4d2a;':'background:#fdd;color:#c0392b;'}">
+          ${m.honnete==='honnete'?'✅ Honnête':'❌ Non prévenu'}
+        </span>
+      </td>
+      <td>
+        <div style="display:flex;align-items:center;gap:4px;">
+          <input class="admin-input" type="number" min="0" max="100" value="${m.taux||0}" style="width:55px;background:var(--gray-light);" oninput="malusList[${i}].taux=parseInt(this.value)||0;saveData('adm_malus',malusList);" /> %
+        </div>
+      </td>
+      <td><button class="btn-admin-del" onclick="if(confirm('Supprimer cette entrée ?')){malusList.splice(${i},1);saveData('adm_malus',malusList);renderMalusTable();}">🗑</button></td>
+    </tr>`).join('');
+}
+
+// Vérifie si un client a un malus (appelé lors d'une réservation)
+function checkClientMalus(nom){
+  if(!nom || !malusList.length) return null;
+  const nomLower = nom.toLowerCase().trim();
+  const found = malusList.filter(m => m.nom.toLowerCase().trim() === nomLower && m.taux > 0);
+  if(!found.length) return null;
+  // Retourne le malus le plus élevé
+  return found.reduce((max,m) => m.taux > max.taux ? m : max, found[0]);
 }
 
 // ─── COPY IBAN ────────────────────
@@ -7425,7 +7912,11 @@ function renderCalendar(){
     if(hasSpecialPrice)    bg='background:#fff4eb;';
 
     let cls='planning-cell'+(isT?' client-today':'');
-    if(ev.length) cls+= ev[0].type==='livraison'?' available':' booked';
+    if(ev.length){
+      // Jour avec événement : livraison = vert, réservation/retour = ROUGE plein
+      if(ev[0].type==='livraison'){ cls+=' available'; }
+      else { cls+=' booked'; bg='background:#ff6b6b;'; }  // fond rouge franc prioritaire
+    }
 
     // Show price if vehicle selected
     let priceTag='';
