@@ -738,6 +738,23 @@ footer, .footer-contact-item, .footer-section {
   </div>
 </section>
 
+<!-- BANDEAU JOIGNABILITÉ ACCUEIL -->
+<div style="background:linear-gradient(135deg,#1a3358 0%,#0a1628 100%);border-bottom:2px solid var(--orange);">
+  <div style="max-width:1100px;margin:0 auto;padding:1.5rem 2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;justify-content:center;text-align:center;">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;">
+      <span style="font-size:30px;">📱</span>
+      <div style="text-align:left;">
+        <div style="color:white;font-family:'Bricolage Grotesque',sans-serif;font-size:17px;font-weight:800;line-height:1.3;">Privilégiez le SMS ou l'e-mail pour me contacter</div>
+        <div style="color:rgba(255,255,255,.75);font-size:14px;line-height:1.4;margin-top:2px;">En cas d'appel sans réponse, laissez un message : <strong style="color:#ffb86c;">je recontacte tous mes clients en fin de journée ou le lendemain matin.</strong></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;">
+      <a href="sms:0668833687" style="display:inline-flex;align-items:center;gap:6px;background:var(--orange);color:white;text-decoration:none;font-size:14px;font-weight:700;padding:10px 18px;border-radius:8px;white-space:nowrap;">💬 SMS</a>
+      <a href="mailto:marchenriannis@gmail.com" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);color:white;text-decoration:none;font-size:14px;font-weight:700;padding:10px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.2);white-space:nowrap;">✉️ E-mail</a>
+    </div>
+  </div>
+</div>
+
 <!-- EMERGENCY BANNER -->
 <div style="background:var(--orange);padding:0;">
   <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding:1.25rem 2rem;">
@@ -1767,6 +1784,8 @@ footer, .footer-contact-item, .footer-section {
     <button class="admin-menu-btn" onclick="switchTab('parr')">🎁 Parrainage</button>
     <button class="admin-menu-btn" onclick="switchTab('reviews')">💬 Avis clients</button>
     <button class="admin-menu-btn" onclick="switchTab('photos')">🖼️ Photos du site</button>
+    <button class="admin-menu-btn" onclick="switchTab('compta')">📊 Comptabilité &amp; Impôts</button>
+    <button class="admin-menu-btn" onclick="switchTab('paie')">👥 Employés &amp; Paie</button>
   </div>
   <!-- OVERLAY -->
   <div class="admin-overlay" id="adminOverlay" onclick="toggleAdminMenu()"></div>
@@ -1844,6 +1863,323 @@ footer, .footer-contact-item, .footer-section {
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- PAGE: EMPLOYÉS & PAIE -->
+    <div class="admin-page" id="page-paie">
+
+      <!-- ACTIVATION -->
+      <div class="admin-section">
+        <div class="admin-section-header">
+          <div class="admin-section-title">👥 Employés &amp; Fiches de paie</div>
+          <div class="admin-badge">Génération automatique</div>
+        </div>
+        <div class="admin-section-body">
+          <div style="background:#eef2f7;border:1px solid #b0bcd4;border-radius:10px;padding:1.25rem;margin-bottom:1rem;">
+            <label style="display:flex;align-items:center;gap:12px;cursor:pointer;">
+              <input type="checkbox" id="paie-active" style="width:22px;height:22px;cursor:pointer;flex-shrink:0;" onchange="togglePaieActive()" />
+              <div>
+                <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:800;color:var(--navy);">Activer la génération automatique de fiches de paie</div>
+                <div style="font-size:13px;color:var(--gray-text);margin-top:2px;">Une fois activé, vous pourrez ajouter des employés avec leur taux horaire et générer automatiquement leurs bulletins de salaire mensuels.</div>
+              </div>
+            </label>
+          </div>
+          <div id="paie-disabled-msg" style="text-align:center;color:var(--gray-text);padding:2rem;font-size:14px;">
+            ⬆️ Activez l'option ci-dessus pour gérer vos employés et leurs fiches de paie.
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTENU PAIE (masqué si non activé) -->
+      <div id="paie-content" style="display:none;">
+
+        <!-- LISTE DES EMPLOYÉS -->
+        <div class="admin-section" style="margin-top:1.5rem;">
+          <div class="admin-section-header">
+            <div class="admin-section-title">👤 Mes employés</div>
+            <div class="admin-badge" id="emp-count">0 employé</div>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="admin-table">
+              <thead><tr><th>Nom &amp; Prénom</th><th>Poste</th><th>N° Sécurité Sociale</th><th>Embauche</th><th>Contrat</th><th>Taux horaire</th><th>Suppr.</th></tr></thead>
+              <tbody id="empTableBody"></tbody>
+            </table>
+          </div>
+          <div class="add-row-form">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr)) auto;gap:10px;align-items:end;">
+              <div><label>Nom &amp; Prénom</label><input class="admin-input" type="text" id="emp-nom" placeholder="Ex : Pierre Martin" /></div>
+              <div><label>Poste</label><input class="admin-input" type="text" id="emp-poste" placeholder="Ex : Mécanicien" /></div>
+              <div><label>N° Sécurité Sociale</label><input class="admin-input" type="text" id="emp-ss" placeholder="1 85 05 78..." /></div>
+              <div><label>Date d'embauche</label><input class="admin-input" type="date" id="emp-embauche" /></div>
+              <div><label>Type de contrat</label>
+                <select class="admin-input" id="emp-contrat">
+                  <option>CDI</option><option>CDD</option><option>Apprentissage</option><option>Temps partiel</option><option>Saisonnier</option>
+                </select>
+              </div>
+              <div><label>Taux horaire brut (€)</label><input class="admin-input" type="number" id="emp-taux" step="0.01" placeholder="11.88" /></div>
+              <div style="display:flex;align-items:flex-end;"><button class="btn-admin-add" onclick="addEmploye()">+ Ajouter</button></div>
+            </div>
+            <div style="font-size:11px;color:var(--gray-text);margin-top:.5rem;">💡 Le SMIC horaire brut est de 11,88 € (2025). Le taux horaire sert de base au calcul automatique des fiches de paie.</div>
+          </div>
+        </div>
+
+        <!-- GÉNÉRER UNE FICHE DE PAIE -->
+        <div class="admin-section" style="margin-top:1.5rem;">
+          <div class="admin-section-header">
+            <div class="admin-section-title">🧾 Générer une fiche de paie</div>
+          </div>
+          <div class="admin-section-body">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.75rem;margin-bottom:1rem;">
+              <div>
+                <label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">👤 Employé</label>
+                <select class="admin-input" id="paie-emp" style="width:100%;" onchange="updatePaiePreview()"></select>
+              </div>
+              <div>
+                <label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">📅 Mois</label>
+                <select class="admin-input" id="paie-mois" style="width:100%;" onchange="updatePaiePreview()">
+                  <option value="1">Janvier</option><option value="2">Février</option><option value="3">Mars</option>
+                  <option value="4">Avril</option><option value="5">Mai</option><option value="6">Juin</option>
+                  <option value="7">Juillet</option><option value="8">Août</option><option value="9">Septembre</option>
+                  <option value="10">Octobre</option><option value="11">Novembre</option><option value="12">Décembre</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">📆 Année</label>
+                <input class="admin-input" type="number" id="paie-annee" style="width:100%;" oninput="updatePaiePreview()" />
+              </div>
+              <div>
+                <label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">⏱️ Heures travaillées</label>
+                <input class="admin-input" type="number" id="paie-heures" step="0.5" placeholder="151.67" style="width:100%;" oninput="updatePaiePreview()" />
+              </div>
+              <div>
+                <label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">💶 Prime / bonus (€)</label>
+                <input class="admin-input" type="number" id="paie-prime" step="0.01" placeholder="0" style="width:100%;" oninput="updatePaiePreview()" />
+              </div>
+            </div>
+            <div style="font-size:11px;color:var(--gray-text);margin-bottom:1rem;">💡 Temps plein = 151,67 h/mois (35 h/semaine). Les heures au-delà de 151,67 h sont majorées à 25% (heures supplémentaires).</div>
+
+            <!-- APERÇU CALCUL -->
+            <div id="paie-preview" style="background:var(--gray-light);border:1px solid var(--gray);border-radius:10px;padding:1.25rem;margin-bottom:1rem;"></div>
+
+            <div style="display:flex;gap:.6rem;flex-wrap:wrap;">
+              <button onclick="genererFichePaie()" style="background:#1aab6d;color:white;border:none;font-size:14px;font-weight:800;padding:11px 20px;border-radius:8px;cursor:pointer;">📥 Générer &amp; télécharger la fiche PDF</button>
+              <button onclick="enregistrerFichePaie()" style="background:#0a1628;color:white;border:none;font-size:14px;font-weight:700;padding:11px 20px;border-radius:8px;cursor:pointer;">💾 Enregistrer dans l'historique</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PARAMÈTRES COTISATIONS -->
+        <div class="admin-section" style="margin-top:1.5rem;">
+          <div class="admin-section-header">
+            <div class="admin-section-title">⚙️ Taux de cotisations (fiches de paie)</div>
+            <div class="admin-badge">Configurable</div>
+          </div>
+          <div class="admin-section-body">
+            <p style="font-size:13px;color:var(--gray-text);line-height:1.6;margin-bottom:1.25rem;">
+              Ces taux simplifiés permettent de calculer le salaire net à partir du brut. Ils sont pré-remplis avec des valeurs moyennes courantes mais ajustez-les selon votre convention collective (source : urssaf.fr).
+            </p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-bottom:1.25rem;">
+              <div style="background:var(--gray-light);border-radius:8px;padding:1rem;border:1px solid var(--gray);">
+                <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:.5rem;">Cotisations salariales</div>
+                <div style="display:flex;align-items:center;gap:6px;"><input class="admin-input" type="number" id="paie-taux-sal" step="0.1" style="width:75px;font-weight:700;" /> <span style="font-weight:700;">%</span></div>
+                <div style="font-size:11px;color:var(--gray-text);margin-top:4px;">Déduites du brut (~22%)</div>
+              </div>
+              <div style="background:var(--gray-light);border-radius:8px;padding:1rem;border:1px solid var(--gray);">
+                <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:.5rem;">Cotisations patronales</div>
+                <div style="display:flex;align-items:center;gap:6px;"><input class="admin-input" type="number" id="paie-taux-pat" step="0.1" style="width:75px;font-weight:700;" /> <span style="font-weight:700;">%</span></div>
+                <div style="font-size:11px;color:var(--gray-text);margin-top:4px;">À votre charge (~42%)</div>
+              </div>
+              <div style="background:#fff8f0;border-radius:8px;padding:1rem;border:1px solid #f4d0a0;">
+                <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:.5rem;">Prélèvement à la source</div>
+                <div style="display:flex;align-items:center;gap:6px;"><input class="admin-input" type="number" id="paie-taux-pas" step="0.1" style="width:75px;font-weight:700;" /> <span style="font-weight:700;">%</span></div>
+                <div style="font-size:11px;color:var(--gray-text);margin-top:4px;">Impôt (0 si non imposable)</div>
+              </div>
+              <div style="background:var(--gray-light);border-radius:8px;padding:1rem;border:1px solid var(--gray);">
+                <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:.5rem;">Majoration heures supp.</div>
+                <div style="display:flex;align-items:center;gap:6px;"><input class="admin-input" type="number" id="paie-taux-hs" step="1" style="width:75px;font-weight:700;" /> <span style="font-weight:700;">%</span></div>
+                <div style="font-size:11px;color:var(--gray-text);margin-top:4px;">Au-delà de 151,67h (~25%)</div>
+              </div>
+            </div>
+            <button class="btn-admin-save" onclick="savePaieSettings()" style="background:#1aab6d;color:white;font-weight:800;">💾 Enregistrer les taux</button>
+          </div>
+        </div>
+
+        <!-- HISTORIQUE DES FICHES -->
+        <div class="admin-section" style="margin-top:1.5rem;">
+          <div class="admin-section-header">
+            <div class="admin-section-title">📋 Historique des fiches de paie</div>
+            <div class="admin-badge" id="fiches-count">0 fiche</div>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="admin-table">
+              <thead><tr><th>Employé</th><th>Période</th><th>Heures</th><th>Brut</th><th>Net à payer</th><th>Coût total</th><th>PDF</th><th>Suppr.</th></tr></thead>
+              <tbody id="fichesTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PAGE: COMPTABILITÉ & IMPÔTS -->
+    <div class="admin-page" id="page-compta">
+
+      <!-- En-tête + sélecteur année -->
+      <div class="admin-section">
+        <div class="admin-section-header">
+          <div class="admin-section-title">📊 Comptabilité &amp; Impôts (Auto-entrepreneur)</div>
+          <div style="display:flex;align-items:center;gap:.5rem;">
+            <label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;">Année</label>
+            <select id="compta-year" class="admin-input" style="width:100px;font-weight:700;" onchange="renderComptabilite()"></select>
+          </div>
+        </div>
+        <div class="admin-section-body">
+          <p style="font-size:14px;color:var(--text);line-height:1.6;margin-bottom:1rem;">
+            Suivi automatique de votre chiffre d'affaires et calcul de vos cotisations sociales URSSAF. Les recettes issues des locations et factures sont importées automatiquement ; ajoutez manuellement les recettes mécanique, dépannage et ventes de véhicules.
+          </p>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap;">
+            <button onclick="importFromInvoices()" style="background:#0a1628;color:white;border:none;font-size:13px;font-weight:700;padding:9px 16px;border-radius:7px;cursor:pointer;">🔄 Importer les factures/locations</button>
+            <button onclick="exportComptaURSSAF()" style="background:#1aab6d;color:white;border:none;font-size:13px;font-weight:700;padding:9px 16px;border-radius:7px;cursor:pointer;">📥 Export déclaration URSSAF (PDF)</button>
+            <button onclick="exportComptaCSV()" style="background:#1a3358;color:white;border:none;font-size:13px;font-weight:700;padding:9px 16px;border-radius:7px;cursor:pointer;">📊 Export comptable (CSV)</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI CARDS -->
+      <div id="compta-kpis" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:1.5rem;"></div>
+
+      <!-- GRAPHIQUES -->
+      <div class="admin-section">
+        <div class="admin-section-header">
+          <div class="admin-section-title">📈 Répartition des recettes par activité</div>
+        </div>
+        <div class="admin-section-body">
+          <div id="compta-chart-categories"></div>
+        </div>
+      </div>
+
+      <div class="admin-section" style="margin-top:1.5rem;">
+        <div class="admin-section-header">
+          <div class="admin-section-title">📅 Évolution mensuelle du chiffre d'affaires</div>
+        </div>
+        <div class="admin-section-body">
+          <div id="compta-chart-monthly"></div>
+        </div>
+      </div>
+
+      <div class="admin-section" style="margin-top:1.5rem;">
+        <div class="admin-section-header">
+          <div class="admin-section-title">💰 Chiffre d'affaires, charges &amp; net</div>
+        </div>
+        <div class="admin-section-body">
+          <div id="compta-chart-net"></div>
+        </div>
+      </div>
+
+      <!-- AJOUT MANUEL DE RECETTE -->
+      <div class="admin-section" style="margin-top:1.5rem;">
+        <div class="admin-section-header">
+          <div class="admin-section-title">➕ Ajouter une recette</div>
+        </div>
+        <div class="admin-section-body">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.75rem;margin-bottom:1rem;">
+            <div>
+              <label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">📅 Date</label>
+              <input class="admin-input" type="date" id="rec-date" style="width:100%;" />
+            </div>
+            <div>
+              <label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">🏷️ Activité</label>
+              <select class="admin-input" id="rec-cat" style="width:100%;">
+                <option value="location">🚗 Location</option>
+                <option value="vente">🚘 Vente véhicule</option>
+                <option value="mecanique">🔧 Mécanique</option>
+                <option value="depannage">🚨 Dépannage</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">💶 Montant (€)</label>
+              <input class="admin-input" type="number" id="rec-montant" min="0" step="0.01" placeholder="0.00" style="width:100%;" />
+            </div>
+            <div style="grid-column:span 2;">
+              <label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">📝 Libellé</label>
+              <input class="admin-input" type="text" id="rec-label" placeholder="Ex: Vidange + plaquettes M. Martin" style="width:100%;" />
+            </div>
+          </div>
+          <button class="btn-admin-save" onclick="ajouterRecette()" style="background:#1aab6d;color:white;font-weight:800;">➕ Enregistrer la recette</button>
+        </div>
+      </div>
+
+      <!-- TABLEAU DES RECETTES -->
+      <div class="admin-section" style="margin-top:1.5rem;">
+        <div class="admin-section-header">
+          <div class="admin-section-title">📋 Détail des recettes</div>
+          <div class="admin-badge" id="compta-count">0 recette</div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table">
+            <thead><tr><th>Date</th><th>Activité</th><th>Libellé</th><th>Montant</th><th>Source</th><th>Suppr.</th></tr></thead>
+            <tbody id="comptaTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PARAMÈTRES FISCAUX -->
+      <div class="admin-section" style="margin-top:1.5rem;">
+        <div class="admin-section-header">
+          <div class="admin-section-title">⚙️ Paramètres fiscaux (taux URSSAF)</div>
+          <div class="admin-badge">Configurable</div>
+        </div>
+        <div class="admin-section-body">
+          <p style="font-size:13px;color:var(--gray-text);line-height:1.6;margin-bottom:1.25rem;">
+            Ces taux de cotisations sociales correspondent au régime micro-entrepreneur. Ils sont pré-remplis avec les taux courants mais vous pouvez les ajuster selon votre situation (source officielle : urssaf.fr). Chaque activité a son propre taux.
+          </p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-bottom:1.25rem;">
+            <div style="background:var(--gray-light);border-radius:8px;padding:1rem;border:1px solid var(--gray);">
+              <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:.5rem;">🚗 Location (services BIC)</div>
+              <div style="display:flex;align-items:center;gap:6px;"><input class="admin-input" type="number" id="tax-location" step="0.1" style="width:75px;font-weight:700;" /> <span style="font-weight:700;">%</span></div>
+            </div>
+            <div style="background:var(--gray-light);border-radius:8px;padding:1rem;border:1px solid var(--gray);">
+              <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:.5rem;">🚘 Vente marchandises</div>
+              <div style="display:flex;align-items:center;gap:6px;"><input class="admin-input" type="number" id="tax-vente" step="0.1" style="width:75px;font-weight:700;" /> <span style="font-weight:700;">%</span></div>
+            </div>
+            <div style="background:var(--gray-light);border-radius:8px;padding:1rem;border:1px solid var(--gray);">
+              <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:.5rem;">🔧 Mécanique (services)</div>
+              <div style="display:flex;align-items:center;gap:6px;"><input class="admin-input" type="number" id="tax-mecanique" step="0.1" style="width:75px;font-weight:700;" /> <span style="font-weight:700;">%</span></div>
+            </div>
+            <div style="background:var(--gray-light);border-radius:8px;padding:1rem;border:1px solid var(--gray);">
+              <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:.5rem;">🚨 Dépannage (services)</div>
+              <div style="display:flex;align-items:center;gap:6px;"><input class="admin-input" type="number" id="tax-depannage" step="0.1" style="width:75px;font-weight:700;" /> <span style="font-weight:700;">%</span></div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-bottom:1.25rem;">
+            <div style="background:#fff8f0;border-radius:8px;padding:1rem;border:1px solid #f4d0a0;">
+              <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:.5rem;">🎓 Contribution formation (CFP)</div>
+              <div style="display:flex;align-items:center;gap:6px;"><input class="admin-input" type="number" id="tax-cfp" step="0.1" style="width:75px;font-weight:700;" /> <span style="font-weight:700;">%</span></div>
+            </div>
+            <div style="background:#eef2f7;border-radius:8px;padding:1rem;border:1px solid #b0bcd4;">
+              <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:.5rem;">
+                <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+                  <input type="checkbox" id="tax-vl" style="width:18px;height:18px;cursor:pointer;" />
+                  Versement libératoire de l'impôt
+                </label>
+              </div>
+              <div style="font-size:11px;color:var(--gray-text);line-height:1.5;">Si activé : impôt payé à l'URSSAF (1% vente, 1,7% services). Sinon l'impôt est calculé séparément par les impôts.</div>
+            </div>
+          </div>
+          <button class="btn-admin-save" onclick="saveTaxSettings()" style="background:#1aab6d;color:white;font-weight:800;">💾 Enregistrer les paramètres fiscaux</button>
+        </div>
+      </div>
+
+      <!-- RÉCAP FISCAL DÉTAILLÉ -->
+      <div class="admin-section" style="margin-top:1.5rem;">
+        <div class="admin-section-header">
+          <div class="admin-section-title">🧾 Récapitulatif fiscal de l'année</div>
+        </div>
+        <div class="admin-section-body">
+          <div id="compta-fiscal-detail"></div>
+        </div>
+      </div>
+
     </div>
 
     <!-- PAGE: FLOTTE -->
@@ -3032,6 +3368,12 @@ const SYNCED_SETTING_KEYS = [
   'adm_parrainages',        // demandes de parrainage
   'adm_reviews',            // avis clients
   'adm_malus',              // malus / dégradations clients
+  'adm_comptabilite',       // recettes comptables
+  'adm_tax_settings',       // paramètres fiscaux
+  'adm_paie_active',        // activation fiches de paie
+  'adm_employes',           // employés
+  'adm_fiches_paie',        // fiches de paie générées
+  'adm_paie_settings',      // taux cotisations paie
 ];
 function saveData(key,val){
   try{localStorage.setItem(key,JSON.stringify(val));}catch(e){}
@@ -3589,6 +3931,24 @@ async function loadSettingsFromFirebase(){
         case 'adm_malus':
           if(Array.isArray(value)){ malusList.length=0; value.forEach(x=>malusList.push(x)); saveData('adm_malus',malusList); loaded.push('malus clients'); }
           break;
+        case 'adm_comptabilite':
+          if(Array.isArray(value)){ comptaData.length=0; value.forEach(x=>comptaData.push(x)); saveData('adm_comptabilite',comptaData); loaded.push('comptabilité'); }
+          break;
+        case 'adm_tax_settings':
+          if(value && typeof value==='object'){ taxSettings = value; saveData('adm_tax_settings',taxSettings); loaded.push('paramètres fiscaux'); }
+          break;
+        case 'adm_paie_active':
+          paieActive = !!value; saveData('adm_paie_active',paieActive); loaded.push('activation paie');
+          break;
+        case 'adm_employes':
+          if(Array.isArray(value)){ employes.length=0; value.forEach(x=>employes.push(x)); saveData('adm_employes',employes); loaded.push('employés'); }
+          break;
+        case 'adm_fiches_paie':
+          if(Array.isArray(value)){ fichesPaie.length=0; value.forEach(x=>fichesPaie.push(x)); saveData('adm_fiches_paie',fichesPaie); loaded.push('fiches de paie'); }
+          break;
+        case 'adm_paie_settings':
+          if(value && typeof value==='object'){ paieSettings = value; saveData('adm_paie_settings',paieSettings); loaded.push('taux paie'); }
+          break;
       }
     });
     if(loaded.length){
@@ -3612,6 +3972,8 @@ async function loadSettingsFromFirebase(){
       if(typeof renderParrTable==='function') renderParrTable();
       if(typeof renderSuiviParr==='function') renderSuiviParr();
       if(typeof renderMalusTable==='function') renderMalusTable();
+      if(typeof renderComptabilite==='function') renderComptabilite();
+      if(typeof renderPaie==='function') renderPaie();
       if(typeof renderAvis==='function') renderAvis();
       if(typeof renderAdminReviews==='function') renderAdminReviews();
     }
@@ -4224,6 +4586,20 @@ async function confirmVehicleReturn(contratNum){
   const idx = contratHistory.findIndex(x => x.num === contratNum);
   if(idx >= 0) contratHistory[idx] = c;
   saveData('adm_contrats', contratHistory);
+
+  // Ajouter automatiquement à la comptabilité (recette location)
+  if(typeof comptaData !== 'undefined'){
+    const ref = 'LOC:'+c.num;
+    if(!comptaData.some(r=>r.refNum===ref)){
+      const montant = parseFloat((c.total||'').toString().replace(/[^0-9.,]/g,'').replace(',','.'))||0;
+      if(montant>0){
+        const dateRet = new Date().toISOString().substring(0,10);
+        comptaData.push({ id:'inc_loc_'+c.num, date:dateRet, category:'location', amount:montant, label:'Location '+c.vehicule+' — '+c.client, source:'auto', refNum:ref });
+        saveData('adm_comptabilite', comptaData);
+        if(typeof renderComptabilite==='function') renderComptabilite();
+      }
+    }
+  }
 
   // Mettre à jour la facture associée
   const inv = invoiceHistory.find(x => x.contratNum === contratNum || x.num === contratNum.replace('LOC-','FAC-'));
@@ -5054,6 +5430,8 @@ function openAdmin(){
   renderUsersTable();
   renderParrTable();
   renderMalusTable();
+  if(typeof renderComptabilite==='function') renderComptabilite();
+  if(typeof renderPaie==='function') renderPaie();
   renderPlanningAdmin();
   renderVenteAdmin();
   renderContratHistory();
@@ -6265,6 +6643,831 @@ function checkClientMalus(nom){
   if(!found.length) return null;
   // Retourne le malus le plus élevé
   return found.reduce((max,m) => m.taux > max.taux ? m : max, found[0]);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// MODULE COMPTABILITÉ & IMPÔTS (Auto-entrepreneur)
+// ═══════════════════════════════════════════════════════════════
+let comptaData = loadData('adm_comptabilite', []);
+let taxSettings = loadData('adm_tax_settings', {
+  location: 21.2,    // prestations de services BIC
+  vente: 12.3,       // vente de marchandises BIC
+  mecanique: 21.2,   // prestations de services artisanales
+  depannage: 21.2,   // prestations de services
+  cfp: 0.3,          // contribution formation professionnelle
+  versementLiberatoire: false,
+  vlVente: 1.0,      // versement libératoire vente
+  vlServices: 1.7,   // versement libératoire services
+});
+
+const CATEGORIES_COMPTA = {
+  location:  { label: 'Location',  icon: '🚗', color: '#f4700a' },
+  vente:     { label: 'Vente',     icon: '🚘', color: '#3b82f6' },
+  mecanique: { label: 'Mécanique', icon: '🔧', color: '#1aab6d' },
+  depannage: { label: 'Dépannage', icon: '🚨', color: '#e24b4a' },
+};
+
+function comptaAvailableYears(){
+  const years = new Set();
+  const nowY = new Date().getFullYear();
+  years.add(nowY);
+  comptaData.forEach(r => { if(r.date){ years.add(parseInt(r.date.substring(0,4))); } });
+  return [...years].filter(y=>!isNaN(y)).sort((a,b)=>b-a);
+}
+
+function getComptaYear(){
+  const sel = document.getElementById('compta-year');
+  return sel && sel.value ? parseInt(sel.value) : new Date().getFullYear();
+}
+
+function comptaEntriesForYear(year){
+  return comptaData.filter(r => r.date && parseInt(r.date.substring(0,4)) === year);
+}
+
+// Calcul fiscal complet pour une année
+function computeFiscal(year){
+  const entries = comptaEntriesForYear(year);
+  const parCat = { location:0, vente:0, mecanique:0, depannage:0 };
+  entries.forEach(r => { if(parCat[r.category]!==undefined) parCat[r.category] += (parseFloat(r.amount)||0); });
+  const totalCA = parCat.location + parCat.vente + parCat.mecanique + parCat.depannage;
+
+  // Cotisations sociales par catégorie
+  const cotisations = {
+    location:  parCat.location  * (taxSettings.location||0)  / 100,
+    vente:     parCat.vente     * (taxSettings.vente||0)     / 100,
+    mecanique: parCat.mecanique * (taxSettings.mecanique||0) / 100,
+    depannage: parCat.depannage * (taxSettings.depannage||0) / 100,
+  };
+  const totalCotisations = cotisations.location + cotisations.vente + cotisations.mecanique + cotisations.depannage;
+
+  // CFP (contribution formation)
+  const cfp = totalCA * (taxSettings.cfp||0) / 100;
+
+  // Versement libératoire (optionnel)
+  let versementLib = 0;
+  if(taxSettings.versementLiberatoire){
+    versementLib = parCat.vente * (taxSettings.vlVente||0) / 100
+                 + (parCat.location + parCat.mecanique + parCat.depannage) * (taxSettings.vlServices||0) / 100;
+  }
+
+  const totalCharges = totalCotisations + cfp + versementLib;
+  const net = totalCA - totalCharges;
+
+  return { year, parCat, totalCA, cotisations, totalCotisations, cfp, versementLib, totalCharges, net, count: entries.length };
+}
+
+// ─── RENDU PRINCIPAL ───────────────────────────────────────────
+function renderComptabilite(){
+  // Peupler le sélecteur d'année si vide
+  const yearSel = document.getElementById('compta-year');
+  if(yearSel && !yearSel.options.length){
+    comptaAvailableYears().forEach(y => {
+      const o = document.createElement('option'); o.value=y; o.textContent=y; yearSel.appendChild(o);
+    });
+  }
+  const year = getComptaYear();
+  const f = computeFiscal(year);
+
+  // Pré-remplir date du jour dans le formulaire
+  const recDate = document.getElementById('rec-date');
+  if(recDate && !recDate.value) recDate.value = new Date().toISOString().substring(0,10);
+
+  // Charger les paramètres fiscaux dans les champs
+  const setVal = (id,v)=>{ const e=document.getElementById(id); if(e && document.activeElement!==e) e.value=v; };
+  setVal('tax-location', taxSettings.location);
+  setVal('tax-vente', taxSettings.vente);
+  setVal('tax-mecanique', taxSettings.mecanique);
+  setVal('tax-depannage', taxSettings.depannage);
+  setVal('tax-cfp', taxSettings.cfp);
+  const vlCheck = document.getElementById('tax-vl'); if(vlCheck) vlCheck.checked = !!taxSettings.versementLiberatoire;
+
+  renderComptaKPIs(f);
+  renderComptaChartCategories(f);
+  renderComptaChartMonthly(year);
+  renderComptaChartNet(f);
+  renderComptaTable(year);
+  renderComptaFiscalDetail(f);
+}
+
+function eur(n){ return (Math.round(n*100)/100).toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2})+' €'; }
+function eur0(n){ return Math.round(n).toLocaleString('fr-FR')+' €'; }
+
+function renderComptaKPIs(f){
+  const el = document.getElementById('compta-kpis');
+  if(!el) return;
+  const cards = [
+    { label:'Chiffre d\'affaires', value:eur0(f.totalCA), sub:f.count+' recette'+(f.count>1?'s':''), bg:'linear-gradient(135deg,#0a1628,#1a3358)', color:'white' },
+    { label:'Cotisations URSSAF', value:eur0(f.totalCotisations), sub:'Charges sociales', bg:'linear-gradient(135deg,#e24b4a,#c0392b)', color:'white' },
+    { label:'Total charges', value:eur0(f.totalCharges), sub:'Cotis. + CFP'+(f.versementLib>0?' + impôt':''), bg:'linear-gradient(135deg,#f4700a,#d4580a)', color:'white' },
+    { label:'Revenu net estimé', value:eur0(f.net), sub:'Après charges', bg:'linear-gradient(135deg,#1aab6d,#0a8d55)', color:'white' },
+  ];
+  el.innerHTML = cards.map(c=>`
+    <div style="background:${c.bg};border-radius:12px;padding:1.25rem;color:${c.color};">
+      <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;opacity:.85;margin-bottom:.5rem;">${c.label}</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:28px;font-weight:900;line-height:1;">${c.value}</div>
+      <div style="font-size:12px;opacity:.8;margin-top:.4rem;">${c.sub}</div>
+    </div>`).join('');
+}
+
+// ─── GRAPHIQUE CAMEMBERT (répartition par activité) ─────────────
+function renderComptaChartCategories(f){
+  const el = document.getElementById('compta-chart-categories');
+  if(!el) return;
+  const total = f.totalCA;
+  if(total <= 0){ el.innerHTML = '<p style="text-align:center;color:var(--gray-text);padding:2rem;">Aucune recette pour cette année. Ajoutez des recettes ou importez vos factures.</p>'; return; }
+
+  const cats = Object.keys(CATEGORIES_COMPTA);
+  let startAngle = -90;
+  const cx=110, cy=110, r=100;
+  let paths = '';
+  cats.forEach(k => {
+    const val = f.parCat[k];
+    if(val <= 0) return;
+    const pct = val/total;
+    const angle = pct*360;
+    const endAngle = startAngle+angle;
+    const x1 = cx + r*Math.cos(startAngle*Math.PI/180);
+    const y1 = cy + r*Math.sin(startAngle*Math.PI/180);
+    const x2 = cx + r*Math.cos(endAngle*Math.PI/180);
+    const y2 = cy + r*Math.sin(endAngle*Math.PI/180);
+    const large = angle>180?1:0;
+    // Cas 100% : dessiner un cercle complet
+    if(pct >= 0.999){
+      paths += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${CATEGORIES_COMPTA[k].color}"/>`;
+    } else {
+      paths += `<path d="M${cx},${cy} L${x1},${y1} A${r},${r} 0 ${large},1 ${x2},${y2} Z" fill="${CATEGORIES_COMPTA[k].color}"/>`;
+    }
+    startAngle = endAngle;
+  });
+
+  const legend = cats.map(k=>{
+    const val = f.parCat[k];
+    const pct = total>0 ? (val/total*100) : 0;
+    return `<div style="display:flex;align-items:center;gap:8px;padding:.5rem 0;">
+      <span style="width:16px;height:16px;border-radius:4px;background:${CATEGORIES_COMPTA[k].color};flex-shrink:0;"></span>
+      <span style="flex:1;font-size:14px;color:var(--text);">${CATEGORIES_COMPTA[k].icon} ${CATEGORIES_COMPTA[k].label}</span>
+      <span style="font-weight:700;color:var(--navy);font-size:14px;">${eur0(val)}</span>
+      <span style="font-size:12px;color:var(--gray-text);width:48px;text-align:right;">${pct.toFixed(1)}%</span>
+    </div>`;
+  }).join('');
+
+  el.innerHTML = `<div style="display:flex;gap:2rem;align-items:center;flex-wrap:wrap;justify-content:center;">
+    <svg width="220" height="220" viewBox="0 0 220 220" style="flex-shrink:0;">${paths}
+      <circle cx="110" cy="110" r="55" fill="white"/>
+      <text x="110" y="104" text-anchor="middle" style="font-size:12px;fill:#888;">Total</text>
+      <text x="110" y="124" text-anchor="middle" style="font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:800;fill:#0a1628;">${eur0(total)}</text>
+    </svg>
+    <div style="flex:1;min-width:260px;">${legend}</div>
+  </div>`;
+}
+
+// ─── GRAPHIQUE BARRES (évolution mensuelle) ─────────────────────
+function renderComptaChartMonthly(year){
+  const el = document.getElementById('compta-chart-monthly');
+  if(!el) return;
+  const mois = ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Aoû','Sep','Oct','Nov','Déc'];
+  const monthly = Array(12).fill(0).map(()=>({location:0,vente:0,mecanique:0,depannage:0,total:0}));
+  comptaEntriesForYear(year).forEach(r => {
+    const m = parseInt(r.date.substring(5,7))-1;
+    if(m>=0 && m<12){ const amt=parseFloat(r.amount)||0; monthly[m][r.category]=(monthly[m][r.category]||0)+amt; monthly[m].total+=amt; }
+  });
+  const maxVal = Math.max(...monthly.map(m=>m.total), 1);
+  const chartH = 200, chartW = 640, barW = chartW/12 - 8;
+
+  let bars = '';
+  monthly.forEach((m,i)=>{
+    const x = i*(chartW/12) + 4;
+    let yOffset = chartH;
+    // Barres empilées par catégorie
+    ['location','vente','mecanique','depannage'].forEach(cat=>{
+      const val = m[cat];
+      if(val<=0) return;
+      const h = (val/maxVal)*chartH;
+      yOffset -= h;
+      bars += `<rect x="${x}" y="${yOffset}" width="${barW}" height="${h}" fill="${CATEGORIES_COMPTA[cat].color}"><title>${mois[i]} ${CATEGORIES_COMPTA[cat].label}: ${eur0(val)}</title></rect>`;
+    });
+    // Label mois
+    bars += `<text x="${x+barW/2}" y="${chartH+16}" text-anchor="middle" style="font-size:11px;fill:#888;">${mois[i]}</text>`;
+    // Total au-dessus
+    if(m.total>0) bars += `<text x="${x+barW/2}" y="${yOffset-4}" text-anchor="middle" style="font-size:9px;fill:#555;font-weight:700;">${Math.round(m.total)}</text>`;
+  });
+
+  const legendMini = Object.keys(CATEGORIES_COMPTA).map(k=>
+    `<span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--text);margin-right:1rem;"><span style="width:12px;height:12px;border-radius:3px;background:${CATEGORIES_COMPTA[k].color};"></span>${CATEGORIES_COMPTA[k].label}</span>`
+  ).join('');
+
+  el.innerHTML = `<div style="margin-bottom:.75rem;">${legendMini}</div>
+    <div style="overflow-x:auto;"><svg width="${chartW}" height="${chartH+28}" viewBox="0 0 ${chartW} ${chartH+28}" style="min-width:${chartW}px;">${bars}</svg></div>`;
+}
+
+// ─── GRAPHIQUE CA / CHARGES / NET ───────────────────────────────
+function renderComptaChartNet(f){
+  const el = document.getElementById('compta-chart-net');
+  if(!el) return;
+  if(f.totalCA<=0){ el.innerHTML='<p style="text-align:center;color:var(--gray-text);padding:1rem;">Aucune donnée.</p>'; return; }
+  const items = [
+    { label:'Chiffre d\'affaires', val:f.totalCA, color:'#0a1628' },
+    { label:'Cotisations URSSAF', val:f.totalCotisations, color:'#e24b4a' },
+    { label:'CFP', val:f.cfp, color:'#f4700a' },
+  ];
+  if(f.versementLib>0) items.push({ label:'Impôt (vers. libératoire)', val:f.versementLib, color:'#9333ea' });
+  items.push({ label:'Revenu net', val:f.net, color:'#1aab6d' });
+  const maxVal = Math.max(...items.map(i=>i.val),1);
+
+  const rows = items.map(it=>{
+    const pct = (it.val/maxVal)*100;
+    return `<div style="margin-bottom:.85rem;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+        <span style="font-size:13px;font-weight:600;color:var(--text);">${it.label}</span>
+        <span style="font-size:14px;font-weight:800;color:${it.color};">${eur(it.val)}</span>
+      </div>
+      <div style="background:var(--gray-light);border-radius:6px;height:24px;overflow:hidden;">
+        <div style="width:${pct}%;height:100%;background:${it.color};border-radius:6px;transition:width .5s;"></div>
+      </div>
+    </div>`;
+  }).join('');
+  el.innerHTML = rows;
+}
+
+// ─── TABLEAU DES RECETTES ───────────────────────────────────────
+function renderComptaTable(year){
+  const tb = document.getElementById('comptaTableBody');
+  const countEl = document.getElementById('compta-count');
+  if(!tb) return;
+  const entries = comptaEntriesForYear(year).slice().sort((a,b)=> (b.date||'').localeCompare(a.date||''));
+  if(countEl) countEl.textContent = entries.length+' recette'+(entries.length>1?'s':'');
+  if(!entries.length){ tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--gray-text);padding:1rem;">Aucune recette pour '+year+'.</td></tr>'; return; }
+  tb.innerHTML = entries.map(r=>{
+    const cat = CATEGORIES_COMPTA[r.category] || {label:r.category, icon:'', color:'#888'};
+    const realIdx = comptaData.findIndex(x=>x.id===r.id);
+    return `<tr>
+      <td style="white-space:nowrap;font-size:13px;">${r.date ? new Date(r.date+'T12:00').toLocaleDateString('fr-FR') : '—'}</td>
+      <td><span style="display:inline-block;font-size:12px;font-weight:700;padding:3px 8px;border-radius:4px;background:${cat.color}22;color:${cat.color};white-space:nowrap;">${cat.icon} ${cat.label}</span></td>
+      <td style="font-size:13px;max-width:280px;">${r.label||'—'}</td>
+      <td style="font-weight:700;color:var(--navy);white-space:nowrap;">${eur(parseFloat(r.amount)||0)}</td>
+      <td style="font-size:11px;color:var(--gray-text);">${r.source==='auto'?'🔄 Auto':'✍️ Manuel'}</td>
+      <td><button class="btn-admin-del" onclick="supprimerRecette('${r.id}')">🗑</button></td>
+    </tr>`;
+  }).join('');
+}
+
+// ─── RÉCAP FISCAL DÉTAILLÉ ──────────────────────────────────────
+function renderComptaFiscalDetail(f){
+  const el = document.getElementById('compta-fiscal-detail');
+  if(!el) return;
+  const line = (label,val,bold,color)=>`<div style="display:flex;justify-content:space-between;padding:.6rem 0;border-bottom:1px solid var(--gray);${bold?'font-weight:800;':''}">
+    <span style="color:${color||'var(--text)'};font-size:${bold?'15px':'14px'};">${label}</span>
+    <span style="color:${color||'var(--navy)'};font-size:${bold?'16px':'14px'};font-weight:${bold?'800':'600'};">${eur(val)}</span></div>`;
+
+  let html = '<div style="max-width:560px;">';
+  html += '<div style="font-size:13px;font-weight:700;color:var(--gray-text);text-transform:uppercase;margin-bottom:.5rem;">Chiffre d\'affaires par activité</div>';
+  Object.keys(CATEGORIES_COMPTA).forEach(k=>{
+    if(f.parCat[k]>0) html += line(CATEGORIES_COMPTA[k].icon+' '+CATEGORIES_COMPTA[k].label, f.parCat[k]);
+  });
+  html += line('= Chiffre d\'affaires total', f.totalCA, true);
+  html += '<div style="height:1rem;"></div>';
+  html += '<div style="font-size:13px;font-weight:700;color:var(--gray-text);text-transform:uppercase;margin-bottom:.5rem;">Charges à déduire</div>';
+  Object.keys(CATEGORIES_COMPTA).forEach(k=>{
+    if(f.cotisations[k]>0) html += line('Cotisations '+CATEGORIES_COMPTA[k].label+' ('+(taxSettings[k]||0)+'%)', f.cotisations[k], false, '#c0392b');
+  });
+  html += line('Cotisations sociales totales', f.totalCotisations, false, '#c0392b');
+  html += line('Contribution formation (CFP '+(taxSettings.cfp||0)+'%)', f.cfp, false, '#c0392b');
+  if(f.versementLib>0) html += line('Impôt (versement libératoire)', f.versementLib, false, '#9333ea');
+  html += line('= Total des charges', f.totalCharges, true, '#c0392b');
+  html += '<div style="height:1rem;"></div>';
+  html += line('💰 REVENU NET ESTIMÉ', f.net, true, '#1aab6d');
+  html += '</div>';
+
+  html += `<div style="margin-top:1.5rem;background:#eef2f7;border-radius:8px;padding:1rem 1.25rem;font-size:13px;color:var(--text);line-height:1.6;">
+    ℹ️ <strong>Déclaration URSSAF :</strong> en tant qu'auto-entrepreneur, vous déclarez votre chiffre d'affaires (${eur0(f.totalCA)} pour ${f.year}) mensuellement ou trimestriellement sur autoentrepreneur.urssaf.fr. Les cotisations (${eur0(f.totalCotisations)}) sont calculées sur ce CA.
+    ${f.versementLib>0 ? 'Avec le versement libératoire, votre impôt sur le revenu ('+eur0(f.versementLib)+') est payé en même temps.' : 'Sans versement libératoire, votre CA s\'ajoute à vos revenus imposables (case 5 de la déclaration de revenus).'}
+    <br><br>⚠️ Ces calculs sont indicatifs. Vérifiez les taux en vigueur sur urssaf.fr et consultez un expert-comptable pour votre déclaration officielle.
+  </div>`;
+  el.innerHTML = html;
+}
+
+// ─── ACTIONS ────────────────────────────────────────────────────
+function ajouterRecette(){
+  const val = id => (document.getElementById(id)?.value || '').trim();
+  const date = val('rec-date');
+  const cat = val('rec-cat');
+  const montant = parseFloat(val('rec-montant'))||0;
+  const label = val('rec-label');
+  if(!date){ showNotif('📅 Date manquante','Sélectionnez une date.'); return; }
+  if(montant<=0){ showNotif('💶 Montant invalide','Entrez un montant supérieur à 0.'); return; }
+  comptaData.push({ id:'inc_'+Date.now(), date, category:cat, amount:montant, label:label||CATEGORIES_COMPTA[cat].label, source:'manuel' });
+  saveData('adm_comptabilite', comptaData);
+  // Reset
+  document.getElementById('rec-montant').value='';
+  document.getElementById('rec-label').value='';
+  // S'assurer que l'année de la recette est dans le sélecteur
+  const yearSel = document.getElementById('compta-year');
+  const recYear = parseInt(date.substring(0,4));
+  if(yearSel && ![...yearSel.options].some(o=>parseInt(o.value)===recYear)){
+    const o=document.createElement('option'); o.value=recYear; o.textContent=recYear; yearSel.appendChild(o);
+    [...yearSel.options].sort((a,b)=>b.value-a.value).forEach(o=>yearSel.appendChild(o));
+  }
+  renderComptabilite();
+  showNotif('✅ Recette enregistrée', CATEGORIES_COMPTA[cat].icon+' '+eur(montant)+' ('+CATEGORIES_COMPTA[cat].label+')');
+}
+
+function supprimerRecette(id){
+  const r = comptaData.find(x=>x.id===id);
+  if(r && r.source==='auto'){
+    if(!confirm('Cette recette a été importée automatiquement depuis une facture. La supprimer quand même ?')) return;
+  } else {
+    if(!confirm('Supprimer cette recette ?')) return;
+  }
+  comptaData = comptaData.filter(x=>x.id!==id);
+  saveData('adm_comptabilite', comptaData);
+  renderComptabilite();
+}
+
+// Import automatique depuis les factures/contrats
+function importFromInvoices(){
+  let added = 0;
+  const existingRefs = new Set(comptaData.filter(r=>r.refNum).map(r=>r.refNum));
+  // Importer les factures
+  invoiceHistory.forEach(inv=>{
+    const ref = 'FAC:'+inv.num;
+    if(existingRefs.has(ref)) return;
+    const montant = parseFloat(inv.ttc)||parseFloat(inv.total)||0;
+    if(montant<=0) return;
+    // Déterminer la date
+    let date = new Date().toISOString().substring(0,10);
+    if(inv.date){
+      // date au format DD/MM/YYYY ou ISO
+      if(inv.date.includes('/')){ const p=inv.date.split('/'); if(p.length===3) date=p[2]+'-'+p[1].padStart(2,'0')+'-'+p[0].padStart(2,'0'); }
+      else if(inv.date.includes('-')) date=inv.date.substring(0,10);
+    }
+    comptaData.push({ id:'inc_fac_'+inv.num, date, category:'location', amount:montant, label:'Facture '+inv.num+' — '+(inv.client||''), source:'auto', refNum:ref });
+    existingRefs.add(ref);
+    added++;
+  });
+
+  if(added>0){
+    saveData('adm_comptabilite', comptaData);
+    // Rafraîchir le sélecteur d'années
+    const yearSel = document.getElementById('compta-year');
+    if(yearSel){ yearSel.innerHTML=''; comptaAvailableYears().forEach(y=>{const o=document.createElement('option');o.value=y;o.textContent=y;yearSel.appendChild(o);}); }
+    renderComptabilite();
+    showNotif('🔄 Import terminé', added+' facture(s) importée(s) en comptabilité.');
+  } else {
+    showNotif('✓ Déjà à jour','Toutes les factures sont déjà importées.');
+  }
+}
+
+function saveTaxSettings(){
+  const num = id => parseFloat(document.getElementById(id)?.value)||0;
+  taxSettings = {
+    location: num('tax-location'),
+    vente: num('tax-vente'),
+    mecanique: num('tax-mecanique'),
+    depannage: num('tax-depannage'),
+    cfp: num('tax-cfp'),
+    versementLiberatoire: document.getElementById('tax-vl')?.checked || false,
+    vlVente: taxSettings.vlVente || 1.0,
+    vlServices: taxSettings.vlServices || 1.7,
+  };
+  saveData('adm_tax_settings', taxSettings);
+  renderComptabilite();
+  showNotif('💾 Paramètres enregistrés','Les taux de cotisations ont été mis à jour'+(firebaseReady?' et synchronisés en ligne.':'.'));
+}
+
+// ─── EXPORTS ────────────────────────────────────────────────────
+function exportComptaCSV(){
+  const year = getComptaYear();
+  const entries = comptaEntriesForYear(year).slice().sort((a,b)=>(a.date||'').localeCompare(b.date||''));
+  let csv = 'Date;Activite;Libelle;Montant;Source\n';
+  entries.forEach(r=>{
+    const cat = CATEGORIES_COMPTA[r.category]?.label || r.category;
+    csv += `${r.date};${cat};"${(r.label||'').replace(/"/g,'""')}";${(parseFloat(r.amount)||0).toFixed(2)};${r.source}\n`;
+  });
+  const f = computeFiscal(year);
+  csv += '\n;;;;;\n';
+  csv += `;;CHIFFRE AFFAIRES TOTAL;${f.totalCA.toFixed(2)};\n`;
+  csv += `;;Cotisations URSSAF;${f.totalCotisations.toFixed(2)};\n`;
+  csv += `;;CFP;${f.cfp.toFixed(2)};\n`;
+  if(f.versementLib>0) csv += `;;Impot versement liberatoire;${f.versementLib.toFixed(2)};\n`;
+  csv += `;;REVENU NET;${f.net.toFixed(2)};\n`;
+  const blob = new Blob(['\ufeff'+csv], {type:'text/csv;charset=utf-8'});
+  downloadBlob(blob, 'comptabilite_'+year+'.csv');
+  showNotif('📊 Export CSV','Fichier comptabilite_'+year+'.csv téléchargé.');
+}
+
+function exportComptaURSSAF(){
+  const year = getComptaYear();
+  const f = computeFiscal(year);
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit:'mm', format:'a4' });
+  // Header
+  doc.setFillColor(10,22,40); doc.rect(0,0,210,30,'F');
+  doc.setFillColor(244,112,10); doc.rect(0,30,210,2,'F');
+  doc.setTextColor(244,112,10); doc.setFont('helvetica','bold'); doc.setFontSize(18);
+  doc.text("L'ATELIER DU MECANO", 12, 15);
+  doc.setTextColor(255,255,255); doc.setFontSize(9); doc.setFont('helvetica','normal');
+  doc.text('Recapitulatif comptable auto-entrepreneur', 12, 22);
+  doc.setFontSize(16); doc.setFont('helvetica','bold');
+  doc.text('ANNEE '+year, 208, 15, {align:'right'});
+  doc.setFontSize(9); doc.setFont('helvetica','normal');
+  doc.text('SIRET 100 384 445 000 19', 208, 22, {align:'right'});
+  doc.setTextColor(0,0,0);
+
+  let y=44;
+  const section=(t)=>{ doc.setFillColor(244,112,10); doc.rect(12,y,186,6,'F'); doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.text(t,15,y+4.2); doc.setTextColor(0,0,0); doc.setFont('helvetica','normal'); y+=10; };
+  const kv=(k,v,bold)=>{ doc.setFont('helvetica',bold?'bold':'normal'); doc.setFontSize(bold?11:10); doc.text(k,15,y); doc.text(v,195,y,{align:'right'}); y+=bold?7:6; };
+
+  section('CHIFFRE D\'AFFAIRES PAR ACTIVITE');
+  Object.keys(CATEGORIES_COMPTA).forEach(k=>{ if(f.parCat[k]>0) kv(CATEGORIES_COMPTA[k].label, f.parCat[k].toFixed(2)+' EUR'); });
+  kv('CHIFFRE D\'AFFAIRES TOTAL', f.totalCA.toFixed(2)+' EUR', true);
+  y+=4;
+
+  section('COTISATIONS SOCIALES (URSSAF)');
+  Object.keys(CATEGORIES_COMPTA).forEach(k=>{ if(f.cotisations[k]>0) kv('Cotisations '+CATEGORIES_COMPTA[k].label+' ('+(taxSettings[k]||0)+'%)', f.cotisations[k].toFixed(2)+' EUR'); });
+  kv('Total cotisations sociales', f.totalCotisations.toFixed(2)+' EUR', true);
+  kv('Contribution formation (CFP '+(taxSettings.cfp||0)+'%)', f.cfp.toFixed(2)+' EUR');
+  if(f.versementLib>0) kv('Impot (versement liberatoire)', f.versementLib.toFixed(2)+' EUR');
+  kv('TOTAL DES CHARGES', f.totalCharges.toFixed(2)+' EUR', true);
+  y+=4;
+
+  section('RESULTAT');
+  kv('REVENU NET ESTIME', f.net.toFixed(2)+' EUR', true);
+  y+=8;
+
+  doc.setFont('helvetica','italic'); doc.setFontSize(8);
+  const notes = doc.splitTextToSize('Document indicatif genere automatiquement. A declarer sur autoentrepreneur.urssaf.fr. Verifiez les taux en vigueur et consultez un expert-comptable pour votre declaration officielle. TVA non applicable, art. 293 B du CGI.', 180);
+  doc.text(notes, 15, y);
+
+  // Footer
+  const h=doc.internal.pageSize.height;
+  doc.setFillColor(10,22,40); doc.rect(0,h-18,210,18,'F');
+  doc.setTextColor(255,255,255); doc.setFontSize(8); doc.setFont('helvetica','normal');
+  doc.text("L'Atelier du Mecano - SIRET 100 384 445 000 19 - 06 68 83 36 87", 105, h-11, {align:'center'});
+  doc.text('Genere le '+new Date().toLocaleDateString('fr-FR'), 105, h-6, {align:'center'});
+
+  downloadBlob(doc.output('blob'), 'declaration_URSSAF_'+year+'.pdf');
+  showNotif('📥 Export URSSAF','Récapitulatif declaration_URSSAF_'+year+'.pdf téléchargé.');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// MODULE FICHES DE PAIE (Employés)
+// ═══════════════════════════════════════════════════════════════
+let paieActive = loadData('adm_paie_active', false);
+let employes = loadData('adm_employes', []);
+let fichesPaie = loadData('adm_fiches_paie', []);
+let paieSettings = loadData('adm_paie_settings', {
+  cotisSalariales: 22,   // % déduites du brut
+  cotisPatronales: 42,   // % à charge employeur
+  pas: 0,                // prélèvement à la source
+  majorationHS: 25,      // majoration heures supplémentaires
+});
+const HEURES_TEMPS_PLEIN = 151.67;
+
+function togglePaieActive(){
+  paieActive = document.getElementById('paie-active').checked;
+  saveData('adm_paie_active', paieActive);
+  document.getElementById('paie-content').style.display = paieActive ? 'block' : 'none';
+  document.getElementById('paie-disabled-msg').style.display = paieActive ? 'none' : 'block';
+  if(paieActive){ renderPaie(); showNotif('✅ Fiches de paie activées','Vous pouvez maintenant ajouter des employés et générer leurs bulletins de salaire.'); }
+}
+
+function renderPaie(){
+  const chk = document.getElementById('paie-active');
+  if(chk) chk.checked = paieActive;
+  const content = document.getElementById('paie-content');
+  const msg = document.getElementById('paie-disabled-msg');
+  if(content) content.style.display = paieActive ? 'block' : 'none';
+  if(msg) msg.style.display = paieActive ? 'none' : 'block';
+  if(!paieActive) return;
+
+  // Charger les taux dans les champs
+  const setV=(id,v)=>{ const e=document.getElementById(id); if(e && document.activeElement!==e) e.value=v; };
+  setV('paie-taux-sal', paieSettings.cotisSalariales);
+  setV('paie-taux-pat', paieSettings.cotisPatronales);
+  setV('paie-taux-pas', paieSettings.pas);
+  setV('paie-taux-hs', paieSettings.majorationHS);
+
+  // Année par défaut
+  const anneeEl = document.getElementById('paie-annee');
+  if(anneeEl && !anneeEl.value) anneeEl.value = new Date().getFullYear();
+  const moisEl = document.getElementById('paie-mois');
+  if(moisEl && !moisEl.value) moisEl.value = new Date().getMonth()+1;
+
+  renderEmployesTable();
+  populatePaieEmployeSelect();
+  renderFichesTable();
+  updatePaiePreview();
+}
+
+function renderEmployesTable(){
+  const tb = document.getElementById('empTableBody');
+  const countEl = document.getElementById('emp-count');
+  if(!tb) return;
+  if(countEl) countEl.textContent = employes.length+' employé'+(employes.length>1?'s':'');
+  if(!employes.length){ tb.innerHTML='<tr><td colspan="7" style="text-align:center;color:var(--gray-text);padding:1rem;">Aucun employé. Ajoutez-en un ci-dessous.</td></tr>'; return; }
+  tb.innerHTML = employes.map((e,i)=>`
+    <tr>
+      <td><input class="admin-input" type="text" value="${e.nom||''}" oninput="employes[${i}].nom=this.value;saveData('adm_employes',employes);populatePaieEmployeSelect();" /></td>
+      <td><input class="admin-input" type="text" value="${e.poste||''}" oninput="employes[${i}].poste=this.value;saveData('adm_employes',employes)" /></td>
+      <td><input class="admin-input" type="text" value="${e.ss||''}" oninput="employes[${i}].ss=this.value;saveData('adm_employes',employes)" style="min-width:130px;" /></td>
+      <td><input class="admin-input" type="date" value="${e.embauche||''}" oninput="employes[${i}].embauche=this.value;saveData('adm_employes',employes)" /></td>
+      <td><input class="admin-input" type="text" value="${e.contrat||''}" oninput="employes[${i}].contrat=this.value;saveData('adm_employes',employes)" style="width:90px;" /></td>
+      <td><div style="display:flex;align-items:center;gap:4px;"><input class="admin-input" type="number" step="0.01" value="${e.taux||0}" oninput="employes[${i}].taux=parseFloat(this.value)||0;saveData('adm_employes',employes);updatePaiePreview();" style="width:75px;font-weight:700;" /> €</div></td>
+      <td><button class="btn-admin-del" onclick="deleteEmploye(${i})">🗑</button></td>
+    </tr>`).join('');
+}
+
+function addEmploye(){
+  const val = id => (document.getElementById(id)?.value || '').trim();
+  const nom = val('emp-nom');
+  if(!nom){ showNotif('👤 Nom manquant','Renseignez le nom de l\'employé.'); return; }
+  const taux = parseFloat(val('emp-taux'))||0;
+  if(taux<=0){ showNotif('💶 Taux horaire manquant','Renseignez le taux horaire brut de l\'employé.'); return; }
+  employes.push({
+    id: 'emp_'+Date.now(),
+    nom, poste: val('emp-poste'), ss: val('emp-ss'),
+    embauche: val('emp-embauche'), contrat: val('emp-contrat')||'CDI', taux,
+  });
+  saveData('adm_employes', employes);
+  ['emp-nom','emp-poste','emp-ss','emp-embauche','emp-taux'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  renderEmployesTable();
+  populatePaieEmployeSelect();
+  updatePaiePreview();
+  showNotif('✅ Employé ajouté', nom+' ajouté ('+taux.toFixed(2)+' €/h).');
+}
+
+function deleteEmploye(i){
+  if(!confirm('Supprimer cet employé ? Ses fiches de paie déjà générées seront conservées dans l\'historique.')) return;
+  employes.splice(i,1);
+  saveData('adm_employes', employes);
+  renderEmployesTable();
+  populatePaieEmployeSelect();
+  updatePaiePreview();
+}
+
+function populatePaieEmployeSelect(){
+  const sel = document.getElementById('paie-emp');
+  if(!sel) return;
+  const currentVal = sel.value;
+  sel.innerHTML = employes.length
+    ? employes.map(e=>`<option value="${e.id}">${e.nom} — ${e.poste||'—'} (${(e.taux||0).toFixed(2)} €/h)</option>`).join('')
+    : '<option value="">Aucun employé</option>';
+  if(currentVal && [...sel.options].some(o=>o.value===currentVal)) sel.value = currentVal;
+}
+
+// Calcul complet d'une fiche de paie
+function computePaie(emp, heures, prime){
+  const taux = emp.taux || 0;
+  prime = prime || 0;
+  // Heures normales vs supplémentaires
+  const heuresNorm = Math.min(heures, HEURES_TEMPS_PLEIN);
+  const heuresSupp = Math.max(0, heures - HEURES_TEMPS_PLEIN);
+  const majHS = (paieSettings.majorationHS||0)/100;
+  const salaireNormal = heuresNorm * taux;
+  const salaireHS = heuresSupp * taux * (1 + majHS);
+  const brut = salaireNormal + salaireHS + prime;
+
+  const cotisSal = brut * (paieSettings.cotisSalariales||0)/100;
+  const netAvantImpot = brut - cotisSal;
+  const pas = netAvantImpot * (paieSettings.pas||0)/100;
+  const netAPayer = netAvantImpot - pas;
+
+  const cotisPat = brut * (paieSettings.cotisPatronales||0)/100;
+  const coutTotal = brut + cotisPat;
+
+  return {
+    taux, heures, heuresNorm, heuresSupp, salaireNormal, salaireHS, prime, brut,
+    cotisSal, netAvantImpot, pas, netAPayer, cotisPat, coutTotal
+  };
+}
+
+function getPaieFormData(){
+  const empId = document.getElementById('paie-emp')?.value;
+  const emp = employes.find(e=>e.id===empId);
+  const mois = parseInt(document.getElementById('paie-mois')?.value)||1;
+  const annee = parseInt(document.getElementById('paie-annee')?.value)||new Date().getFullYear();
+  const heures = parseFloat(document.getElementById('paie-heures')?.value)||0;
+  const prime = parseFloat(document.getElementById('paie-prime')?.value)||0;
+  return { emp, mois, annee, heures, prime };
+}
+
+function updatePaiePreview(){
+  const el = document.getElementById('paie-preview');
+  if(!el) return;
+  const { emp, heures, prime } = getPaieFormData();
+  if(!emp){ el.innerHTML='<p style="text-align:center;color:var(--gray-text);">Sélectionnez un employé.</p>'; return; }
+  if(heures<=0){ el.innerHTML='<p style="text-align:center;color:var(--gray-text);">⏱️ Saisissez le nombre d\'heures travaillées pour voir le calcul.</p>'; return; }
+  const p = computePaie(emp, heures, prime);
+  const row = (label,val,color,bold)=>`<div style="display:flex;justify-content:space-between;padding:.4rem 0;${bold?'border-top:1px solid var(--gray);font-weight:800;margin-top:.3rem;padding-top:.6rem;':''}">
+    <span style="color:${color||'var(--text)'};font-size:${bold?'15px':'13px'};">${label}</span>
+    <span style="color:${color||'var(--navy)'};font-weight:${bold?'800':'600'};font-size:${bold?'16px':'14px'};">${eur(val)}</span></div>`;
+
+  let html = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">';
+  html += '<div>';
+  html += `<div style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;margin-bottom:.4rem;">Rémunération brute</div>`;
+  html += row(`Heures normales (${p.heuresNorm.toFixed(2)}h × ${p.taux.toFixed(2)}€)`, p.salaireNormal);
+  if(p.heuresSupp>0) html += row(`Heures supp. (${p.heuresSupp.toFixed(2)}h +${paieSettings.majorationHS}%)`, p.salaireHS);
+  if(p.prime>0) html += row('Prime / bonus', p.prime);
+  html += row('SALAIRE BRUT', p.brut, '#0a1628', true);
+  html += '</div>';
+
+  html += '<div>';
+  html += `<div style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;margin-bottom:.4rem;">Cotisations &amp; net</div>`;
+  html += row(`Cotisations salariales (${paieSettings.cotisSalariales}%)`, -p.cotisSal, '#c0392b');
+  html += row('Net avant impôt', p.netAvantImpot);
+  if(p.pas>0) html += row(`Prélèvement à la source (${paieSettings.pas}%)`, -p.pas, '#c0392b');
+  html += row('💰 NET À PAYER', p.netAPayer, '#1aab6d', true);
+  html += '</div>';
+  html += '</div>';
+
+  html += `<div style="margin-top:1rem;padding-top:1rem;border-top:2px solid var(--gray);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+    <div style="font-size:13px;color:var(--gray-text);">Cotisations patronales (${paieSettings.cotisPatronales}%) : <strong style="color:#c0392b;">${eur(p.cotisPat)}</strong></div>
+    <div style="font-size:14px;font-weight:800;color:var(--navy);">Coût total employeur : ${eur(p.coutTotal)}</div>
+  </div>`;
+  el.innerHTML = html;
+}
+
+const MOIS_NOMS = ['','Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+
+// Génère le PDF de la fiche de paie
+function buildFichePaiePDF(emp, mois, annee, p){
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit:'mm', format:'a4' });
+  // Header
+  doc.setFillColor(10,22,40); doc.rect(0,0,210,30,'F');
+  doc.setFillColor(244,112,10); doc.rect(0,30,210,2,'F');
+  doc.setTextColor(244,112,10); doc.setFont('helvetica','bold'); doc.setFontSize(17);
+  doc.text("L'ATELIER DU MECANO", 12, 14);
+  doc.setTextColor(255,255,255); doc.setFontSize(9); doc.setFont('helvetica','normal');
+  doc.text('Place Georges Lardenois - 73110 Valgelon la Rochette', 12, 21);
+  doc.text('SIRET 100 384 445 000 19', 12, 26);
+  doc.setFontSize(15); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
+  doc.text('BULLETIN DE PAIE', 200, 14, {align:'right'});
+  doc.setFontSize(10); doc.setFont('helvetica','normal');
+  doc.text(MOIS_NOMS[mois]+' '+annee, 200, 22, {align:'right'});
+  doc.setTextColor(0,0,0);
+
+  let y=40;
+  // Bloc employeur / salarié
+  doc.setFillColor(245,245,248); doc.rect(12,y,90,32,'F'); doc.rect(108,y,90,32,'F');
+  doc.setFont('helvetica','bold'); doc.setFontSize(9);
+  doc.text('EMPLOYEUR', 15, y+5); doc.text('SALARIE', 111, y+5);
+  doc.setFont('helvetica','normal'); doc.setFontSize(8);
+  doc.text("L'Atelier du Mecano", 15, y+11);
+  doc.text('Place Georges Lardenois', 15, y+15);
+  doc.text('73110 Valgelon la Rochette', 15, y+19);
+  doc.text('SIRET : 100 384 445 000 19', 15, y+23);
+  doc.text('Tel : 06 68 83 36 87', 15, y+27);
+  doc.text(emp.nom||'-', 111, y+11);
+  doc.text('Poste : '+(emp.poste||'-'), 111, y+15);
+  doc.text('N° SS : '+(emp.ss||'-'), 111, y+19);
+  doc.text('Contrat : '+(emp.contrat||'-'), 111, y+23);
+  doc.text('Embauche : '+(emp.embauche?new Date(emp.embauche).toLocaleDateString('fr-FR'):'-'), 111, y+27);
+  y+=38;
+
+  // Période
+  doc.setFont('helvetica','bold'); doc.setFontSize(10);
+  doc.text('Période : '+MOIS_NOMS[mois]+' '+annee, 15, y);
+  doc.text('Taux horaire brut : '+p.taux.toFixed(2)+' EUR', 200, y, {align:'right'});
+  y+=8;
+
+  // Tableau des lignes
+  const tableRow=(label,base,taux,montant,isNeg,bold)=>{
+    if(bold){ doc.setFillColor(244,112,10); doc.rect(12,y,186,7,'F'); doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); }
+    else { doc.setTextColor(0,0,0); doc.setFont('helvetica','normal'); }
+    doc.setFontSize(9);
+    doc.text(label, 15, y+5);
+    if(base) doc.text(base, 110, y+5, {align:'right'});
+    if(taux) doc.text(taux, 140, y+5, {align:'right'});
+    doc.text((isNeg?'-':'')+montant.toFixed(2), 195, y+5, {align:'right'});
+    y+=7;
+    if(!bold){ doc.setDrawColor(230,230,230); doc.line(12,y,198,y); }
+  };
+  // En-tête colonnes
+  doc.setFillColor(230,230,235); doc.rect(12,y,186,7,'F');
+  doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(0,0,0);
+  doc.text('Désignation', 15, y+5);
+  doc.text('Base', 110, y+5, {align:'right'});
+  doc.text('Taux', 140, y+5, {align:'right'});
+  doc.text('Montant EUR', 195, y+5, {align:'right'});
+  y+=7;
+
+  tableRow('Salaire de base', p.heuresNorm.toFixed(2)+' h', p.taux.toFixed(2), p.salaireNormal);
+  if(p.heuresSupp>0) tableRow('Heures supplémentaires (+'+(paieSettings.majorationHS)+'%)', p.heuresSupp.toFixed(2)+' h', (p.taux*(1+paieSettings.majorationHS/100)).toFixed(2), p.salaireHS);
+  if(p.prime>0) tableRow('Prime / bonus', '', '', p.prime);
+  tableRow('SALAIRE BRUT', '', '', p.brut, false, true);
+  tableRow('Cotisations salariales', p.brut.toFixed(2), paieSettings.cotisSalariales+'%', p.cotisSal, true);
+  tableRow('Net avant impôt', '', '', p.netAvantImpot, false, true);
+  if(p.pas>0) tableRow('Prélèvement à la source', p.netAvantImpot.toFixed(2), paieSettings.pas+'%', p.pas, true);
+
+  y+=3;
+  // Net à payer (encadré vert)
+  doc.setFillColor(26,171,109); doc.rect(110,y,88,14,'F');
+  doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(13);
+  doc.text('NET À PAYER', 114, y+9);
+  doc.text(p.netAPayer.toFixed(2)+' EUR', 195, y+9, {align:'right'});
+  doc.setTextColor(0,0,0);
+  y+=20;
+
+  // Récap employeur
+  doc.setFont('helvetica','normal'); doc.setFontSize(8);
+  doc.text('Cotisations patronales ('+paieSettings.cotisPatronales+'%) : '+p.cotisPat.toFixed(2)+' EUR', 15, y); y+=5;
+  doc.setFont('helvetica','bold');
+  doc.text('Coût total employeur : '+p.coutTotal.toFixed(2)+' EUR', 15, y); y+=8;
+
+  doc.setFont('helvetica','italic'); doc.setFontSize(7);
+  const notes = doc.splitTextToSize("Bulletin simplifié généré automatiquement à titre indicatif. Les taux de cotisations sont paramétrables et doivent être vérifiés selon votre convention collective et la réglementation en vigueur (urssaf.fr). Conservez ce bulletin sans limitation de durée. Pour un bulletin officiel conforme, consultez un expert-comptable ou un gestionnaire de paie.", 180);
+  doc.text(notes, 15, y);
+
+  // Footer
+  const h=doc.internal.pageSize.height;
+  doc.setFillColor(10,22,40); doc.rect(0,h-16,210,16,'F');
+  doc.setTextColor(255,255,255); doc.setFontSize(8); doc.setFont('helvetica','normal');
+  doc.text("L'Atelier du Mecano - Bulletin de paie "+MOIS_NOMS[mois]+' '+annee, 105, h-10, {align:'center'});
+  doc.text('Généré le '+new Date().toLocaleDateString('fr-FR'), 105, h-5, {align:'center'});
+
+  return doc.output('blob');
+}
+
+function genererFichePaie(){
+  const { emp, mois, annee, heures, prime } = getPaieFormData();
+  if(!emp){ showNotif('👤 Employé manquant','Sélectionnez un employé.'); return; }
+  if(heures<=0){ showNotif('⏱️ Heures manquantes','Saisissez le nombre d\'heures travaillées.'); return; }
+  const p = computePaie(emp, heures, prime);
+  const blob = buildFichePaiePDF(emp, mois, annee, p);
+  const nomClean = (emp.nom||'employe').replace(/[^a-zA-Z0-9]/g,'_');
+  downloadBlob(blob, 'fiche_paie_'+nomClean+'_'+MOIS_NOMS[mois]+'_'+annee+'.pdf');
+  showNotif('📥 Fiche générée','Bulletin de '+emp.nom+' — '+MOIS_NOMS[mois]+' '+annee+' — Net : '+eur(p.netAPayer));
+}
+
+function enregistrerFichePaie(){
+  const { emp, mois, annee, heures, prime } = getPaieFormData();
+  if(!emp){ showNotif('👤 Employé manquant','Sélectionnez un employé.'); return; }
+  if(heures<=0){ showNotif('⏱️ Heures manquantes','Saisissez le nombre d\'heures travaillées.'); return; }
+  const p = computePaie(emp, heures, prime);
+  const key = emp.id+'_'+annee+'_'+mois;
+  // Éviter les doublons (même employé, même mois)
+  const existing = fichesPaie.findIndex(f=>f.key===key);
+  const fiche = {
+    id: existing>=0 ? fichesPaie[existing].id : 'fiche_'+Date.now(),
+    key, empId: emp.id, empNom: emp.nom, empPoste: emp.poste,
+    mois, annee, heures, prime,
+    taux: p.taux, brut: p.brut, netAPayer: p.netAPayer, coutTotal: p.coutTotal,
+    date: new Date().toISOString(),
+  };
+  if(existing>=0){ fichesPaie[existing]=fiche; showNotif('💾 Fiche mise à jour','Bulletin de '+emp.nom+' pour '+MOIS_NOMS[mois]+' '+annee+' mis à jour.'); }
+  else { fichesPaie.unshift(fiche); showNotif('💾 Fiche enregistrée','Bulletin de '+emp.nom+' ajouté à l\'historique.'); }
+  saveData('adm_fiches_paie', fichesPaie);
+  renderFichesTable();
+}
+
+function renderFichesTable(){
+  const tb = document.getElementById('fichesTableBody');
+  const countEl = document.getElementById('fiches-count');
+  if(!tb) return;
+  if(countEl) countEl.textContent = fichesPaie.length+' fiche'+(fichesPaie.length>1?'s':'');
+  if(!fichesPaie.length){ tb.innerHTML='<tr><td colspan="8" style="text-align:center;color:var(--gray-text);padding:1rem;">Aucune fiche enregistrée.</td></tr>'; return; }
+  tb.innerHTML = fichesPaie.map(f=>`
+    <tr>
+      <td><strong>${f.empNom}</strong><br><span style="font-size:11px;color:var(--gray-text);">${f.empPoste||''}</span></td>
+      <td style="white-space:nowrap;">${MOIS_NOMS[f.mois]} ${f.annee}</td>
+      <td>${f.heures}h</td>
+      <td style="white-space:nowrap;">${eur(f.brut)}</td>
+      <td style="font-weight:700;color:#1aab6d;white-space:nowrap;">${eur(f.netAPayer)}</td>
+      <td style="white-space:nowrap;">${eur(f.coutTotal)}</td>
+      <td><button onclick="retelechargerFiche('${f.id}')" style="background:var(--orange);color:white;border:none;font-size:11px;padding:5px 9px;border-radius:5px;cursor:pointer;white-space:nowrap;">📥 PDF</button></td>
+      <td><button class="btn-admin-del" onclick="supprimerFiche('${f.id}')">🗑</button></td>
+    </tr>`).join('');
+}
+
+function retelechargerFiche(id){
+  const f = fichesPaie.find(x=>x.id===id);
+  if(!f) return;
+  const emp = employes.find(e=>e.id===f.empId) || { nom:f.empNom, poste:f.empPoste, taux:f.taux, ss:'', contrat:'', embauche:'' };
+  const p = computePaie({...emp, taux:f.taux}, f.heures, f.prime||0);
+  const blob = buildFichePaiePDF(emp, f.mois, f.annee, p);
+  const nomClean = (f.empNom||'employe').replace(/[^a-zA-Z0-9]/g,'_');
+  downloadBlob(blob, 'fiche_paie_'+nomClean+'_'+MOIS_NOMS[f.mois]+'_'+f.annee+'.pdf');
+}
+
+function supprimerFiche(id){
+  if(!confirm('Supprimer cette fiche de l\'historique ?')) return;
+  fichesPaie = fichesPaie.filter(x=>x.id!==id);
+  saveData('adm_fiches_paie', fichesPaie);
+  renderFichesTable();
+}
+
+function savePaieSettings(){
+  const num = id => parseFloat(document.getElementById(id)?.value)||0;
+  paieSettings = {
+    cotisSalariales: num('paie-taux-sal'),
+    cotisPatronales: num('paie-taux-pat'),
+    pas: num('paie-taux-pas'),
+    majorationHS: num('paie-taux-hs'),
+  };
+  saveData('adm_paie_settings', paieSettings);
+  updatePaiePreview();
+  showNotif('💾 Taux enregistrés','Les taux de cotisations ont été mis à jour'+(firebaseReady?' et synchronisés.':'.'));
 }
 
 // ─── COPY IBAN ────────────────────
