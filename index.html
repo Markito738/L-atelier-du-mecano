@@ -78,6 +78,7 @@
 }
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --navy:#0a1628; --navy-mid:#112240; --navy-light:#1a3358;
@@ -85,6 +86,53 @@
   --white:#fff; --gray-light:#f7f8fa; --gray:#e4e8ef;
   --gray-text:#6b7a96; --text:#1a2340; --success:#1aab6d;
 }
+/* ═══ THÈME INDUSTRIEL — anthracite + jaune sécurité (data-theme="industriel") ═══ */
+html[data-theme="industriel"]{
+  --navy:#16181d; --navy-mid:#1e2127; --navy-light:#282c34;
+  --orange:#ffd400; --orange-light:#ffe14d; --orange-pale:#2a2c33;
+  --white:#f2f3f5; --gray-light:#1e2127; --gray:#33373f;
+  --gray-text:#8b9099; --text:#f2f3f5; --success:#5ac47a;
+  background:#16181d;
+}
+html[data-theme="industriel"] body{background:#16181d;color:#f2f3f5;}
+html[data-theme="industriel"] h1,html[data-theme="industriel"] h2,html[data-theme="industriel"] h3,html[data-theme="industriel"] h4,html[data-theme="industriel"] .logo-main,html[data-theme="industriel"] .hero-title{font-family:'Archivo Black','Archivo',sans-serif !important;letter-spacing:-.02em;}
+html[data-theme="industriel"] body,html[data-theme="industriel"] p,html[data-theme="industriel"] input,html[data-theme="industriel"] select,html[data-theme="industriel"] textarea,html[data-theme="industriel"] button{font-family:'Archivo','Inter',sans-serif;}
+html[data-theme="industriel"] .btn-urgent,html[data-theme="industriel"] .btn-owner,html[data-theme="industriel"] .hero-badge,html[data-theme="industriel"] .btn-primary,html[data-theme="industriel"] .btn-secondary,html[data-theme="industriel"] .card,html[data-theme="industriel"] .service-card,html[data-theme="industriel"] .vehicle-card,html[data-theme="industriel"] .admin-section,html[data-theme="industriel"] .admin-input,html[data-theme="industriel"] .admin-menu-btn,html[data-theme="industriel"] .btn-admin-save,html[data-theme="industriel"] .btn-admin-add{border-radius:2px !important;}
+html[data-theme="industriel"] .hero-badge,html[data-theme="industriel"] .logo-sub,html[data-theme="industriel"] .admin-badge{font-family:'Space Mono',monospace !important;letter-spacing:.08em;}
+html[data-theme="industriel"] .btn-urgent{color:#16181d !important;}
+html[data-theme="industriel"] .btn-primary{color:#16181d !important;}
+html[data-theme="industriel"] .hero-badge{background:rgba(255,212,0,.12);border-color:rgba(255,212,0,.4);color:var(--orange-light);}
+html[data-theme="industriel"] body::before{content:'';position:fixed;top:0;left:0;right:0;height:6px;z-index:2000;background:repeating-linear-gradient(45deg,#ffd400,#ffd400 16px,#16181d 16px,#16181d 32px);}
+html[data-theme="industriel"] header{border-bottom-color:#ffd400;}
+/* Fond de sections avec dégradé navy codé en dur → devient anthracite en thème industriel */
+html[data-theme="industriel"] .navy-gradient-bg,
+html[data-theme="industriel"] [style*="linear-gradient(135deg,#0a1628"],
+html[data-theme="industriel"] [style*="linear-gradient(135deg, #0a1628"]{background:linear-gradient(135deg,#16181d 0%,#1e2127 50%,#141519 100%) !important;}
+/* Fond du hero : anthracite avec lueur jaune (au lieu du dégradé bleu) */
+html[data-theme="industriel"] .hero-bg{background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(255,212,0,.10) 0%,transparent 70%),radial-gradient(ellipse 40% 60% at 10% 80%,rgba(255,212,0,.05) 0%,transparent 60%),linear-gradient(135deg,#16181d 0%,#1e2127 50%,#141519 100%) !important;}
+html[data-theme="industriel"] .hero-grid{background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);}
+/* Emergency banner et autres blocs orange -> jaune avec texte sombre */
+html[data-theme="industriel"] .hero-slogan{border-left-color:#ffd400 !important;}
+/* Textes qui utilisaient le navy comme couleur -> clairs pour rester lisibles sur fond sombre */
+html[data-theme="industriel"] .vehicle-name,
+html[data-theme="industriel"] .admin-section-title,
+html[data-theme="industriel"] .service-title,
+html[data-theme="industriel"] .section-title,
+html[data-theme="industriel"] .vente-title,
+html[data-theme="industriel"] .avis-name,
+html[data-theme="industriel"] .prosp-card-title,
+html[data-theme="industriel"] .stat-card-val,
+html[data-theme="industriel"] .urg-title,
+html[data-theme="industriel"] .delivery-opt-label,
+html[data-theme="industriel"] .login-logo,
+html[data-theme="industriel"] .subtab-btn,
+html[data-theme="industriel"] h1,html[data-theme="industriel"] h2,
+html[data-theme="industriel"] h3,html[data-theme="industriel"] h4{color:#f2f3f5 !important;}
+/* Prix et accents en jaune restent en jaune (déjà via --orange) */
+.theme-card:hover{transform:translateY(-3px);}
+.theme-card .theme-check{display:none;}
+.theme-card.theme-selected{border-color:var(--orange) !important;}
+.theme-card.theme-selected .theme-check{display:flex !important;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:16px;font-weight:400;line-height:1.6;color:var(--text);background:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;letter-spacing:-0.01em;}
@@ -207,25 +255,25 @@ textarea{resize:vertical;min-height:90px;}
 .delivery-option:hover{border-color:var(--orange);}
 .delivery-opt-icon{font-size:30px;margin-bottom:.75rem;}
 .delivery-opt-label{font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:700;text-transform:uppercase;color:var(--navy);}
-.planning-container{background:var(--white);border-radius:12px;border:1px solid var(--gray);overflow:hidden;}
-.planning-header{background:var(--navy);padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between;}
-.planning-title{font-family:'Bricolage Grotesque',sans-serif;font-size:19px;font-weight:700;text-transform:uppercase;color:var(--white);}
-.planning-nav{display:flex;gap:8px;}
-.planning-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:var(--white);width:32px;height:32px;border-radius:6px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:background .2s;}
-.planning-btn:hover{background:rgba(255,255,255,.2);}
-.planning-grid{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;}
-.planning-day-header{padding:.5rem;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-text);background:var(--gray-light);border-bottom:1px solid var(--gray);}
-.planning-cell{min-height:60px;padding:.4rem;border:.5px solid var(--gray);cursor:pointer;transition:background .15s;position:relative;}
-.planning-cell:hover{background:var(--orange-pale);}
-.planning-cell.booked{background:#ffd5d5;}
+.planning-container{background:var(--white);border-radius:16px;border:1px solid var(--gray);overflow:hidden;box-shadow:0 4px 20px rgba(10,22,40,.06);}
+.planning-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;}
+.planning-title{font-family:'Bricolage Grotesque',sans-serif;font-size:24px;font-weight:800;text-transform:uppercase;color:var(--white);letter-spacing:.02em;}
+.planning-nav{display:flex;gap:10px;}
+.planning-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:var(--white);width:44px;height:44px;border-radius:10px;cursor:pointer;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.planning-btn:hover{background:var(--orange);border-color:var(--orange);transform:translateY(-1px);}
+.planning-grid{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;gap:2px;background:var(--gray);padding:2px;}
+.planning-day-header{padding:.9rem;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--white);background:var(--navy);}
+.planning-cell{min-height:95px;padding:.6rem;border:none;cursor:pointer;transition:all .15s;position:relative;background:var(--white);}
+.planning-cell:hover{background:var(--orange-pale);transform:scale(1.02);z-index:1;box-shadow:0 4px 12px rgba(10,22,40,.1);}
+.planning-cell.booked{background:#ffe5e5;}
 .planning-cell.booked .day-num{color:#c0392b;font-weight:900;}
 .planning-cell.available{background:#f0faf6;}
-.planning-cell.today{border:2px solid var(--orange);}
-.day-num{font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:700;color:var(--navy);margin-bottom:3px;}
-.day-num.other-month{color:var(--gray);}
-.delivery-tag{font-size:8px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:2px 3px;border-radius:3px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.planning-cell.today{border:3px solid var(--orange);box-shadow:inset 0 0 0 3px rgba(244,112,10,.15);}
+.day-num{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:var(--navy);margin-bottom:5px;line-height:1;}
+.day-num.other-month{color:var(--gray);opacity:.4;font-weight:600;}
+.delivery-tag{font-size:10px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;padding:3px 5px;border-radius:5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;box-shadow:0 1px 2px rgba(0,0,0,.06);}
 .planning-cell.client-booked{background:#ff6b6b !important;cursor:not-allowed;}
-.planning-cell.client-booked:hover{background:#ff5252 !important;}
+.planning-cell.client-booked:hover{background:#ff5252 !important;transform:none;}
 .planning-cell.client-booked .day-num{color:white;font-weight:900;}
 .planning-cell.client-booked .booked-label{background:#c0392b;color:white;}
 .planning-cell.client-selected{background:#e0f7ee;border-color:#1aab6d;}
@@ -233,7 +281,7 @@ textarea{resize:vertical;min-height:90px;}
 .planning-cell.client-in-range{background:#f0faf6;}
 .planning-cell.client-start,.planning-cell.client-end{background:#1aab6d;}
 .planning-cell.client-start .day-num,.planning-cell.client-end .day-num{color:white;font-weight:900;}
-.planning-cell.client-today{border:2px solid var(--orange)!important;background:var(--orange-pale);}
+.planning-cell.client-today{border:3px solid var(--orange)!important;background:var(--orange-pale);}
 .planning-cell.client-past{opacity:.4;cursor:not-allowed;}
 .planning-cell.client-past:hover{background:transparent;}
 .booked-label{font-size:8px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;background:#e24b4a;color:white;padding:1px 4px;border-radius:3px;display:block;text-align:center;margin-top:2px;}
@@ -402,7 +450,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.7);padding:4rem 2rem 2rem;
 .admin-page{display:none;}
 .admin-page.active{display:block;}
 /* Source pages for hub sub-tabs: hidden but kept in DOM for cloning */
-#page-fleet, #page-entretien, #page-pricing, #page-drivers, #page-users,
+#page-fleet, #page-entretien, #page-drivers, #page-users,
 #page-suivi, #page-contrat, #page-invoices {
   display: none !important;
 }
@@ -693,6 +741,7 @@ footer, .footer-contact-item, .footer-section {
     <button class="nav-btn" onclick="showPage('parrainage')">Parrainage</button>
     <button class="nav-btn" onclick="showPage('avis')">Avis</button>
     <button class="nav-btn" onclick="showPage('contact')">Contact</button>
+    <button class="nav-btn" onclick="showPage('signalement')" style="color:var(--orange-light);">🐛 Signaler</button>
   </nav>
   <a href="tel:0668833687" class="btn-urgent">🚨 06 68 83 36 87</a>
   <button class="btn-owner" onclick="openLogin()" id="ownerBtn">🔑 Propriétaire</button>
@@ -711,6 +760,7 @@ footer, .footer-contact-item, .footer-section {
   <button class="nav-btn" onclick="showPage('parrainage')">Parrainage 🎁</button>
   <button class="nav-btn" onclick="showPage('avis')">Avis clients</button>
   <button class="nav-btn" onclick="showPage('contact')">Contact</button>
+  <button class="nav-btn" onclick="showPage('signalement')" style="color:var(--orange-light);">🐛 Signaler un souci</button>
   <a href="tel:0668833687" style="color:var(--orange);margin-top:1rem;font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:700;text-transform:uppercase;">📞 06 68 83 36 87</a>
 </div>
 
@@ -866,81 +916,136 @@ footer, .footer-contact-item, .footer-section {
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services">
-  <div class="section-inner">
-    <span class="section-tag">Ce que nous faisons</span>
-    <h2 class="section-title">Nos Services</h2>
-    <p class="section-subtitle">Mécanique, électronique, contrôle technique et dépannage — tout sous un même toit, disponible à tout moment.</p>
-    <div class="services-grid" id="servicesGrid">
-      <div class="service-card urgent">
-        <div class="service-icon">🚨</div>
-        <div class="service-title">Dépannage 24h/24 — 7j/7</div>
-        <p class="service-desc">Panne sur route, accident, crevaison — intervention immédiate à tout moment. Dépanneuse disponible pour remorquage dans un rayon de 100 km autour de Valgelon la Rochette.</p>
-        <span class="service-badge">Urgence — appel direct</span>
+
+
+</div><!-- /page-accueil -->
+<!-- PAGE: SERVICES (dédié) -->
+<div class="page" id="page-services" style="display:none;">
+
+  <!-- HERO SERVICES -->
+  <section style="background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);padding:5rem 2rem 3rem;color:white;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-30px;right:-30px;font-size:280px;opacity:.05;">🔧</div>
+    <div style="max-width:900px;margin:0 auto;position:relative;">
+      <span style="display:inline-block;background:rgba(244,112,10,.2);color:var(--orange-light);font-size:13px;font-weight:800;letter-spacing:.15em;padding:6px 18px;border-radius:100px;margin-bottom:1rem;">CE QUE NOUS FAISONS</span>
+      <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(48px,8vw,88px);font-weight:900;line-height:1;margin:0 0 1rem;text-transform:uppercase;">Nos <span style="color:var(--orange);">Services</span></h1>
+      <p style="font-size:20px;color:rgba(255,255,255,.85);line-height:1.6;max-width:720px;margin:0 auto;">Mécanique, électronique, contrôle technique et dépannage — tout sous un même toit, disponible à tout moment. Une équipe qui prend soin de votre véhicule comme si c'était le sien.</p>
+    </div>
+  </section>
+
+  <!-- GRILLE DE SERVICES XL -->
+  <section style="padding:4rem 2rem;background:var(--gray-light);">
+    <div style="max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:2rem;">
+
+      <!-- DÉPANNAGE (mise en avant) -->
+      <div onclick="showUrgenceModal()" style="grid-column:span 2;background:linear-gradient(135deg,var(--orange) 0%,var(--orange-light) 100%);border-radius:24px;padding:3rem;color:white;cursor:pointer;position:relative;overflow:hidden;box-shadow:0 12px 40px rgba(244,112,10,.3);transition:transform .2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'" class="service-xl-featured">
+        <div style="position:absolute;top:-20px;right:-20px;font-size:220px;opacity:.12;">🚨</div>
+        <div style="position:relative;">
+          <span style="display:inline-block;background:rgba(255,255,255,.25);font-size:11px;font-weight:800;letter-spacing:.15em;padding:5px 14px;border-radius:100px;margin-bottom:1rem;">URGENCE — APPEL DIRECT 24/7</span>
+          <div style="font-size:56px;margin-bottom:1rem;">🚨</div>
+          <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-size:36px;font-weight:900;line-height:1;margin:0 0 1rem;text-transform:uppercase;">Dépannage 24h/24</h2>
+          <p style="font-size:17px;line-height:1.6;margin:0 0 1.5rem;opacity:.95;">Panne sur route, accident, crevaison — intervention immédiate à tout moment. Dépanneuse plateau disponible pour remorquage dans un rayon de 100 km autour de Valgelon la Rochette.</p>
+          <div style="display:inline-flex;align-items:center;gap:10px;background:white;color:var(--orange);padding:14px 24px;border-radius:100px;font-weight:800;font-size:17px;">📞 06 68 83 36 87</div>
+        </div>
       </div>
-      <div class="service-card">
-        <div class="service-icon">⚡</div>
-        <div class="service-title">Diagnostic Électronique Expert</div>
-        <p class="service-desc">Spécialiste des pannes introuvables. Lecture et effacement de codes défauts, reprogrammation de calculateurs, valises multimarques, réseau CAN/LIN. Ce que les autres n'ont pas trouvé, on le trouve.</p>
-        <span class="service-badge" style="background:var(--navy);">Notre spécialité</span>
+
+      <!-- Autres services (grosses cartes) -->
+      <div class="service-xl">
+        <div class="service-xl-icon">⚡</div>
+        <h3>Diagnostic Électronique Expert</h3>
+        <p>Spécialiste des <strong>pannes introuvables</strong>. Lecture et effacement de codes défauts, reprogrammation de calculateurs, valises multimarques, réseau CAN/LIN. Ce que les autres n'ont pas trouvé, on le trouve.</p>
+        <span class="service-xl-badge" style="background:var(--navy);">Notre spécialité</span>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🔧</div>
-        <div class="service-title">Mécanique Générale</div>
-        <p class="service-desc">Révision, embrayage, freinage, distribution, suspension, échappement, pneumatiques — tous travaux mécaniques toutes marques réalisés avec soin et rigueur.</p>
+
+      <div class="service-xl">
+        <div class="service-xl-icon">🔧</div>
+        <h3>Mécanique Générale</h3>
+        <p>Révision, embrayage, freinage, distribution, suspension, échappement, pneumatiques — <strong>tous travaux mécaniques toutes marques</strong> réalisés avec soin et rigueur.</p>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🔍</div>
-        <div class="service-title">Contrôle Avant Achat (occasion)</div>
-        <p class="service-desc">Vous achetez un véhicule d'occasion sur LeBonCoin, La Centrale ou autre ? On effectue un contrôle complet et une remise en état de tout point qui ne passerait pas au contrôle technique. Achetez en toute sérénité.</p>
-        <span class="service-badge" style="background:#0f5a9a;">Nouveau service</span>
+
+      <div class="service-xl">
+        <div class="service-xl-icon">🔍</div>
+        <h3>Contrôle Avant Achat d'Occasion</h3>
+        <p>Vous achetez un véhicule sur <strong>LeBonCoin, La Centrale</strong> ou autre ? On effectue un contrôle complet et une remise en état de tout point qui ne passerait pas au contrôle technique. Achetez en toute sérénité.</p>
+        <span class="service-xl-badge" style="background:var(--navy-light);">Nouveau service</span>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🏁</div>
-        <div class="service-title">Préparation Contrôle Technique</div>
-        <p class="service-desc">Avant de passer au contrôle technique, on inspecte votre véhicule de A à Z et on remet en état tous les points de défaillance. Évitez la contre-visite et les mauvaises surprises.</p>
-        <span class="service-badge" style="background:#0f5a9a;">Nouveau service</span>
+
+      <div class="service-xl">
+        <div class="service-xl-icon">🏁</div>
+        <h3>Préparation Contrôle Technique</h3>
+        <p>Avant de passer au contrôle technique, on inspecte votre véhicule <strong>de A à Z</strong> et on remet en état tous les points de défaillance. Évitez la contre-visite et les mauvaises surprises.</p>
+        <span class="service-xl-badge" style="background:var(--navy-light);">Nouveau service</span>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🔩</div>
-        <div class="service-title">Entretien & Révision</div>
-        <p class="service-desc">Vidange, filtres, bougies, niveaux, courroie accessoires — entretien complet conforme aux préconisations constructeur pour préserver votre véhicule.</p>
+
+      <div class="service-xl">
+        <div class="service-xl-icon">🔩</div>
+        <h3>Entretien &amp; Révision</h3>
+        <p>Vidange, filtres, bougies, niveaux, courroie accessoires — entretien complet <strong>conforme aux préconisations constructeur</strong> pour préserver votre véhicule sur la durée.</p>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🚗</div>
-        <div class="service-title">Dépanneuse & Remorquage</div>
-        <p class="service-desc">Remorquage et transport de véhicules en panne ou accidentés. Intervention dans un rayon de 100 km autour de Valgelon la Rochette.</p>
+
+      <div class="service-xl">
+        <div class="service-xl-icon">🚗</div>
+        <h3>Dépanneuse &amp; Remorquage</h3>
+        <p>Remorquage et transport de véhicules en panne ou accidentés. Intervention dans un rayon de <strong>100 km</strong> autour de Valgelon la Rochette avec dépanneuse plateau.</p>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🛻</div>
-        <div class="service-title">Location de Véhicules</div>
-        <p class="service-desc">Voitures, breaks, SUV, coupé cabriolet, fourgon utilitaire et benne diesel disponibles à la location. Sièges bébé &amp; enfant gratuits, porte-skis offert en hiver, pneus neige inclus. Livraison au lieu de votre choix.</p>
+
+      <!-- LOCATION (mise en avant secondaire) -->
+      <div onclick="showPage('location')" class="service-xl" style="grid-column:span 2;background:linear-gradient(135deg,#1a3358 0%,#0a1628 100%);color:white;cursor:pointer;">
+        <div style="display:flex;gap:2rem;align-items:center;flex-wrap:wrap;">
+          <div style="font-size:80px;">🛻</div>
+          <div style="flex:1;min-width:260px;">
+            <h3 style="color:white !important;font-size:32px !important;">Location de Véhicules</h3>
+            <p style="color:rgba(255,255,255,.85) !important;font-size:16px !important;">Voitures, breaks, SUV, coupé cabriolet, fourgon utilitaire et benne diesel disponibles à la location. Sièges bébé &amp; enfant gratuits, porte-skis offert en hiver, pneus neige inclus. <strong style="color:var(--orange-light);">Livraison où vous voulez.</strong></p>
+          </div>
+          <div style="background:var(--orange);color:white;padding:16px 28px;border-radius:100px;font-weight:800;font-size:16px;white-space:nowrap;">Réserver en ligne →</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA CONTACT FINAL -->
+  <section style="padding:3rem 2rem;background:white;text-align:center;">
+    <div style="max-width:700px;margin:0 auto;">
+      <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-size:32px;font-weight:800;color:var(--navy);margin:0 0 1rem;">Une question, un devis, un rendez-vous ?</h3>
+      <p style="color:var(--gray-text);font-size:16px;margin:0 0 1.5rem;">Privilégiez le SMS ou l'e-mail — je recontacte tous mes clients en fin de journée ou le lendemain matin.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
+        <a href="sms:0668833687" style="background:var(--orange);color:white;padding:14px 26px;border-radius:100px;text-decoration:none;font-weight:800;font-size:16px;">💬 Envoyer un SMS</a>
+        <a href="mailto:marchenriannis@gmail.com" style="background:var(--navy);color:white;padding:14px 26px;border-radius:100px;text-decoration:none;font-weight:800;font-size:16px;">✉️ Envoyer un e-mail</a>
+        <a href="tel:0668833687" style="background:white;color:var(--navy);border:2px solid var(--navy);padding:12px 24px;border-radius:100px;text-decoration:none;font-weight:800;font-size:16px;">📞 Appeler</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- SECTION SIGNALEMENT DE BUG / PROBLÈME -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<section style="padding:3rem 1rem;background:linear-gradient(135deg, #0a1628 0%, #1a3358 100%);position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 50%, rgba(244,112,10,.1) 0%, transparent 50%);"></div>
-  <div style="max-width:900px;margin:0 auto;position:relative;z-index:1;">
-    <div style="text-align:center;margin-bottom:2rem;">
-      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(244,112,10,.15);border:1px solid rgba(244,112,10,.3);color:#ffb86c;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem;">
-        🛠️ Aidez-nous à améliorer le service
-      </div>
-      <h2 style="color:white;font-family:'Bricolage Grotesque',sans-serif;font-size:32px;font-weight:800;margin:0 0 .75rem;line-height:1.2;">
-        Un bug, un lien mort, un souci ?
-      </h2>
-      <p style="color:rgba(255,255,255,.75);font-size:17px;line-height:1.6;max-width:600px;margin:0 auto;">
-        Vous avez repéré un problème sur le site ou sur l'application Android ? Signalez-le-nous en 30 secondes — on le corrige au plus vite.
-      </p>
+</div><!-- /page-services -->
+
+<!-- CSS pour les grosses cartes services -->
+<style>
+.service-xl{background:white;border-radius:20px;padding:2.5rem;border:1px solid var(--gray);box-shadow:0 4px 16px rgba(10,22,40,.06);transition:transform .2s,box-shadow .2s;}
+.service-xl:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(10,22,40,.12);}
+.service-xl-icon{font-size:64px;margin-bottom:1.25rem;line-height:1;}
+.service-xl h3{font-family:'Bricolage Grotesque',sans-serif;font-size:26px;font-weight:800;color:var(--navy);margin:0 0 1rem;line-height:1.2;text-transform:uppercase;}
+.service-xl p{font-size:15px;line-height:1.65;color:var(--text);margin:0 0 1.25rem;}
+.service-xl-badge{display:inline-block;background:var(--orange);color:white;padding:6px 14px;border-radius:100px;font-size:12px;font-weight:800;letter-spacing:.03em;}
+@media(max-width:768px){.service-xl-featured, .service-xl[style*="span 2"]{grid-column:span 1 !important;}}
+</style>
+
+<!-- PAGE: SIGNALEMENT (dédié) -->
+<div class="page" id="page-signalement" style="display:none;">
+
+  <!-- HERO -->
+  <section style="background:linear-gradient(135deg,#0a1628 0%,#1a3358 100%);padding:5rem 2rem 3rem;color:white;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-30px;right:-30px;font-size:260px;opacity:.05;">🐛</div>
+    <div style="max-width:800px;margin:0 auto;position:relative;">
+      <span style="display:inline-block;background:rgba(244,112,10,.2);color:var(--orange-light);font-size:13px;font-weight:800;letter-spacing:.15em;padding:6px 18px;border-radius:100px;margin-bottom:1rem;">AIDEZ-NOUS À NOUS AMÉLIORER</span>
+      <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(42px,7vw,72px);font-weight:900;line-height:1;margin:0 0 1rem;text-transform:uppercase;">Signaler un <span style="color:var(--orange);">souci</span></h1>
+      <p style="font-size:18px;color:rgba(255,255,255,.85);line-height:1.6;">Un bug, un lien mort, un affichage qui déconne, une information erronée, une suggestion d'amélioration ? Dites-le-nous en 30 secondes — on corrige au plus vite !</p>
     </div>
+  </section>
 
-    <div style="background:rgba(255,255,255,.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:1.5rem;">
-      <form id="bug-report-form" onsubmit="submitBugReport(event)">
+  <!-- FORMULAIRE (inséré ici) -->
+  <div id="signalement-form-container" style="background:var(--gray-light);padding:3rem 2rem;">
+    <div style="max-width:800px;margin:0 auto;">
+      <div style="background:linear-gradient(135deg,#0a1628 0%,#1a3358 100%);border-radius:20px;padding:2.5rem;box-shadow:0 8px 32px rgba(10,22,40,.15);border:1px solid var(--navy-light);"><form id="bug-report-form" onsubmit="submitBugReport(event)">
 
         <!-- TYPE DE PROBLÈME -->
         <div style="margin-bottom:1.25rem;">
@@ -1050,12 +1155,25 @@ footer, .footer-contact-item, .footer-section {
         <p style="text-align:center;color:rgba(255,255,255,.5);font-size:12px;margin-top:1rem;margin-bottom:0;">
           🔒 Vos informations sont envoyées directement au propriétaire et ne sont pas partagées.
         </p>
-      </form>
+      </form></div>
     </div>
   </div>
-</section>
 
-</div><!-- /page-accueil -->
+  <!-- CONTACT ALTERNATIF -->
+  <section style="padding:3rem 2rem;background:white;text-align:center;">
+    <div style="max-width:700px;margin:0 auto;">
+      <div style="font-size:48px;margin-bottom:1rem;">🙏</div>
+      <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-size:26px;font-weight:800;color:var(--navy);margin:0 0 1rem;">Merci pour votre aide !</h3>
+      <p style="color:var(--gray-text);font-size:15px;line-height:1.7;">Chaque retour compte pour améliorer l'expérience. Si votre message est urgent, contactez-moi directement — je recontacte tous mes clients en fin de journée ou le lendemain matin.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:1.5rem;">
+        <a href="sms:0668833687" style="background:var(--orange);color:white;padding:12px 22px;border-radius:100px;text-decoration:none;font-weight:700;font-size:14px;">💬 SMS</a>
+        <a href="mailto:marchenriannis@gmail.com" style="background:var(--navy);color:white;padding:12px 22px;border-radius:100px;text-decoration:none;font-weight:700;font-size:14px;">✉️ E-mail</a>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-signalement -->
+
 
 
 <!-- PAGE: LOCATION -->
@@ -1068,6 +1186,24 @@ footer, .footer-contact-item, .footer-section {
     <span class="section-tag">Flotte disponible</span>
     <h2 class="section-title">Location de Véhicules</h2>
     <p class="section-subtitle">9 véhicules disponibles — réservez en ligne, on vous livre à domicile, en gare ou à l'aéroport.</p>
+
+    <!-- 🌟 OFFRE MISE EN AVANT : -10% RÉSERVATION FERME -->
+    <div style="background:linear-gradient(135deg,#0a8d55 0%,#1aab6d 50%,#5eebb0 100%);border-radius:16px;padding:1.5rem 2rem;margin-bottom:2rem;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(26,171,109,.3);">
+      <div style="position:absolute;top:-20px;right:-20px;font-size:180px;opacity:.08;">💰</div>
+      <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;justify-content:space-between;position:relative;">
+        <div style="flex:1;min-width:280px;">
+          <div style="display:inline-block;background:rgba(255,255,255,.25);color:#fff;font-size:11px;font-weight:800;letter-spacing:.1em;padding:4px 12px;border-radius:100px;margin-bottom:8px;">🎁 OFFRE EXCLUSIVE</div>
+          <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-size:28px;font-weight:900;color:#fff;line-height:1.1;margin:0 0 8px;">Économisez -10% supplémentaires !</h3>
+          <p style="color:rgba(255,255,255,.95);font-size:15px;line-height:1.5;margin:0;">
+            En réservant <strong>sans possibilité d'annulation</strong> minimum <strong>7 jours avant le départ</strong>, bénéficiez d'une réduction supplémentaire de <strong>10 %</strong> sur votre location — cumulable avec les autres remises longue durée.
+          </p>
+        </div>
+        <div style="text-align:center;background:rgba(255,255,255,.2);border:2px dashed rgba(255,255,255,.5);border-radius:12px;padding:1rem 1.5rem;min-width:130px;">
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:48px;font-weight:900;color:#fff;line-height:1;">-10%</div>
+          <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.9);letter-spacing:.05em;margin-top:4px;">RÉSERVATION FERME</div>
+        </div>
+      </div>
+    </div>
 
     <!-- ÉQUIPEMENTS OFFERTS -->
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-bottom:2.5rem;">
@@ -1209,6 +1345,30 @@ footer, .footer-contact-item, .footer-section {
         <div class="form-group full" id="delivery-price-info" style="display:none;">
           <div style="background:rgba(244,112,10,.12);border:1px solid rgba(244,112,10,.3);border-radius:8px;padding:.75rem 1rem;font-size:13px;color:var(--orange-light);">
             <strong>📍 Tarif livraison :</strong> <span id="delivery-price-display">—</span>
+          </div>
+        </div>
+
+        <!-- RÉSERVATION FERME (-10% si 7+ jours à l'avance) -->
+        <div class="form-group full" id="ferme-block" style="display:none;">
+          <div id="ferme-eligible-msg" style="display:none;background:rgba(26,171,109,.12);border:1.5px solid rgba(26,171,109,.4);border-radius:10px;padding:1rem 1.25rem;">
+            <label style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;">
+              <input type="checkbox" id="res-ferme" onchange="updateResRecap()" style="width:22px;height:22px;cursor:pointer;flex-shrink:0;margin-top:2px;accent-color:#1aab6d;" />
+              <div>
+                <div style="font-weight:700;color:#1aab6d;font-size:15px;margin-bottom:4px;">💰 Économisez -10% supplémentaires avec la réservation ferme</div>
+                <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;">En cochant cette case, vous vous engagez à ne pas annuler votre réservation. En contrepartie, vous bénéficiez de <strong style="color:#1aab6d;">-10% supplémentaires</strong> sur le prix de la location.<br><em style="font-size:11px;opacity:.8;">Réservé aux réservations effectuées au moins 7 jours avant le départ.</em></div>
+              </div>
+            </label>
+          </div>
+          <div id="ferme-noneligible-msg" style="display:none;background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.15);border-radius:10px;padding:.85rem 1.25rem;font-size:12px;color:rgba(255,255,255,.55);">
+            ℹ️ La réduction ferme -10% supplémentaires est disponible uniquement pour les réservations faites au moins <strong>7 jours à l'avance</strong>.
+          </div>
+        </div>
+
+        <!-- ALERTE DERNIÈRE MINUTE (+10%) -->
+        <div class="form-group full" id="lastmin-block" style="display:none;">
+          <div style="background:rgba(226,75,74,.12);border:1.5px solid rgba(226,75,74,.4);border-radius:10px;padding:1rem 1.25rem;">
+            <div style="font-weight:700;color:#ff8080;font-size:14px;margin-bottom:4px;">⚠️ Réservation dernière minute — supplément +10%</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.75);line-height:1.5;">Un supplément de <strong>+10%</strong> s'applique automatiquement aux réservations effectuées moins de 36h avant l'heure de départ du véhicule.</div>
           </div>
         </div>
       </div>
@@ -1457,15 +1617,15 @@ footer, .footer-contact-item, .footer-section {
           <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.15);border-radius:10px;padding:.85rem 1.25rem;">
             <span style="font-size:22px;">👥</span>
             <div>
-              <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:17px;font-weight:700;color:var(--white);">3 filleuls = réduction garantie</div>
-              <div style="font-size:13px;color:rgba(255,255,255,.8);">Le taux de réduction est ajusté par nos soins selon votre historique</div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:17px;font-weight:700;color:var(--white);">10 % de réduction dès 3 filleuls</div>
+              <div style="font-size:13px;color:rgba(255,255,255,.8);">Réservé aux 3 premiers filleuls parrainés — offre découverte</div>
             </div>
           </div>
           <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.15);border-radius:10px;padding:.85rem 1.25rem;">
             <span style="font-size:22px;">🔗</span>
             <div>
-              <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:17px;font-weight:700;color:var(--white);">Valable sur mécanique &amp; location</div>
-              <div style="font-size:13px;color:rgba(255,255,255,.8);">Applicable sur votre prochaine facture, sans limite de cumul</div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:17px;font-weight:700;color:var(--white);">10 % pour les 3 premiers filleuls</div>
+              <div style="font-size:13px;color:rgba(255,255,255,.8);">Applicable sur votre prochaine facture — mécanique ou location</div>
             </div>
           </div>
         </div>
@@ -1775,7 +1935,8 @@ footer, .footer-contact-item, .footer-section {
 
     <!-- GROUPE 2 : EXPLOITATION -->
     <div class="admin-menu-group-title">🚗 Exploitation</div>
-    <button class="admin-menu-btn" onclick="switchTab('exploitation')">🛠️ Flotte, Entretien, Tarifs, Équipe</button>
+    <button class="admin-menu-btn" onclick="switchTab('exploitation')">🛠️ Flotte, Entretien, Équipe</button>
+    <button class="admin-menu-btn" onclick="switchTab('pricing')">💰 Prix &amp; Réductions</button>
 
     <!-- GROUPE 3 : AUTRES -->
     <div class="admin-menu-group-title">⚙️ Autres</div>
@@ -1786,6 +1947,8 @@ footer, .footer-contact-item, .footer-section {
     <button class="admin-menu-btn" onclick="switchTab('photos')">🖼️ Photos du site</button>
     <button class="admin-menu-btn" onclick="switchTab('compta')">📊 Comptabilité &amp; Impôts</button>
     <button class="admin-menu-btn" onclick="switchTab('paie')">👥 Employés &amp; Paie</button>
+    <button class="admin-menu-btn" onclick="switchTab('controle')">🔍 Contrôle véhicule (PDF)</button>
+    <button class="admin-menu-btn" onclick="switchTab('theme')">🎨 Thème du site</button>
   </div>
   <!-- OVERLAY -->
   <div class="admin-overlay" id="adminOverlay" onclick="toggleAdminMenu()"></div>
@@ -1819,14 +1982,13 @@ footer, .footer-contact-item, .footer-section {
     <div class="admin-page" id="page-exploitation">
       <div class="admin-section">
         <div class="admin-section-header">
-          <div class="admin-section-title">🛠️ Exploitation : Flotte, Entretien, Tarifs, Équipe</div>
+          <div class="admin-section-title">🛠️ Exploitation : Flotte, Entretien, Équipe</div>
           <div class="admin-badge">Centralisé</div>
         </div>
         <div class="admin-section-body">
           <div class="subtabs-container">
             <button class="subtab-btn active" onclick="showSubtab('exploitation', 'fleet')">🚗 Flotte</button>
             <button class="subtab-btn" onclick="showSubtab('exploitation', 'entretien')">🔧 Entretien</button>
-            <button class="subtab-btn" onclick="showSubtab('exploitation', 'pricing')">💰 Tarifs</button>
             <button class="subtab-btn" onclick="showSubtab('exploitation', 'drivers')">👤 Livreurs</button>
             <button class="subtab-btn" onclick="showSubtab('exploitation', 'users')">🔑 Utilisateurs</button>
           </div>
@@ -1860,6 +2022,163 @@ footer, .footer-contact-item, .footer-section {
           <div id="servicePhotosGrid" style="display:flex;flex-direction:column;gap:1.25rem;"></div>
           <div style="display:flex;justify-content:flex-end;margin-top:1.5rem;">
             <button class="btn-admin-save" onclick="saveServicePhotos()">✅ Enregistrer photos services</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE: CONTRÔLE VÉHICULE COMPLET (avant achat ou pré-CT) -->
+    <div class="admin-page" id="page-controle">
+      <div class="admin-section" style="background:linear-gradient(135deg,var(--navy),var(--navy-light));border:none;">
+        <div class="admin-section-body" style="padding:1.5rem;">
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:var(--white);margin-bottom:.4rem;">🔍 Contrôle véhicule complet</div>
+          <p style="font-size:14px;color:rgba(255,255,255,.75);line-height:1.6;margin:0;">
+            Fiche technique professionnelle pour <strong style="color:var(--orange-light);">contrôle avant achat d'occasion</strong> ou <strong style="color:var(--orange-light);">préparation au contrôle technique</strong>. Reprend l'intégralité des points du contrôle technique français officiel — cochez ce qui a été vérifié, ajoutez vos observations, et générez un rapport PDF multipage à remettre au client.
+          </p>
+        </div>
+      </div>
+
+      <!-- INFOS VÉHICULE / CLIENT -->
+      <div class="admin-section" style="margin-top:1.5rem;">
+        <div class="admin-section-header">
+          <div class="admin-section-title">📋 Informations générales</div>
+        </div>
+        <div class="admin-section-body">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;margin-bottom:.75rem;">
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">👤 Client</label><input class="admin-input" type="text" id="ct-client" placeholder="Nom du client" style="width:100%;" /></div>
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">📞 Téléphone</label><input class="admin-input" type="tel" id="ct-tel" placeholder="06 XX XX XX XX" style="width:100%;" /></div>
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">📅 Date d'inspection</label><input class="admin-input" type="date" id="ct-date" style="width:100%;" /></div>
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">🎯 Type de contrôle</label>
+              <select class="admin-input" id="ct-type" style="width:100%;">
+                <option value="avant-achat">Contrôle avant achat (occasion)</option>
+                <option value="pre-ct">Préparation au contrôle technique</option>
+                <option value="revision">Révision complète</option>
+              </select>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem;margin-bottom:.75rem;">
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">🚗 Marque</label><input class="admin-input" type="text" id="ct-marque" placeholder="Peugeot" style="width:100%;" /></div>
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">Modèle</label><input class="admin-input" type="text" id="ct-modele" placeholder="308" style="width:100%;" /></div>
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">Immatriculation</label><input class="admin-input" type="text" id="ct-immat" placeholder="AA-123-BB" style="width:100%;text-transform:uppercase;" /></div>
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">1re mise en circulation</label><input class="admin-input" type="date" id="ct-immatDate" style="width:100%;" /></div>
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">Kilométrage</label><input class="admin-input" type="number" id="ct-km" placeholder="120000" style="width:100%;" /></div>
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">Énergie</label>
+              <select class="admin-input" id="ct-energie" style="width:100%;">
+                <option>Essence</option><option>Diesel</option><option>Hybride</option><option>Électrique</option><option>GPL</option>
+              </select>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;">
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">N° série (VIN)</label><input class="admin-input" type="text" id="ct-vin" placeholder="VF3XXXXXXXXXXXXXX" style="width:100%;text-transform:uppercase;" /></div>
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">Puissance fiscale</label><input class="admin-input" type="text" id="ct-cv" placeholder="6 CV" style="width:100%;" /></div>
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">Dernier CT (si connu)</label><input class="admin-input" type="date" id="ct-lastCt" style="width:100%;" /></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LÉGENDE / BARÈME -->
+      <div class="admin-section" style="margin-top:1rem;">
+        <div class="admin-section-body" style="padding:1rem 1.5rem;">
+          <div style="display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center;justify-content:center;font-size:13px;">
+            <div style="display:flex;align-items:center;gap:8px;"><span style="width:22px;height:22px;background:#1aab6d;color:white;border-radius:5px;display:flex;align-items:center;justify-content:center;font-weight:800;">✓</span><strong>OK</strong> — Conforme</div>
+            <div style="display:flex;align-items:center;gap:8px;"><span style="width:22px;height:22px;background:#f4a600;color:white;border-radius:5px;display:flex;align-items:center;justify-content:center;font-weight:800;">!</span><strong>Défaut mineur</strong> — À surveiller</div>
+            <div style="display:flex;align-items:center;gap:8px;"><span style="width:22px;height:22px;background:#e24b4a;color:white;border-radius:5px;display:flex;align-items:center;justify-content:center;font-weight:800;">✗</span><strong>Défaut critique</strong> — Contre-visite</div>
+            <div style="display:flex;align-items:center;gap:8px;"><span style="width:22px;height:22px;background:var(--gray);color:var(--gray-text);border-radius:5px;display:flex;align-items:center;justify-content:center;font-weight:800;">—</span><strong>Non vérifié</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CATÉGORIES DE POINTS DE CONTRÔLE -->
+      <div id="controlePointsContainer"></div>
+
+      <!-- BILAN / COMMENTAIRE GÉNÉRAL -->
+      <div class="admin-section" style="margin-top:1.5rem;">
+        <div class="admin-section-header">
+          <div class="admin-section-title">💬 Bilan général du contrôle</div>
+        </div>
+        <div class="admin-section-body">
+          <label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">Synthèse et recommandations du technicien</label>
+          <textarea class="admin-input" id="ct-bilan" placeholder="Ex : Véhicule globalement en bon état, prévoir remplacement plaquettes AV dans les 5000 km. Attention au jeu direction. Idéalement, éviter l'achat sans négociation sur les points critiques listés." style="width:100%;min-height:100px;resize:vertical;"></textarea>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem;margin-top:1rem;">
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">👨‍🔧 Nom technicien</label><input class="admin-input" type="text" id="ct-technicien" placeholder="Marc-Henri Annis" style="width:100%;" /></div>
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">🎯 Décision globale</label>
+              <select class="admin-input" id="ct-decision" style="width:100%;">
+                <option value="favorable">✅ Favorable</option>
+                <option value="reserves">⚠️ Favorable avec réserves</option>
+                <option value="defavorable">❌ Défavorable</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOUTONS ACTIONS -->
+      <div class="admin-section" style="margin-top:1.5rem;">
+        <div class="admin-section-body" style="display:flex;gap:.75rem;flex-wrap:wrap;">
+          <button onclick="generateControlePDF()" style="background:#1aab6d;color:white;border:none;font-size:15px;font-weight:800;padding:14px 26px;border-radius:8px;cursor:pointer;">📥 Générer le rapport PDF complet</button>
+          <button onclick="resetControleForm()" style="background:transparent;border:1.5px solid var(--gray);color:var(--gray-text);font-size:14px;font-weight:600;padding:13px 22px;border-radius:8px;cursor:pointer;">🔄 Réinitialiser le formulaire</button>
+          <button onclick="controleCheckAllOk()" style="background:var(--navy);color:white;border:none;font-size:13px;font-weight:600;padding:13px 20px;border-radius:8px;cursor:pointer;">✅ Tout marquer OK</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE: THÈME DU SITE -->
+    <div class="admin-page" id="page-theme">
+      <div class="admin-section">
+        <div class="admin-section-header">
+          <div class="admin-section-title">🎨 Thème visuel du site</div>
+          <div class="admin-badge">Actuel : <span id="theme-current-badge">Original</span></div>
+        </div>
+        <div class="admin-section-body">
+          <p style="font-size:14px;color:var(--text);line-height:1.6;margin-bottom:1.5rem;">
+            Choisissez l'apparence de votre site. Le changement s'applique <strong>immédiatement à tout le site</strong> (pages publiques et admin) et est enregistré en ligne, donc visible sur tous vos appareils et sur les deux adresses du site.
+          </p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;">
+
+            <!-- CARTE THÈME ORIGINAL -->
+            <div id="theme-card-actuel" class="theme-card" onclick="setTheme('actuel')" style="cursor:pointer;border:3px solid var(--gray);border-radius:14px;overflow:hidden;transition:border-color .2s,transform .2s;">
+              <div style="height:150px;background:linear-gradient(135deg,#0a1628,#112240);position:relative;padding:1.25rem;display:flex;flex-direction:column;justify-content:space-between;">
+                <div style="display:flex;gap:6px;">
+                  <span style="width:28px;height:28px;border-radius:6px;background:#0a1628;border:1px solid rgba(255,255,255,.2);"></span>
+                  <span style="width:28px;height:28px;border-radius:6px;background:#f4700a;"></span>
+                  <span style="width:28px;height:28px;border-radius:6px;background:#fff;"></span>
+                </div>
+                <div>
+                  <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:900;font-size:22px;color:#fff;text-transform:uppercase;line-height:1;">DÉPANNAGE<span style="color:#f4700a;"> & LOCATION</span></div>
+                  <div style="display:inline-block;margin-top:8px;background:#f4700a;color:#fff;font-size:11px;font-weight:800;padding:5px 12px;border-radius:6px;">Bouton orange</div>
+                </div>
+              </div>
+              <div style="padding:1.25rem;background:var(--gray-light);">
+                <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px;color:var(--text);margin-bottom:.4rem;">🔵 Original</div>
+                <div style="font-size:13px;color:var(--gray-text);line-height:1.5;">Bleu marine &amp; orange. Moderne, chaleureux et professionnel. Le thème actuel de votre site.</div>
+                <div class="theme-check" style="margin-top:1rem;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--success);"><span style="font-size:18px;">✓</span> Thème actif</div>
+              </div>
+            </div>
+
+            <!-- CARTE THÈME INDUSTRIEL -->
+            <div id="theme-card-industriel" class="theme-card" onclick="setTheme('industriel')" style="cursor:pointer;border:3px solid var(--gray);border-radius:14px;overflow:hidden;transition:border-color .2s,transform .2s;">
+              <div style="height:150px;background:#16181d;position:relative;padding:1.25rem;display:flex;flex-direction:column;justify-content:space-between;">
+                <div style="position:absolute;top:0;left:0;right:0;height:6px;background:repeating-linear-gradient(45deg,#ffd400,#ffd400 12px,#16181d 12px,#16181d 24px);"></div>
+                <div style="display:flex;gap:6px;margin-top:6px;">
+                  <span style="width:28px;height:28px;background:#16181d;border:1px solid #33373f;"></span>
+                  <span style="width:28px;height:28px;background:#ffd400;"></span>
+                  <span style="width:28px;height:28px;background:#8b9099;"></span>
+                </div>
+                <div>
+                  <div style="font-family:'Archivo Black',sans-serif;font-weight:400;font-size:22px;color:#f2f3f5;text-transform:uppercase;line-height:1;">DÉPANNAGE<span style="color:#ffd400;"> & LOCATION</span></div>
+                  <div style="display:inline-block;margin-top:8px;background:#ffd400;color:#16181d;font-size:11px;font-weight:700;padding:5px 12px;clip-path:polygon(6% 0,100% 0,94% 100%,0 100%);">Bouton jaune</div>
+                </div>
+              </div>
+              <div style="padding:1.25rem;background:var(--gray-light);">
+                <div style="font-family:'Archivo Black',sans-serif;font-weight:400;font-size:18px;color:var(--text);margin-bottom:.4rem;">🟡 Industriel</div>
+                <div style="font-size:13px;color:var(--gray-text);line-height:1.5;">Anthracite &amp; jaune sécurité. Brut, costaud, esprit atelier et outillage. Polices techniques.</div>
+                <div class="theme-check" style="margin-top:1rem;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--success);"><span style="font-size:18px;">✓</span> Thème actif</div>
+              </div>
+            </div>
+
+          </div>
+          <div style="margin-top:1.5rem;background:var(--orange-pale);border:1px solid rgba(244,112,10,.25);border-radius:8px;padding:1rem 1.25rem;font-size:13px;color:var(--text);line-height:1.6;">
+            💡 Cliquez sur une carte pour appliquer le thème instantanément. Vous pouvez changer d'avis à tout moment — vos données, prix et réglages ne sont pas affectés, seule l'apparence change.
           </div>
         </div>
       </div>
@@ -2620,6 +2939,16 @@ footer, .footer-contact-item, .footer-section {
     <!-- PAGE: TARIFS & RÉDUCTIONS -->
     <div class="admin-page" id="page-pricing">
 
+      <!-- EN-TÊTE -->
+      <div class="admin-section" style="background:linear-gradient(135deg,var(--navy),var(--navy-light));border:none;">
+        <div class="admin-section-body" style="padding:1.5rem;">
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:var(--white);margin-bottom:.4rem;">💰 Prix &amp; Réductions</div>
+          <p style="font-size:14px;color:rgba(255,255,255,.75);line-height:1.6;margin:0;">
+            Centralisez ici tous vos tarifs : prix de location par véhicule, prix journaliers spéciaux, majorations vacances, tarifs de livraison et réductions longue durée. Chaque modification est enregistrée automatiquement en ligne.
+          </p>
+        </div>
+      </div>
+
       <!-- VACANCES SCOLAIRES -->
       <div class="admin-section">
         <div class="admin-section-header">
@@ -2712,6 +3041,9 @@ footer, .footer-contact-item, .footer-section {
           <button class="btn-admin-save" onclick="saveVehiclePrices()">✅ Enregistrer les prix véhicules</button>
         </div>
       </div>
+      <div class="admin-section">
+        <div class="admin-section-header">
+          <div class="admin-section-title">🚚 Tarifs de livraison (retrait, domicile, gares, aéroports)</div>
           <div class="admin-badge">Sauvegarde automatique</div>
         </div>
         <div class="admin-section-body">
@@ -2915,7 +3247,34 @@ footer, .footer-contact-item, .footer-section {
         <div style="padding:0 0 1rem;display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;">
           <button onclick="downloadAllOnlineContracts()" style="background:#0a1628;color:white;border:none;font-size:13px;font-weight:700;padding:9px 16px;border-radius:7px;cursor:pointer;">📥 Télécharger tous les contrats en ligne (PDF)</button>
           <button onclick="downloadAllOnlineInvoices()" style="background:#1a3358;color:white;border:none;font-size:13px;font-weight:700;padding:9px 16px;border-radius:7px;cursor:pointer;">🧾 Télécharger toutes les factures en ligne (PDF)</button>
+          <button onclick="toggleManualClientForm()" style="background:var(--orange);color:white;border:none;font-size:13px;font-weight:700;padding:9px 16px;border-radius:7px;cursor:pointer;">➕ Ajouter un client externe (hors site)</button>
           <span style="font-size:12px;color:var(--gray-text);">Génère et télécharge un PDF pour chaque réservation faite sur le site.</span>
+        </div>
+
+        <!-- FORMULAIRE AJOUT CLIENT EXTERNE (masqué par défaut) -->
+        <div id="manualClientForm" style="display:none;background:var(--gray-light);border:1.5px solid var(--orange);border-radius:10px;padding:1.25rem;margin-bottom:1rem;">
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:.5rem;">➕ Ajouter un client externe</div>
+          <p style="font-size:13px;color:var(--gray-text);margin-bottom:1rem;line-height:1.5;">Pour ajouter un client qui a réservé <strong>hors du site</strong> (appel téléphonique, en personne, WhatsApp…). Le contrat sera enregistré dans l'historique comme les autres.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem;margin-bottom:.75rem;">
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">👤 Nom &amp; prénom *</label><input class="admin-input" type="text" id="mcli-nom" placeholder="Jean Dupont" style="width:100%;" /></div>
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">📞 Téléphone</label><input class="admin-input" type="tel" id="mcli-tel" placeholder="06 XX XX XX XX" style="width:100%;" /></div>
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">✉️ E-mail</label><input class="admin-input" type="email" id="mcli-email" placeholder="jean@exemple.fr" style="width:100%;" /></div>
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">🚗 Véhicule *</label><select class="admin-input" id="mcli-vehicule" style="width:100%;"></select></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.75rem;margin-bottom:.75rem;">
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">📅 Départ *</label><input class="admin-input" type="datetime-local" id="mcli-depart" style="width:100%;" /></div>
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">📅 Retour *</label><input class="admin-input" type="datetime-local" id="mcli-retour" style="width:100%;" /></div>
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">💶 Montant total (€) *</label><input class="admin-input" type="number" step="0.01" id="mcli-total" placeholder="0.00" style="width:100%;" /></div>
+            <div><label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">💳 Mode paiement</label><select class="admin-input" id="mcli-paiement" style="width:100%;"><option>Espèces</option><option>Carte</option><option>Virement</option><option>Chèque</option><option>Autre</option></select></div>
+          </div>
+          <div style="margin-bottom:1rem;">
+            <label style="font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;display:block;margin-bottom:4px;">📝 Notes / commentaires</label>
+            <textarea class="admin-input" id="mcli-notes" placeholder="Ex: réservé par téléphone, paiement en 2 fois..." style="width:100%;min-height:50px;resize:vertical;"></textarea>
+          </div>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap;">
+            <button onclick="addManualClient()" style="background:#1aab6d;color:white;border:none;font-size:14px;font-weight:800;padding:11px 22px;border-radius:8px;cursor:pointer;">✅ Enregistrer le client</button>
+            <button onclick="toggleManualClientForm()" style="background:transparent;color:var(--gray-text);border:1px solid var(--gray);font-size:13px;font-weight:600;padding:10px 20px;border-radius:8px;cursor:pointer;">Annuler</button>
+          </div>
         </div>
         <div style="overflow-x:auto;">
           <table class="admin-table" id="suiviContratsTable">
@@ -3345,6 +3704,44 @@ let currentUserRole = 'admin'; // 'admin' or 'livreur'
 
 // ─── DATA ───────────────────────────
 function loadData(key, def){ try{ const d=localStorage.getItem(key); return d?JSON.parse(d):def; }catch(e){return def;} }
+
+// ═══════════════════════════════════════════════════════════════
+// SYSTÈME DE THÈME (Actuel / Industriel)
+// ═══════════════════════════════════════════════════════════════
+function applyTheme(theme){
+  if(theme === 'industriel'){
+    document.documentElement.setAttribute('data-theme', 'industriel');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+  }
+}
+function setTheme(theme){
+  applyTheme(theme);
+  saveData('adm_theme', theme);
+  // Mettre à jour l'UI de sélection si présente
+  if(typeof renderThemeSelector === 'function') renderThemeSelector();
+  showNotif('🎨 Thème appliqué', theme === 'industriel' ? 'Thème Industriel activé sur tout le site.' : 'Thème d\'origine restauré.');
+}
+// Appliquer le thème enregistré au chargement (avant tout rendu)
+(function initTheme(){
+  try {
+    const saved = localStorage.getItem('adm_theme');
+    if(saved){ applyTheme(JSON.parse(saved)); }
+  } catch(e){}
+})();
+
+function renderThemeSelector(){
+  const current = loadData('adm_theme', 'actuel');
+  ['actuel','industriel'].forEach(t=>{
+    const card = document.getElementById('theme-card-'+t);
+    if(card){
+      if(t === current){ card.classList.add('theme-selected'); }
+      else { card.classList.remove('theme-selected'); }
+    }
+  });
+  const badge = document.getElementById('theme-current-badge');
+  if(badge) badge.textContent = current === 'industriel' ? 'Industriel' : 'Original';
+}
 // Clés de réglages/prix à synchroniser automatiquement en ligne
 // Clés de réglages/données admin à synchroniser automatiquement en ligne
 // (tout ce qui est modifié en admin et doit être partagé entre appareils)
@@ -3374,6 +3771,7 @@ const SYNCED_SETTING_KEYS = [
   'adm_employes',           // employés
   'adm_fiches_paie',        // fiches de paie générées
   'adm_paie_settings',      // taux cotisations paie
+  'adm_theme',              // thème visuel du site
 ];
 function saveData(key,val){
   try{localStorage.setItem(key,JSON.stringify(val));}catch(e){}
@@ -3580,7 +3978,29 @@ function getResPrice(){
     discountLabel = '-'+tauxReduction+'% réduction longue durée ('+nbSem+' semaine'+(nbSem>1?'s':'')+', -'+discount+' €)';
   }
 
-  const total = Math.max(0, baseLocation - discount + livraisonPrice);
+  // ═══ RÉDUCTION FERME -10% ═══
+  // Cumulable si case cochée ET réservation faite au moins 7 jours avant le départ
+  const now = new Date();
+  const heuresAvantDepart = (d1 - now) / (1000*60*60);
+  const joursAvantDepart = heuresAvantDepart / 24;
+  const fermeChk = document.getElementById('res-ferme');
+  const fermeActif = fermeChk && fermeChk.checked;
+  const fermeEligible = joursAvantDepart >= 7;
+  let discountFerme = 0, discountFermeLabel = '';
+  if(fermeActif && fermeEligible){
+    discountFerme = Math.round(baseLocation * 10 / 100);
+    discountFermeLabel = '-10% réservation ferme sans annulation (-'+discountFerme+' €)';
+  }
+
+  // ═══ SURTAXE DERNIÈRE MINUTE +10% ═══
+  // Si réservation faite moins de 36h avant le départ
+  let surchargeLastMin = 0, surchargeLastMinLabel = '';
+  if(heuresAvantDepart >= 0 && heuresAvantDepart < 36){
+    surchargeLastMin = Math.round(baseLocation * 10 / 100);
+    surchargeLastMinLabel = '+10% supplément dernière minute (moins de 36h avant départ, +'+surchargeLastMin+' €)';
+  }
+
+  const total = Math.max(0, baseLocation - discount - discountFerme + surchargeLastMin + livraisonPrice);
   const avgPerDay = jours>0 ? Math.round(baseLocation/jours) : pricePerDay;
 
   // Build surcharge label for display
@@ -3588,7 +4008,7 @@ function getResPrice(){
   if(hasSpecial) surchLabel='Prix personnalisés inclus';
   else if(hasVacances) surchLabel='Majoration vacances incluse';
 
-  return {pricePerDay: avgPerDay, jours, livraisonPrice, discount, discountLabel, total, baseLocation, surchLabel, hasVacances, hasSpecial, livraisonIsDevis};
+  return {pricePerDay: avgPerDay, jours, livraisonPrice, discount, discountLabel, discountFerme, discountFermeLabel, surchargeLastMin, surchargeLastMinLabel, fermeActif, fermeEligible, joursAvantDepart, heuresAvantDepart, total, baseLocation, surchLabel, hasVacances, hasSpecial, livraisonIsDevis};
 }
 
 function updateResRecap(){
@@ -3650,8 +4070,33 @@ function updateResRecap(){
     let notices = [];
     if(p.surchLabel) notices.push('⚡ '+p.surchLabel);
     if(p.discountLabel) notices.push('🏷️ '+p.discountLabel);
+    if(p.discountFermeLabel) notices.push('💰 '+p.discountFermeLabel);
+    if(p.surchargeLastMinLabel) notices.push('⚠️ '+p.surchargeLastMinLabel);
     if(notices.length){discEl.style.display='block';discEl.textContent=notices.join(' — ');}
     else discEl.style.display='none';
+  }
+
+  // Afficher/masquer le bloc "réservation ferme" selon éligibilité
+  const fermeBlock = el('ferme-block');
+  const fermeYes = el('ferme-eligible-msg');
+  const fermeNo = el('ferme-noneligible-msg');
+  if(fermeBlock){
+    fermeBlock.style.display = 'block';
+    if(p.fermeEligible){
+      fermeYes.style.display = 'block';
+      fermeNo.style.display = 'none';
+    } else {
+      fermeYes.style.display = 'none';
+      // Ne montrer le message "non éligible" que si la date de départ est dans le futur (sinon inutile)
+      fermeNo.style.display = (p.joursAvantDepart >= 0 && p.joursAvantDepart < 7) ? 'block' : 'none';
+      // Décocher la case si plus éligible
+      const chk = el('res-ferme'); if(chk && chk.checked) chk.checked = false;
+    }
+  }
+  // Afficher/masquer le bloc "dernière minute"
+  const lastminBlock = el('lastmin-block');
+  if(lastminBlock){
+    lastminBlock.style.display = (p.surchargeLastMin > 0) ? 'block' : 'none';
   }
 
   const totalStr = p.total.toFixed(2)+' €';
@@ -3948,6 +4393,9 @@ async function loadSettingsFromFirebase(){
           break;
         case 'adm_paie_settings':
           if(value && typeof value==='object'){ paieSettings = value; saveData('adm_paie_settings',paieSettings); loaded.push('taux paie'); }
+          break;
+        case 'adm_theme':
+          if(value){ saveData('adm_theme',value); if(typeof applyTheme==='function') applyTheme(value); if(typeof renderThemeSelector==='function') renderThemeSelector(); loaded.push('thème'); }
           break;
       }
     });
@@ -5339,7 +5787,7 @@ async function partageNatif(){
 
 function showNotif(title,msg){const n=document.getElementById('notif');document.getElementById('notif-title').textContent=title;document.getElementById('notif-msg').textContent=msg;n.classList.add('show');clearTimeout(n._t);n._t=setTimeout(()=>n.classList.remove('show'),4200);}
 // ─── MULTI-PAGE NAVIGATION ────────
-const PAGES = ['accueil','location','paiement','vente','parrainage','avis','contact'];
+const PAGES = ['accueil','services','location','paiement','vente','parrainage','avis','contact','signalement'];
 
 function showPage(pageId){
   PAGES.forEach(p=>{
@@ -5432,6 +5880,7 @@ function openAdmin(){
   renderMalusTable();
   if(typeof renderComptabilite==='function') renderComptabilite();
   if(typeof renderPaie==='function') renderPaie();
+  if(typeof renderThemeSelector==='function') renderThemeSelector();
   renderPlanningAdmin();
   renderVenteAdmin();
   renderContratHistory();
@@ -5457,6 +5906,565 @@ function toggleAdminMenu(){
   document.getElementById('adminOverlay').classList.toggle('open');
 }
 
+// ═══════════════════════════════════════════════════════════════
+// MODULE CONTRÔLE VÉHICULE COMPLET (fiche pré-CT / avant achat)
+// Liste officielle des points de contrôle technique français
+// ═══════════════════════════════════════════════════════════════
+const CONTROLE_POINTS = [
+  { cat: '1. IDENTIFICATION DU VÉHICULE', icon: '🪪', points: [
+    'N° VIN — Frappe à froid conforme et lisible',
+    'N° VIN — Plaque constructeur présente et lisible',
+    'Plaque d\'immatriculation avant conforme',
+    'Plaque d\'immatriculation arrière conforme',
+    'Documents du véhicule (carte grise) à jour',
+    'Cohérence des numéros VIN / carte grise',
+  ]},
+  { cat: '2. FREINAGE', icon: '🛑', points: [
+    'Pédale de frein — course et fermeté',
+    'Réservoir liquide de frein — niveau et état',
+    'Liquide de frein — qualité (test humidité)',
+    'Frein de stationnement — efficacité et blocage',
+    'Frein de stationnement — course de la commande',
+    'Plaquettes avant — épaisseur (min 3mm)',
+    'Plaquettes arrière — épaisseur (min 3mm)',
+    'Disques avant — épaisseur et état (rayures, voile)',
+    'Disques arrière — épaisseur et état',
+    'Tambours arrière — état (si équipé)',
+    'Mâchoires de frein arrière — état (si tambours)',
+    'Flexibles de frein — état (craquelures, gonflements)',
+    'Canalisations rigides — état (corrosion, fuites)',
+    'Étriers de frein — état, jeux, coulissement',
+    'Répartiteur de freinage — bon fonctionnement',
+    'ABS — voyant éteint moteur tournant',
+    'ESP — voyant éteint moteur tournant',
+    'Efficacité globale au banc (déséquilibre)',
+  ]},
+  { cat: '3. DIRECTION', icon: '🎯', points: [
+    'Volant — jeu (max 30° à la roue)',
+    'Colonne de direction — état et fixation',
+    'Crémaillère de direction — jeu et état',
+    'Soufflets de crémaillère — étanchéité',
+    'Rotules de direction — jeu',
+    'Biellettes de direction — état, jeu',
+    'Direction assistée — bon fonctionnement',
+    'Pompe / assistance électrique DA — pas de bruit anormal',
+    'Fuite d\'huile de direction (si hydraulique)',
+    'Parallélisme des roues (constaté visuellement)',
+  ]},
+  { cat: '4. VISIBILITÉ', icon: '👁️', points: [
+    'Pare-brise — état (impacts, fissures)',
+    'Vitres latérales avant — état',
+    'Vitres latérales arrière — état',
+    'Lunette arrière — état',
+    'Essuie-glaces avant — état des balais et fonctionnement',
+    'Essuie-glace arrière — état et fonctionnement',
+    'Lave-glaces avant — jets et niveau',
+    'Lave-glace arrière — jet',
+    'Rétroviseur intérieur — état et fixation',
+    'Rétroviseur extérieur gauche — état, fixation, réglage',
+    'Rétroviseur extérieur droit — état, fixation, réglage',
+    'Dégivrage arrière — fonctionnement',
+    'Films / teintes conformes (transmission lumineuse)',
+  ]},
+  { cat: '5. FEUX & SIGNALISATION', icon: '💡', points: [
+    'Feux de croisement — fonctionnement gauche',
+    'Feux de croisement — fonctionnement droit',
+    'Feux de route — fonctionnement',
+    'Feux de position avant',
+    'Feux de position arrière',
+    'Feux de stop (les 3, y compris central)',
+    'Feux de recul',
+    'Feux de brouillard avant (si équipé)',
+    'Feu de brouillard arrière',
+    'Clignotants avant',
+    'Clignotants arrière',
+    'Clignotants latéraux (répétiteurs)',
+    'Feux de détresse (warnings)',
+    'Éclairage de plaque',
+    'Réglage des optiques (hauteur du faisceau)',
+    'Voyant tableau de bord — allumage moteur en route',
+    'Catadioptres arrière',
+    'Klaxon — fonctionnement',
+  ]},
+  { cat: '6. LIAISONS AU SOL', icon: '⚙️', points: [
+    'Pneu AVG — usure (min 1,6 mm sur toute la bande)',
+    'Pneu AVD — usure (min 1,6 mm sur toute la bande)',
+    'Pneu ARG — usure',
+    'Pneu ARD — usure',
+    'Homogénéité des pneus (mêmes dimensions / indices)',
+    'Absence de hernie / craquelure sur les 4 pneus',
+    'Pression conforme (contrôle 4 pneus)',
+    'Jantes — état (voile, chocs, fissures)',
+    'Amortisseur AVG — étanchéité et efficacité',
+    'Amortisseur AVD — étanchéité et efficacité',
+    'Amortisseur ARG — étanchéité et efficacité',
+    'Amortisseur ARD — étanchéité et efficacité',
+    'Ressorts / suspensions — état (pas de rupture)',
+    'Silentblocs / triangles — jeu',
+    'Rotules de suspension — jeu',
+    'Barre stabilisatrice — biellettes et fixations',
+    'Roulements de roues — jeu et bruit',
+    'Cardans / joints homocinétiques — soufflets',
+    'Roue de secours / kit anti-crevaison',
+    'Cric et clé — présents et fonctionnels',
+  ]},
+  { cat: '7. STRUCTURE & CARROSSERIE', icon: '🔨', points: [
+    'Châssis / longerons — état (corrosion, déformation)',
+    'Plancher — état, absence de perforation',
+    'Bas de caisse gauche — état, corrosion',
+    'Bas de caisse droit — état, corrosion',
+    'Passages de roues — état (corrosion perforante)',
+    'Portes — ouverture / fermeture / serrures',
+    'Capot moteur — fermeture, sécurité, gâche',
+    'Coffre / hayon — fermeture, joint, vérin',
+    'Trappe à carburant — fermeture',
+    'Points d\'ancrage ceintures — état',
+    'Absence de choc structurel majeur (soubassement)',
+    'Alignement caisse / ouvrants (traces de choc)',
+    'Peinture — état général (nuances, retouches)',
+  ]},
+  { cat: '8. ÉQUIPEMENTS INTÉRIEURS & SÉCURITÉ', icon: '🛋️', points: [
+    'Ceintures de sécurité AV — enrouleur et verrouillage',
+    'Ceintures de sécurité AR — enrouleur et verrouillage',
+    'Airbags — voyant éteint, pas de défaut',
+    'Sièges avant — fixation, réglages',
+    'Sièges arrière — fixation',
+    'Appui-tête — présents et réglables',
+    'Tableau de bord — voyants tous fonctionnels',
+    'Compteur vitesse / km — fonctionnement',
+    'Compte-tours — fonctionnement',
+    'Jauge carburant',
+    'Témoin niveau huile',
+    'Chauffage habitacle — fonctionnement',
+    'Climatisation — froid produit et pas d\'odeur',
+    'Ventilation — toutes les vitesses',
+    'Autoradio / système multimédia',
+    'Lève-vitres électriques (chacun)',
+    'Verrouillage centralisé — fonctionnement',
+    'Alarme (si équipée)',
+    'Triangle de pré-signalisation présent',
+    'Gilet haute visibilité présent',
+    'Éthylotest (si équipé, non obligatoire)',
+  ]},
+  { cat: '9. ORGANES MÉCANIQUES', icon: '🔧', points: [
+    'Moteur — démarrage à froid (facilité)',
+    'Moteur — ralenti stable',
+    'Moteur — bruits anormaux (claquements, sifflements)',
+    'Niveau d\'huile moteur — jauge',
+    'Qualité de l\'huile — aspect (jauge)',
+    'Fuites d\'huile visibles (bloc, cache-culbuteurs)',
+    'Niveau de liquide de refroidissement',
+    'État du liquide de refroidissement (propreté)',
+    'Durites moteur — état (craquelures)',
+    'Radiateur — état (pas de fuite, ailettes)',
+    'Ventilateur — enclenchement',
+    'Courroie accessoires — état (fissures, usure)',
+    'Courroie / chaîne de distribution — bruit',
+    'Batterie — état, cosses, fixation',
+    'Batterie — tension à vide et sous charge',
+    'Alternateur — charge (13,8 à 14,5 V au ralenti)',
+    'Démarreur — fonctionnement (pas de grincement)',
+    'Filtre à air — état',
+    'Filtre habitacle — état',
+    'Boîte de vitesses — passage des rapports (essai)',
+    'Embrayage — point de patinage, à-coups',
+    'Boîte automatique — passage des rapports',
+    'Différentiel / pont — bruits',
+    'Échappement — étanchéité, fixation',
+    'Silencieux / catalyseur — état, fixation',
+    'FAP / vanne EGR (diesel) — absence de défaut',
+    'Émissions gaz — pas de fumée anormale',
+  ]},
+  { cat: '10. ESSAI ROUTIER', icon: '🛣️', points: [
+    'Comportement direction (tirage, vibrations)',
+    'Comportement freinage (trajectoire droite)',
+    'Freinage d\'urgence (déclenchement ABS)',
+    'Passage de rapports fluide',
+    'Absence de vibrations à haute vitesse',
+    'Silence de fonctionnement (bruits parasites)',
+    'Tenue de route en virage',
+    'Reprises et accélérations correctes',
+    'Régime moteur cohérent selon rapport',
+  ]},
+  { cat: '11. DIAGNOSTIC ÉLECTRONIQUE (OBD)', icon: '⚡', points: [
+    'Lecture des codes défauts moteur',
+    'Lecture des codes défauts ABS / ESP',
+    'Lecture des codes défauts airbag',
+    'Lecture des codes défauts BVA (si automatique)',
+    'Historique effacé — mémoire vidée',
+    'Adaptations moteur cohérentes',
+    'Statut normes antipollution',
+  ]},
+];
+
+function initControleData(){
+  const dateEl = document.getElementById('ct-date');
+  if(dateEl && !dateEl.value) dateEl.value = new Date().toISOString().substring(0,10);
+  renderControlePoints();
+}
+
+function renderControlePoints(){
+  const container = document.getElementById('controlePointsContainer');
+  if(!container) return;
+  let html = '';
+  CONTROLE_POINTS.forEach((cat, ci) => {
+    html += `<div class="admin-section" style="margin-top:1rem;">
+      <div class="admin-section-header" style="cursor:pointer;" onclick="toggleControleCat(${ci})">
+        <div class="admin-section-title">${cat.icon} ${cat.cat}</div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span id="ct-cat-count-${ci}" style="font-size:11px;font-weight:700;color:var(--gray-text);"></span>
+          <span id="ct-cat-arrow-${ci}" style="font-size:14px;color:var(--gray-text);transition:transform .2s;">▼</span>
+        </div>
+      </div>
+      <div class="admin-section-body ct-cat-body" id="ct-cat-body-${ci}" style="padding:0;">`;
+    cat.points.forEach((pt, pi) => {
+      const id = 'ct-pt-'+ci+'-'+pi;
+      html += `<div style="border-top:1px solid var(--gray);padding:.75rem 1.25rem;display:grid;grid-template-columns:1fr auto;gap:.75rem;align-items:center;">
+        <div style="font-size:14px;color:var(--text);line-height:1.4;">${pt}</div>
+        <div style="display:flex;gap:4px;">
+          <button type="button" onclick="setControleState('${id}','ok',this)" class="ct-btn" data-state="ok" title="OK — Conforme" style="width:32px;height:32px;border:1.5px solid var(--gray);background:white;border-radius:5px;cursor:pointer;font-weight:800;color:#1aab6d;">✓</button>
+          <button type="button" onclick="setControleState('${id}','warn',this)" class="ct-btn" data-state="warn" title="Défaut mineur" style="width:32px;height:32px;border:1.5px solid var(--gray);background:white;border-radius:5px;cursor:pointer;font-weight:800;color:#f4a600;">!</button>
+          <button type="button" onclick="setControleState('${id}','ko',this)" class="ct-btn" data-state="ko" title="Défaut critique" style="width:32px;height:32px;border:1.5px solid var(--gray);background:white;border-radius:5px;cursor:pointer;font-weight:800;color:#e24b4a;">✗</button>
+          <input type="text" placeholder="Commentaire..." id="${id}-cm" style="width:180px;padding:6px 10px;border:1px solid var(--gray);border-radius:5px;font-size:12px;font-family:inherit;" />
+        </div>
+        <input type="hidden" id="${id}" value="" />
+      </div>`;
+    });
+    html += `</div></div>`;
+  });
+  container.innerHTML = html;
+}
+
+function toggleControleCat(ci){
+  const body = document.getElementById('ct-cat-body-'+ci);
+  const arrow = document.getElementById('ct-cat-arrow-'+ci);
+  if(!body) return;
+  const isHidden = body.style.display === 'none';
+  body.style.display = isHidden ? 'block' : 'none';
+  if(arrow) arrow.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(-90deg)';
+}
+
+function setControleState(id, state, btn){
+  const hidden = document.getElementById(id);
+  if(hidden) hidden.value = state;
+  // Reset les 3 boutons du groupe
+  const row = btn.parentElement;
+  row.querySelectorAll('.ct-btn').forEach(b => {
+    b.style.background = 'white';
+    b.style.color = b.dataset.state === 'ok' ? '#1aab6d' : b.dataset.state === 'warn' ? '#f4a600' : '#e24b4a';
+    b.style.borderColor = 'var(--gray)';
+  });
+  // Marquer le bouton actif
+  const colors = { ok: '#1aab6d', warn: '#f4a600', ko: '#e24b4a' };
+  btn.style.background = colors[state];
+  btn.style.color = 'white';
+  btn.style.borderColor = colors[state];
+  updateControleCatCount();
+}
+
+function updateControleCatCount(){
+  CONTROLE_POINTS.forEach((cat, ci) => {
+    let ok=0, warn=0, ko=0, na=0;
+    cat.points.forEach((_, pi) => {
+      const v = document.getElementById('ct-pt-'+ci+'-'+pi)?.value;
+      if(v==='ok') ok++; else if(v==='warn') warn++; else if(v==='ko') ko++; else na++;
+    });
+    const el = document.getElementById('ct-cat-count-'+ci);
+    if(el){
+      const parts = [];
+      if(ok>0) parts.push(`<span style="color:#1aab6d;">✓ ${ok}</span>`);
+      if(warn>0) parts.push(`<span style="color:#f4a600;">! ${warn}</span>`);
+      if(ko>0) parts.push(`<span style="color:#e24b4a;">✗ ${ko}</span>`);
+      if(na>0) parts.push(`<span style="color:var(--gray-text);">— ${na}</span>`);
+      el.innerHTML = parts.join(' · ');
+    }
+  });
+}
+
+function controleCheckAllOk(){
+  if(!confirm('Marquer tous les points comme "OK - Conforme" ? (Utile pour partir d\'une base saine et ne modifier que les défauts.)')) return;
+  CONTROLE_POINTS.forEach((cat, ci) => {
+    cat.points.forEach((_, pi) => {
+      const id = 'ct-pt-'+ci+'-'+pi;
+      const hidden = document.getElementById(id); if(hidden) hidden.value = 'ok';
+      const row = hidden?.parentElement;
+      if(row){
+        row.querySelectorAll('.ct-btn').forEach(b => {
+          if(b.dataset.state === 'ok'){
+            b.style.background = '#1aab6d'; b.style.color = 'white'; b.style.borderColor = '#1aab6d';
+          } else {
+            b.style.background = 'white';
+            b.style.color = b.dataset.state === 'warn' ? '#f4a600' : '#e24b4a';
+            b.style.borderColor = 'var(--gray)';
+          }
+        });
+      }
+    });
+  });
+  updateControleCatCount();
+  showNotif('✅ Tous les points marqués OK', 'Vous pouvez maintenant modifier uniquement les points défectueux.');
+}
+
+function resetControleForm(){
+  if(!confirm('Réinitialiser tout le formulaire ? Toutes les données saisies seront perdues.')) return;
+  ['ct-client','ct-tel','ct-marque','ct-modele','ct-immat','ct-immatDate','ct-km','ct-vin','ct-cv','ct-lastCt','ct-bilan','ct-technicien'].forEach(id=>{const e=document.getElementById(id); if(e) e.value='';});
+  document.getElementById('ct-date').value = new Date().toISOString().substring(0,10);
+  CONTROLE_POINTS.forEach((cat, ci) => {
+    cat.points.forEach((_, pi) => {
+      const id = 'ct-pt-'+ci+'-'+pi;
+      const hidden = document.getElementById(id); if(hidden) hidden.value = '';
+      const cm = document.getElementById(id+'-cm'); if(cm) cm.value = '';
+      const row = hidden?.parentElement;
+      if(row){
+        row.querySelectorAll('.ct-btn').forEach(b => {
+          b.style.background = 'white';
+          b.style.color = b.dataset.state === 'ok' ? '#1aab6d' : b.dataset.state === 'warn' ? '#f4a600' : '#e24b4a';
+          b.style.borderColor = 'var(--gray)';
+        });
+      }
+    });
+  });
+  updateControleCatCount();
+  showNotif('🔄 Formulaire réinitialisé','Prêt pour une nouvelle inspection.');
+}
+
+// ─── GÉNÉRATION DU PDF MULTIPAGE ────────────────────────────────
+function generateControlePDF(){
+  const val = id => (document.getElementById(id)?.value || '').trim();
+  const client = val('ct-client') || 'Non renseigné';
+  const marque = val('ct-marque');
+  const modele = val('ct-modele');
+  const immat = val('ct-immat').toUpperCase() || '—';
+  const veh = (marque + ' ' + modele).trim() || 'Véhicule';
+  const type = val('ct-type');
+  const typeLabels = {'avant-achat':'Contrôle avant achat (occasion)','pre-ct':'Préparation contrôle technique','revision':'Révision complète'};
+  const typeLabel = typeLabels[type] || type;
+  const decision = val('ct-decision');
+  const decisionLabels = {'favorable':'FAVORABLE','reserves':'FAVORABLE AVEC RÉSERVES','defavorable':'DÉFAVORABLE'};
+  const decisionColors = {'favorable':[26,171,109],'reserves':[244,166,0],'defavorable':[226,75,74]};
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit:'mm', format:'a4' });
+
+  // ────────── PAGE 1 : COUVERTURE ──────────
+  doc.setFillColor(10,22,40); doc.rect(0,0,210,80,'F');
+  doc.setFillColor(244,112,10); doc.rect(0,80,210,3,'F');
+  doc.setTextColor(244,112,10); doc.setFont('helvetica','bold'); doc.setFontSize(22);
+  doc.text("L'ATELIER DU MECANO", 105, 30, {align:'center'});
+  doc.setTextColor(255,255,255); doc.setFont('helvetica','normal'); doc.setFontSize(11);
+  doc.text('Place Georges Lardenois - 73110 Valgelon la Rochette', 105, 38, {align:'center'});
+  doc.text('SIRET 100 384 445 000 19  -  Tel : 06 68 83 36 87', 105, 44, {align:'center'});
+  doc.setFontSize(18); doc.setFont('helvetica','bold');
+  doc.text('RAPPORT DE CONTROLE VEHICULE', 105, 60, {align:'center'});
+  doc.setFontSize(11); doc.setFont('helvetica','normal');
+  doc.text(typeLabel, 105, 68, {align:'center'});
+
+  doc.setTextColor(0,0,0);
+  // Bloc résumé véhicule
+  let y = 95;
+  doc.setFillColor(245,245,248); doc.rect(15,y,180,60,'F');
+  doc.setDrawColor(200,200,210); doc.rect(15,y,180,60);
+  doc.setFont('helvetica','bold'); doc.setFontSize(13);
+  doc.text('VEHICULE INSPECTE', 20, y+8);
+  doc.setFont('helvetica','normal'); doc.setFontSize(11);
+  const info = [
+    ['Marque / Modele :', veh],
+    ['Immatriculation :', immat],
+    ['1re mise en circulation :', val('ct-immatDate') ? new Date(val('ct-immatDate')).toLocaleDateString('fr-FR') : '—'],
+    ['Kilometrage :', val('ct-km') ? parseInt(val('ct-km')).toLocaleString('fr-FR')+' km' : '—'],
+    ['Energie :', val('ct-energie') || '—'],
+    ['Puissance fiscale :', val('ct-cv') || '—'],
+    ['N VIN :', val('ct-vin') || '—'],
+    ['Dernier CT connu :', val('ct-lastCt') ? new Date(val('ct-lastCt')).toLocaleDateString('fr-FR') : '—'],
+  ];
+  let yy = y+15;
+  info.forEach(([k,v]) => {
+    doc.setFont('helvetica','bold'); doc.text(k, 22, yy);
+    doc.setFont('helvetica','normal'); doc.text(v, 75, yy);
+    yy += 5.5;
+  });
+
+  y = 165;
+  // Bloc client
+  doc.setFillColor(245,245,248); doc.rect(15,y,180,28,'F');
+  doc.setDrawColor(200,200,210); doc.rect(15,y,180,28);
+  doc.setFont('helvetica','bold'); doc.setFontSize(13); doc.text('CLIENT', 20, y+8);
+  doc.setFont('helvetica','normal'); doc.setFontSize(11);
+  doc.text('Nom : ' + client, 22, y+16);
+  doc.text('Tel : ' + (val('ct-tel') || '—'), 22, y+22);
+  doc.text('Date : ' + (val('ct-date') ? new Date(val('ct-date')).toLocaleDateString('fr-FR') : '—'), 130, y+16);
+  doc.text('Technicien : ' + (val('ct-technicien') || '—'), 130, y+22);
+
+  // Décision
+  y = 205;
+  const col = decisionColors[decision] || [128,128,128];
+  doc.setFillColor(col[0],col[1],col[2]); doc.rect(15,y,180,25,'F');
+  doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(11);
+  doc.text('DECISION GLOBALE', 20, y+9);
+  doc.setFontSize(20);
+  doc.text(decisionLabels[decision] || 'A DEFINIR', 105, y+18, {align:'center'});
+  doc.setTextColor(0,0,0);
+
+  // Statistiques globales
+  let totalOk=0, totalWarn=0, totalKo=0, totalNa=0;
+  CONTROLE_POINTS.forEach((cat, ci) => {
+    cat.points.forEach((_, pi) => {
+      const v = document.getElementById('ct-pt-'+ci+'-'+pi)?.value;
+      if(v==='ok') totalOk++; else if(v==='warn') totalWarn++; else if(v==='ko') totalKo++; else totalNa++;
+    });
+  });
+  y = 240;
+  doc.setFont('helvetica','bold'); doc.setFontSize(11);
+  doc.text('SYNTHESE :', 20, y);
+  doc.setFont('helvetica','normal'); doc.setFontSize(10);
+  const totalPts = totalOk+totalWarn+totalKo+totalNa;
+  doc.setTextColor(26,171,109); doc.text(totalOk+' conformes', 60, y);
+  doc.setTextColor(244,166,0); doc.text(totalWarn+' defauts mineurs', 100, y);
+  doc.setTextColor(226,75,74); doc.text(totalKo+' defauts critiques', 145, y);
+  doc.setTextColor(120,120,120); doc.text(totalNa+' non verifies', 20, y+6);
+  doc.setTextColor(0,0,0); doc.text('Total : '+totalPts+' points controles', 60, y+6);
+
+  // Pied de page 1
+  doc.setFontSize(8); doc.setTextColor(120,120,120);
+  doc.text('Ce rapport est un document indicatif etabli a titre informatif. Il ne remplace pas un controle technique officiel.', 105, 285, {align:'center'});
+  doc.text("L'Atelier du Mecano - Page 1", 105, 290, {align:'center'});
+
+  // ────────── PAGES SUIVANTES : POINTS DE CONTRÔLE ──────────
+  let pageNum = 1;
+  const stateIcons = { ok:'[OK]', warn:'[!] ', ko:'[X] ', '':'[--] ' };
+  const stateColors = { ok:[26,171,109], warn:[244,166,0], ko:[226,75,74], '':[150,150,150] };
+
+  CONTROLE_POINTS.forEach((cat, ci) => {
+    doc.addPage(); pageNum++;
+    // En-tête de page
+    doc.setFillColor(10,22,40); doc.rect(0,0,210,18,'F');
+    doc.setFillColor(244,112,10); doc.rect(0,18,210,1,'F');
+    doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(11);
+    doc.text("L'ATELIER DU MECANO - Rapport de controle", 15, 12);
+    doc.text(veh+' - '+immat, 195, 12, {align:'right'});
+    doc.setTextColor(0,0,0);
+
+    // Titre catégorie
+    doc.setFillColor(244,112,10); doc.rect(10,26,190,10,'F');
+    doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(13);
+    doc.text(cat.cat, 15, 33);
+    doc.setTextColor(0,0,0);
+
+    let yp = 42;
+    cat.points.forEach((pt, pi) => {
+      const st = document.getElementById('ct-pt-'+ci+'-'+pi)?.value || '';
+      const cm = document.getElementById('ct-pt-'+ci+'-'+pi+'-cm')?.value || '';
+      // Vérifier si on a assez de place, sinon nouvelle page
+      const rowHeight = cm ? 12 : 6;
+      if(yp + rowHeight > 275){
+        // Pied de page
+        doc.setFontSize(8); doc.setTextColor(120,120,120);
+        doc.text("L'Atelier du Mecano - Page "+pageNum, 105, 290, {align:'center'});
+        doc.addPage(); pageNum++;
+        doc.setFillColor(10,22,40); doc.rect(0,0,210,18,'F');
+        doc.setFillColor(244,112,10); doc.rect(0,18,210,1,'F');
+        doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(11);
+        doc.text("L'ATELIER DU MECANO - Rapport de controle", 15, 12);
+        doc.text(veh+' - '+immat, 195, 12, {align:'right'});
+        doc.setTextColor(0,0,0);
+        // Continuation de catégorie
+        doc.setFillColor(230,230,235); doc.rect(10,26,190,8,'F');
+        doc.setTextColor(80,80,80); doc.setFont('helvetica','italic'); doc.setFontSize(10);
+        doc.text(cat.cat+' (suite)', 15, 31);
+        doc.setTextColor(0,0,0);
+        yp = 40;
+      }
+      // Icône état colorée
+      const c = stateColors[st];
+      doc.setFillColor(c[0],c[1],c[2]); doc.rect(12, yp-3.5, 4, 4.5, 'F');
+      // Texte du point
+      doc.setFont('helvetica','normal'); doc.setFontSize(9.5); doc.setTextColor(0,0,0);
+      doc.text(pt, 19, yp);
+      // État en toutes lettres
+      const stateWord = { ok:'CONFORME', warn:'DEFAUT MINEUR', ko:'DEFAUT CRITIQUE', '':'NON VERIFIE' }[st];
+      doc.setTextColor(c[0],c[1],c[2]); doc.setFont('helvetica','bold'); doc.setFontSize(8);
+      doc.text(stateWord, 195, yp, {align:'right'});
+      doc.setTextColor(0,0,0);
+      yp += 5;
+      if(cm){
+        doc.setFont('helvetica','italic'); doc.setFontSize(8); doc.setTextColor(80,80,80);
+        const lines = doc.splitTextToSize('> '+cm, 175);
+        doc.text(lines, 19, yp);
+        yp += lines.length * 3.5;
+        doc.setTextColor(0,0,0);
+      }
+      // Séparateur
+      doc.setDrawColor(230,230,235); doc.line(10, yp, 200, yp);
+      yp += 2;
+    });
+
+    // Pied de page
+    doc.setFontSize(8); doc.setTextColor(120,120,120);
+    doc.text("L'Atelier du Mecano - Page "+pageNum, 105, 290, {align:'center'});
+  });
+
+  // ────────── DERNIÈRE PAGE : BILAN ──────────
+  doc.addPage(); pageNum++;
+  doc.setFillColor(10,22,40); doc.rect(0,0,210,18,'F');
+  doc.setFillColor(244,112,10); doc.rect(0,18,210,1,'F');
+  doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(11);
+  doc.text("L'ATELIER DU MECANO - Rapport de controle", 15, 12);
+  doc.text(veh+' - '+immat, 195, 12, {align:'right'});
+  doc.setTextColor(0,0,0);
+
+  doc.setFillColor(244,112,10); doc.rect(10,26,190,10,'F');
+  doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(13);
+  doc.text('BILAN & RECOMMANDATIONS', 15, 33);
+  doc.setTextColor(0,0,0);
+
+  let yb = 46;
+  doc.setFont('helvetica','bold'); doc.setFontSize(11);
+  doc.text('Synthese du technicien :', 15, yb); yb += 7;
+  doc.setFont('helvetica','normal'); doc.setFontSize(10);
+  const bilan = val('ct-bilan') || 'Aucune synthese saisie.';
+  const bilanLines = doc.splitTextToSize(bilan, 180);
+  doc.text(bilanLines, 15, yb);
+  yb += bilanLines.length * 5 + 8;
+
+  // Rappel décision
+  const col2 = decisionColors[decision] || [128,128,128];
+  doc.setFillColor(col2[0],col2[1],col2[2]); doc.rect(15, yb, 180, 20, 'F');
+  doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(11);
+  doc.text('DECISION FINALE :', 20, yb+8);
+  doc.setFontSize(16);
+  doc.text(decisionLabels[decision] || 'A DEFINIR', 105, yb+15, {align:'center'});
+  doc.setTextColor(0,0,0);
+  yb += 30;
+
+  // Signature
+  doc.setFont('helvetica','bold'); doc.setFontSize(10);
+  doc.text('Technicien :', 15, yb);
+  doc.setFont('helvetica','normal');
+  doc.text(val('ct-technicien') || '—', 45, yb);
+  doc.text('Date : '+(val('ct-date') ? new Date(val('ct-date')).toLocaleDateString('fr-FR') : new Date().toLocaleDateString('fr-FR')), 130, yb);
+  yb += 12;
+  doc.setDrawColor(150,150,150);
+  doc.text('Signature :', 15, yb); doc.line(45, yb, 100, yb);
+  doc.text('Cachet :', 130, yb); doc.line(150, yb, 195, yb);
+
+  // Mention légale
+  yb = 250;
+  doc.setFillColor(255,245,230); doc.rect(15, yb, 180, 25, 'F');
+  doc.setFont('helvetica','italic'); doc.setFontSize(8); doc.setTextColor(80,80,80);
+  const mention = "Ce rapport est etabli a titre indicatif par L'Atelier du Mecano. Il ne se substitue en aucun cas au controle technique officiel realise par un centre agree. Notre expertise engage notre responsabilite professionnelle sur les points constates au jour de l'inspection. L'evolution des composants et l'usage du vehicule peuvent modifier certains constats.";
+  const mentionLines = doc.splitTextToSize(mention, 172);
+  doc.text(mentionLines, 19, yb+5);
+
+  // Pied dernière page
+  doc.setFontSize(8); doc.setTextColor(120,120,120);
+  doc.text("L'Atelier du Mecano - SIRET 100 384 445 000 19 - Rapport genere le "+new Date().toLocaleString('fr-FR')+" - Page "+pageNum, 105, 288, {align:'center'});
+
+  // Sauvegarde
+  const filename = 'controle_'+(marque+'_'+modele+'_'+immat).replace(/[^a-zA-Z0-9]/g,'_')+'_'+new Date().toISOString().substring(0,10)+'.pdf';
+  doc.save(filename);
+  showNotif('📥 Rapport généré', 'Rapport de contrôle de '+totalPts+' points sauvegardé sur '+pageNum+' pages.');
+}
+
 function switchTabById(tab){
   // Update side menu active state
   document.querySelectorAll('.admin-menu-btn').forEach(btn=>{
@@ -5464,12 +6472,21 @@ function switchTabById(tab){
     if(o.includes("'"+tab+"'")) btn.classList.add('active');
     else btn.classList.remove('active');
   });
+  // Vider les containers de sous-onglets pour éviter les doublons d'IDs dans le DOM
+  // (sinon les pages clonées dans les hubs cohabitent avec les pages originales et
+  // provoquent l'affichage en double des tarifs, listes, etc.)
+  if(tab !== 'clients-hub'){
+    const c1 = document.getElementById('subtab-clients-hub-content'); if(c1) c1.innerHTML = '';
+  }
+  if(tab !== 'exploitation'){
+    const c2 = document.getElementById('subtab-exploitation-content'); if(c2) c2.innerHTML = '';
+  }
   // Update pages
   document.querySelectorAll('.admin-page').forEach(p=>p.classList.remove('active'));
   const pg=document.getElementById('page-'+tab);
   if(pg) pg.classList.add('active');
   // Update current section label in topbar
-  const labels={'clients-hub':'👥 Clients, Contrats & Factures','exploitation':'🛠️ Exploitation',fleet:'🚗 Flotte',entretien:'🔧 Entretien',vente:'🚘 Vente',planning:'📅 Planning',photos:'🖼️ Photos',suivi:'📊 Clients',contrat:'📝 Contrats',invoices:'📄 Factures',parr:'🎁 Parrainage',drivers:'👤 Livreurs',pricing:'💰 Tarifs',users:'🔑 Utilisateurs',reviews:'💬 Avis'};
+  const labels={'clients-hub':'👥 Clients, Contrats & Factures','exploitation':'🛠️ Exploitation',fleet:'🚗 Flotte',entretien:'🔧 Entretien',vente:'🚘 Vente',planning:'📅 Planning',photos:'🖼️ Photos',suivi:'📊 Clients',contrat:'📝 Contrats',invoices:'📄 Factures',parr:'🎁 Parrainage',drivers:'👤 Livreurs',pricing:'💰 Prix & Réductions',users:'🔑 Utilisateurs',reviews:'💬 Avis',controle:'🔍 Contrôle véhicule',compta:'📊 Comptabilité',paie:'👥 Employés & Paie',theme:'🎨 Thème'};
   const lbl=document.getElementById('admin-current-section');
   if(lbl) lbl.textContent=labels[tab]||tab;
   // Close side menu
@@ -5530,7 +6547,9 @@ function switchTab(tab){
   if(tab==='suivi')     renderSuivi();
   if(tab==='photos')    renderPhotosAdmin();
   if(tab==='pricing')   { renderVehiclePriceTable(); renderVacancesAdmin(); renderSpecialPricesTable(); renderDeliveryPriceGrid(); }
+  if(tab==='controle')  { if(typeof initControleData==='function') initControleData(); }
   if(tab==='entretien') initEntretienPage();
+  if(tab==='controle')  { if(typeof initControleData==='function') initControleData(); }
 }
 
 // FLEET
@@ -5733,11 +6752,25 @@ function deleteDriver(i){if(!confirm('Supprimer ce livreur ?'))return;drivers.sp
 function addDriver(){
   const nom=document.getElementById('drv-nom').value.trim();
   if(!nom){showNotif('Champ manquant','Merci de renseigner le nom du livreur.');return;}
-  drivers.push({nom,tel:document.getElementById('drv-tel').value,zone:document.getElementById('drv-zone').value,statut:document.getElementById('drv-statut').value,notes:document.getElementById('drv-notes').value});
+  const tel=document.getElementById('drv-tel').value;
+  drivers.push({nom,tel,zone:document.getElementById('drv-zone').value,statut:document.getElementById('drv-statut').value,notes:document.getElementById('drv-notes').value});
   saveData('adm_drivers',drivers);
   renderAdminDrivers();
+  const alsoEmp = addToEmployesFromDriver(nom, tel);
   ['drv-nom','drv-tel','drv-zone','drv-notes'].forEach(id=>document.getElementById(id).value='');
-  showNotif('✅ Livreur ajouté',nom+' ajouté à l\'équipe.');
+  showNotif('✅ Employé ajouté', nom+' ajouté à l\'équipe'+(alsoEmp?' et au système de paie':'')+'.');
+}
+
+// Ajoute un employé au système de paie à partir d'un livreur (si pas déjà présent)
+function addToEmployesFromDriver(nom, tel){
+  if(typeof employes === 'undefined') return false;
+  const exists = employes.some(e => (e.nom||'').trim().toLowerCase() === nom.trim().toLowerCase());
+  if(exists) return false;
+  employes.push({ id: 'emp_'+Date.now(), nom, poste: '', ss: '', embauche: '', contrat: 'CDI', taux: 0, tel: tel||'' });
+  saveData('adm_employes', employes);
+  if(typeof renderEmployesTable === 'function') renderEmployesTable();
+  if(typeof populatePaieEmployeSelect === 'function') populatePaieEmployeSelect();
+  return true;
 }
 
 // REVIEWS
@@ -6331,6 +7364,11 @@ function renderDiscountBanners(){
     <span style="font-size:24px;">📆</span>
     <div><div style="font-family:'Bricolage Grotesque',sans-serif;font-size:20px;font-weight:800;color:var(--white);">-20% au mois</div>
     <div style="font-size:12px;color:rgba(255,255,255,.8);">Réduction maximale pour un mois de location</div></div></div>`;
+  // Bannière "réservation ferme -10%" — mise en avant importante
+  html+=`<div style="display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,#0a8d55,#1aab6d);border-radius:10px;padding:.85rem 1.25rem;flex:1;min-width:240px;border:2px solid #5eebb0;box-shadow:0 4px 16px rgba(26,171,109,.3);">
+    <span style="font-size:26px;">💰</span>
+    <div><div style="font-family:'Bricolage Grotesque',sans-serif;font-size:20px;font-weight:800;color:#fff;">-10% RÉSERVATION FERME</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.9);line-height:1.35;">Économie supplémentaire cumulable — réservez sans annulation minimum 7 jours à l'avance</div></div></div>`;
   b.innerHTML=html;
   b.style.display='flex';
 }
@@ -7189,11 +8227,24 @@ function addEmploye(){
     embauche: val('emp-embauche'), contrat: val('emp-contrat')||'CDI', taux,
   });
   saveData('adm_employes', employes);
+  // Ajouter aussi à l'équipe de livreurs (si pas déjà présent)
+  const alsoDrv = addToDriversFromEmploye(nom, val('emp-poste'));
   ['emp-nom','emp-poste','emp-ss','emp-embauche','emp-taux'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
   renderEmployesTable();
   populatePaieEmployeSelect();
   updatePaiePreview();
-  showNotif('✅ Employé ajouté', nom+' ajouté ('+taux.toFixed(2)+' €/h).');
+  showNotif('✅ Employé ajouté', nom+' ajouté ('+taux.toFixed(2)+' €/h)'+(alsoDrv?' et à l\'équipe de livreurs':'')+'.');
+}
+
+// Ajoute un livreur à l'équipe à partir d'un employé (si pas déjà présent)
+function addToDriversFromEmploye(nom, poste){
+  if(typeof drivers === 'undefined') return false;
+  const exists = drivers.some(d => (d.nom||'').trim().toLowerCase() === nom.trim().toLowerCase());
+  if(exists) return false;
+  drivers.push({ nom, tel:'', zone:'', statut:'Disponible', notes: poste ? ('Poste : '+poste) : '' });
+  saveData('adm_drivers', drivers);
+  if(typeof renderAdminDrivers === 'function') renderAdminDrivers();
+  return true;
 }
 
 function deleteEmploye(i){
@@ -8337,6 +9388,117 @@ function statutSelect(arr, current, onchange){
   return `<select class="admin-input" style="background:var(--gray-light);font-size:12px;" onchange="${onchange}">
     ${arr.map(s=>`<option ${s===current?'selected':''}>${s}</option>`).join('')}
   </select>`;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// AJOUT MANUEL DE CLIENT EXTERNE (réservation hors site)
+// ═══════════════════════════════════════════════════════════════
+function toggleManualClientForm(){
+  const form = document.getElementById('manualClientForm');
+  if(!form) return;
+  const showing = form.style.display !== 'none';
+  form.style.display = showing ? 'none' : 'block';
+  if(!showing){
+    // Peupler le select véhicule
+    const sel = document.getElementById('mcli-vehicule');
+    if(sel && vehicles){
+      sel.innerHTML = vehicles.map(v => `<option value="${v.name}">${v.name}</option>`).join('');
+    }
+    // Pré-remplir les dates par défaut (aujourd'hui + demain)
+    const now = new Date();
+    const tomorrow = new Date(now.getTime() + 24*3600*1000);
+    const toLocal = d => d.toISOString().slice(0,16);
+    const dep = document.getElementById('mcli-depart'); if(dep && !dep.value) dep.value = toLocal(now);
+    const ret = document.getElementById('mcli-retour'); if(ret && !ret.value) ret.value = toLocal(tomorrow);
+  }
+}
+
+function addManualClient(){
+  const val = id => (document.getElementById(id)?.value || '').trim();
+  const nom = val('mcli-nom');
+  const vehicule = val('mcli-vehicule');
+  const depart = val('mcli-depart');
+  const retour = val('mcli-retour');
+  const total = parseFloat(val('mcli-total'))||0;
+  if(!nom){ showNotif('👤 Nom manquant','Renseignez le nom du client.'); return; }
+  if(!vehicule){ showNotif('🚗 Véhicule manquant','Sélectionnez un véhicule.'); return; }
+  if(!depart || !retour){ showNotif('📅 Dates manquantes','Renseignez les dates de départ et retour.'); return; }
+  if(total <= 0){ showNotif('💶 Montant invalide','Renseignez le montant total.'); return; }
+
+  // Calcul de la durée
+  const d1 = new Date(depart), d2 = new Date(retour);
+  const jours = Math.max(1, Math.ceil((d2 - d1) / (1000*60*60*24)));
+  const prixJour = Math.round(total / jours);
+
+  // Générer numéro de contrat unique
+  const now = new Date();
+  const dateStr = now.getFullYear() + String(now.getMonth()+1).padStart(2,'0') + String(now.getDate()).padStart(2,'0')
+                + '-' + String(now.getHours()).padStart(2,'0') + String(now.getMinutes()).padStart(2,'0');
+  const num = 'LOC-EXT-' + dateStr;
+
+  // Créer l'entrée contrat
+  const contract = {
+    num: num,
+    client: nom,
+    tel: val('mcli-tel'),
+    email: val('mcli-email'),
+    vehicule: vehicule,
+    depart: depart,
+    retour: retour,
+    prixJour: prixJour,
+    jours: jours,
+    total: total.toFixed(2) + ' €',
+    livraison: 'N/A (client externe)',
+    date: now.toLocaleString('fr-FR'),
+    statut: 'Client externe',
+    source: 'manuel',
+    notes: val('mcli-notes'),
+    modePaiement: val('mcli-paiement'),
+    _updatedAt: now.toISOString(),
+  };
+  contratHistory.unshift(contract);
+  saveData('adm_contrats', contratHistory);
+
+  // Créer aussi la facture correspondante
+  const invNum = 'FAC-EXT-' + dateStr;
+  const invoice = {
+    num: invNum,
+    contratNum: num,
+    client: nom,
+    tel: val('mcli-tel'),
+    email: val('mcli-email'),
+    vehicule: vehicule,
+    debut: new Date(depart).toLocaleDateString('fr-FR'),
+    fin: new Date(retour).toLocaleDateString('fr-FR'),
+    jours: jours,
+    prixJour: prixJour,
+    livraison: 0,
+    ttc: total.toFixed(2),
+    date: now.toLocaleDateString('fr-FR'),
+    modePaiement: val('mcli-paiement'),
+    statut: 'Payée (client externe)',
+    source: 'manuel',
+  };
+  invoiceHistory.unshift(invoice);
+  saveData('adm_invoices', invoiceHistory);
+
+  // Sync Firebase
+  if(typeof firebaseReady !== 'undefined' && firebaseReady){
+    if(typeof saveContratToFirestore === 'function') saveContratToFirestore(contract);
+    if(typeof saveFactureToFirestore === 'function') saveFactureToFirestore(invoice);
+  }
+
+  // Reset formulaire
+  ['mcli-nom','mcli-tel','mcli-email','mcli-total','mcli-notes','mcli-depart','mcli-retour'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  toggleManualClientForm();
+
+  // Rafraîchir les affichages
+  if(typeof renderSuiviContrats === 'function') renderSuiviContrats();
+  if(typeof renderSuiviFactures === 'function') renderSuiviFactures();
+  if(typeof renderContratHistory === 'function') renderContratHistory();
+  if(typeof renderInvHistory === 'function') renderInvHistory();
+
+  showNotif('✅ Client ajouté', nom + ' — Contrat ' + num + ' enregistré dans l\'historique.');
 }
 
 function renderSuiviContrats(){
