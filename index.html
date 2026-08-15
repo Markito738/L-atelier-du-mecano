@@ -890,20 +890,12 @@ footer, .footer-contact-item, .footer-section {
 
 </style>
 
-<!-- PWA -->
-<link rel="manifest" href="manifest.json" />
-<meta name="mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="Mécano 73" />
-<meta name="application-name" content="Mécano 73" />
-<meta name="msapplication-TileColor" content="#0a1628" />
-<meta name="msapplication-TileImage" content="icon-144.png" />
+<!-- PWA désactivé : plus aucune proposition d'installation depuis le navigateur.
+     Manifest et metas d'installation retirés à la demande de l'utilisateur.
+     Seul theme-color et l'icône restent pour l'apparence du site. -->
 <meta name="theme-color" content="#f4700a" />
-<!-- Apple Icons -->
-<link rel="apple-touch-icon" href="icon-152.png" />
-<link rel="apple-touch-icon" sizes="152x152" href="icon-152.png" />
-<link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
 <!-- jsPDF (génération PDF côté client : contrats, factures, états des lieux) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <!-- Firebase (stockage cloud des contrats, factures, documents scannés) -->
@@ -10877,11 +10869,37 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(()=>{ if(typeof handleMagicLink === 'function') handleMagicLink(); }, 1500);
 });
 
-// PWA INITIALIZATION — L'Atelier du Mécano
-// Background Sync • Periodic Sync • Protocol Handlers • Widgets
+// PWA DÉSACTIVÉ à la demande de l'utilisateur.
+// Le site fonctionne comme un site web classique, sans plus AUCUNE
+// proposition d'installation. Cette fonction désinstalle également
+// tout Service Worker précédemment enregistré chez les utilisateurs
+// qui avaient déjà chargé une ancienne version du site.
 // ═══════════════════════════════════════════════════════════════
 
-(async function initPWA() {
+(async function unregisterOldPWA() {
+  if ('serviceWorker' in navigator) {
+    try {
+      const regs = await navigator.serviceWorker.getRegistrations();
+      for (const reg of regs) {
+        await reg.unregister();
+        console.log('[PWA] ⛔ Ancien Service Worker désinstallé');
+      }
+      // Vider aussi les caches associés à l'ancienne PWA
+      if ('caches' in window) {
+        const keys = await caches.keys();
+        for (const k of keys) {
+          await caches.delete(k);
+          console.log('[PWA] ⛔ Cache supprimé :', k);
+        }
+      }
+    } catch (e) {
+      console.log('[PWA] Nettoyage :', e.message);
+    }
+  }
+})();
+
+// Bloc initPWA original neutralisé (conservé mais jamais exécuté)
+async function _initPWA_desactivee() {
   // ─── REGISTER SERVICE WORKER ────────────────────────────────
   if ('serviceWorker' in navigator) {
     try {
@@ -10958,7 +10976,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (params.has('handler') || params.has('app')) {
     console.log('[PWA] Protocole personnalisé reçu :', params.get('handler') || params.get('app'));
   }
-})();
+} // fin de _initPWA_desactivee (jamais appelée)
 
 // ─── INSTALL PROMPT ───────────────
 // Bandeau désactivé : les utilisateurs peuvent toujours installer l'application
