@@ -90,11 +90,166 @@
 html[data-theme="industriel"]{
   --navy:#16181d; --navy-mid:#1e2127; --navy-light:#282c34;
   --orange:#ffd400; --orange-light:#ffe14d; --orange-pale:#2a2c33;
-  --white:#f2f3f5; --gray-light:#1e2127; --gray:#33373f;
-  --gray-text:#8b9099; --text:#f2f3f5; --success:#5ac47a;
+  --white:#1e2127;              /* ← remappé : le "blanc" devient anthracite (fond des sections) */
+  --gray-light:#242830;         /* fond alt un peu plus clair */
+  --gray:#3a3f48;               /* bordures */
+  --gray-text:#a0a5ad;          /* texte gris (plus clair pour meilleure lisibilité) */
+  --text:#f2f3f5;               /* texte principal — clair */
+  --success:#5ac47a;
   background:#16181d;
 }
 html[data-theme="industriel"] body{background:#16181d;color:#f2f3f5;}
+
+/* Forcer TOUS les backgrounds clairs codés en dur à devenir anthracite */
+html[data-theme="industriel"] section,
+html[data-theme="industriel"] .page,
+html[data-theme="industriel"] section[style*="background:#fff"],
+html[data-theme="industriel"] section[style*="background: #fff"],
+html[data-theme="industriel"] section[style*="background:white"],
+html[data-theme="industriel"] section[style*="background: white"],
+html[data-theme="industriel"] div[style*="background:#fff"]:not([style*="linear-gradient"]),
+html[data-theme="industriel"] div[style*="background: #fff"]:not([style*="linear-gradient"]),
+html[data-theme="industriel"] div[style*="background:white"]:not([style*="linear-gradient"]),
+html[data-theme="industriel"] div[style*="background: white"]:not([style*="linear-gradient"]),
+html[data-theme="industriel"] div[style*="background:var(--gray-light)"],
+html[data-theme="industriel"] div[style*="background: var(--gray-light)"],
+html[data-theme="industriel"] section[style*="background:var(--gray-light)"],
+html[data-theme="industriel"] div[style*="background:#f7f8fa"],
+html[data-theme="industriel"] div[style*="background: #f7f8fa"],
+html[data-theme="industriel"] div[style*="background:#f5f7fa"]{
+  background:#1e2127 !important;
+  color:#f2f3f5 !important;
+}
+
+/* Forcer les textes gris/foncés à être clairs sur fond sombre */
+html[data-theme="industriel"] p,
+html[data-theme="industriel"] li,
+html[data-theme="industriel"] td,
+html[data-theme="industriel"] label,
+html[data-theme="industriel"] .section-subtitle,
+html[data-theme="industriel"] .service-desc,
+html[data-theme="industriel"] .avis-text,
+html[data-theme="industriel"] .avis-name,
+html[data-theme="industriel"] .footer-col p,
+html[data-theme="industriel"] .footer-col a,
+html[data-theme="industriel"] .footer-col li{color:#d5d8dd !important;}
+
+/* Textes qui utilisaient le navy comme couleur -> clairs pour rester lisibles sur fond sombre */
+html[data-theme="industriel"] .vehicle-name,
+html[data-theme="industriel"] .admin-section-title,
+html[data-theme="industriel"] .service-title,
+html[data-theme="industriel"] .section-title,
+html[data-theme="industriel"] .vente-title,
+html[data-theme="industriel"] .prosp-card-title,
+html[data-theme="industriel"] .stat-card-val,
+html[data-theme="industriel"] .urg-title,
+html[data-theme="industriel"] .delivery-opt-label,
+html[data-theme="industriel"] .login-logo,
+html[data-theme="industriel"] .subtab-btn,
+html[data-theme="industriel"] h1,html[data-theme="industriel"] h2,
+html[data-theme="industriel"] h3,html[data-theme="industriel"] h4,
+html[data-theme="industriel"] h5,html[data-theme="industriel"] h6{color:#f2f3f5 !important;}
+
+/* Prix/accents en couleur d'accent */
+html[data-theme="industriel"] .price-day,
+html[data-theme="industriel"] .price-value,
+html[data-theme="industriel"] [class*="price"],
+html[data-theme="industriel"] strong[style*="color:var(--orange)"],
+html[data-theme="industriel"] span[style*="color:var(--orange)"]{color:#ffd400 !important;}
+
+/* Cartes véhicules et cards en général : fond sombre, texte clair */
+html[data-theme="industriel"] .vehicle-card,
+html[data-theme="industriel"] .service-card,
+html[data-theme="industriel"] .service-xl,
+html[data-theme="industriel"] .card,
+html[data-theme="industriel"] .prosp-card,
+html[data-theme="industriel"] .avis-card,
+html[data-theme="industriel"] .stat-card{background:#282c34 !important;border-color:#3a3f48 !important;color:#f2f3f5 !important;}
+html[data-theme="industriel"] .service-xl h3,
+html[data-theme="industriel"] .service-xl p,
+html[data-theme="industriel"] .service-xl strong{color:#f2f3f5 !important;}
+
+/* Listes avec puces ✓ vertes : texte à côté clair */
+html[data-theme="industriel"] ul li,
+html[data-theme="industriel"] ol li{color:#e0e2e5 !important;}
+
+/* Inputs et formulaires : fond sombre, texte clair, bordure visible */
+html[data-theme="industriel"] input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+html[data-theme="industriel"] textarea,
+html[data-theme="industriel"] select{background:#282c34 !important;color:#f2f3f5 !important;border:1px solid #3a3f48 !important;}
+html[data-theme="industriel"] input::placeholder,
+html[data-theme="industriel"] textarea::placeholder{color:#8b9099 !important;}
+
+/* Bordures et séparateurs */
+html[data-theme="industriel"] hr,
+html[data-theme="industriel"] .divider{border-color:#3a3f48 !important;background:#3a3f48 !important;}
+
+/* Fond « gray-light » utilisé partout */
+html[data-theme="industriel"] [style*="background:var(--gray-light)"],
+html[data-theme="industriel"] [style*="background: var(--gray-light)"]{background:#242830 !important;}
+
+/* Footer */
+html[data-theme="industriel"] footer,
+html[data-theme="industriel"] .site-footer{background:#0e1013 !important;color:#c5c8cd !important;}
+html[data-theme="industriel"] footer a{color:#e0e2e5 !important;}
+
+/* Overrides pour textes avec color inline "navy" / "#0a1628" (invisibles sur fond sombre) */
+html[data-theme="industriel"] [style*="color:var(--navy)"],
+html[data-theme="industriel"] [style*="color: var(--navy)"],
+html[data-theme="industriel"] [style*="color:#0a1628"],
+html[data-theme="industriel"] [style*="color: #0a1628"],
+html[data-theme="industriel"] [style*="color:#0d1b2a"],
+html[data-theme="industriel"] [style*="color: #0d1b2a"],
+html[data-theme="industriel"] [style*="color:var(--white)"],
+html[data-theme="industriel"] [style*="color: var(--white)"],
+html[data-theme="industriel"] [style*="color:#fff"],
+html[data-theme="industriel"] [style*="color: #fff"],
+html[data-theme="industriel"] [style*="color:white"],
+html[data-theme="industriel"] [style*="color: white"]{color:#f2f3f5 !important;}
+
+/* Overrides pour les backgrounds transparents blancs sur fond sombre (invisibles) */
+html[data-theme="industriel"] [style*="background:rgba(255,255,255,0.06)"],
+html[data-theme="industriel"] [style*="background: rgba(255,255,255,0.06)"],
+html[data-theme="industriel"] [style*="background:rgba(255,255,255,.06)"],
+html[data-theme="industriel"] [style*="background:rgba(255,255,255,0.07)"],
+html[data-theme="industriel"] [style*="background:rgba(255,255,255,0.1)"],
+html[data-theme="industriel"] [style*="background:rgba(255,255,255,.1)"],
+html[data-theme="industriel"] [style*="background:rgba(255,255,255,0.12)"],
+html[data-theme="industriel"] [style*="background:rgba(255,255,255,.12)"],
+html[data-theme="industriel"] [style*="background:rgba(255,255,255,0.15)"],
+html[data-theme="industriel"] [style*="background:rgba(255,255,255,.15)"],
+html[data-theme="industriel"] [style*="background:rgba(255,255,255,0.2)"],
+html[data-theme="industriel"] [style*="background:rgba(255,255,255,.2)"],
+html[data-theme="industriel"] [style*="background:rgba(255,255,255,0.25)"]{
+  background:rgba(255,212,0,0.15) !important; /* fond jaune pâle pour rester visible sur fond sombre */
+  color:#ffe14d !important;
+}
+
+/* Classes qui utilisent var(--navy) comme fond ET var(--white) comme texte : les deux deviennent sombres.
+   On rend le fond jaune sécurité et le texte foncé (contraste inversé). */
+html[data-theme="industriel"] .avis-avatar,
+html[data-theme="industriel"] .btn-contact{background:#ffd400 !important;color:#16181d !important;}
+html[data-theme="industriel"] .btn-contact:hover{background:#ffe14d !important;color:#16181d !important;}
+html[data-theme="industriel"] .form-title{background:transparent !important;color:#f2f3f5 !important;border-bottom:2px solid #ffd400;padding-bottom:.5rem;}
+
+/* Labels IBAN / bénéficiaire trop pâles (rgba(255,255,255,.4) illisible) */
+html[data-theme="industriel"] [style*="rgba(255,255,255,.4)"],
+html[data-theme="industriel"] [style*="rgba(255,255,255,0.4)"],
+html[data-theme="industriel"] [style*="rgba(255,255,255,.5)"],
+html[data-theme="industriel"] [style*="rgba(255,255,255,0.5)"]{color:#c8ccd2 !important;}
+
+/* SumUp amount display */
+html[data-theme="industriel"] .sumup-amount-display{color:#ffd400 !important;}
+
+/* Planning : en-têtes jour/mois et cellules */
+html[data-theme="industriel"] .planning-title,
+html[data-theme="industriel"] .planning-day-header{color:#f2f3f5 !important;background:#0e1013 !important;}
+html[data-theme="industriel"] .planning-cell{background:#1e2127 !important;}
+html[data-theme="industriel"] .planning-cell .day-num{color:#f2f3f5 !important;}
+html[data-theme="industriel"] .planning-cell.booked{background:#4a1e1e !important;}
+html[data-theme="industriel"] .planning-cell.booked .day-num{color:#ff8080 !important;}
+html[data-theme="industriel"] .planning-cell.available{background:#1a3d2a !important;}
+
 html[data-theme="industriel"] h1,html[data-theme="industriel"] h2,html[data-theme="industriel"] h3,html[data-theme="industriel"] h4,html[data-theme="industriel"] .logo-main,html[data-theme="industriel"] .hero-title{font-family:'Archivo Black','Archivo',sans-serif !important;letter-spacing:-.02em;}
 html[data-theme="industriel"] body,html[data-theme="industriel"] p,html[data-theme="industriel"] input,html[data-theme="industriel"] select,html[data-theme="industriel"] textarea,html[data-theme="industriel"] button{font-family:'Archivo','Inter',sans-serif;}
 html[data-theme="industriel"] .btn-urgent,html[data-theme="industriel"] .btn-owner,html[data-theme="industriel"] .hero-badge,html[data-theme="industriel"] .btn-primary,html[data-theme="industriel"] .btn-secondary,html[data-theme="industriel"] .card,html[data-theme="industriel"] .service-card,html[data-theme="industriel"] .vehicle-card,html[data-theme="industriel"] .admin-section,html[data-theme="industriel"] .admin-input,html[data-theme="industriel"] .admin-menu-btn,html[data-theme="industriel"] .btn-admin-save,html[data-theme="industriel"] .btn-admin-add{border-radius:2px !important;}
@@ -113,21 +268,6 @@ html[data-theme="industriel"] .hero-bg{background:radial-gradient(ellipse 60% 80
 html[data-theme="industriel"] .hero-grid{background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);}
 /* Emergency banner et autres blocs orange -> jaune avec texte sombre */
 html[data-theme="industriel"] .hero-slogan{border-left-color:#ffd400 !important;}
-/* Textes qui utilisaient le navy comme couleur -> clairs pour rester lisibles sur fond sombre */
-html[data-theme="industriel"] .vehicle-name,
-html[data-theme="industriel"] .admin-section-title,
-html[data-theme="industriel"] .service-title,
-html[data-theme="industriel"] .section-title,
-html[data-theme="industriel"] .vente-title,
-html[data-theme="industriel"] .avis-name,
-html[data-theme="industriel"] .prosp-card-title,
-html[data-theme="industriel"] .stat-card-val,
-html[data-theme="industriel"] .urg-title,
-html[data-theme="industriel"] .delivery-opt-label,
-html[data-theme="industriel"] .login-logo,
-html[data-theme="industriel"] .subtab-btn,
-html[data-theme="industriel"] h1,html[data-theme="industriel"] h2,
-html[data-theme="industriel"] h3,html[data-theme="industriel"] h4{color:#f2f3f5 !important;}
 /* Prix et accents en jaune restent en jaune (déjà via --orange) */
 .theme-card:hover{transform:translateY(-3px);}
 .theme-card .theme-check{display:none;}
@@ -10774,54 +10914,18 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 // ─── INSTALL PROMPT ───────────────
+// Bandeau désactivé : les utilisateurs peuvent toujours installer l'application
+// via le menu de leur navigateur (⋮ > "Installer l'application") s'ils le souhaitent,
+// mais on ne leur propose plus automatiquement pour ne pas les déranger.
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  setTimeout(() => {
-    const existing = document.getElementById('pwa-install-banner');
-    if (!existing && deferredPrompt) showInstallBanner();
-  }, 3000);
+  e.preventDefault(); // On empêche l'affichage du bandeau natif du navigateur
+  // On ne stocke plus l'événement et on n'affiche plus de bandeau custom.
 });
 
-function showInstallBanner() {
-  const banner = document.createElement('div');
-  banner.id = 'pwa-install-banner';
-  banner.style.cssText = `
-    position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
-    background:#0a1628;color:white;border:2px solid #f4700a;
-    border-radius:12px;padding:14px 20px;z-index:99999;
-    display:flex;align-items:center;gap:14px;box-shadow:0 8px 32px rgba(0,0,0,0.4);
-    max-width:340px;width:calc(100% - 40px);font-family:'Inter',sans-serif;
-    animation:slideUp .4s cubic-bezier(.34,1.56,.64,1);
-  `;
-  banner.innerHTML = `
-    <img src="icon-72.png" style="width:42px;height:42px;border-radius:10px;flex-shrink:0;" />
-    <div style="flex:1;">
-      <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:800;text-transform:uppercase;">Installer l'application</div>
-      <div style="font-size:12px;color:rgba(255,255,255,0.7);margin-top:2px;">Accès rapide depuis votre écran d'accueil</div>
-    </div>
-    <div style="display:flex;gap:6px;flex-shrink:0;">
-      <button onclick="installPWA()" style="background:#f4700a;color:white;border:none;font-family:'Bricolage Grotesque',sans-serif;font-size:14px;font-weight:700;padding:8px 14px;border-radius:7px;cursor:pointer;text-transform:uppercase;">Installer</button>
-      <button onclick="this.closest('#pwa-install-banner').remove()" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);border:none;font-size:18px;padding:6px 10px;border-radius:7px;cursor:pointer;">✕</button>
-    </div>
-  `;
-  document.body.appendChild(banner);
-}
-
-async function installPWA() {
-  if (!deferredPrompt) return;
-  deferredPrompt.prompt();
-  const { outcome } = await deferredPrompt.userChoice;
-  if (outcome === 'accepted') {
-    document.getElementById('pwa-install-banner')?.remove();
-    showNotif && showNotif('✅ Application installée !', "L'Atelier du Mécano est maintenant sur votre écran d'accueil.");
-  }
-  deferredPrompt = null;
-}
+async function installPWA() { /* désactivé */ }
 
 window.addEventListener('appinstalled', () => {
-  document.getElementById('pwa-install-banner')?.remove();
   console.log('[PWA] Application installée');
 });
 </script>
