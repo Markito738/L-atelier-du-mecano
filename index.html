@@ -241,6 +241,53 @@ html[data-theme="industriel"] [style*="rgba(255,255,255,0.5)"]{color:#c8ccd2 !im
 /* SumUp amount display */
 html[data-theme="industriel"] .sumup-amount-display{color:#ffd400 !important;}
 
+/* Containers à fond blanc opaque ou semi-opaque : les rendre sombres pour rester lisibles */
+html[data-theme="industriel"] [style*="background:rgba(255,255,255,.9"],
+html[data-theme="industriel"] [style*="background: rgba(255,255,255,.9"],
+html[data-theme="industriel"] [style*="background:rgba(255,255,255,0.9"],
+html[data-theme="industriel"] [style*="background: rgba(255,255,255,0.9"],
+html[data-theme="industriel"] [style*="background:rgba(255,255,255,.8"],
+html[data-theme="industriel"] [style*="background: rgba(255,255,255,.8"],
+html[data-theme="industriel"] [style*="background:rgba(255,255,255,0.8"],
+html[data-theme="industriel"] [style*="background: rgba(255,255,255,0.8"]{
+  background:#282c34 !important;
+  color:#f2f3f5 !important;
+  border:1px solid #3a3f48 !important;
+}
+
+/* Bouton "Voir tous nos services" (var(--navy) sur var(--navy)) — inverser */
+html[data-theme="industriel"] button[onclick*="showPage('services')"][style*="var(--navy)"],
+html[data-theme="industriel"] button[onclick*="showPage('services')"][style*="background:var(--navy)"]{
+  background:#ffd400 !important;
+  color:#16181d !important;
+}
+
+/* Logo dans la nav */
+html[data-theme="industriel"] .logo-main{color:#ffd400 !important;}
+html[data-theme="industriel"] .logo-sub{color:#f2f3f5 !important;}
+
+/* Bouton hero secondaire "Louer un véhicule" — fond transparent sur navy foncé */
+html[data-theme="industriel"] .btn-secondary{background:rgba(255,212,0,.12) !important;color:#ffd400 !important;border-color:#ffd400 !important;}
+html[data-theme="industriel"] .btn-secondary:hover{background:rgba(255,212,0,.22) !important;}
+
+/* Légendes des photos dans la galerie "EN IMAGES" — souvent sombre sur fond photo sombre */
+html[data-theme="industriel"] .gallery-caption,
+html[data-theme="industriel"] .photo-caption,
+html[data-theme="industriel"] [class*="gallery"] [style*="color"]{
+  background:rgba(0,0,0,.75) !important;
+  color:#ffd400 !important;
+  padding:6px 12px !important;
+}
+
+/* Footer : logo et texte visibles */
+html[data-theme="industriel"] .footer-logo{color:#ffd400 !important;}
+html[data-theme="industriel"] .footer-desc{color:#c5c8cd !important;}
+
+/* Footer emergency (bouton jaune) : texte foncé pour lisibilité sur jaune */
+html[data-theme="industriel"] .footer-emergency{background:#ffd400 !important;}
+html[data-theme="industriel"] .footer-emergency p,
+html[data-theme="industriel"] .footer-emergency a{color:#16181d !important;}
+
 /* Planning : en-têtes jour/mois et cellules */
 html[data-theme="industriel"] .planning-title,
 html[data-theme="industriel"] .planning-day-header{color:#f2f3f5 !important;background:#0e1013 !important;}
