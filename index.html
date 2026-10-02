@@ -297,6 +297,122 @@ html[data-theme="industriel"] .planning-cell.booked{background:#4a1e1e !importan
 html[data-theme="industriel"] .planning-cell.booked .day-num{color:#ff8080 !important;}
 html[data-theme="industriel"] .planning-cell.available{background:#1a3d2a !important;}
 
+/* ═══════════════════════════════════════════════════════════════
+   ADMIN — corrections complètes pour le thème industriel
+   ═══════════════════════════════════════════════════════════════ */
+/* Fond général du panneau admin (était #f0f2f7 clair codé en dur) */
+html[data-theme="industriel"] .admin-panel{background:#16181d !important;}
+html[data-theme="industriel"] .admin-body{background:transparent !important;color:#f2f3f5 !important;}
+
+/* Barre du haut : logo "MODE PROPRIÉTAIRE" + bouton déconnexion */
+html[data-theme="industriel"] .admin-topbar{background:#0e1013 !important;border-bottom-color:#ffd400 !important;}
+html[data-theme="industriel"] .admin-logo,
+html[data-theme="industriel"] .admin-title{color:#f2f3f5 !important;}
+html[data-theme="industriel"] .admin-title span{color:#ffd400 !important;}
+html[data-theme="industriel"] #admin-current-section{color:#c8ccd2 !important;}
+html[data-theme="industriel"] .admin-hamburger span{background:#f2f3f5 !important;}
+html[data-theme="industriel"] .btn-logout{background:rgba(255,212,0,.15) !important;border-color:#ffd400 !important;color:#ffd400 !important;}
+html[data-theme="industriel"] .btn-logout:hover{background:rgba(255,212,0,.28) !important;}
+
+/* Sections admin : fond sombre, titres clairs */
+html[data-theme="industriel"] .admin-section{background:#1e2127 !important;border-color:#3a3f48 !important;}
+html[data-theme="industriel"] .admin-section-header{background:#242830 !important;border-bottom-color:#3a3f48 !important;}
+html[data-theme="industriel"] .admin-section-body{background:#1e2127 !important;color:#f2f3f5 !important;}
+html[data-theme="industriel"] .admin-badge{background:rgba(255,212,0,.15) !important;color:#ffd400 !important;border-color:rgba(255,212,0,.4) !important;}
+
+/* Sous-onglets (Vue Clients / Contrats / Factures, Flotte / Entretien / …) */
+html[data-theme="industriel"] .subtab-bar,
+html[data-theme="industriel"] .subtab-container{background:#242830 !important;}
+html[data-theme="industriel"] .subtab-btn{color:#a0a5ad !important;background:transparent !important;}
+html[data-theme="industriel"] .subtab-btn:hover{background:rgba(255,212,0,.1) !important;color:#ffd400 !important;}
+html[data-theme="industriel"] .subtab-btn.active{background:#0e1013 !important;color:#ffd400 !important;}
+
+/* Menu latéral admin */
+html[data-theme="industriel"] .admin-menu,
+html[data-theme="industriel"] .admin-menu-panel{background:#0e1013 !important;}
+html[data-theme="industriel"] .admin-menu-btn{background:#1e2127 !important;color:#f2f3f5 !important;border-color:#3a3f48 !important;}
+html[data-theme="industriel"] .admin-menu-btn:hover{background:#282c34 !important;color:#ffd400 !important;}
+html[data-theme="industriel"] .admin-menu-group-title{color:#ffd400 !important;}
+
+/* Tableaux admin */
+html[data-theme="industriel"] table,
+html[data-theme="industriel"] .admin-table{background:#1e2127 !important;color:#f2f3f5 !important;}
+html[data-theme="industriel"] th,
+html[data-theme="industriel"] .admin-table th{background:#242830 !important;color:#c8ccd2 !important;border-color:#3a3f48 !important;}
+html[data-theme="industriel"] td,
+html[data-theme="industriel"] .admin-table td{border-color:#3a3f48 !important;color:#e0e2e5 !important;}
+html[data-theme="industriel"] tr:hover td{background:#282c34 !important;}
+
+/* Cartes statistiques (Total contrats, Disponibles, etc.) */
+html[data-theme="industriel"] .stat-card,
+html[data-theme="industriel"] .kpi-card{background:#242830 !important;border-color:#3a3f48 !important;}
+html[data-theme="industriel"] .stat-card-label,
+html[data-theme="industriel"] .stat-label{color:#a0a5ad !important;}
+
+/* Boutons d'action : orange devient jaune, donc texte foncé obligatoire */
+html[data-theme="industriel"] .btn-admin-add,
+html[data-theme="industriel"] .btn-admin-save,
+html[data-theme="industriel"] .btn-mini-add,
+html[data-theme="industriel"] .btn-photo-add{background:#ffd400 !important;color:#16181d !important;border-color:#ffd400 !important;}
+html[data-theme="industriel"] .btn-admin-add:hover,
+html[data-theme="industriel"] .btn-admin-save:hover{background:#ffe14d !important;color:#16181d !important;}
+
+/* Petits boutons secondaires (Gérer, Éditer, Dossier…) */
+html[data-theme="industriel"] .btn-mini,
+html[data-theme="industriel"] .btn-manage,
+html[data-theme="industriel"] .btn-edit{background:#3a3f48 !important;color:#f2f3f5 !important;border-color:#4a505a !important;}
+html[data-theme="industriel"] .btn-mini:hover{background:#4a505a !important;}
+
+/* Boutons photo "Ajouter" (jaune) et "Gérer" (sombre) dans la flotte */
+html[data-theme="industriel"] .photo-add-btn{background:#ffd400 !important;color:#16181d !important;}
+html[data-theme="industriel"] .photo-add-btn:hover{background:#ffe14d !important;color:#16181d !important;}
+html[data-theme="industriel"] .photo-manage-btn{background:#3a3f48 !important;color:#f2f3f5 !important;}
+html[data-theme="industriel"] .photo-manage-btn:hover{background:#4a505a !important;color:#ffd400 !important;}
+
+/* Boutons supprimer (garder rouge mais fond sombre) */
+html[data-theme="industriel"] .btn-del,
+html[data-theme="industriel"] .btn-delete,
+html[data-theme="industriel"] .btn-trash{background:rgba(226,75,74,.18) !important;color:#ff8080 !important;border-color:rgba(226,75,74,.45) !important;}
+
+/* Labels et petits textes du panneau admin */
+html[data-theme="industriel"] .admin-body label,
+html[data-theme="industriel"] .admin-label,
+html[data-theme="industriel"] .field-label{color:#c8ccd2 !important;}
+html[data-theme="industriel"] .admin-hint,
+html[data-theme="industriel"] .form-hint{color:#a0a5ad !important;}
+
+/* Blocs d'activation / d'information à fond blanc (ex : activation paie) */
+html[data-theme="industriel"] .toggle-block,
+html[data-theme="industriel"] .activation-block,
+html[data-theme="industriel"] .info-block{background:#282c34 !important;color:#f2f3f5 !important;border-color:#3a3f48 !important;}
+html[data-theme="industriel"] .toggle-block *,
+html[data-theme="industriel"] .activation-block *{color:#f2f3f5 !important;}
+
+/* Séparateurs et notes */
+html[data-theme="industriel"] .admin-note,
+html[data-theme="industriel"] .admin-tip{background:rgba(255,212,0,.08) !important;color:#e0e2e5 !important;border-color:rgba(255,212,0,.25) !important;}
+
+/* Fonds clairs codés en dur en inline (blocs d'activation, encadrés, alertes) */
+html[data-theme="industriel"] [style*="background:#eef2f7"],
+html[data-theme="industriel"] [style*="background: #eef2f7"],
+html[data-theme="industriel"] [style*="background:#f0f2f7"],
+html[data-theme="industriel"] [style*="background:#eef4ff"],
+html[data-theme="industriel"] [style*="background:#f5f7fa"],
+html[data-theme="industriel"] [style*="background:#f8f9fb"],
+html[data-theme="industriel"] [style*="background:#fafbfc"],
+html[data-theme="industriel"] [style*="background:#e8eef7"],
+html[data-theme="industriel"] [style*="background:#eaf0f8"]{
+  background:#282c34 !important;
+  border-color:#3a3f48 !important;
+  color:#f2f3f5 !important;
+}
+/* et leurs enfants textuels */
+html[data-theme="industriel"] [style*="background:#eef2f7"] div,
+html[data-theme="industriel"] [style*="background:#eef2f7"] span,
+html[data-theme="industriel"] [style*="background:#eef2f7"] p,
+html[data-theme="industriel"] [style*="background:#f0f2f7"] div,
+html[data-theme="industriel"] [style*="background:#f5f7fa"] div{color:#f2f3f5 !important;}
+
 html[data-theme="industriel"] h1,html[data-theme="industriel"] h2,html[data-theme="industriel"] h3,html[data-theme="industriel"] h4,html[data-theme="industriel"] .logo-main,html[data-theme="industriel"] .hero-title{font-family:'Archivo Black','Archivo',sans-serif !important;letter-spacing:-.02em;}
 html[data-theme="industriel"] body,html[data-theme="industriel"] p,html[data-theme="industriel"] input,html[data-theme="industriel"] select,html[data-theme="industriel"] textarea,html[data-theme="industriel"] button{font-family:'Archivo','Inter',sans-serif;}
 html[data-theme="industriel"] .btn-urgent,html[data-theme="industriel"] .btn-owner,html[data-theme="industriel"] .hero-badge,html[data-theme="industriel"] .btn-primary,html[data-theme="industriel"] .btn-secondary,html[data-theme="industriel"] .card,html[data-theme="industriel"] .service-card,html[data-theme="industriel"] .vehicle-card,html[data-theme="industriel"] .admin-section,html[data-theme="industriel"] .admin-input,html[data-theme="industriel"] .admin-menu-btn,html[data-theme="industriel"] .btn-admin-save,html[data-theme="industriel"] .btn-admin-add{border-radius:2px !important;}
@@ -316,6 +432,25 @@ html[data-theme="industriel"] .hero-grid{background-image:linear-gradient(rgba(2
 /* Emergency banner et autres blocs orange -> jaune avec texte sombre */
 html[data-theme="industriel"] .hero-slogan{border-left-color:#ffd400 !important;}
 /* Prix et accents en jaune restent en jaune (déjà via --orange) */
+/* Libellés du formulaire de facture dépannage */
+.dep-lab{font-size:12px;font-weight:700;color:var(--gray-text);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:4px;}
+/* Autocomplétion des villes (API Adresse) */
+.geo-sugg{display:none;position:absolute;top:100%;left:0;right:0;z-index:50;background:var(--white);border:1.5px solid var(--orange);border-top:none;border-radius:0 0 8px 8px;max-height:240px;overflow-y:auto;box-shadow:0 8px 24px rgba(10,22,40,.18);}
+.geo-sugg.open{display:block;}
+.geo-sugg-item{padding:.6rem .85rem;cursor:pointer;font-size:13px;color:var(--text);border-bottom:1px solid var(--gray);transition:background .12s;}
+.geo-sugg-item:last-child{border-bottom:none;}
+.geo-sugg-item:hover,.geo-sugg-item.active{background:var(--orange-pale);}
+.geo-sugg-item small{display:block;color:var(--gray-text);font-size:11px;margin-top:1px;}
+html[data-theme="industriel"] .geo-sugg{background:#282c34 !important;border-color:#ffd400 !important;}
+html[data-theme="industriel"] .geo-sugg-item{color:#f2f3f5 !important;border-color:#3a3f48 !important;}
+html[data-theme="industriel"] .geo-sugg-item:hover{background:rgba(255,212,0,.15) !important;}
+html[data-theme="industriel"] #dep-dist-result{background:#242830 !important;}
+.dep-recap-line{display:flex;justify-content:space-between;align-items:baseline;padding:.4rem 0;border-bottom:1px dashed var(--gray);gap:1rem;}
+.dep-recap-line span:first-child{color:var(--text);}
+.dep-recap-line span:last-child{font-weight:700;color:var(--navy);white-space:nowrap;}
+html[data-theme="industriel"] .dep-recap-line span:last-child{color:#ffd400 !important;}
+html[data-theme="industriel"] #dep-recap{background:#242830 !important;border-color:#ffd400 !important;}
+html[data-theme="industriel"] #dep-total{color:#ffd400 !important;}
 .theme-card:hover{transform:translateY(-3px);}
 .theme-card .theme-check{display:none;}
 .theme-card.theme-selected{border-color:var(--orange) !important;}
@@ -2127,6 +2262,7 @@ footer, .footer-contact-item, .footer-section {
     <button class="admin-menu-btn" onclick="switchTab('compta')">📊 Comptabilité &amp; Impôts</button>
     <button class="admin-menu-btn" onclick="switchTab('paie')">👥 Employés &amp; Paie</button>
     <button class="admin-menu-btn" onclick="switchTab('controle')">🔍 Contrôle véhicule (PDF)</button>
+    <button class="admin-menu-btn" onclick="switchTab('depannage')">🚨 Facture Dépannage</button>
     <button class="admin-menu-btn" onclick="switchTab('theme')">🎨 Thème du site</button>
   </div>
   <!-- OVERLAY -->
@@ -2297,6 +2433,239 @@ footer, .footer-contact-item, .footer-section {
           <button onclick="generateControlePDF()" style="background:#1aab6d;color:white;border:none;font-size:15px;font-weight:800;padding:14px 26px;border-radius:8px;cursor:pointer;">📥 Générer le rapport PDF complet</button>
           <button onclick="resetControleForm()" style="background:transparent;border:1.5px solid var(--gray);color:var(--gray-text);font-size:14px;font-weight:600;padding:13px 22px;border-radius:8px;cursor:pointer;">🔄 Réinitialiser le formulaire</button>
           <button onclick="controleCheckAllOk()" style="background:var(--navy);color:white;border:none;font-size:13px;font-weight:600;padding:13px 20px;border-radius:8px;cursor:pointer;">✅ Tout marquer OK</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE: FACTURE DÉPANNAGE -->
+    <div class="admin-page" id="page-depannage">
+      <div class="admin-section" style="background:linear-gradient(135deg,var(--navy),var(--navy-light));border:none;">
+        <div class="admin-section-body" style="padding:1.5rem;">
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:var(--white);margin-bottom:.4rem;">🚨 Facture d'intervention — Dépannage &amp; Remorquage</div>
+          <p style="font-size:14px;color:rgba(255,255,255,.75);line-height:1.6;margin:0;">
+            Établissez une facture détaillée d'intervention. Le document est <strong style="color:var(--orange-light);">envoyé automatiquement au client par e-mail</strong> dès sa création, archivé dans l'historique et comptabilisé en recette « Dépannage ». Le niveau de détail permet au client de <strong style="color:var(--orange-light);">se faire rembourser par son assurance</strong>.
+          </p>
+        </div>
+      </div>
+
+      <!-- 1. CLIENT -->
+      <div class="admin-section" style="margin-top:1.5rem;">
+        <div class="admin-section-header">
+          <div class="admin-section-title">👤 1. Client</div>
+          <div class="admin-badge">Destinataire de la facture</div>
+        </div>
+        <div class="admin-section-body">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;">
+            <div><label class="dep-lab">Nom &amp; prénom *</label><input class="admin-input" type="text" id="dep-client" placeholder="Jean Dupont" /></div>
+            <div><label class="dep-lab">Téléphone</label><input class="admin-input" type="tel" id="dep-tel" placeholder="06 XX XX XX XX" /></div>
+            <div><label class="dep-lab">E-mail * <span style="color:var(--orange);">(envoi auto)</span></label><input class="admin-input" type="email" id="dep-email" placeholder="client@exemple.fr" /></div>
+            <div><label class="dep-lab">Adresse (facturation)</label><input class="admin-input" type="text" id="dep-adresse" placeholder="12 rue des Alpes, 73110…" /></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;margin-top:.75rem;">
+            <div><label class="dep-lab">Compagnie d'assurance</label><input class="admin-input" type="text" id="dep-assurance" placeholder="Ex : AXA, MAIF…" /></div>
+            <div><label class="dep-lab">N° de contrat / sinistre</label><input class="admin-input" type="text" id="dep-sinistre" placeholder="Pour remboursement" /></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. VÉHICULE DÉPANNÉ -->
+      <div class="admin-section" style="margin-top:1rem;">
+        <div class="admin-section-header">
+          <div class="admin-section-title">🚗 2. Véhicule pris en charge</div>
+        </div>
+        <div class="admin-section-body">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.75rem;">
+            <div><label class="dep-lab">Marque</label><input class="admin-input" type="text" id="dep-marque" placeholder="Renault" /></div>
+            <div><label class="dep-lab">Modèle</label><input class="admin-input" type="text" id="dep-modele" placeholder="Clio IV" /></div>
+            <div><label class="dep-lab">Immatriculation</label><input class="admin-input" type="text" id="dep-immat" placeholder="AA-123-BB" style="text-transform:uppercase;" /></div>
+            <div><label class="dep-lab">Kilométrage compteur</label><input class="admin-input" type="number" id="dep-vehkm" placeholder="120000" /></div>
+            <div><label class="dep-lab">Énergie</label>
+              <select class="admin-input" id="dep-energie"><option>Essence</option><option>Diesel</option><option>Hybride</option><option>Électrique</option><option>GPL</option></select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. INTERVENTION -->
+      <div class="admin-section" style="margin-top:1rem;">
+        <div class="admin-section-header">
+          <div class="admin-section-title">🔧 3. Détail de l'intervention</div>
+          <div class="admin-badge">Champs obligatoires</div>
+        </div>
+        <div class="admin-section-body">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;">
+            <div><label class="dep-lab">Date d'intervention *</label><input class="admin-input" type="date" id="dep-date" /></div>
+            <div><label class="dep-lab">Type d'intervention *</label>
+              <select class="admin-input" id="dep-type" onchange="computeDepannage()">
+                <option value="Remorquage">🚛 Remorquage / Transport</option>
+                <option value="Dépannage sur place">🔧 Dépannage sur place</option>
+                <option value="Panne de batterie">🔋 Panne de batterie</option>
+                <option value="Crevaison / Roue">🛞 Crevaison / Changement de roue</option>
+                <option value="Panne sèche">⛽ Panne sèche (carburant)</option>
+                <option value="Ouverture de porte">🔑 Ouverture de porte / Clés</option>
+                <option value="Sortie de fossé / Treuillage">🪢 Sortie de fossé / Treuillage</option>
+                <option value="Accident / Véhicule accidenté">💥 Accident / Véhicule accidenté</option>
+                <option value="Autre">📝 Autre intervention</option>
+              </select>
+            </div>
+            <div><label class="dep-lab">Heure d'appel</label><input class="admin-input" type="time" id="dep-h-appel" onchange="computeDepannage()" /></div>
+            <div><label class="dep-lab">Heure d'arrivée sur place</label><input class="admin-input" type="time" id="dep-h-arrivee" onchange="computeDepannage()" /></div>
+            <div><label class="dep-lab">Heure de fin</label><input class="admin-input" type="time" id="dep-h-fin" onchange="computeDepannage()" /></div>
+          </div>
+
+          <div style="margin-top:1rem;">
+            <label class="dep-lab">🔍 Cause du dépannage * <span style="color:var(--gray-text);font-weight:400;text-transform:none;">— nature exacte de la panne ou du sinistre</span></label>
+            <textarea class="admin-input" id="dep-cause" placeholder="Ex : Panne moteur — courroie de distribution rompue en roulant. Véhicule immobilisé sur la bande d'arrêt d'urgence, non roulant." style="width:100%;min-height:70px;resize:vertical;"></textarea>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.75rem;margin-top:.75rem;">
+            <div><label class="dep-lab">📍 Lieu de prise en charge *</label><input class="admin-input" type="text" id="dep-lieu" placeholder="Ex : A43 sens Chambéry→Lyon, PK 32, commune de Montmélian" /></div>
+            <div><label class="dep-lab">🏁 Lieu de dépose du véhicule</label><input class="admin-input" type="text" id="dep-lieu-depose" placeholder="Ex : Garage L'Atelier du Mécano, Valgelon la Rochette" /></div>
+          </div>
+
+          <!-- ═══ CALCUL AUTOMATIQUE DE LA DISTANCE (carte routière) ═══ -->
+          <div style="margin-top:1rem;background:var(--gray-light);border:1.5px solid var(--orange);border-radius:10px;padding:1.25rem;">
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:15px;font-weight:800;color:var(--navy);margin-bottom:.25rem;">🗺️ Calcul automatique de la distance</div>
+            <p style="font-size:12px;color:var(--gray-text);margin:0 0 1rem;line-height:1.5;">Saisissez les villes : l'application calcule l'itinéraire routier réel via la carte de France et remplit le kilométrage et la consommation.</p>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.75rem;">
+              <div style="position:relative;">
+                <label class="dep-lab">🚛 Ville de départ de la dépanneuse</label>
+                <input class="admin-input" type="text" id="dep-ville-depart" placeholder="Valgelon-La Rochette" autocomplete="off"
+                       oninput="geoSuggest('dep-ville-depart')" onblur="setTimeout(()=>hideGeoSuggest('dep-ville-depart'),200)" style="width:100%;" />
+                <div id="sugg-dep-ville-depart" class="geo-sugg"></div>
+              </div>
+              <div style="position:relative;">
+                <label class="dep-lab">📍 Ville du véhicule à dépanner</label>
+                <input class="admin-input" type="text" id="dep-ville-arrivee" placeholder="Ex : Montmélian" autocomplete="off"
+                       oninput="geoSuggest('dep-ville-arrivee')" onblur="setTimeout(()=>hideGeoSuggest('dep-ville-arrivee'),200)" style="width:100%;" />
+                <div id="sugg-dep-ville-arrivee" class="geo-sugg"></div>
+              </div>
+              <div style="position:relative;">
+                <label class="dep-lab">🏁 Ville de dépose <span style="font-weight:400;text-transform:none;color:var(--gray-text);">(si ≠ départ)</span></label>
+                <input class="admin-input" type="text" id="dep-ville-depose" placeholder="Laisser vide = retour au garage" autocomplete="off"
+                       oninput="geoSuggest('dep-ville-depose')" onblur="setTimeout(()=>hideGeoSuggest('dep-ville-depose'),200)" style="width:100%;" />
+                <div id="sugg-dep-ville-depose" class="geo-sugg"></div>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-top:1rem;">
+              <button type="button" onclick="calculerDistanceDepannage()" id="btn-calc-dist"
+                      style="background:var(--navy);color:white;border:none;font-size:14px;font-weight:800;padding:11px 20px;border-radius:8px;cursor:pointer;white-space:nowrap;">
+                🗺️ Calculer la distance
+              </button>
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:var(--text);">
+                <input type="checkbox" id="dep-aller-retour" checked style="width:18px;height:18px;cursor:pointer;accent-color:var(--orange);" />
+                Compter l'aller-retour
+              </label>
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:var(--text);">
+                <input type="checkbox" id="dep-auto-conso" checked style="width:18px;height:18px;cursor:pointer;accent-color:var(--orange);" />
+                Estimer la consommation
+              </label>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <label class="dep-lab" style="margin:0;">Conso. dépanneuse</label>
+                <input class="admin-input" type="number" step="0.1" id="dep-conso-100" value="13" style="width:70px;" />
+                <span style="font-size:12px;color:var(--gray-text);">L/100 km</span>
+              </div>
+            </div>
+
+            <div id="dep-dist-result" style="display:none;margin-top:1rem;padding:.9rem 1.1rem;border-radius:8px;font-size:14px;line-height:1.6;"></div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem;margin-top:.75rem;">
+            <div><label class="dep-lab">🛣️ Kilomètres parcourus * <span style="color:var(--gray-text);font-weight:400;text-transform:none;">(A/R)</span></label><input class="admin-input" type="number" id="dep-km" placeholder="48" oninput="computeDepannage()" /></div>
+            <div><label class="dep-lab">⛽ Consommation carburant * (L)</label><input class="admin-input" type="number" step="0.1" id="dep-conso" placeholder="6.5" oninput="computeDepannage()" /></div>
+            <div><label class="dep-lab">Prix du carburant (€/L)</label><input class="admin-input" type="number" step="0.01" id="dep-prix-carb" value="1.85" oninput="computeDepannage()" /></div>
+            <div><label class="dep-lab">🚛 Dépanneuse utilisée</label><input class="admin-input" type="text" id="dep-depanneuse" placeholder="Plateau Iveco Daily — AB-123-CD" /></div>
+            <div><label class="dep-lab">👨‍🔧 Technicien intervenant</label><input class="admin-input" type="text" id="dep-technicien" placeholder="Marc-Henri Annis" /></div>
+          </div>
+
+          <div style="margin-top:1rem;">
+            <label class="dep-lab">📝 Observations techniques / état du véhicule</label>
+            <textarea class="admin-input" id="dep-observations" placeholder="Ex : Véhicule pris en charge avec rayure préexistante sur aile AVD. Chargement au treuil, roues avant bloquées. Aucun dommage causé lors du transport." style="width:100%;min-height:60px;resize:vertical;"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. TARIFICATION -->
+      <div class="admin-section" style="margin-top:1rem;">
+        <div class="admin-section-header">
+          <div class="admin-section-title">💶 4. Tarification &amp; coût du dépannage</div>
+          <div class="admin-badge">Calcul automatique</div>
+        </div>
+        <div class="admin-section-body">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem;">
+            <div><label class="dep-lab">Forfait d'intervention (€)</label><input class="admin-input" type="number" step="0.01" id="dep-forfait" value="150" oninput="computeDepannage()" /></div>
+            <div><label class="dep-lab">Km inclus dans le forfait</label><input class="admin-input" type="number" id="dep-km-inclus" value="20" oninput="computeDepannage()" /></div>
+            <div><label class="dep-lab">Tarif km supplémentaire (€)</label><input class="admin-input" type="number" step="0.01" id="dep-tarif-km" value="1.50" oninput="computeDepannage()" /></div>
+            <div><label class="dep-lab">Main d'œuvre (heures)</label><input class="admin-input" type="number" step="0.25" id="dep-mo-h" value="0" oninput="computeDepannage()" /></div>
+            <div><label class="dep-lab">Taux horaire (€/h)</label><input class="admin-input" type="number" step="0.01" id="dep-mo-taux" value="55" oninput="computeDepannage()" /></div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:2fr 1fr;gap:.75rem;margin-top:.75rem;">
+            <div><label class="dep-lab">🔩 Pièces / consommables fournis</label><input class="admin-input" type="text" id="dep-pieces-label" placeholder="Ex : 5 L de gazole, 1 fusible 20A" oninput="computeDepannage()" /></div>
+            <div><label class="dep-lab">Montant pièces (€)</label><input class="admin-input" type="number" step="0.01" id="dep-pieces-montant" value="0" oninput="computeDepannage()" /></div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;margin-top:.75rem;">
+            <div><label class="dep-lab">⏰ Majoration horaire</label>
+              <select class="admin-input" id="dep-majoration" onchange="computeDepannage()">
+                <option value="0">Aucune — heures ouvrables</option>
+                <option value="25">Nuit (20h–7h) — +25 %</option>
+                <option value="25">Samedi — +25 %</option>
+                <option value="50">Dimanche — +50 %</option>
+                <option value="50">Jour férié — +50 %</option>
+                <option value="75">Nuit + dimanche/férié — +75 %</option>
+              </select>
+            </div>
+            <div><label class="dep-lab">💳 Mode de paiement</label>
+              <select class="admin-input" id="dep-paiement">
+                <option>Carte bancaire (SumUp)</option><option>Espèces</option><option>Virement</option><option>Chèque</option><option>Prise en charge assurance</option><option>À régler sous 30 jours</option>
+              </select>
+            </div>
+            <div><label class="dep-lab">📌 Statut</label>
+              <select class="admin-input" id="dep-statut">
+                <option>Payée</option><option>En attente de paiement</option><option>Prise en charge assurance</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- RÉCAPITULATIF CALCULÉ -->
+          <div id="dep-recap" style="margin-top:1.25rem;background:var(--gray-light);border:1.5px solid var(--orange);border-radius:10px;padding:1.25rem;">
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:.75rem;">🧾 Récapitulatif du coût</div>
+            <div id="dep-recap-lines" style="font-size:14px;"></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:1rem;padding-top:1rem;border-top:2px solid var(--orange);">
+              <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:800;color:var(--navy);">TOTAL TTC</span>
+              <span id="dep-total" style="font-family:'Bricolage Grotesque',sans-serif;font-size:32px;font-weight:900;color:var(--orange);">0,00 €</span>
+            </div>
+            <div style="font-size:11px;color:var(--gray-text);margin-top:.5rem;font-style:italic;">TVA non applicable — art. 293 B du CGI (auto-entrepreneur).</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. ACTIONS -->
+      <div class="admin-section" style="margin-top:1.5rem;">
+        <div class="admin-section-body" style="display:flex;gap:.75rem;flex-wrap:wrap;align-items:center;">
+          <button onclick="createDepannageInvoice(true)" style="background:#1aab6d;color:white;border:none;font-size:15px;font-weight:800;padding:14px 26px;border-radius:8px;cursor:pointer;">📧 Créer la facture &amp; l'envoyer au client</button>
+          <button onclick="createDepannageInvoice(false)" style="background:var(--navy);color:white;border:none;font-size:14px;font-weight:700;padding:13px 22px;border-radius:8px;cursor:pointer;">📥 Créer &amp; télécharger seulement</button>
+          <button onclick="resetDepannageForm()" style="background:transparent;border:1.5px solid var(--gray);color:var(--gray-text);font-size:14px;font-weight:600;padding:12px 20px;border-radius:8px;cursor:pointer;">🔄 Réinitialiser</button>
+          <span style="font-size:12px;color:var(--gray-text);">La facture est archivée, synchronisée en ligne et ajoutée à votre comptabilité.</span>
+        </div>
+      </div>
+
+      <!-- 6. HISTORIQUE -->
+      <div class="admin-section" style="margin-top:1.5rem;">
+        <div class="admin-section-header">
+          <div class="admin-section-title">📚 Historique des factures de dépannage</div>
+          <div class="admin-badge"><span id="dep-count">0</span> facture(s)</div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table">
+            <thead>
+              <tr><th>N° Facture</th><th>Date</th><th>Client</th><th>Véhicule</th><th>Type</th><th>Lieu</th><th>Km</th><th>Total TTC</th><th>Statut</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="depHistoryBody"></tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -2731,7 +3100,7 @@ footer, .footer-contact-item, .footer-section {
     </div>
 
     <!-- PAGE: VENTE -->
-    <div class="admin-page" id="page-vente">
+    <div class="admin-page" id="page-vente-admin">
       <div class="admin-section">
         <div class="admin-section-header">
           <div class="admin-section-title">🚘 Véhicules à la vente</div>
@@ -3951,6 +4320,8 @@ const SYNCED_SETTING_KEYS = [
   'adm_fiches_paie',        // fiches de paie générées
   'adm_paie_settings',      // taux cotisations paie
   'adm_theme',              // thème visuel du site
+  'adm_depannages',         // factures de dépannage
+  'adm_retour_settings',    // tarifs suppléments au retour (carburant, km)
 ];
 function saveData(key,val){
   try{localStorage.setItem(key,JSON.stringify(val));}catch(e){}
@@ -4576,6 +4947,12 @@ async function loadSettingsFromFirebase(){
         case 'adm_theme':
           if(value){ saveData('adm_theme',value); if(typeof applyTheme==='function') applyTheme(value); if(typeof renderThemeSelector==='function') renderThemeSelector(); loaded.push('thème'); }
           break;
+        case 'adm_retour_settings':
+          if(value && typeof value==='object' && typeof retourSettings!=='undefined'){ Object.assign(retourSettings,value); saveData('adm_retour_settings',retourSettings); loaded.push('tarifs retour'); }
+          break;
+        case 'adm_depannages':
+          if(Array.isArray(value) && typeof depannageHistory!=='undefined'){ depannageHistory.length=0; value.forEach(x=>depannageHistory.push(x)); saveData('adm_depannages',depannageHistory); if(typeof renderDepannageHistory==='function') renderDepannageHistory(); loaded.push('factures dépannage'); }
+          break;
       }
     });
     if(loaded.length){
@@ -4923,6 +5300,34 @@ function generateInvoicePDF(invoice){
     y += 8;
   }
 
+  // ─── SUPPLEMENTS CONSTATES AU RETOUR DU VEHICULE ───
+  if(Array.isArray(invoice.supplements) && invoice.supplements.length){
+    const noAccent = s => (s||'').toString()
+      .replace(/[éèêë]/g,'e').replace(/[àâä]/g,'a').replace(/[ùûü]/g,'u')
+      .replace(/[îï]/g,'i').replace(/[ôö]/g,'o').replace(/ç/g,'c')
+      .replace(/[ÉÈÊË]/g,'E').replace(/[ÀÂÄ]/g,'A').replace(/[ÔÖ]/g,'O')
+      .replace(/[’']/g,"'").replace(/[—–]/g,'-').replace(/[→]/g,'->')
+      .replace(/€/g,'EUR').replace(/×/g,'x').replace(/°/g,'o')
+      .replace(/ | | /g,' ').replace(/[^\x20-\x7E]/g,'');
+    // Bandeau de section
+    doc.setFillColor(252, 232, 214);
+    doc.rect(15, y, 180, 7, 'F');
+    doc.setFont('helvetica','bold'); doc.setFontSize(8.5);
+    doc.setTextColor(180, 70, 0);
+    doc.text('SUPPLEMENTS CONSTATES AU RETOUR DU VEHICULE', 18, y + 4.8);
+    doc.setTextColor(0,0,0); doc.setFont('helvetica','normal'); doc.setFontSize(9);
+    y += 7;
+    invoice.supplements.forEach(s => {
+      const txt = noAccent(s.label) + (s.detail ? '  (' + noAccent(s.detail) + ')' : '');
+      const lines = doc.splitTextToSize(txt, 140);
+      const h = Math.max(8, lines.length * 4.2 + 3);
+      doc.rect(15, y, 180, h, 'S');
+      doc.text(lines, 18, y + 5);
+      doc.text(Number(s.montant).toFixed(2) + ' EUR', 192, y + 5, {align:'right'});
+      y += h;
+    });
+  }
+
   y += 5;
   // Total TTC
   doc.setFillColor(244, 112, 10);
@@ -5196,35 +5601,356 @@ async function sendReservationWithDocs(contract, invoice, magicUrl){
 // ═══════════════════════════════════════════════════════════════
 // VALIDATION DU RETOUR VÉHICULE + ENVOI FACTURE AU CLIENT
 // ═══════════════════════════════════════════════════════════════
-async function confirmVehicleReturn(contratNum){
+// ═══════════════════════════════════════════════════════════════
+// BON DE RETOUR — SUPPLÉMENTS (carburant, km, dépannage)
+// Réglages tarifaires mémorisés et synchronisés en ligne
+// ═══════════════════════════════════════════════════════════════
+let retourSettings = loadData('adm_retour_settings', {
+  prixLitre: 1.95,        // € / litre refacturé au client
+  fraisService: 15,       // € forfait de service si le plein n'est pas fait
+  capaciteDefaut: 50,     // litres — capacité réservoir par défaut
+  tarifKmSupp: 0.35,      // € / km au-delà du forfait
+  kmInclusParJour: 200,   // km inclus par jour de location
+});
+
+function openRetourModal(contratNum){
   const c = contratHistory.find(x => x.num === contratNum);
   if(!c){ showNotif('❌ Introuvable','Contrat non trouvé.'); return; }
 
+  // Déjà confirmé → simple renvoi de facture, pas de nouveaux suppléments
   if(c.retourConfirme){
-    if(!confirm('Le retour de ce véhicule a déjà été confirmé le '+(c.retourConfirmeDate||'?')+'. Renvoyer la facture au client ?')) return;
-  } else {
-    if(!confirm('Confirmer le bon retour du véhicule « '+c.vehicule+' » pour '+c.client+' ?\n\nCela va :\n• Marquer la location comme terminée\n• Libérer les dates dans le planning\n• Envoyer la facture au client par e-mail'+(c.email?' ('+c.email+')':' (aucun email fourni)'))) return;
+    if(confirm('Le retour de ce véhicule a déjà été confirmé le '+(c.retourConfirmeDate||'?')+'.\n\nRenvoyer la facture au client ?')){
+      confirmVehicleReturn(contratNum, null);
+    }
+    return;
   }
+
+  const jours = parseInt(c.jours) || 1;
+  const kmInclusTotal = (retourSettings.kmInclusParJour || 200) * jours;
+
+  // Factures de dépannage disponibles (non déjà rattachées)
+  let depOptions = '<option value="">— Aucune —</option>';
+  if(typeof depannageHistory !== 'undefined' && depannageHistory.length){
+    depOptions += depannageHistory.map((d,i) =>
+      `<option value="${i}">${d.num} — ${d.type} — ${(d.total||0).toFixed(2).replace('.',',')} € (${d.dateFr||''})</option>`
+    ).join('');
+  }
+
+  const ov = document.createElement('div');
+  ov.id = 'retour-modal-overlay';
+  ov.style.cssText = 'position:fixed;inset:0;background:rgba(10,22,40,.92);z-index:1000001;overflow-y:auto;padding:1.5rem;';
+  ov.innerHTML = `
+    <div style="max-width:860px;margin:0 auto;background:var(--white);border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);">
+      <div style="background:linear-gradient(135deg,var(--navy),var(--navy-light));padding:1.5rem 2rem;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;">
+          <div>
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:#fff;">🔄 Bon de retour — ${c.vehicule}</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.75);margin-top:4px;">${c.client} · Contrat ${c.num} · ${jours} jour(s) · Montant initial : <strong style="color:var(--orange-light);">${c.total}</strong></div>
+          </div>
+          <button onclick="closeRetourModal()" style="background:rgba(255,255,255,.15);border:none;color:#fff;font-size:20px;width:36px;height:36px;border-radius:8px;cursor:pointer;flex-shrink:0;">✕</button>
+        </div>
+      </div>
+
+      <div style="padding:1.5rem 2rem;max-height:62vh;overflow-y:auto;">
+        <p style="font-size:14px;color:var(--text);line-height:1.6;margin:0 0 1.25rem;">
+          Vérifiez l'état du véhicule au retour. Les suppléments cochés seront <strong>ajoutés à la facture</strong>, détaillés ligne par ligne, puis envoyés au client.
+        </p>
+
+        <!-- CARBURANT -->
+        <div style="border:1.5px solid var(--gray);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1rem;">
+          <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+            <input type="checkbox" id="ret-carb-on" onchange="toggleRetourBlock('carb');computeRetourSupplements();" style="width:20px;height:20px;cursor:pointer;accent-color:var(--orange);" />
+            <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:800;color:var(--navy);">⛽ Carburant manquant</span>
+          </label>
+          <div id="ret-carb-block" style="display:none;margin-top:1rem;padding-left:30px;">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.75rem;">
+              <div><label class="dep-lab">Niveau au départ</label>
+                <select class="admin-input" id="ret-carb-dep" onchange="computeRetourSupplements()">
+                  <option value="1">Plein (4/4)</option><option value="0.75">3/4</option><option value="0.5">1/2</option><option value="0.25">1/4</option><option value="0">Réserve</option>
+                </select></div>
+              <div><label class="dep-lab">Niveau au retour</label>
+                <select class="admin-input" id="ret-carb-ret" onchange="computeRetourSupplements()">
+                  <option value="1">Plein (4/4)</option><option value="0.75">3/4</option><option value="0.5" selected>1/2</option><option value="0.25">1/4</option><option value="0">Réserve</option>
+                </select></div>
+              <div><label class="dep-lab">Capacité réservoir (L)</label><input class="admin-input" type="number" id="ret-carb-cap" value="${retourSettings.capaciteDefaut}" oninput="computeRetourSupplements()" /></div>
+              <div><label class="dep-lab">Prix du litre (€)</label><input class="admin-input" type="number" step="0.01" id="ret-carb-prix" value="${retourSettings.prixLitre}" oninput="computeRetourSupplements()" /></div>
+              <div><label class="dep-lab">Frais de service (€)</label><input class="admin-input" type="number" step="0.01" id="ret-carb-frais" value="${retourSettings.fraisService}" oninput="computeRetourSupplements()" /></div>
+            </div>
+            <div id="ret-carb-info" style="margin-top:.6rem;font-size:13px;color:var(--orange);font-weight:700;"></div>
+          </div>
+        </div>
+
+        <!-- KILOMÈTRES -->
+        <div style="border:1.5px solid var(--gray);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1rem;">
+          <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+            <input type="checkbox" id="ret-km-on" onchange="toggleRetourBlock('km');computeRetourSupplements();" style="width:20px;height:20px;cursor:pointer;accent-color:var(--orange);" />
+            <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:800;color:var(--navy);">🛣️ Kilomètres supplémentaires</span>
+          </label>
+          <div id="ret-km-block" style="display:none;margin-top:1rem;padding-left:30px;">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.75rem;">
+              <div><label class="dep-lab">Compteur au départ</label><input class="admin-input" type="number" id="ret-km-dep" placeholder="120000" oninput="computeRetourSupplements()" /></div>
+              <div><label class="dep-lab">Compteur au retour</label><input class="admin-input" type="number" id="ret-km-ret" placeholder="121450" oninput="computeRetourSupplements()" /></div>
+              <div><label class="dep-lab">Km inclus (${jours} j)</label><input class="admin-input" type="number" id="ret-km-inclus" value="${kmInclusTotal}" oninput="computeRetourSupplements()" /></div>
+              <div><label class="dep-lab">Tarif / km supp. (€)</label><input class="admin-input" type="number" step="0.01" id="ret-km-tarif" value="${retourSettings.tarifKmSupp}" oninput="computeRetourSupplements()" /></div>
+            </div>
+            <div id="ret-km-info" style="margin-top:.6rem;font-size:13px;color:var(--orange);font-weight:700;"></div>
+          </div>
+        </div>
+
+        <!-- DÉPANNAGE -->
+        <div style="border:1.5px solid var(--gray);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1rem;">
+          <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+            <input type="checkbox" id="ret-dep-on" onchange="toggleRetourBlock('dep');computeRetourSupplements();" style="width:20px;height:20px;cursor:pointer;accent-color:var(--orange);" />
+            <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:800;color:var(--navy);">🚨 Intervention de dépannage</span>
+          </label>
+          <div id="ret-dep-block" style="display:none;margin-top:1rem;padding-left:30px;">
+            <div style="margin-bottom:.75rem;">
+              <label class="dep-lab">Rattacher une facture de dépannage existante</label>
+              <select class="admin-input" id="ret-dep-ref" onchange="onRetourDepSelect()" style="width:100%;">${depOptions}</select>
+            </div>
+            <div style="display:grid;grid-template-columns:2fr 1fr;gap:.75rem;">
+              <div><label class="dep-lab">Ou décrire l'intervention</label><input class="admin-input" type="text" id="ret-dep-label" placeholder="Ex : Dépannage sur place — batterie déchargée" oninput="computeRetourSupplements()" /></div>
+              <div><label class="dep-lab">Montant (€)</label><input class="admin-input" type="number" step="0.01" id="ret-dep-montant" value="0" oninput="computeRetourSupplements()" /></div>
+            </div>
+            <div style="margin-top:.6rem;font-size:12px;color:var(--gray-text);">💡 Si vous rattachez une facture de dépannage existante, son montant et son détail sont repris automatiquement.</div>
+          </div>
+        </div>
+
+        <!-- AUTRES FRAIS -->
+        <div style="border:1.5px solid var(--gray);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1rem;">
+          <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+            <input type="checkbox" id="ret-autre-on" onchange="toggleRetourBlock('autre');computeRetourSupplements();" style="width:20px;height:20px;cursor:pointer;accent-color:var(--orange);" />
+            <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:800;color:var(--navy);">➕ Autre supplément</span>
+          </label>
+          <div id="ret-autre-block" style="display:none;margin-top:1rem;padding-left:30px;">
+            <div style="display:grid;grid-template-columns:2fr 1fr;gap:.75rem;">
+              <div><label class="dep-lab">Désignation</label><input class="admin-input" type="text" id="ret-autre-label" placeholder="Ex : Nettoyage intérieur, retard de restitution…" oninput="computeRetourSupplements()" /></div>
+              <div><label class="dep-lab">Montant (€)</label><input class="admin-input" type="number" step="0.01" id="ret-autre-montant" value="0" oninput="computeRetourSupplements()" /></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OBSERVATIONS -->
+        <div style="margin-bottom:1rem;">
+          <label class="dep-lab">📝 Observations sur l'état du véhicule au retour</label>
+          <textarea class="admin-input" id="ret-observations" placeholder="Ex : Véhicule rendu propre, aucun nouveau dommage constaté. Niveau d'huile correct." style="width:100%;min-height:60px;resize:vertical;"></textarea>
+        </div>
+
+        <!-- RÉCAPITULATIF -->
+        <div style="background:var(--gray-light);border:2px solid var(--orange);border-radius:10px;padding:1.25rem;">
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:.75rem;">🧾 Facture finale</div>
+          <div class="dep-recap-line"><span>Montant initial de la location</span><span id="ret-base">0,00 €</span></div>
+          <div id="ret-supp-lines"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:1rem;padding-top:1rem;border-top:2px solid var(--orange);">
+            <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:800;color:var(--navy);">NOUVEAU TOTAL TTC</span>
+            <span id="ret-total" style="font-family:'Bricolage Grotesque',sans-serif;font-size:30px;font-weight:900;color:var(--orange);">0,00 €</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:1.25rem 2rem;border-top:1px solid var(--gray);display:flex;gap:.75rem;flex-wrap:wrap;align-items:center;background:var(--gray-light);">
+        <button onclick="validateRetour('${contratNum}')" style="background:#1aab6d;color:white;border:none;font-size:15px;font-weight:800;padding:13px 24px;border-radius:8px;cursor:pointer;">✅ Valider le retour &amp; envoyer la facture</button>
+        <button onclick="closeRetourModal()" style="background:transparent;border:1.5px solid var(--gray);color:var(--gray-text);font-size:14px;font-weight:600;padding:12px 20px;border-radius:8px;cursor:pointer;">Annuler</button>
+        <span style="font-size:12px;color:var(--gray-text);">Dates libérées · Facture envoyée · Recettes comptabilisées</span>
+      </div>
+    </div>`;
+  document.body.appendChild(ov);
+  // Mémoriser le montant de base pour le calcul
+  ov.dataset.base = String(parseFloat((c.total||'').toString().replace(/[^0-9.,]/g,'').replace(',','.')) || 0);
+  computeRetourSupplements();
+}
+
+function closeRetourModal(){
+  const ov = document.getElementById('retour-modal-overlay');
+  if(ov) ov.remove();
+}
+
+function toggleRetourBlock(key){
+  const chk = document.getElementById('ret-'+key+'-on');
+  const blk = document.getElementById('ret-'+key+'-block');
+  if(chk && blk) blk.style.display = chk.checked ? 'block' : 'none';
+}
+
+function onRetourDepSelect(){
+  const sel = document.getElementById('ret-dep-ref');
+  if(!sel) return;
+  const i = sel.value;
+  if(i !== '' && typeof depannageHistory !== 'undefined' && depannageHistory[i]){
+    const d = depannageHistory[i];
+    const lbl = document.getElementById('ret-dep-label');
+    const mnt = document.getElementById('ret-dep-montant');
+    if(lbl) lbl.value = d.type + ' — ' + (d.cause||'').substring(0,70) + (d.num ? ' (réf. ' + d.num + ')' : '');
+    if(mnt) mnt.value = (d.total||0).toFixed(2);
+  }
+  computeRetourSupplements();
+}
+
+// Calcule les suppléments et met à jour l'affichage. Retourne la liste.
+function computeRetourSupplements(){
+  const ov = document.getElementById('retour-modal-overlay');
+  if(!ov) return [];
+  const num = id => parseFloat(document.getElementById(id)?.value) || 0;
+  const str = id => (document.getElementById(id)?.value || '').trim();
+  const on  = id => !!document.getElementById(id)?.checked;
+  const eur = v => v.toFixed(2).replace('.', ',') + ' €';
+  const supplements = [];
+
+  // Carburant
+  if(on('ret-carb-on')){
+    const nDep = num('ret-carb-dep'), nRet = num('ret-carb-ret');
+    const cap = num('ret-carb-cap'), prix = num('ret-carb-prix'), frais = num('ret-carb-frais');
+    const litres = Math.max(0, (nDep - nRet) * cap);
+    const montant = litres * prix + (litres > 0 ? frais : 0);
+    const fracs = { 1:'4/4', 0.75:'3/4', 0.5:'1/2', 0.25:'1/4', 0:'réserve' };
+    const info = document.getElementById('ret-carb-info');
+    if(info) info.textContent = litres > 0
+      ? `≈ ${litres.toFixed(1).replace('.',',')} L manquants → ${eur(litres*prix)} de carburant + ${eur(frais)} de frais de service`
+      : 'Aucun carburant manquant — le plein a été fait.';
+    if(montant > 0){
+      supplements.push({
+        key:'carburant',
+        label:'Carburant manquant — remise à niveau',
+        detail:`${fracs[nDep]||nDep} au départ → ${fracs[nRet]||nRet} au retour, soit ${litres.toFixed(1).replace('.',',')} L × ${prix.toFixed(2).replace('.',',')} €/L + ${frais.toFixed(2).replace('.',',')} € de frais de service`,
+        montant: Math.round(montant*100)/100,
+      });
+    }
+  }
+
+  // Kilomètres
+  if(on('ret-km-on')){
+    const kDep = num('ret-km-dep'), kRet = num('ret-km-ret');
+    const inclus = num('ret-km-inclus'), tarif = num('ret-km-tarif');
+    const parcourus = Math.max(0, kRet - kDep);
+    const supp = Math.max(0, parcourus - inclus);
+    const montant = supp * tarif;
+    const info = document.getElementById('ret-km-info');
+    if(info) info.textContent = parcourus > 0
+      ? `${parcourus} km parcourus — ${inclus} km inclus → ${supp} km facturés × ${tarif.toFixed(2).replace('.',',')} € = ${eur(montant)}`
+      : 'Renseignez les deux relevés de compteur.';
+    if(montant > 0){
+      supplements.push({
+        key:'km',
+        label:'Kilomètres supplémentaires',
+        detail:`${parcourus} km parcourus (${kDep} → ${kRet}), ${inclus} km inclus, ${supp} km facturés × ${tarif.toFixed(2).replace('.',',')} €/km`,
+        montant: Math.round(montant*100)/100,
+      });
+    }
+  }
+
+  // Dépannage
+  if(on('ret-dep-on')){
+    const montant = num('ret-dep-montant');
+    const label = str('ret-dep-label');
+    if(montant > 0){
+      supplements.push({
+        key:'depannage',
+        label:'Intervention de dépannage' + (label ? ' — ' + label : ''),
+        detail:'',
+        montant: Math.round(montant*100)/100,
+      });
+    }
+  }
+
+  // Autre
+  if(on('ret-autre-on')){
+    const montant = num('ret-autre-montant');
+    const label = str('ret-autre-label');
+    if(montant > 0){
+      supplements.push({ key:'autre', label: label || 'Supplément divers', detail:'', montant: Math.round(montant*100)/100 });
+    }
+  }
+
+  // Affichage
+  const base = parseFloat(ov.dataset.base) || 0;
+  const totalSupp = supplements.reduce((s,x) => s + x.montant, 0);
+  const baseEl = document.getElementById('ret-base');
+  if(baseEl) baseEl.textContent = eur(base);
+  const linesEl = document.getElementById('ret-supp-lines');
+  if(linesEl) linesEl.innerHTML = supplements.map(s =>
+    `<div class="dep-recap-line"><span>${s.label}${s.detail?'<br><span style="font-size:11px;color:var(--gray-text);">'+s.detail+'</span>':''}</span><span>+ ${eur(s.montant)}</span></div>`
+  ).join('');
+  const totEl = document.getElementById('ret-total');
+  if(totEl) totEl.textContent = eur(base + totalSupp);
+
+  return supplements;
+}
+
+function validateRetour(contratNum){
+  const supplements = computeRetourSupplements();
+  const observations = (document.getElementById('ret-observations')?.value || '').trim();
+  const total = supplements.reduce((s,x) => s + x.montant, 0);
+  const msg = supplements.length
+    ? 'Valider le retour avec ' + supplements.length + ' supplément(s) pour un total de ' + total.toFixed(2).replace('.',',') + ' € ?\n\n' +
+      supplements.map(s => '• ' + s.label + ' : ' + s.montant.toFixed(2).replace('.',',') + ' €').join('\n') +
+      '\n\nLa facture mise à jour sera envoyée au client.'
+    : 'Valider le retour sans supplément ?\n\nLa facture sera envoyée au client.';
+  if(!confirm(msg)) return;
+  // Mémoriser les réglages tarifaires pour la prochaine fois
+  try {
+    const n = id => parseFloat(document.getElementById(id)?.value);
+    if(!isNaN(n('ret-carb-prix')))  retourSettings.prixLitre = n('ret-carb-prix');
+    if(!isNaN(n('ret-carb-frais'))) retourSettings.fraisService = n('ret-carb-frais');
+    if(!isNaN(n('ret-carb-cap')))   retourSettings.capaciteDefaut = n('ret-carb-cap');
+    if(!isNaN(n('ret-km-tarif')))   retourSettings.tarifKmSupp = n('ret-km-tarif');
+    saveData('adm_retour_settings', retourSettings);
+  } catch(e){}
+  closeRetourModal();
+  confirmVehicleReturn(contratNum, { supplements, observations });
+}
+
+async function confirmVehicleReturn(contratNum, extra){
+  const c = contratHistory.find(x => x.num === contratNum);
+  if(!c){ showNotif('❌ Introuvable','Contrat non trouvé.'); return; }
+
+  // Appel sans suppléments explicites → ouvrir la modale du bon de retour
+  if(extra === undefined){
+    openRetourModal(contratNum);
+    return;
+  }
+
+  const supplements  = (extra && Array.isArray(extra.supplements)) ? extra.supplements : [];
+  const observations = (extra && extra.observations) ? extra.observations : '';
+  const totalSupp    = supplements.reduce((s,x) => s + x.montant, 0);
+
+  // Montant initial de la location
+  const montantBase = parseFloat((c.total||'').toString().replace(/[^0-9.,]/g,'').replace(',','.')) || 0;
+  const montantFinal = Math.round((montantBase + totalSupp) * 100) / 100;
 
   // Marquer comme retourné
   c.retourConfirme = true;
   c.retourConfirmeDate = new Date().toLocaleString('fr-FR');
   c.statut = 'Terminé - véhicule rendu';
+  if(supplements.length){
+    c.supplementsRetour = supplements;
+    c.totalInitial = montantBase;
+    c.total = montantFinal.toFixed(2) + ' €';
+  }
+  if(observations) c.observationsRetour = observations;
   const idx = contratHistory.findIndex(x => x.num === contratNum);
   if(idx >= 0) contratHistory[idx] = c;
   saveData('adm_contrats', contratHistory);
 
-  // Ajouter automatiquement à la comptabilité (recette location)
+  // ─── COMPTABILITÉ ───
   if(typeof comptaData !== 'undefined'){
+    const dateRet = new Date().toISOString().substring(0,10);
+    // Recette location (montant de base)
     const ref = 'LOC:'+c.num;
-    if(!comptaData.some(r=>r.refNum===ref)){
-      const montant = parseFloat((c.total||'').toString().replace(/[^0-9.,]/g,'').replace(',','.'))||0;
-      if(montant>0){
-        const dateRet = new Date().toISOString().substring(0,10);
-        comptaData.push({ id:'inc_loc_'+c.num, date:dateRet, category:'location', amount:montant, label:'Location '+c.vehicule+' — '+c.client, source:'auto', refNum:ref });
-        saveData('adm_comptabilite', comptaData);
-        if(typeof renderComptabilite==='function') renderComptabilite();
-      }
+    if(!comptaData.some(r=>r.refNum===ref) && montantBase>0){
+      comptaData.push({ id:'inc_loc_'+c.num, date:dateRet, category:'location', amount:montantBase, label:'Location '+c.vehicule+' — '+c.client, source:'auto', refNum:ref });
+    }
+    // Suppléments : chacun dans sa catégorie (dépannage à part)
+    supplements.forEach((s,i) => {
+      const sref = 'SUP:'+c.num+':'+s.key+i;
+      if(comptaData.some(r=>r.refNum===sref)) return;
+      const cat = s.key === 'depannage' ? 'depannage' : 'location';
+      comptaData.push({
+        id:'inc_sup_'+c.num+'_'+s.key+i, date:dateRet, category:cat, amount:s.montant,
+        label: s.label + ' — ' + c.client + ' (' + c.vehicule + ')', source:'auto', refNum:sref,
+      });
+    });
+    if(montantBase>0 || supplements.length){
+      saveData('adm_comptabilite', comptaData);
+      if(typeof renderComptabilite==='function') renderComptabilite();
     }
   }
 
@@ -5232,6 +5958,12 @@ async function confirmVehicleReturn(contratNum){
   const inv = invoiceHistory.find(x => x.contratNum === contratNum || x.num === contratNum.replace('LOC-','FAC-'));
   if(inv){
     inv.statut = 'Payée - location terminée';
+    if(supplements.length){
+      inv.supplements = supplements;
+      inv.ttcInitial = inv.ttc;
+      inv.ttc = montantFinal.toFixed(2);
+    }
+    if(observations) inv.observationsRetour = observations;
     saveData('adm_invoices', invoiceHistory);
     if(firebaseReady && typeof saveFactureToFirestore === 'function') saveFactureToFirestore(inv);
   }
@@ -5267,22 +5999,33 @@ async function confirmVehicleReturn(contratNum){
       clientForm.append('_captcha', 'false');
       clientForm.append('_template', 'box');
       clientForm.append('Bonjour', c.client);
-      clientForm.append('Message', 'Merci d\'avoir loué chez L\'Atelier du Mécano ! Votre location est maintenant terminée et le retour du véhicule a bien été enregistré. Vous trouverez ci-joint votre facture acquittée. Au plaisir de vous revoir !');
+      clientForm.append('Message', supplements.length
+        ? 'Merci d\'avoir loué chez L\'Atelier du Mécano ! Votre location est terminée et le retour du véhicule a bien été enregistré. Lors de la restitution, des suppléments ont été constatés : vous en trouverez le détail ci-dessous et sur la facture jointe. Au plaisir de vous revoir !'
+        : 'Merci d\'avoir loué chez L\'Atelier du Mécano ! Votre location est maintenant terminée et le retour du véhicule a bien été enregistré. Vous trouverez ci-joint votre facture acquittée. Au plaisir de vous revoir !');
       clientForm.append('🚗 Véhicule', c.vehicule);
-      clientForm.append('💰 Montant réglé', c.total);
       clientForm.append('📅 Retour confirmé le', c.retourConfirmeDate);
+      if(supplements.length){
+        clientForm.append('💶 Montant initial de la location', montantBase.toFixed(2).replace('.',',') + ' €');
+        supplements.forEach(s => {
+          clientForm.append('➕ ' + s.label, s.montant.toFixed(2).replace('.',',') + ' €' + (s.detail ? '  —  ' + s.detail : ''));
+        });
+        clientForm.append('💰 NOUVEAU TOTAL TTC', montantFinal.toFixed(2).replace('.',',') + ' €');
+      } else {
+        clientForm.append('💰 Montant réglé', c.total);
+      }
+      if(observations) clientForm.append('📝 État du véhicule au retour', observations);
       clientForm.append('⭐ Votre avis compte', 'N\'hésitez pas à nous laisser un avis sur le site !');
       clientForm.append('facture_'+inv.num+'.pdf', invoicePDF, 'facture_'+inv.num+'.pdf');
       await fetch('https://formsubmit.co/ajax/'+encodeURIComponent(c.email), {
         method: 'POST', body: clientForm, headers: { 'Accept': 'application/json' }
       });
-      showNotif('✅ Retour confirmé !','Facture envoyée à '+c.client+' ('+c.email+'). Dates libérées dans le planning.');
+      showNotif('✅ Retour confirmé !','Facture'+(supplements.length?' (+'+supplements.length+' supplément'+(supplements.length>1?'s':'')+', total '+montantFinal.toFixed(2).replace('.',',')+' €)':'')+' envoyée à '+c.client+' ('+c.email+'). Dates libérées.');
     } catch(err){
       console.error('[Email] Envoi facture client échoué:', err);
       showNotif('✅ Retour confirmé','Location terminée et dates libérées. ⚠️ L\'envoi de la facture au client a échoué.');
     }
   } else {
-    showNotif('✅ Retour confirmé','Location terminée, dates libérées.'+(c.email?'':' (Aucun email client pour envoyer la facture.)'));
+    showNotif('✅ Retour confirmé','Location terminée, dates libérées.'+(supplements.length?' '+supplements.length+' supplément(s) ajouté(s) — nouveau total '+montantFinal.toFixed(2).replace('.',',')+' €.':'')+(c.email?'':' (Aucun email client pour envoyer la facture.)'));
   }
 
   // Rafraîchir la modale dossier si ouverte
@@ -6060,6 +6803,7 @@ function openAdmin(){
   if(typeof renderComptabilite==='function') renderComptabilite();
   if(typeof renderPaie==='function') renderPaie();
   if(typeof renderThemeSelector==='function') renderThemeSelector();
+  if(typeof renderDepannageHistory==='function') renderDepannageHistory();
   renderPlanningAdmin();
   renderVenteAdmin();
   renderContratHistory();
@@ -6644,6 +7388,801 @@ function generateControlePDF(){
   showNotif('📥 Rapport généré', 'Rapport de contrôle de '+totalPts+' points sauvegardé sur '+pageNum+' pages.');
 }
 
+// ═══════════════════════════════════════════════════════════════
+// MODULE FACTURATION DÉPANNAGE
+// Facture détaillée d'intervention + envoi automatique au client
+// ═══════════════════════════════════════════════════════════════
+let depannageHistory = loadData('adm_depannages', []);
+
+// ═══════════════════════════════════════════════════════════════
+// CALCUL AUTOMATIQUE DE DISTANCE — carte routière de France
+// Géocodage : API Adresse (data.gouv.fr, officielle)
+// Itinéraire : OSRM (routage routier réel)
+// Repli : base locale embarquée + distance orthodromique corrigée
+// ═══════════════════════════════════════════════════════════════
+const VILLES_LOCALES = [{n:"Valgelon-La Rochette",cp:"73110",lon:6.12591,lat:45.45928},{n:"Pontcharra",cp:"38530",lon:6.01628,lat:45.41929},{n:"Goncelin",cp:"38570",lon:5.98398,lat:45.3374},{n:"Le Cheylas",cp:"38570",lon:5.99947,lat:45.37891},{n:"Le Touvet",cp:"38660",lon:5.947,lat:45.35339},{n:"La Terrasse",cp:"38660",lon:5.92966,lat:45.32652},{n:"Crolles",cp:"38920",lon:5.88307,lat:45.28353},{n:"Villard-Bonnot",cp:"38190",lon:5.88812,lat:45.24351},{n:"Grenoble",cp:"38000",lon:5.7243,lat:45.18283},{n:"Chambéry",cp:"73000",lon:5.9093,lat:45.58322},{n:"Détrier",cp:"73110",lon:6.10241,lat:45.44899},{n:"Albertville",cp:"73200",lon:6.39677,lat:45.671},{n:"Frontenex",cp:"73460",lon:6.31195,lat:45.63341},{n:"Brains-sur-les-Marches",cp:"53350",lon:-1.17979,lat:47.88414},{n:"Montmélian",cp:"73800",lon:6.05774,lat:45.50212},{n:"Allevard",cp:"38580",lon:6.08534,lat:45.39769},{n:"Saint-Pierre-d'Albigny",cp:"73250",lon:6.16162,lat:45.56777},{n:"Challes-les-Eaux",cp:"73190",lon:5.9804,lat:45.54968},{n:"La Motte-Servolex",cp:"73290",lon:5.86559,lat:45.60692},{n:"Aix-les-Bains",cp:"73100",lon:5.90966,lat:45.6898},{n:"Annecy",cp:"74000",lon:6.1253,lat:45.90158},{n:"Voiron",cp:"38500",lon:5.58545,lat:45.37805},{n:"Saint-Jean-de-Maurienne",cp:"73300",lon:6.34785,lat:45.26796},{n:"Moûtiers",cp:"73600",lon:6.53175,lat:45.48522},{n:"Ugine",cp:"73400",lon:6.42894,lat:45.75704},{n:"Chapareillan",cp:"38530",lon:5.97933,lat:45.46856},{n:"Barraux",cp:"38530",lon:5.98657,lat:45.42946},{n:"Tencin",cp:"38570",lon:5.96212,lat:45.31086},{n:"Theys",cp:"38570",lon:5.99857,lat:45.29527},{n:"Froges",cp:"38190",lon:5.92666,lat:45.26906},{n:"Domène",cp:"38420",lon:5.83465,lat:45.20279},{n:"Meylan",cp:"38240",lon:5.78051,lat:45.21501},{n:"Saint-Martin-d'Hères",cp:"38400",lon:5.76322,lat:45.17844},{n:"Échirolles",cp:"38130",lon:5.71504,lat:45.14612},{n:"Lyon",cp:"69001",lon:4.835,lat:45.758},{n:"Bourgoin-Jallieu",cp:"38300",lon:5.26699,lat:45.59796},{n:"La Chambre",cp:"73130",lon:6.29781,lat:45.36094},{n:"Saint-Michel-de-Maurienne",cp:"73140",lon:6.48166,lat:45.23184},{n:"Bourg-Saint-Maurice",cp:"73700",lon:6.78753,lat:45.65366},{n:"Thonon-les-Bains",cp:"74200",lon:6.47815,lat:46.3759}];
+
+// Normalise pour comparer (sans accents, sans tirets)
+function normVille(s){
+  return (s||'').toString().toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[-'’]/g,' ').replace(/\bsaint\b/g,'st')
+    .replace(/\s+/g,' ').trim();
+}
+
+// Recherche dans la base locale (hors ligne)
+function chercherVilleLocale(nom){
+  const q = normVille(nom);
+  if(!q) return null;
+  let exact = VILLES_LOCALES.find(v => normVille(v.n) === q);
+  if(exact) return exact;
+  let cp = VILLES_LOCALES.find(v => v.cp === q.replace(/\D/g,''));
+  if(cp) return cp;
+  return VILLES_LOCALES.find(v => normVille(v.n).startsWith(q)) ||
+         VILLES_LOCALES.find(v => normVille(v.n).includes(q)) || null;
+}
+
+// ─── AUTOCOMPLÉTION DES VILLES ──────────────────────────────────
+const _geoTimers = {};
+function geoSuggest(inputId){
+  const input = document.getElementById(inputId);
+  const box = document.getElementById('sugg-'+inputId);
+  if(!input || !box) return;
+  const q = input.value.trim();
+  clearTimeout(_geoTimers[inputId]);
+  if(q.length < 2){ box.classList.remove('open'); box.innerHTML=''; return; }
+
+  // Suggestions locales immédiates
+  const qn = normVille(q);
+  const locales = VILLES_LOCALES.filter(v => normVille(v.n).includes(qn) || v.cp.startsWith(q)).slice(0,6);
+  const render = items => {
+    if(!items.length){ box.classList.remove('open'); box.innerHTML=''; return; }
+    box.innerHTML = items.map(v =>
+      `<div class="geo-sugg-item" onmousedown="pickVille('${inputId}', ${JSON.stringify(v).replace(/"/g,'&quot;')})">
+         <strong>${v.n}</strong><small>${v.cp}${v.ctx?' — '+v.ctx:''}</small>
+       </div>`).join('');
+    box.classList.add('open');
+  };
+  render(locales);
+
+  // Puis compléter via l'API Adresse (toute la France)
+  _geoTimers[inputId] = setTimeout(async () => {
+    try {
+      const r = await fetch('https://api-adresse.data.gouv.fr/search/?q='+encodeURIComponent(q)+'&type=municipality&limit=7', {signal: AbortSignal.timeout(6000)});
+      if(!r.ok) return;
+      const d = await r.json();
+      const api = (d.features||[]).map(f => ({
+        n: f.properties.name, cp: f.properties.postcode,
+        lon: f.geometry.coordinates[0], lat: f.geometry.coordinates[1],
+        ctx: f.properties.context || '',
+      }));
+      // Fusionner en évitant les doublons
+      const seen = new Set(locales.map(v=>normVille(v.n)+v.cp));
+      const merged = [...locales, ...api.filter(v => !seen.has(normVille(v.n)+v.cp))].slice(0,8);
+      if(document.activeElement === input) render(merged);
+    } catch(e){ /* hors ligne : les suggestions locales suffisent */ }
+  }, 280);
+}
+
+function pickVille(inputId, v){
+  const input = document.getElementById(inputId);
+  if(input){
+    input.value = v.n;
+    input.dataset.lon = v.lon; input.dataset.lat = v.lat; input.dataset.cp = v.cp || '';
+  }
+  hideGeoSuggest(inputId);
+}
+
+function hideGeoSuggest(inputId){
+  const box = document.getElementById('sugg-'+inputId);
+  if(box){ box.classList.remove('open'); }
+}
+
+// ─── GÉOCODAGE D'UNE VILLE ──────────────────────────────────────
+async function geocodeVille(nom, inputId){
+  if(!nom || !nom.trim()) return null;
+  // 1. Coordonnées déjà choisies dans la liste
+  if(inputId){
+    const el = document.getElementById(inputId);
+    if(el && el.dataset.lon && el.dataset.lat && normVille(el.value) === normVille(nom)){
+      return { n: nom, lon: parseFloat(el.dataset.lon), lat: parseFloat(el.dataset.lat), cp: el.dataset.cp||'', src:'choisie' };
+    }
+  }
+  // 2. API Adresse — d'abord en COMMUNE (évite de tomber sur une rue homonyme
+  //    à l'autre bout de la France : « Chambéry » existe comme rue en Maine-et-Loire)
+  try {
+    const r = await fetch('https://api-adresse.data.gouv.fr/search/?q='+encodeURIComponent(nom)+'&type=municipality&limit=1', {signal: AbortSignal.timeout(8000)});
+    if(r.ok){
+      const d = await r.json();
+      if(d.features && d.features.length){
+        const f = d.features[0];
+        return { n: f.properties.name, cp: f.properties.postcode || '',
+                 lon: f.geometry.coordinates[0], lat: f.geometry.coordinates[1], src:'commune' };
+      }
+    }
+  } catch(e){ console.log('[Geo] API commune indisponible'); }
+  // 2b. Sinon adresse libre (permet « A43 PK 32 » ou une rue précise)
+  try {
+    const r = await fetch('https://api-adresse.data.gouv.fr/search/?q='+encodeURIComponent(nom)+'&limit=1', {signal: AbortSignal.timeout(8000)});
+    if(r.ok){
+      const d = await r.json();
+      if(d.features && d.features.length){
+        const f = d.features[0];
+        if((f.properties.score || 0) >= 0.4){
+          return { n: f.properties.city || f.properties.name, cp: f.properties.postcode || '',
+                   lon: f.geometry.coordinates[0], lat: f.geometry.coordinates[1], src:'adresse' };
+        }
+      }
+    }
+  } catch(e){ console.log('[Geo] API indisponible, repli local'); }
+  // 3. Base locale embarquée (hors ligne)
+  const loc = chercherVilleLocale(nom);
+  if(loc) return { ...loc, src:'locale' };
+  return null;
+}
+
+// Distance orthodromique (repli si le routage échoue)
+function haversineKm(a, b){
+  const R = 6371, rad = x => x*Math.PI/180;
+  const dLat = rad(b.lat-a.lat), dLon = rad(b.lon-a.lon);
+  const h = Math.sin(dLat/2)**2 + Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.sin(dLon/2)**2;
+  return 2*R*Math.asin(Math.sqrt(h));
+}
+
+// ─── ITINÉRAIRE ROUTIER RÉEL (OSRM) ─────────────────────────────
+async function routeDistanceKm(points){
+  const coords = points.map(p => p.lon.toFixed(6)+','+p.lat.toFixed(6)).join(';');
+  try {
+    const r = await fetch('https://router.project-osrm.org/route/v1/driving/'+coords+'?overview=false',
+                          {signal: AbortSignal.timeout(10000)});
+    if(r.ok){
+      const d = await r.json();
+      if(d.code === 'Ok' && d.routes && d.routes.length){
+        return { km: d.routes[0].distance/1000, min: Math.round(d.routes[0].duration/60), reel: true };
+      }
+    }
+  } catch(e){ console.log('[Route] OSRM indisponible, estimation à vol d\'oiseau'); }
+  // Repli : somme des segments à vol d'oiseau × 1,30 (sinuosité moyenne du réseau routier)
+  let km = 0;
+  for(let i=0; i<points.length-1; i++) km += haversineKm(points[i], points[i+1]);
+  km *= 1.30;
+  return { km, min: Math.round(km/70*60), reel: false };
+}
+
+// ─── ORCHESTRATION ──────────────────────────────────────────────
+async function calculerDistanceDepannage(){
+  const val = id => (document.getElementById(id)?.value || '').trim();
+  const box = document.getElementById('dep-dist-result');
+  const btn = document.getElementById('btn-calc-dist');
+  const show = (html, type) => {
+    if(!box) return;
+    const bg = type==='err' ? 'rgba(226,75,74,.12)' : type==='warn' ? 'rgba(244,166,0,.14)' : 'rgba(26,171,109,.12)';
+    const bd = type==='err' ? '#e24b4a' : type==='warn' ? '#f4a600' : '#1aab6d';
+    box.style.cssText = 'display:block;margin-top:1rem;padding:.9rem 1.1rem;border-radius:8px;font-size:14px;line-height:1.6;background:'+bg+';border:1.5px solid '+bd+';';
+    box.innerHTML = html;
+  };
+
+  const vDepart  = val('dep-ville-depart') || "Valgelon-La Rochette";
+  const vArrivee = val('dep-ville-arrivee');
+  const vDepose  = val('dep-ville-depose');
+
+  if(!vArrivee){ show('⚠️ Renseignez la <strong>ville du véhicule à dépanner</strong>.', 'err'); return; }
+
+  if(btn){ btn.disabled = true; btn.textContent = '⏳ Calcul en cours…'; btn.style.opacity = '.6'; }
+  show('⏳ Localisation des villes et calcul de l\'itinéraire…', 'warn');
+
+  try {
+    const [gDep, gArr, gDepose] = await Promise.all([
+      geocodeVille(vDepart,  'dep-ville-depart'),
+      geocodeVille(vArrivee, 'dep-ville-arrivee'),
+      vDepose ? geocodeVille(vDepose, 'dep-ville-depose') : Promise.resolve(null),
+    ]);
+    if(!gDep){  show('❌ Ville de départ « '+vDepart+' » introuvable. Vérifiez l\'orthographe.', 'err'); return; }
+    if(!gArr){  show('❌ Ville « '+vArrivee+' » introuvable. Vérifiez l\'orthographe.', 'err'); return; }
+    if(vDepose && !gDepose){ show('❌ Ville de dépose « '+vDepose+' » introuvable.', 'err'); return; }
+
+    const allerRetour = document.getElementById('dep-aller-retour')?.checked;
+    // Trajet : départ → lieu de panne → (dépose | retour au départ)
+    const points = [gDep, gArr];
+    if(gDepose) points.push(gDepose);
+    else if(allerRetour) points.push(gDep);
+
+    const route = await routeDistanceKm(points);
+    let km = route.km;
+    // Si dépose renseignée ET aller-retour coché, on ajoute le retour dépose → départ
+    if(gDepose && allerRetour){
+      const retour = await routeDistanceKm([gDepose, gDep]);
+      km += retour.km;
+      route.min += retour.min;
+    }
+    const kmArrondi = Math.round(km);
+
+    // Remplir le kilométrage
+    const champKm = document.getElementById('dep-km');
+    if(champKm) champKm.value = kmArrondi;
+
+    // Estimer la consommation
+    let ligneConso = '';
+    if(document.getElementById('dep-auto-conso')?.checked){
+      const l100 = parseFloat(document.getElementById('dep-conso-100')?.value) || 13;
+      const litres = Math.round(kmArrondi * l100 / 100 * 10) / 10;
+      const champConso = document.getElementById('dep-conso');
+      if(champConso) champConso.value = litres;
+      ligneConso = '<br>⛽ Consommation estimée : <strong>'+litres.toFixed(1).replace('.',',')+' L</strong> ('+l100+' L/100 km)';
+    }
+
+    // Pré-remplir les lieux s'ils sont vides
+    const lieu = document.getElementById('dep-lieu');
+    if(lieu && !lieu.value.trim()) lieu.value = gArr.n + (gArr.cp ? ' ('+gArr.cp+')' : '');
+    const depose = document.getElementById('dep-lieu-depose');
+    if(depose && !depose.value.trim() && gDepose) depose.value = gDepose.n + (gDepose.cp ? ' ('+gDepose.cp+')' : '');
+
+    computeDepannage();
+
+    // Résumé du trajet
+    const etapes = points.map(p => p.n).join(' → ');
+    const precision = route.reel
+      ? '<span style="color:#1aab6d;font-weight:700;">itinéraire routier réel</span>'
+      : '<span style="color:#f4a600;font-weight:700;">estimation hors ligne (±15 %)</span>';
+    show(
+      '✅ <strong style="font-size:18px;">'+kmArrondi+' km</strong> — '+precision+
+      '<br>🗺️ Trajet : '+etapes+
+      (route.min ? '<br>⏱️ Temps de route estimé : <strong>'+(route.min>=60 ? Math.floor(route.min/60)+' h '+String(route.min%60).padStart(2,'0') : route.min+' min')+'</strong>' : '')+
+      ligneConso+
+      '<br><span style="font-size:12px;color:var(--gray-text);">Kilométrage et consommation reportés dans la facture — modifiables à la main.</span>',
+      'ok'
+    );
+  } catch(err){
+    console.error('[Distance]', err);
+    show('❌ Erreur lors du calcul : '+err.message, 'err');
+  } finally {
+    if(btn){ btn.disabled = false; btn.textContent = '🗺️ Calculer la distance'; btn.style.opacity = '1'; }
+  }
+}
+
+function initDepannagePage(){
+  const d = document.getElementById('dep-date');
+  if(d && !d.value) d.value = new Date().toISOString().substring(0,10);
+  const t = document.getElementById('dep-technicien');
+  if(t && !t.value) t.value = 'Marc-Henri Annis';
+  const ld = document.getElementById('dep-lieu-depose');
+  if(ld && !ld.value) ld.value = "Garage L'Atelier du Mécano — Place Georges Lardenois, 73110 Valgelon la Rochette";
+  // Ville de départ par défaut : le garage
+  const vd = document.getElementById('dep-ville-depart');
+  if(vd && !vd.value){
+    vd.value = 'Valgelon-La Rochette';
+    const g = VILLES_LOCALES.find(v => v.cp === '73110');
+    if(g){ vd.dataset.lon = g.lon; vd.dataset.lat = g.lat; vd.dataset.cp = g.cp; }
+  }
+  computeDepannage();
+  renderDepannageHistory();
+}
+
+// ─── CALCUL DU COÛT ─────────────────────────────────────────────
+function computeDepannage(){
+  const num = id => parseFloat(document.getElementById(id)?.value) || 0;
+  const str = id => (document.getElementById(id)?.value || '').trim();
+
+  const forfait   = num('dep-forfait');
+  const km        = num('dep-km');
+  const kmInclus  = num('dep-km-inclus');
+  const tarifKm   = num('dep-tarif-km');
+  const conso     = num('dep-conso');
+  const prixCarb  = num('dep-prix-carb');
+  const moH       = num('dep-mo-h');
+  const moTaux    = num('dep-mo-taux');
+  const pieces    = num('dep-pieces-montant');
+  const majPct    = num('dep-majoration');
+
+  const kmSupp     = Math.max(0, km - kmInclus);
+  const coutKm     = kmSupp * tarifKm;
+  const coutCarb   = conso * prixCarb;
+  const coutMO     = moH * moTaux;
+
+  const sousTotal  = forfait + coutKm + coutCarb + coutMO + pieces;
+  const majoration = sousTotal * majPct / 100;
+  const total      = sousTotal + majoration;
+
+  // Durée d'intervention
+  const hArr = str('dep-h-arrivee'), hFin = str('dep-h-fin'), hApp = str('dep-h-appel');
+  let duree = '', delai = '';
+  const toMin = h => { const p = h.split(':'); return p.length===2 ? (+p[0])*60 + (+p[1]) : null; };
+  if(hArr && hFin){
+    let d = toMin(hFin) - toMin(hArr);
+    if(d < 0) d += 1440; // passage minuit
+    if(d >= 0) duree = Math.floor(d/60) + 'h' + String(d%60).padStart(2,'0');
+  }
+  if(hApp && hArr){
+    let d = toMin(hArr) - toMin(hApp);
+    if(d < 0) d += 1440;
+    if(d >= 0) delai = d + ' min';
+  }
+
+  // Affichage du récapitulatif
+  const lines = [];
+  const eur = v => v.toFixed(2).replace('.', ',') + ' €';
+  const typeInt = str('dep-type') || 'Intervention';
+  lines.push(['Forfait d\'intervention — ' + typeInt, eur(forfait)]);
+  if(kmSupp > 0) lines.push([`Kilométrage supplémentaire (${kmSupp} km au-delà de ${kmInclus} km inclus × ${tarifKm.toFixed(2).replace('.',',')} €)`, eur(coutKm)]);
+  else if(km > 0) lines.push([`Déplacement ${km} km (inclus dans le forfait)`, 'Inclus']);
+  if(coutCarb > 0) lines.push([`Carburant consommé (${conso.toFixed(1).replace('.',',')} L × ${prixCarb.toFixed(2).replace('.',',')} €/L)`, eur(coutCarb)]);
+  if(coutMO > 0) lines.push([`Main d'œuvre (${moH.toFixed(2).replace('.',',')} h × ${moTaux.toFixed(2).replace('.',',')} €/h)`, eur(coutMO)]);
+  if(pieces > 0) lines.push(['Pièces / consommables' + (str('dep-pieces-label') ? ' — ' + str('dep-pieces-label') : ''), eur(pieces)]);
+  if(majoration > 0){
+    const majSel = document.getElementById('dep-majoration');
+    const majLabel = majSel ? majSel.options[majSel.selectedIndex].text : ('+' + majPct + ' %');
+    lines.push(['Majoration — ' + majLabel, eur(majoration)]);
+  }
+  if(duree) lines.push(['⏱️ Durée d\'intervention sur place', duree]);
+  if(delai) lines.push(['🚨 Délai d\'arrivée après appel', delai]);
+
+  const box = document.getElementById('dep-recap-lines');
+  if(box) box.innerHTML = lines.map(([l,v]) => `<div class="dep-recap-line"><span>${l}</span><span>${v}</span></div>`).join('');
+  const tot = document.getElementById('dep-total');
+  if(tot) tot.textContent = eur(total);
+
+  return { forfait, km, kmInclus, kmSupp, tarifKm, coutKm, conso, prixCarb, coutCarb,
+           moH, moTaux, coutMO, pieces, majPct, majoration, sousTotal, total, duree, delai };
+}
+
+// ─── GÉNÉRATION DU PDF ──────────────────────────────────────────
+function generateDepannagePDF(f){
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+  const eur = v => (typeof v === 'number' ? v.toFixed(2) : v) + ' EUR';
+  const noAcc = s => (s||'').toString()
+    .replace(/[éèêë]/g,'e').replace(/[àâä]/g,'a').replace(/[ùûü]/g,'u')
+    .replace(/[îï]/g,'i').replace(/[ôö]/g,'o').replace(/ç/g,'c')
+    .replace(/[ÉÈÊË]/g,'E').replace(/[ÀÂÄ]/g,'A').replace(/[ÙÛÜ]/g,'U')
+    .replace(/[ÎÏ]/g,'I').replace(/[ÔÖ]/g,'O').replace(/Ç/g,'C')
+    .replace(/[’']/g,"'").replace(/[—–]/g,'-')
+    .replace(/[→➔]/g,'->').replace(/[←]/g,'<-')
+    .replace(/[«»]/g,'"').replace(/[“”]/g,'"')
+    .replace(/°/g,'o').replace(/€/g,'EUR').replace(/×/g,'x')
+    .replace(/ | | /g,' ')  // espaces insécables -> espace normal
+    .replace(/[^\x20-\x7E]/g,'');          // tout caractère non-ASCII restant
+
+  pdfHeader(doc, 'FACTURE DEPANNAGE');
+
+  doc.setFontSize(10);
+  doc.setFont('helvetica','bold');
+  doc.text('N° ' + f.num, 15, 42);
+  doc.setFont('helvetica','normal');
+  doc.text('Intervention du ' + f.dateFr, 208, 42, {align:'right'});
+
+  let y = 50;
+
+  // ── CLIENT ──
+  pdfSection(doc, y, 'CLIENT'); y += 11;
+  pdfKeyValue(doc, y, 'Nom / Prenom :', noAcc(f.client)); y += 6;
+  pdfKeyValue(doc, y, 'Telephone :',    f.tel || '-');    y += 6;
+  pdfKeyValue(doc, y, 'E-mail :',       f.email || '-');  y += 6;
+  if(f.adresse){ pdfKeyValue(doc, y, 'Adresse :', noAcc(f.adresse)); y += 6; }
+  if(f.assurance || f.sinistre){
+    pdfKeyValue(doc, y, 'Assurance :', noAcc(f.assurance || '-') + (f.sinistre ? '   |   N° sinistre : ' + noAcc(f.sinistre) : '')); y += 6;
+  }
+  y += 4;
+
+  // ── VEHICULE ──
+  pdfSection(doc, y, 'VEHICULE PRIS EN CHARGE'); y += 11;
+  pdfKeyValue(doc, y, 'Marque / Modele :', noAcc((f.marque + ' ' + f.modele).trim() || '-')); y += 6;
+  pdfKeyValue(doc, y, 'Immatriculation :', (f.immat || '-').toUpperCase()); y += 6;
+  pdfKeyValue(doc, y, 'Kilometrage :', f.vehkm ? String(Number(f.vehkm)).replace(/\B(?=(\d{3})+(?!\d))/g,' ') + ' km' : '-'); y += 6;
+  pdfKeyValue(doc, y, 'Energie :', f.energie || '-'); y += 10;
+
+  // ── INTERVENTION ──
+  pdfSection(doc, y, 'DETAIL DE L\'INTERVENTION'); y += 11;
+  pdfKeyValue(doc, y, 'Type d\'intervention :', noAcc(f.type)); y += 6;
+
+  // Cause (obligatoire, multi-lignes)
+  doc.setFont('helvetica','bold'); doc.setFontSize(9);
+  doc.text('Cause du depannage :', 15, y);
+  doc.setFont('helvetica','normal');
+  const causeLines = doc.splitTextToSize(noAcc(f.cause), 120);
+  doc.text(causeLines, 70, y);
+  y += Math.max(6, causeLines.length * 4.5) + 2;
+
+  // Lieu (obligatoire)
+  doc.setFont('helvetica','bold');
+  doc.text('Lieu de prise en charge :', 15, y);
+  doc.setFont('helvetica','normal');
+  const lieuLines = doc.splitTextToSize(noAcc(f.lieu), 120);
+  doc.text(lieuLines, 70, y);
+  y += Math.max(6, lieuLines.length * 4.5) + 2;
+
+  if(f.lieuDepose){
+    doc.setFont('helvetica','bold');
+    doc.text('Lieu de depose :', 15, y);
+    doc.setFont('helvetica','normal');
+    const dLines = doc.splitTextToSize(noAcc(f.lieuDepose), 120);
+    doc.text(dLines, 70, y);
+    y += Math.max(6, dLines.length * 4.5) + 2;
+  }
+
+  // Horaires + distance
+  const horaires = [];
+  if(f.hAppel)   horaires.push('Appel : ' + f.hAppel);
+  if(f.hArrivee) horaires.push('Arrivee sur place : ' + f.hArrivee);
+  if(f.hFin)     horaires.push('Fin : ' + f.hFin);
+  if(horaires.length){ pdfKeyValue(doc, y, 'Horaires :', horaires.join('   |   ')); y += 6; }
+  if(f.delai){ pdfKeyValue(doc, y, 'Delai d\'arrivee :', f.delai + ' apres l\'appel'); y += 6; }
+  if(f.duree){ pdfKeyValue(doc, y, 'Duree sur place :', f.duree); y += 6; }
+  if(f.villeDepart && f.villeArrivee){
+    const traj = [f.villeDepart, f.villeArrivee, f.villeDepose || f.villeDepart].join(' -> ');
+    pdfKeyValue(doc, y, 'Itineraire :', noAcc(traj)); y += 6;
+  }
+  pdfKeyValue(doc, y, 'Distance parcourue :', f.km + ' km (aller/retour)'); y += 6;
+  pdfKeyValue(doc, y, 'Carburant consomme :', f.conso.toFixed(1).replace('.',',') + ' L'); y += 6;
+  if(f.depanneuse){ pdfKeyValue(doc, y, 'Vehicule de depannage :', noAcc(f.depanneuse)); y += 6; }
+  if(f.technicien){ pdfKeyValue(doc, y, 'Technicien :', noAcc(f.technicien)); y += 6; }
+  y += 4;
+
+  // ── OBSERVATIONS ──
+  if(f.observations){
+    pdfSection(doc, y, 'OBSERVATIONS TECHNIQUES / ETAT DU VEHICULE'); y += 10;
+    doc.setFont('helvetica','normal'); doc.setFontSize(9);
+    const obs = doc.splitTextToSize(noAcc(f.observations), 180);
+    doc.text(obs, 15, y);
+    y += obs.length * 4.5 + 6;
+  }
+
+  // Saut de page si nécessaire
+  if(y > 215){ doc.addPage(); pdfHeader(doc, 'FACTURE DEPANNAGE (suite)'); y = 45; }
+
+  // ── TARIFICATION ──
+  pdfSection(doc, y, 'DETAIL DU COUT'); y += 10;
+  doc.setFillColor(240,240,240);
+  doc.rect(15, y, 180, 8, 'F');
+  doc.setFont('helvetica','bold'); doc.setFontSize(9);
+  doc.text('Designation', 18, y + 5.5);
+  doc.text('Montant TTC', 192, y + 5.5, {align:'right'});
+  y += 8;
+  doc.setFont('helvetica','normal');
+
+  const addRow = (label, montant) => {
+    const lbl = doc.splitTextToSize(noAcc(label), 140);
+    const h = Math.max(8, lbl.length * 4.2 + 3);
+    doc.rect(15, y, 180, h, 'S');
+    doc.text(lbl, 18, y + 5);
+    doc.text(montant, 192, y + 5, {align:'right'});
+    y += h;
+  };
+
+  addRow("Forfait d'intervention - " + f.type, eur(f.forfait));
+  if(f.kmSupp > 0) addRow(`Kilometrage supplementaire : ${f.kmSupp} km au-dela des ${f.kmInclus} km inclus (${f.tarifKm.toFixed(2)} EUR/km)`, eur(f.coutKm));
+  else if(f.km > 0) addRow(`Deplacement ${f.km} km - inclus dans le forfait`, 'Inclus');
+  if(f.coutCarb > 0) addRow(`Carburant : ${f.conso.toFixed(1)} L x ${f.prixCarb.toFixed(2)} EUR/L`, eur(f.coutCarb));
+  if(f.coutMO > 0)   addRow(`Main d'oeuvre : ${f.moH} h x ${f.moTaux.toFixed(2)} EUR/h`, eur(f.coutMO));
+  if(f.pieces > 0)   addRow('Pieces / consommables' + (f.piecesLabel ? ' : ' + f.piecesLabel : ''), eur(f.pieces));
+  if(f.majoration > 0) addRow('Majoration - ' + f.majLabel, eur(f.majoration));
+
+  y += 6;
+  // Total
+  doc.setFillColor(244,112,10);
+  doc.rect(100, y, 95, 13, 'F');
+  doc.setTextColor(255,255,255);
+  doc.setFont('helvetica','bold'); doc.setFontSize(13);
+  doc.text('TOTAL TTC :', 104, y + 8.5);
+  doc.text(eur(f.total), 192, y + 8.5, {align:'right'});
+  doc.setTextColor(0,0,0);
+  y += 20;
+
+  if(y > 240){ doc.addPage(); pdfHeader(doc, 'FACTURE DEPANNAGE (suite)'); y = 45; }
+
+  // ── PAIEMENT ──
+  pdfSection(doc, y, 'PAIEMENT'); y += 10;
+  doc.setFont('helvetica','normal'); doc.setFontSize(9);
+  doc.text('Mode de paiement : ' + noAcc(f.modePaiement), 15, y); y += 5;
+  doc.text('Statut : ' + noAcc(f.statut), 15, y); y += 5;
+  doc.text('Paiement en ligne : pay.sumup.com/b2c/QK1J3LUK', 15, y); y += 5;
+  doc.text('IBAN : IE92 SUMU 9903 6512 2034 13', 15, y); y += 7;
+  doc.setFont('helvetica','italic'); doc.setFontSize(8);
+  doc.text('TVA non applicable, art. 293 B du CGI. Auto-entrepreneur.', 15, y); y += 8;
+
+  // ── MENTION ASSURANCE ──
+  doc.setFillColor(255,245,230);
+  doc.rect(15, y, 180, 16, 'F');
+  doc.setFont('helvetica','italic'); doc.setFontSize(8);
+  doc.setTextColor(80,80,80);
+  const mention = "Cette facture detaillee peut etre transmise a votre compagnie d'assurance dans le cadre d'une demande de prise en charge ou de remboursement des frais de depannage et de remorquage. Conservez-la precieusement.";
+  doc.text(doc.splitTextToSize(mention, 172), 19, y + 5);
+  doc.setTextColor(0,0,0);
+  y += 22;
+
+  // ── SIGNATURES ──
+  if(y < 255){
+    doc.setFont('helvetica','bold'); doc.setFontSize(9);
+    doc.text('Le technicien :', 15, y);
+    doc.text('Le client (bon pour accord) :', 115, y);
+    doc.setDrawColor(150,150,150);
+    doc.line(15, y + 14, 90, y + 14);
+    doc.line(115, y + 14, 195, y + 14);
+  }
+
+  pdfFooter(doc);
+  return doc.output('blob');
+}
+
+// ─── CRÉATION DE LA FACTURE (+ envoi auto) ──────────────────────
+async function createDepannageInvoice(sendToClient){
+  const str = id => (document.getElementById(id)?.value || '').trim();
+  const c = computeDepannage();
+
+  // Validations
+  if(!str('dep-client')){ showNotif('👤 Client manquant','Renseignez le nom du client.'); return; }
+  if(!str('dep-cause')){ showNotif('🔍 Cause obligatoire','La cause du dépannage doit être renseignée sur la facture.'); return; }
+  if(!str('dep-lieu')){ showNotif('📍 Lieu obligatoire','Le lieu du dépannage doit être renseigné sur la facture.'); return; }
+  if(!c.km){ showNotif('🛣️ Kilométrage obligatoire','Renseignez le nombre de kilomètres parcourus.'); return; }
+  if(!c.conso){ showNotif('⛽ Consommation obligatoire','Renseignez la consommation de carburant en litres.'); return; }
+  if(c.total <= 0){ showNotif('💶 Montant invalide','Le coût du dépannage doit être supérieur à 0 €.'); return; }
+  const email = str('dep-email');
+  if(sendToClient && (!email || !email.includes('@'))){
+    showNotif('✉️ E-mail requis','Renseignez l\'e-mail du client pour l\'envoi automatique, ou utilisez « Créer & télécharger seulement ».');
+    return;
+  }
+
+  // Numéro de facture unique
+  const now = new Date();
+  const p = n => String(n).padStart(2,'0');
+  const num = 'DEP-' + now.getFullYear() + p(now.getMonth()+1) + p(now.getDate()) + '-' + p(now.getHours()) + p(now.getMinutes());
+  const dateInt = str('dep-date') || now.toISOString().substring(0,10);
+
+  const majSel = document.getElementById('dep-majoration');
+  const facture = {
+    num, dateISO: dateInt,
+    dateFr: new Date(dateInt + 'T12:00').toLocaleDateString('fr-FR'),
+    emiseLe: now.toLocaleString('fr-FR'),
+    client: str('dep-client'), tel: str('dep-tel'), email, adresse: str('dep-adresse'),
+    assurance: str('dep-assurance'), sinistre: str('dep-sinistre'),
+    marque: str('dep-marque'), modele: str('dep-modele'), immat: str('dep-immat').toUpperCase(),
+    vehkm: str('dep-vehkm'), energie: str('dep-energie'),
+    type: str('dep-type'), cause: str('dep-cause'),
+    lieu: str('dep-lieu'), lieuDepose: str('dep-lieu-depose'),
+    hAppel: str('dep-h-appel'), hArrivee: str('dep-h-arrivee'), hFin: str('dep-h-fin'),
+    depanneuse: str('dep-depanneuse'), technicien: str('dep-technicien'),
+    villeDepart: str('dep-ville-depart'), villeArrivee: str('dep-ville-arrivee'), villeDepose: str('dep-ville-depose'),
+    observations: str('dep-observations'),
+    piecesLabel: str('dep-pieces-label'),
+    majLabel: majSel ? majSel.options[majSel.selectedIndex].text : '',
+    modePaiement: str('dep-paiement'), statut: str('dep-statut'),
+    ...c,
+    _updatedAt: now.toISOString(),
+  };
+
+  // Générer le PDF
+  let pdfBlob;
+  try {
+    pdfBlob = generateDepannagePDF(facture);
+  } catch(err){
+    console.error('Erreur génération PDF dépannage:', err);
+    showNotif('❌ Erreur PDF','Impossible de générer le PDF : ' + err.message);
+    return;
+  }
+  const fileName = 'facture_depannage_' + num + '.pdf';
+
+  // Archiver
+  depannageHistory.unshift(facture);
+  saveData('adm_depannages', depannageHistory);
+
+  // Comptabilité — recette catégorie "depannage"
+  try {
+    const ref = 'DEP:' + num;
+    if(typeof comptaData !== 'undefined' && !comptaData.some(r => r.refNum === ref)){
+      comptaData.push({
+        id: 'inc_dep_' + num, date: dateInt, category: 'depannage',
+        amount: c.total,
+        label: 'Dépannage ' + facture.type + ' — ' + facture.client + (facture.immat ? ' (' + facture.immat + ')' : ''),
+        source: 'auto', refNum: ref,
+      });
+      saveData('adm_comptabilite', comptaData);
+      if(typeof renderComptabilite === 'function') renderComptabilite();
+    }
+  } catch(e){ console.error('Compta dépannage:', e); }
+
+  // Télécharger localement
+  try {
+    const url = URL.createObjectURL(pdfBlob);
+    const a = document.createElement('a');
+    a.href = url; a.download = fileName;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch(e){ console.error('Téléchargement:', e); }
+
+  // Upload Firebase
+  let cloudUrl = null;
+  if(typeof firebaseReady !== 'undefined' && firebaseReady && typeof uploadPdfToFirebase === 'function'){
+    try {
+      const r = await uploadPdfToFirebase(num, 'facture_depannage', pdfBlob, fileName);
+      if(r){ cloudUrl = r.url; facture.cloudUrl = r.url; saveData('adm_depannages', depannageHistory); }
+    } catch(e){ console.error('Upload Firebase dépannage:', e); }
+  }
+
+  renderDepannageHistory();
+
+  if(!sendToClient){
+    showNotif('✅ Facture créée', num + ' — ' + c.total.toFixed(2).replace('.',',') + ' € — téléchargée et archivée.');
+    return;
+  }
+
+  // ─── ENVOI AUTOMATIQUE AU CLIENT ───
+  showNotif('📧 Envoi en cours…','Transmission de la facture à ' + email + '…');
+  const sent = await sendDepannageInvoiceEmail(facture, pdfBlob, fileName, cloudUrl);
+  if(sent){
+    facture.envoyeLe = new Date().toLocaleString('fr-FR');
+    saveData('adm_depannages', depannageHistory);
+    renderDepannageHistory();
+    showNotif('✅ Facture envoyée !', num + ' transmise à ' + email + ' (' + c.total.toFixed(2).replace('.',',') + ' €). Copie archivée.');
+  } else {
+    showNotif('⚠️ Envoi échoué','La facture est créée et téléchargée, mais l\'e-mail n\'a pas pu partir. Vérifiez la connexion puis renvoyez-la depuis l\'historique.');
+  }
+}
+
+// ─── ENVOI E-MAIL (client + copie propriétaire) ─────────────────
+async function sendDepannageInvoiceEmail(f, pdfBlob, fileName, cloudUrl){
+  const eur = v => (typeof v === 'number' ? v.toFixed(2).replace('.',',') : v) + ' €';
+  let ok = false;
+
+  // ── E-mail au CLIENT ──
+  try {
+    const fd = new FormData();
+    fd.append('_subject', '🧾 Votre facture de dépannage ' + f.num + " — L'Atelier du Mécano");
+    fd.append('_captcha', 'false');
+    fd.append('_template', 'table');
+    fd.append('Bonjour', f.client);
+    fd.append('Message', "Veuillez trouver ci-joint la facture détaillée de l'intervention de dépannage réalisée par L'Atelier du Mécano. Cette facture peut être transmise à votre assurance pour une demande de prise en charge ou de remboursement. Merci de votre confiance.");
+    fd.append('🧾 N° de facture',        f.num);
+    fd.append('📅 Date d\'intervention', f.dateFr);
+    fd.append('🔧 Type d\'intervention', f.type);
+    fd.append('🔍 Cause du dépannage',   f.cause);
+    fd.append('📍 Lieu du dépannage',    f.lieu);
+    if(f.lieuDepose) fd.append('🏁 Lieu de dépose', f.lieuDepose);
+    if(f.immat) fd.append('🚗 Véhicule', ((f.marque + ' ' + f.modele).trim() + ' — ' + f.immat).trim());
+    fd.append('🛣️ Kilomètres parcourus', f.km + ' km');
+    fd.append('⛽ Carburant consommé',   f.conso.toFixed(1).replace('.',',') + ' L');
+    if(f.duree) fd.append('⏱️ Durée sur place', f.duree);
+    if(f.delai) fd.append('🚨 Délai d\'arrivée', f.delai);
+    fd.append('💰 TOTAL TTC',            eur(f.total));
+    fd.append('💳 Mode de paiement',     f.modePaiement);
+    fd.append('📌 Statut',               f.statut);
+    if(cloudUrl) fd.append('📥 Télécharger la facture', cloudUrl);
+    fd.append('📞 Nous contacter', "06 68 83 36 87 — marchenriannis@gmail.com — SMS ou e-mail de préférence, je recontacte tous mes clients en fin de journée ou le lendemain matin.");
+    fd.append('ℹ️ Mention légale', 'TVA non applicable, art. 293 B du CGI. SIRET 100 384 445 000 19.');
+    fd.append(fileName, pdfBlob, fileName);
+
+    const r = await fetch('https://formsubmit.co/ajax/' + encodeURIComponent(f.email), {
+      method:'POST', body: fd, headers:{ 'Accept':'application/json' }
+    });
+    ok = r.ok;
+    console.log('[Dépannage] Facture envoyée au client :', f.email, ok);
+  } catch(err){
+    console.error('[Dépannage] Envoi client échoué:', err);
+  }
+
+  // ── Copie au PROPRIÉTAIRE ──
+  try {
+    const fo = new FormData();
+    fo.append('_subject', '🚨 FACTURE DÉPANNAGE ÉMISE — ' + f.num + ' — ' + f.client);
+    fo.append('_captcha', 'false');
+    fo.append('_template', 'table');
+    fo.append('🧾 Facture',   f.num);
+    fo.append('👤 Client',    f.client + (f.tel ? ' — ' + f.tel : ''));
+    fo.append('✉️ Envoyée à', f.email);
+    fo.append('🔧 Type',      f.type);
+    fo.append('🔍 Cause',     f.cause);
+    fo.append('📍 Lieu',      f.lieu);
+    fo.append('🛣️ Km',        f.km + ' km');
+    fo.append('⛽ Carburant', f.conso.toFixed(1).replace('.',',') + ' L');
+    fo.append('💰 Total TTC', eur(f.total));
+    fo.append('📌 Statut',    f.statut);
+    if(f.assurance) fo.append('🛡️ Assurance', f.assurance + (f.sinistre ? ' — sinistre ' + f.sinistre : ''));
+    if(cloudUrl) fo.append('📥 PDF cloud', cloudUrl);
+    fo.append(fileName, pdfBlob, fileName);
+    await fetch('https://formsubmit.co/ajax/marchenriannis@gmail.com', {
+      method:'POST', body: fo, headers:{ 'Accept':'application/json' }
+    });
+  } catch(err){
+    console.error('[Dépannage] Copie propriétaire échouée:', err);
+  }
+
+  return ok;
+}
+
+// ─── HISTORIQUE ─────────────────────────────────────────────────
+function renderDepannageHistory(){
+  const body = document.getElementById('depHistoryBody');
+  const cnt  = document.getElementById('dep-count');
+  if(cnt) cnt.textContent = depannageHistory.length;
+  if(!body) return;
+  if(!depannageHistory.length){
+    body.innerHTML = '<tr><td colspan="10" style="text-align:center;padding:2rem;color:var(--gray-text);">Aucune facture de dépannage pour l\'instant.</td></tr>';
+    return;
+  }
+  body.innerHTML = depannageHistory.map((f,i) => `
+    <tr>
+      <td style="font-weight:800;color:var(--orange);">${f.num}${f.envoyeLe?'<br><span style="font-size:10px;color:#1aab6d;font-weight:600;">✉️ envoyée</span>':''}</td>
+      <td>${f.dateFr || '-'}</td>
+      <td><strong>${f.client}</strong>${f.tel?'<br><span style="font-size:11px;color:var(--gray-text);">'+f.tel+'</span>':''}${f.email?'<br><span style="font-size:11px;color:var(--gray-text);">'+f.email+'</span>':''}</td>
+      <td>${((f.marque||'')+' '+(f.modele||'')).trim()||'-'}${f.immat?'<br><span style="font-size:11px;color:var(--gray-text);">'+f.immat+'</span>':''}</td>
+      <td style="font-size:12px;">${f.type||'-'}</td>
+      <td style="font-size:11px;max-width:180px;">${(f.lieu||'-').substring(0,60)}${(f.lieu||'').length>60?'…':''}</td>
+      <td>${f.km||0} km</td>
+      <td style="font-weight:800;">${(f.total||0).toFixed(2).replace('.',',')} €</td>
+      <td><span style="font-size:11px;padding:3px 8px;border-radius:5px;background:${f.statut==='Payée'?'rgba(26,171,109,.15)':'rgba(244,112,10,.15)'};color:${f.statut==='Payée'?'#1aab6d':'var(--orange)'};font-weight:700;">${f.statut||'-'}</span></td>
+      <td style="white-space:nowrap;">
+        <button onclick="redownloadDepannage(${i})" title="Retélécharger le PDF" style="background:#ffd400;color:#16181d;border:none;font-size:12px;font-weight:700;padding:6px 10px;border-radius:6px;cursor:pointer;">📥 PDF</button>
+        <button onclick="resendDepannage(${i})" title="Renvoyer au client" style="background:#1aab6d;color:white;border:none;font-size:12px;font-weight:700;padding:6px 10px;border-radius:6px;cursor:pointer;">📧</button>
+        <button onclick="deleteDepannage(${i})" title="Supprimer" style="background:rgba(226,75,74,.18);color:#e24b4a;border:none;font-size:12px;padding:6px 10px;border-radius:6px;cursor:pointer;">🗑</button>
+      </td>
+    </tr>`).join('');
+}
+
+function redownloadDepannage(i){
+  const f = depannageHistory[i]; if(!f) return;
+  try {
+    const blob = generateDepannagePDF(f);
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'facture_depannage_' + f.num + '.pdf';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showNotif('📥 Téléchargée', 'Facture ' + f.num + ' régénérée.');
+  } catch(e){ showNotif('❌ Erreur', e.message); }
+}
+
+async function resendDepannage(i){
+  const f = depannageHistory[i]; if(!f) return;
+  if(!f.email || !f.email.includes('@')){ showNotif('✉️ Pas d\'e-mail','Cette facture n\'a pas d\'adresse e-mail client.'); return; }
+  if(!confirm('Renvoyer la facture ' + f.num + ' à ' + f.email + ' ?')) return;
+  showNotif('📧 Envoi en cours…', f.email);
+  try {
+    const blob = generateDepannagePDF(f);
+    const sent = await sendDepannageInvoiceEmail(f, blob, 'facture_depannage_'+f.num+'.pdf', f.cloudUrl || null);
+    if(sent){
+      f.envoyeLe = new Date().toLocaleString('fr-FR');
+      saveData('adm_depannages', depannageHistory);
+      renderDepannageHistory();
+      showNotif('✅ Renvoyée', f.num + ' transmise à ' + f.email + '.');
+    } else showNotif('⚠️ Échec','L\'e-mail n\'a pas pu être envoyé.');
+  } catch(e){ showNotif('❌ Erreur', e.message); }
+}
+
+function deleteDepannage(i){
+  const f = depannageHistory[i]; if(!f) return;
+  if(!confirm('Supprimer définitivement la facture ' + f.num + ' ?\n\nLa recette correspondante sera également retirée de la comptabilité.')) return;
+  try {
+    const ref = 'DEP:' + f.num;
+    if(typeof comptaData !== 'undefined'){
+      const idx = comptaData.findIndex(r => r.refNum === ref);
+      if(idx >= 0){ comptaData.splice(idx,1); saveData('adm_comptabilite', comptaData); if(typeof renderComptabilite==='function') renderComptabilite(); }
+    }
+  } catch(e){}
+  depannageHistory.splice(i,1);
+  saveData('adm_depannages', depannageHistory);
+  renderDepannageHistory();
+  showNotif('🗑 Supprimée','Facture retirée de l\'historique et de la comptabilité.');
+}
+
+function resetDepannageForm(){
+  if(!confirm('Réinitialiser le formulaire ? Les données saisies seront perdues.')) return;
+  ['dep-client','dep-tel','dep-email','dep-adresse','dep-assurance','dep-sinistre',
+   'dep-marque','dep-modele','dep-immat','dep-vehkm','dep-cause','dep-lieu',
+   'dep-h-appel','dep-h-arrivee','dep-h-fin','dep-km','dep-conso',
+   'dep-depanneuse','dep-observations','dep-pieces-label'].forEach(id=>{
+    const e = document.getElementById(id); if(e) e.value = '';
+  });
+  const set = (id,v) => { const e = document.getElementById(id); if(e) e.value = v; };
+  set('dep-pieces-montant', '0');
+  set('dep-mo-h', '0');
+  set('dep-forfait', '150');
+  set('dep-km-inclus', '20');
+  set('dep-tarif-km', '1.50');
+  set('dep-mo-taux', '55');
+  set('dep-prix-carb', '1.85');
+  set('dep-majoration', '0');
+  initDepannagePage();
+  showNotif('🔄 Réinitialisé','Prêt pour une nouvelle facture.');
+}
+
 function switchTabById(tab){
   // Update side menu active state
   document.querySelectorAll('.admin-menu-btn').forEach(btn=>{
@@ -6662,10 +8201,13 @@ function switchTabById(tab){
   }
   // Update pages
   document.querySelectorAll('.admin-page').forEach(p=>p.classList.remove('active'));
-  const pg=document.getElementById('page-'+tab);
+  // 'vente' est un cas particulier : il existe une page publique #page-vente
+  // et une page admin #page-vente-admin (l'ID a été dédoublonné).
+  const pageId = (tab === 'vente') ? 'page-vente-admin' : ('page-'+tab);
+  const pg=document.getElementById(pageId);
   if(pg) pg.classList.add('active');
   // Update current section label in topbar
-  const labels={'clients-hub':'👥 Clients, Contrats & Factures','exploitation':'🛠️ Exploitation',fleet:'🚗 Flotte',entretien:'🔧 Entretien',vente:'🚘 Vente',planning:'📅 Planning',photos:'🖼️ Photos',suivi:'📊 Clients',contrat:'📝 Contrats',invoices:'📄 Factures',parr:'🎁 Parrainage',drivers:'👤 Livreurs',pricing:'💰 Prix & Réductions',users:'🔑 Utilisateurs',reviews:'💬 Avis',controle:'🔍 Contrôle véhicule',compta:'📊 Comptabilité',paie:'👥 Employés & Paie',theme:'🎨 Thème'};
+  const labels={'clients-hub':'👥 Clients, Contrats & Factures','exploitation':'🛠️ Exploitation',fleet:'🚗 Flotte',entretien:'🔧 Entretien',vente:'🚘 Vente',planning:'📅 Planning',photos:'🖼️ Photos',suivi:'📊 Clients',contrat:'📝 Contrats',invoices:'📄 Factures',parr:'🎁 Parrainage',drivers:'👤 Livreurs',pricing:'💰 Prix & Réductions',users:'🔑 Utilisateurs',reviews:'💬 Avis',controle:'🔍 Contrôle véhicule',compta:'📊 Comptabilité',paie:'👥 Employés & Paie',theme:'🎨 Thème',depannage:'🚨 Facture Dépannage'};
   const lbl=document.getElementById('admin-current-section');
   if(lbl) lbl.textContent=labels[tab]||tab;
   // Close side menu
@@ -6728,7 +8270,7 @@ function switchTab(tab){
   if(tab==='pricing')   { renderVehiclePriceTable(); renderVacancesAdmin(); renderSpecialPricesTable(); renderDeliveryPriceGrid(); }
   if(tab==='controle')  { if(typeof initControleData==='function') initControleData(); }
   if(tab==='entretien') initEntretienPage();
-  if(tab==='controle')  { if(typeof initControleData==='function') initControleData(); }
+  if(tab==='depannage') { if(typeof initDepannagePage==='function') initDepannagePage(); }
 }
 
 // FLEET
